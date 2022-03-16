@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.goog-logo-link {
+  display:none !important;
+} 
+  
+.goog-te-gadget{
+  color: transparent !important;
+}
+
+.goog-te-banner-frame {
+  display:none !important
+  }
+  #google_translate_element select{
+    background:black;
+    color:white;
+    border: none;
+    border-radius:3px;
+    width:50
+    }
+    #goog-gt-tt, .goog-te-balloon-frame{display: none !important;}
+    .goog-text-highlight { background: none !important; box-shadow: none !important;}

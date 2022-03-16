@@ -13,9 +13,7 @@ function Footer() {
         <Row>
           <Col md={6} className="awards pt-5 pb-5">
             <Row>
-              <Col md={3}>
-
-              </Col>
+              <Col md={3}></Col>
               <Col md={9}>
                 <h2 className="mb-4">Awards and Distinctions</h2>
                 <div className="award_img">
@@ -25,29 +23,24 @@ function Footer() {
                   <img src="/assets/images/award.png" className="mr-5" />
                 </div>
               </Col>
-                
-             
             </Row>
-
-          </Col>  
+          </Col>
           <Col md={6} className="sponsors pt-5 pb-5">
-              <Col md={9}>
-                <h2 className="mb-5">Sponsorships</h2>
-                <div className="sponsor_img">
-                  <img src="/assets/images/sponsors.png" className="mr-3" />
-                  <img src="/assets/images/sponsors.png" className="mr-3" />
-                  <img src="/assets/images/sponsors.png" className="mr-3" />
-                </div>
-              </Col>
-              <Col md={3}>
-                
-              </Col>
-            
-          </Col> 
-        </Row>  
+            <Col md={9}>
+              <h2 className="mb-5">Sponsorships</h2>
+              <div className="sponsor_img">
+                <img src="/assets/images/sponsors.png" className="mr-3" />
+                <img src="/assets/images/sponsors.png" className="mr-3" />
+                <img src="/assets/images/sponsors.png" className="mr-3" />
+              </div>
+            </Col>
+            <Col md={3}></Col>
+          </Col>
+        </Row>
       </Container>
       <div id="footer-top" className="d-flex">
-        <img className="dot_left" src="/assets/images/dots.png" />
+        <img className="dot_left" src="/assets/images/dots.png" style={{height:"fit-content",width:"fit-content"}}/>
+
         <Container>
           <Row>
             <Col md={3} className="col1">
@@ -146,7 +139,7 @@ function Footer() {
             </Col>
           </Row>
         </Container>
-        <img className="dot_right" src="/assets/images/dots.png" />
+        <img className="dot_right" src="/assets/images/dots.png" style={{height:"fit-content",width:"fit-content"}} />
       </div>
       <div id="footer-bottom" className="pt-3 pb-3 d-flex">
         <Container>
