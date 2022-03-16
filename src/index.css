@@ -171,17 +171,19 @@ input#subscribeEmail {
   width: 30%;
 }
 img.dot_right {
-  position: relative;
-  top: 45px;
+  position: absolute;
+  right: 0;
+  top: 34%;
 }
 img.dot_left {
-  position: relative;
-  top: -45px;
+  position: absolute;
+  top: 16px;
 }
 
 /* home page content */
 #products {
-  background: url(../public/assets/images/products_bg.png);
+  background: url(../public/assets/images/products_bg.png) no-repeat;
+  background-size: cover;
 }
 
 /* Products hover start */
@@ -440,4 +442,61 @@ span.plus {
 .net_img {
   min-height: 70px;
   height: auto;
+}
+
+
+/********** RESPONSIVE ************/
+@media (max-width: 575.98px) { 
+  .header-ul li:nth-child(2) {
+    padding-left: 17px;
+  }
+  #top_header{font-size: 12px;}
+  #internet_service h2 {
+    margin-left: 0px;
+    text-align: center;
+  }
+  ul.icontext {
+    margin-top: 50px;
+    position: relative;
+    top: 25%;
+}
+.icontext li {
+  margin-bottom: 15px;
+}
+.icontext h3 {
+  font-size: 16px;
+  line-height: 18px;
+  margin-bottom: 3px;
+}
+.icontext li p {
+  font-size: 13px;
+  margin-top: 5px;
+}
+img.image_grp {
+  width: 68%;
+}
+.award_img img {
+  width: 11%;
+}
+.sponsor_img img {
+  width: 27%;
+}
+img.dot_left, img.dot_right{display: none;}
+.header-right-ul {
+  flex-direction: column;
+}
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) { 
+  #internet_service h2 {
+    margin-left: 60px;
+  }
+  img.image_grp {
+    top: 20%;
+  }
+  .sponsor_img img {
+    width: 27%;
+}
+
+img.dot_left, img.dot_right{display: none;}
 }

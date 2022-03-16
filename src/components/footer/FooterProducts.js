@@ -15,7 +15,7 @@ const styles = {
   };
   
   const ProductCard = () => (
-    <div className="col-md-3 mb-4">
+    <div className="col-md-6 col-lg-3 mb-4">
       <div className="single_product">
         <div className="portfolio-item portfolio-effect__item portfolio-item--eff1">
           <img

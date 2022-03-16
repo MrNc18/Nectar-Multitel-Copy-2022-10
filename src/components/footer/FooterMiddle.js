@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
@@ -7,11 +7,11 @@ import Button from "react-bootstrap/Button";
 
 function FooterMiddle() {
   return (
-    <div id="footer-top" className="d-flex">
-        <img className="dot_left" src="/assets/images/dots.png" />
+    <section className="pos-relative">
+      <div id="footer-top">
         <Container>
           <Row>
-            <Col md={3} className="col1">
+            <Col md={6} lg={3} className="col1">
               <img
                 width={"50%"}
                 src="/assets/images/logo.png"
@@ -39,7 +39,7 @@ function FooterMiddle() {
                 </a>
               </div>
             </Col>
-            <Col md={3} className="col23">
+            <Col md={6} lg={3} className="col23">
               <h3 className="footer-heading mb-4">Services</h3>
               <ul>
                 <li>
@@ -59,7 +59,7 @@ function FooterMiddle() {
                 </li>
               </ul>
             </Col>
-            <Col md={3} className="col23">
+            <Col md={6} lg={3} className="col23">
               <h3 className="footer-heading mb-4">Quick Links</h3>
               <ul>
                 <li>
@@ -79,7 +79,7 @@ function FooterMiddle() {
                 </li>
               </ul>
             </Col>
-            <Col md={3} className="col4">
+            <Col md={6} lg={3} className="col4">
               <h3 className="footer-heading mb-3">Subscribe Our Newsletter</h3>
               <Form>
                 <Form.Group controlId="subscribeEmail">
@@ -107,9 +107,11 @@ function FooterMiddle() {
             </Col>
           </Row>
         </Container>
-        <img className="dot_right" src="/assets/images/dots.png" />
       </div>
-  )
+      <img className="dot_left" src="/assets/images/dots.png" />
+      <img className="dot_right" src="/assets/images/dots.png" />
+    </section>
+  );
 }
 
-export default FooterMiddle
+export default FooterMiddle;

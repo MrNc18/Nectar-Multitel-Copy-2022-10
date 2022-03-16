@@ -2,6 +2,29 @@ import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import LandingPage from "../components/LandingPage";
 
+const ServiceCard = () => (
+  <Col md={6} lg={3} className="mb-md-4">
+    <Card>
+      <Card.Img variant="top" src="/assets/images/fiber.png" />
+      <Card.Body className="text-center">
+        <Card.Title>Fiber Infrastructure</Card.Title>
+        <Card.Text className="cardtext">
+          Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Card.Text>
+        <Button variant="primary">See Plans</Button>
+      </Card.Body>
+    </Card>
+  </Col>
+);
+
+const getCards = () => {
+  let content = [];
+  for (let i = 0; i < 4; i++) {
+    content.push(<ServiceCard key={i} />);
+  }
+  return content;
+};
+
 function Home() {
   return (
     <LandingPage>
@@ -39,57 +62,11 @@ function Home() {
           </Row>
         </Container>
       </section>
+
       <section id="img_cards" className="mt-5 mb-5">
         <Container>
           <Row>
-            <Col md={3}>
-              <Card>
-                <Card.Img variant="top" src="/assets/images/fiber.png" />
-                <Card.Body className="text-center">
-                  <Card.Title>Fiber Infrastructure</Card.Title>
-                  <Card.Text className="cardtext">
-                    Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </Card.Text>
-                  <Button variant="primary">See Plans</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={3}>
-              <Card>
-                <Card.Img variant="top" src="/assets/images/ip.png" />
-                <Card.Body className="text-center">
-                  <Card.Title>IP Transit Provider</Card.Title>
-                  <Card.Text className="cardtext">
-                    Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </Card.Text>
-                  <Button variant="primary">See Plans</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={3}>
-              <Card>
-                <Card.Img variant="top" src="/assets/images/cloud.png" />
-                <Card.Body className="text-center">
-                  <Card.Title>Cloud Connection</Card.Title>
-                  <Card.Text className="cardtext">
-                    Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </Card.Text>
-                  <Button variant="primary">See Plans</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={3}>
-              <Card>
-                <Card.Img variant="top" src="/assets/images/ethernet.png" />
-                <Card.Body className="text-center">
-                  <Card.Title>Ethernet Transport</Card.Title>
-                  <Card.Text className="cardtext">
-                    Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </Card.Text>
-                  <Button variant="primary">See Plans</Button>
-                </Card.Body>
-              </Card>
-            </Col>
+            {getCards()}
           </Row>          
         </Container>
       </section>
@@ -115,16 +92,14 @@ function Home() {
       </section>
       <section id="internet_service" className="pos-relative">
         <Row>
-          <Col md={5}>
-            <h2 className="mb-4 mt-5">
-              Internet Service Designed with your Business in Mind.
-            </h2>
+          <Col md={4} lg={5}>
+            <h2 className="mb-4 mt-5">Internet Service Designed with your Business in Mind.</h2>
           </Col>
-          <Col md={7} className="right_bg">
+          <Col md={8} lg={7} className="right_bg">
             <Container>
               <Row>
                 <Col md={3}></Col>
-                <Col md={7}>
+                <Col md={8} lg={7}>
                   <ul className="icontext">
                     <li>
                       <h3 className="white-text">Heading goes here</h3>
@@ -156,7 +131,7 @@ function Home() {
                     </li>
                   </ul>
                 </Col>
-                <Col md={2}></Col>
+                <Col md={1} lg={2}></Col>
               </Row>
             </Container>
           </Col>
