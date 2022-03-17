@@ -8,8 +8,6 @@ function LandingPage({children}) {
   return (
     <>
     <Header />
-    <Slider/>
-    <Cards/>
     {children}
     <Footer />
     </>
