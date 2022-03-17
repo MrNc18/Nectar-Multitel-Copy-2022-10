@@ -17,7 +17,7 @@ const cards = () => {
             <img src={blue1} style={{width:"35px"}}/>
             </div>
           <div className="col-6 col-md-6 col-sm-6 text-left">
-            <h6 className="pl-4 pt-4">Better Coverage</h6>
+            <h6 className="pl-4 pt-4">Better    Coverage</h6>
           </div>
         </div>
         <div className="row">
