@@ -17,9 +17,9 @@ function example() {
  
 // </div>
 // <br/>
-      <div className='container'>
+      <div className='container-fluid'>
         <div className='row d-flex'>
-          <div className='col-12'>
+          <div className='col-24'>
             <div className='banner-New'>
               <img src={test} class="img-fluid" alt="Responsive image"/>
               <div className='banner-New-inner'>
