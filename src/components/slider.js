@@ -102,12 +102,13 @@ function App() {
                   {/* <h2 className="slick-slide-title">{slide.title}</h2> */}
                   <img
                     className="slick-slide-image"
-                    src={slide.src}
-                    // src={test}
+                    // src={slide.src}
+                    src={test}
                   />
                 </div>
               ))}
             </Slider>
+            
             <button id="up_btn" onClick={prev} className="slide_manual_prev">
               <img src={up} alt="previous" />
             </button>

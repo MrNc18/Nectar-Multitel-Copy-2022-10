@@ -7,7 +7,7 @@ class GoogleTranslate extends Component {
         /* eslint-disable no-new */
         new window.google.translate.TranslateElement({
         //  pageLanguage: 'en',
-        includedLanguages : 'en,pt',
+        includedLanguages :'en,pt',
         //  layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
     },
      'google_translate_element')
