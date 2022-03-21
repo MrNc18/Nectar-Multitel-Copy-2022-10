@@ -181,6 +181,7 @@
 }
 
 @media screen and (min-width: 900px) {
+  
   .slick-dots {
     position: relative !important;
     bottom: -50px !important;
@@ -198,6 +199,7 @@
   }
 }
 @media screen and (max-width: 900px) {
+  
   .slick-dots > ul {
     right: 270px !important;
   }
@@ -283,7 +285,7 @@
 }
 @media screen and (max-width: 550px) {
   .slick-dots > ul {
-    left: -10% !important;
+    left: -20% !important;
   }
   .slick-dots > ul > li > div {
     height: 20px !important;
@@ -293,10 +295,10 @@
   }
   #up_btn {
     bottom: 45px;
-    left: -35%;
+    left: -40%;
   }
   #down_btn {
     bottom: 45px;
-    left: -15vw;
+    left: -30vw;
   }
 }
