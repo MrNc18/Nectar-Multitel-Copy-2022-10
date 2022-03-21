@@ -10,7 +10,7 @@ const cards = () => {
       <div className="flex-container" style={{marginTop:"-35px",justifyContent:"center"}}>
     <div className="col-12 col-md-6 col-sm-6 col-lg-3 mb-2">
       <div
-        className="flex-item-start" style={{marginRight:"0px"}}
+        className="flex-item-start"
       >
         <div className="row">
         <div className="col-6 col-md-8 col-sm-6 text-left">

@@ -15,7 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/Home" element={<Home/>} />
          <Route path="/ex" element={<Example />} />
 
          {/* <Route path="/admin" element={<AdLanding/>}>
@@ -25,7 +25,7 @@ function App() {
             <Route path="router" element={<Router />} />
             <Route path="network" element={<NetworkEqui />} />
            </Route> */}
-        <Route path="/corporate" element={<Corporate />} />
+        <Route path="/" element={<Corporate />} />
       </Routes>
     </BrowserRouter>
   );
