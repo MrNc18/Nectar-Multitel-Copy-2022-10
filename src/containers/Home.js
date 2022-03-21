@@ -1,50 +1,35 @@
 import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import ServiceCard from "../components/atoms/ServiceCard";
+import TopBanner from "../components/atoms/TopBanner";
 import LandingPage from "../components/LandingPage";
+import Services from "../components/Services";
 import ServicesSection from "../components/ServicesSection";
-
-const servicesData = [
-  {
-    id: 1,
-    title: "Phone",
-    src: "/assets/images/phone.png",
-  },
-  {
-    id: 2,
-    title: "Broadband",
-    src: "/assets/images/triimage2.jpg",
-  },
-  {
-    id: 3,
-    title: "Fiber",
-    src: "/assets/images/tv_zoom.png",
-  },
-  {
-    id: 4,
-    title: "Television",
-    src: "/assets/images/triimage3.jpg",
-  },
-];
 
 function Home() {
   return (
     <LandingPage>
-      <ServicesSection tagline="Check Out Our" heading="Latest Services" />
-      <section id="img_cards" className="mt-5 mb-5">
-        <Container>
-          <Row>
-            {servicesData.map((service) => (
-              <ServiceCard
-                key={service.id}
-                src={service.src}
-                title={service.title}
-                home
-              />
-            ))}
-          </Row>
-        </Container>
+      <section className="banner-home mb-5">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <div className="banner-New">
+                <div className="banner-New-inner">
+                <TopBanner
+                  topText="we're Multitel"
+                  btnText="Get Started"
+                  page="home"
+                  heading="Experience New Generation Of Internet"
+                  subheading={<>Our plan starts with <span className="fw-500">$20</span></>}
+                />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
+      
+      <ServicesSection tagline="Check Out Our" heading="Latest Services" />
+      <Services />
 
       <section id="internet_service" className="pos-relative">
         <Row>

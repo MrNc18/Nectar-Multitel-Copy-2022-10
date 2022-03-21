@@ -10,8 +10,10 @@ import { multilingual } from "../svg/multilingual";
 import { user } from "../svg/user";
 import { DateTime } from "./DateTime";
 import GoogleTranslate from "./google";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate()
   return (
     <>
       <div id="top_header">
@@ -76,17 +78,17 @@ function Header() {
 
       <Navbar expand="lg" variant="light" bg="white">
         <Container>
-          <Navbar.Brand href="/">
+          <Navbar.Brand onClick={() => navigate('/')} style={{cursor: "pointer"}}>
             <img
               src="/assets/images/logo.png"
               className="d-inline-block align-top"
-              alt="Multitel logo"
+              alt="Multitel logo"              
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              <NavDropdown title="Home" id="basic-nav-dropdown">
+              <NavDropdown title="Home" id="basic-nav-dropdown" onClick={() => navigate('/home')}>
                 <NavDropdown.Item href="#action/3.1">
                   Home Internet services
                 </NavDropdown.Item>
