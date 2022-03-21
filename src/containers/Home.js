@@ -1,142 +1,124 @@
 import React from "react";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import ServiceCard from "../components/atoms/ServiceCard";
 import LandingPage from "../components/LandingPage";
+import ServicesSection from "../components/ServicesSection";
 
-const ServiceCard = () => (
-  <Col md={6} lg={3} className="mb-md-4">
-    <Card>
-      <Card.Img variant="top" src="/assets/images/fiber.png" />
-      <Card.Body className="text-center">
-        <Card.Title>Fiber Infrastructure</Card.Title>
-        <Card.Text className="cardtext">
-          Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </Card.Text>
-        <Button variant="primary">See Plans</Button>
-      </Card.Body>
-    </Card>
-  </Col>
-);
-
-const getCards = () => {
-  let content = [];
-  for (let i = 0; i < 4; i++) {
-    content.push(<ServiceCard key={i} />);
-  }
-  return content;
-};
+const servicesData = [
+  {
+    id: 1,
+    title: "Phone",
+    src: "/assets/images/phone.png",
+  },
+  {
+    id: 2,
+    title: "Broadband",
+    src: "/assets/images/triimage2.jpg",
+  },
+  {
+    id: 3,
+    title: "Fiber",
+    src: "/assets/images/tv_zoom.png",
+  },
+  {
+    id: 4,
+    title: "Television",
+    src: "/assets/images/triimage3.jpg",
+  },
+];
 
 function Home() {
   return (
     <LandingPage>
-      <section id="deserve">
+      <ServicesSection tagline="Check Out Our" heading="Latest Services" />
+      <section id="img_cards" className="mt-5 mb-5">
         <Container>
           <Row>
-            
-            <Col md={12} className="text-center">
-              <p>Private. Secure. Super Fast</p>
-              <h2 className="mb-4">The Internet you Deserve</h2>
-              <div className="d-flex text-center" style={{justifyContent: "center"}}>
-                <div className="net_service">
-                  <div class="net_img">
-                    <img src="/assets/images/secure.png" />
-                  </div>
-                  <span>Secure Internet</span>
-                </div>
-                <span className="plus">+</span>
-                <div className="net_service">
-                  <div class="net_img">
-                    <img src="/assets/images/console.png" />
-                  </div>
-                  <span>Streaming Services</span>
-                </div>
-                <span className="plus">+</span>
-                <div className="net_service">
-                  <div class="net_img">
-                    <img src="/assets/images/transmission.png" />
-                  </div>
-                  <span>High Data Transmission</span>
-                </div>
-              </div>
-            </Col>
-            
+            {servicesData.map((service) => (
+              <ServiceCard
+                key={service.id}
+                src={service.src}
+                title={service.title}
+                home
+              />
+            ))}
           </Row>
         </Container>
       </section>
 
-      <section id="img_cards" className="mt-5 mb-5">
-        <Container>
-          <Row>
-            {getCards()}
-          </Row>          
-        </Container>
-      </section>
-
-      <section id="triimage">
-        <Row>
-          <Col md={4} className="tri1">
-            <div className="padding_div">
-              <h2 className="white-text text-center">Fast Internet Speeds</h2>
-            </div>
-          </Col>
-          <Col md={4} className="tri2">
-            <div className="padding_div">
-              <h2 className="white-text text-center">Channel Lineups</h2>
-            </div>
-          </Col>
-          <Col md={4} className="tri3">
-            <div className="padding_div">
-              <h2 className="white-text text-center">Our Ultimate TV Experience</h2>
-            </div>
-          </Col>
-        </Row>
-      </section>
       <section id="internet_service" className="pos-relative">
         <Row>
           <Col md={4} lg={5}>
-            <h2 className="mb-4 mt-5">Internet Service Designed with your Business in Mind.</h2>
+            <h2 className="mb-4 mt-5">Our Landline Telephony Services</h2>
           </Col>
-          <Col md={8} lg={7} className="right_bg">
+          <Col md={8} lg={7} className="right_bg_home">
             <Container>
               <Row>
                 <Col md={3}></Col>
                 <Col md={8} lg={7}>
-                  <ul className="icontext">
-                    <li>
-                      <h3 className="white-text">Heading goes here</h3>
-                      <p className="white-text">
-                        Consectetur adipisicing elit. Sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </li>
-                    <li>
-                      <h3 className="white-text">Heading goes here</h3>
-                      <p className="white-text">
-                        Consectetur adipisicing elit. Sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </li>
-                    <li>
-                      <h3 className="white-text">Heading goes here</h3>
-                      <p className="white-text">
-                        Consectetur adipisicing elit. Sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </li>
-                    <li>
-                      <h3 className="white-text">Heading goes here</h3>
-                      <p className="white-text">
-                        Consectetur adipisicing elit. Sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua.
-                      </p>
-                    </li>
-                  </ul>
+                  <div className="telephony_right">
+                    <h3 className="white-text">Heading goes here</h3>
+                    <p className="white-text">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Morbi lacus dolor, scelerisque eu nisl quis, faucibus
+                      auctor arcu. Mauris consequat varius dui, nec elementum
+                      metus. Curabitur posuere leo et ex finibus. Mauris sed
+                      orci in urna feugiat condimentum vel id turpis. Quisque
+                      dui diam, varius at finibus at, iaculis mattis enim. Etiam
+                      commodo vehicula urna, dapibus gravida lorem tristique a.
+                      Aliquam erat volutpat. Vestibulum ante ipsum primis in
+                      faucibus orci luctus et ultrices posuere cubilia curae;
+                      Praesent finibus venenatis risus tempor lacinia. Aliquam
+                      faucibus diam lectus, ac sagittis odio cursus nec.
+                    </p>
+                    <p className="white-text">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Morbi lacus dolor, scelerisque eu nisl quis, faucibus
+                      auctor arcu. Mauris consequat varius dui, nec elementum
+                      metus. Curabitur posuere leo et ex finibus. Mauris sed
+                      orci in urna feugiat condimentum vel id turpis. Quisque
+                      dui diam, varius at finibus at, iaculis mattis enim. Etiam
+                      commodo vehicula urna, dapibus gravida lorem tristique a.
+                    </p>
+                  </div>
                 </Col>
                 <Col md={1} lg={2}></Col>
               </Row>
             </Container>
           </Col>
-          <img src="/assets/images/image_grp.png" className="image_grp" />
+          <img
+            src="/assets/images/phone_recive.png"
+            className="image_grp_home"
+          />
+          <img
+            src="/assets/images/dot-middle.png"
+            className="dot-middle"
+          />
         </Row>
+      </section>
+
+      <section id="tv_services">
+          <Container>
+              <Row>
+                <Col md={5}>
+                    <h2 className="mb-4">TV Services</h2>
+                    <h3>Unlimited movies, TV shows and more.</h3>
+                    <p>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</p>
+                    <p className="fw-500">Movie Pack Plans Starting @</p>
+                    <div className="plan_buttons mt-4">
+                        <Button variant="primary">
+                            $50/month
+                        </Button>
+                        <Button variant="primary">
+                            $150/6month
+                        </Button>
+                    </div>
+                </Col>
+                <Col md={7}>
+                    <img className="tv_img" src="/assets/images/tv.png" />
+                </Col>
+              </Row>
+          </Container>
       </section>
     </LandingPage>
   );

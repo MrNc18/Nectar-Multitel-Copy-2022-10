@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import './App.css';
+import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
 import Example from "./staticCard";
 import AdLanding from "./components/Admin/AdLanding";
@@ -24,6 +25,7 @@ function App() {
             <Route path="router" element={<Router />} />
             <Route path="network" element={<NetworkEqui />} />
            </Route> */}
+        <Route path="/corporate" element={<Corporate />} />
       </Routes>
     </BrowserRouter>
   );

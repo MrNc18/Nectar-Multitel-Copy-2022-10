@@ -76,7 +76,7 @@ function Header() {
 
       <Navbar expand="lg" variant="light" bg="white">
         <Container>
-          <Navbar.Brand href="#">
+          <Navbar.Brand href="/">
             <img
               src="/assets/images/logo.png"
               className="d-inline-block align-top"
