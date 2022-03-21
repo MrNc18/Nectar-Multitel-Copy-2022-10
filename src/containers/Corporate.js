@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import Slider from "../components/slider";
+import Slider2 from "../components/slider2";
 import Cards from "../components/cards";
 import LandingPage from "../components/LandingPage";
 import ServiceCard from "../components/atoms/ServiceCard";
@@ -33,7 +33,7 @@ const servicesData = [
 function Corporate() {
   return (
     <LandingPage>
-      <Slider/>
+      <Slider2/>
       <Cards />
       <ServicesSection 
         tagline="Private. Secure. Super Fast"

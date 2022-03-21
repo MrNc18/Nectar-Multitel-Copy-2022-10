@@ -113,7 +113,7 @@ function App() {
                   >
                     Welcome to multitel
                   </button>
-                  <p>Experience new generation of Internet<br/>our Plan starts with $20</p>
+                  <p className="link_text">Experience new generation of Internet<br/>our Plan starts with $20</p>
                   <button class="link_btn2"><a>Get started</a></button>
                   </div>
 
