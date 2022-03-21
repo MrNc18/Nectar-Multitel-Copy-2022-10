@@ -21,7 +21,7 @@ function example() {
         <div className='row d-flex'>
           <div className='col-24'>
             <div className='banner-New'>
-              <img src={test} class="img-fluid" alt="Responsive image"/>
+              <img src={test} class="img-fluid" alt="Responsive image" style={{opacity:"0.2"}}/>
               <div className='banner-New-inner'>
                 <div className='banner-New-inner-inner'>
                   <button class="btn-white">we're Multitel</button>
