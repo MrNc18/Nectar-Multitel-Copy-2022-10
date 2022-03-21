@@ -14,7 +14,7 @@ import GoogleTranslate from "./google";
 function Header() {
   return (
     <>
-      <div id="top_header" style={{marginTop:"-40px"}}>
+      <div id="top_header">
         <Container>
           <Row>
             <Col lg={5}>
