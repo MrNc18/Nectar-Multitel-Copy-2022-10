@@ -35,30 +35,6 @@
   position: absolute;
   bottom: 15vh;
   border-radius:5px;
-<<<<<<< HEAD
-  left: 20px;
-  color: #0076B5;
-  border: white;
-}
-.link_btn2 {
-    /* add this to media queries for the position you want for that link btn */
-    background-color: #0076B5;
-    position: absolute;
-    left: 20px;
-    color:white;
-    border: #0076B5;
-    width: 40%;
-    height: 45%;
-    border-radius: 4px;
-  }
-.link {
-    /* add this to media queries for the position you want for that link btn */
-    position: absolute;
-    bottom: 30vh;
-    left: 50px;
-    color:white;
-  }
-=======
   left: 0px;
   color: blue;
   border: white;
@@ -84,7 +60,6 @@
     text-align: center;
   } 
   
->>>>>>> Nagasai
 .slick-arrow::before {
   left: 0px;
   border-radius: 25px;
