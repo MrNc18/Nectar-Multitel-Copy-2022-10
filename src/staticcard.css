@@ -14,7 +14,7 @@
 }
 .banner-New-inner .btn-blue {background-color: blue;color: white;font-size: 16px;padding: 8px 18px;border: none;cursor: pointer;border-radius: 5px;text-align: center;}
 .banner-home {
-  background-image: url(../public/assets/images/home-banner.jpg); 
+  background-image: url(./assets/home-banner.jpg); 
   min-height: 593px;
   height: auto;
   color: #fff;

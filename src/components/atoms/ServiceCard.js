@@ -3,7 +3,7 @@ import { Button, Card, Col } from "react-bootstrap";
 
 function ServiceCard({ src, title, home }) {
   return (
-    <Col md={6} lg={3} className="mb-md-4">
+    <Col md={6} lg={3} className="mb-4">
       <Card>
         <Card.Img variant="top" src={src} className={home ? "resize_img" : ""} />
         <Card.Body className="text-center">

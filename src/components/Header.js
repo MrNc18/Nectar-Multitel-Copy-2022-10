@@ -13,7 +13,7 @@ import GoogleTranslate from "./google";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
       <div id="top_header">
@@ -78,18 +78,27 @@ function Header() {
 
       <Navbar expand="lg" variant="light" bg="white">
         <Container>
-          <Navbar.Brand onClick={() => navigate('/')} style={{cursor: "pointer"}}>
+          <Navbar.Brand
+            onClick={() => navigate("/")}
+            style={{ cursor: "pointer" }}
+          >
             <img
               src="/assets/images/logo.png"
               className="d-inline-block align-top"
-              alt="Multitel logo"              
+              alt="Multitel logo"
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              <NavDropdown title="Home" id="basic-nav-dropdown" onClick={() => navigate('/home')}>
-                <NavDropdown.Item href="#action/3.1">
+              {/* <NavDropdown
+                title="Home"
+                id="basic-nav-dropdown"
+                // onClick={() => navigate("/home")}
+              >
+                <NavDropdown.Item
+                  onClick={() => navigate("/internet-services")}
+                >
                   Home Internet services
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
@@ -98,7 +107,8 @@ function Header() {
                 <NavDropdown.Item href="#action/3.3">
                   TV Services
                 </NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown> */}
+              <Nav.Link onClick={() => navigate("/home")}>Multitel Home</Nav.Link>
               <Nav.Link href="#link">Multitel-Celular (MVNO)</Nav.Link>
               <Nav.Link href="#home">Marketplace</Nav.Link>
               <Nav.Link href="#link">Client Portal</Nav.Link>
