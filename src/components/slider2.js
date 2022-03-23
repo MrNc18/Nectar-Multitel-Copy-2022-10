@@ -105,6 +105,7 @@ function App() {
                     src={test}
                   />
                   <div className="link">
+<<<<<<< HEAD
                    <button
                     onClick={() =>
                       (window.location.href = "https://google.com")
@@ -115,9 +116,23 @@ function App() {
                   </button>
                   <p className="link_text">Take Control With Pure Fiber Broadband<br/>Choose Multitel's best monthly plans starting from $20</p> 
                   <button class="link_btn2"><a>Start Now</a></button>
+=======
+                    <button className="link_btn">Welcome to multitel</button>
+                    <p className="link_text">
+                      Experience new generation of Internet
+                      <br />
+                      our Plan starts with $20
+                    </p>
+                    <button
+                      onClick={() =>
+                        (window.location.href = "https://google.com")
+                      }
+                      class="link_btn2"
+                    >
+                      <a>Get started</a>
+                    </button>
+>>>>>>> Nagasai
                   </div>
-
-                  
                 </div>
               ))}
             </Slider>

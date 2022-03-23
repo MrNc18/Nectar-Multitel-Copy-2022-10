@@ -27,7 +27,7 @@ const servicesData = [
 
 function Services() {
   return (
-    <section id="img_cards" className="mt-5 mb-5">
+    <section id="img_cards" className="my-5">
         <Container>
           <Row>
             {servicesData.map((service) => (

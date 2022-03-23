@@ -94,14 +94,15 @@ function App() {
   return (
     <>
       <div className="container-fluid">
-        <div className="App">
-          <div className="slider-wrapper">
+        <div className="row d-flex">
+        <div className='col-24'>
+        <div className='banner-New'>
             <Slider {...settings}>
               {slidesData?.map((slide) => (
                 <div className="slick-slide" key={slide.id}>
                   {/* <h2 className="slick-slide-title">{slide.title}</h2> */}
-                  <img
-                    className="slick-slide-image"
+                  <img className="img-fluid"
+                    // className="slick-slide-image"
                     // src={slide.src}
                     src={test}
                   />
@@ -116,6 +117,15 @@ function App() {
               <img src={down} alt="Next" />
             </button>
           </div>
+          <div className='banner-New-inner'>
+                <div className='banner-New-inner-inner'>
+                  <button class="btn-white">we're Multitel</button>
+                  <p>Experience new generation of Internet<br/>our Plan starts with $20</p>
+                  <button class="btn-blue"><a>Get started</a></button>
+                </div>
+              </div>
+        
+        </div>
         </div>
       </div>
       <div></div>

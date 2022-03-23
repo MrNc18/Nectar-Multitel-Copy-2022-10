@@ -10,6 +10,7 @@ import Internet from "./components/Admin/Internet";
 import Dashboard from "./components/Admin/Dashboard";
 import NetworkEqui from "./components/Admin/NetworkEqui";
 import Router from "./components/Admin/Router";
+import InternetServices from "./containers/InternetServices";
 
 function App() {
   return (
@@ -19,13 +20,15 @@ function App() {
         <Route path="/home" element={<Home />} />
          <Route path="/ex" element={<Example />} />
 
-         {/* <Route path="/admin" element={<AdLanding/>}>
+         {/* <Route path="/admin" element={<AdLanding/>}> */}
+         <Route path="/internet-services" element={<InternetServices />} />
+          <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
             <Route path="mobiles" element={<Mobile />} />
             <Route path="internet" element={<Internet />} />
             <Route path="router" element={<Router />} />
             <Route path="network" element={<NetworkEqui />} />
-           </Route> */}
+           </Route>
       </Routes>
     </BrowserRouter>
   );

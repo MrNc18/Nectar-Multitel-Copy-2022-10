@@ -8,17 +8,34 @@
 }
 .slick-prev::before,
 .slick-next::before {
-  border: 2px solid blue;
+  border: 2px solid rgb(76, 76, 80);
   color: black;
   position: absolute;
   visibility: hidden;
 }
-.link_btn {
-  /* add this to media queries for the position you want for that link btn */
-  background-color: white;
+
+.link {
+    
+     position: absolute;
+    bottom: 25vh;
+    left: 50px;
+    color:white;
+    font-weight: 300;
+    font-size: 20px; 
+   } 
+   .link .link_text {
+       font-family:'Rubik';
+       font-size: larger;
+       font-weight: 300px;
+       top:5px;
+   }
+.link .link_btn {
+  
+   background-color: white;
   position: absolute;
   bottom: 15vh;
   border-radius:5px;
+<<<<<<< HEAD
   left: 20px;
   color: #0076B5;
   border: white;
@@ -41,6 +58,33 @@
     left: 50px;
     color:white;
   }
+=======
+  left: 0px;
+  color: blue;
+  border: white;
+ font-size: 16px;
+ padding: 8px 18px;
+ border: none;
+ cursor: pointer;
+ border-radius: 5px;
+ text-align: center;
+} 
+ .link .link_btn2 {
+    
+    background-color: blue;
+    position: absolute;
+    border-radius:5px;
+    left: 0px;
+    color:white;
+    font-size: 16px;
+    padding: 8px 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  } 
+  
+>>>>>>> Nagasai
 .slick-arrow::before {
   left: 0px;
   border-radius: 25px;
@@ -142,20 +186,111 @@
   #down_btn {
     left: 32vw;
   }
+  .link {
+    
+     position: absolute;
+    bottom: 25vh;
+    left: 50px;
+    color:white;
+    font-weight: 300;
+    font-size: 20px; 
+   } 
+   .link .link_text {
+       font-family:'Rubik';
+       font-size:x-large;
+       font-weight: 300px;
+       top:5px;
+   }
+.link .link_btn {
+  
+   background-color: white;
+  position: absolute;
+  bottom: 15vh;
+  border-radius:5px;
+  left: 0px;
+  color: blue;
+  border: white;
+ font-size: 16px;
+ padding: 8px 18px;
+ border: none;
+ cursor: pointer;
+ border-radius: 5px;
+ text-align: center;
+} 
+ .link .link_btn2 {
+    
+    background-color: blue;
+    position: absolute;
+    border-radius:5px;
+    left: 0px;
+    color:white;
+    font-size: 16px;
+    padding: 8px 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  } 
 }
+
 @media screen and (max-width: 1300px) {
   #up_btn {
-    bottom: 46vh;
+    bottom: 49vh;
     left: 33vw;
   }
   #down_btn {
-    bottom: 14vh;
+    bottom: 18vh;
     left: 31vw;
   }
   #ul_m_li {
     right: 220px;
-    top: -43vh;
+    top: -47vh;
   }
+  .link {
+    
+     position: absolute;
+    bottom: 23vh;
+    left: 50px;
+    color:white;
+    font-weight: 300;
+    font-size: 20px; 
+   } 
+   .link .link_text {
+       font-family:'Rubik';
+       font-size: larger;
+       font-weight: 300px;
+       top:5px;
+   }
+.link .link_btn {
+  
+   background-color: white;
+  position: absolute;
+  bottom: 13vh;
+  border-radius:5px;
+  left: 0px;
+  color: blue;
+  border: white;
+ font-size: 16px;
+ padding: 8px 18px;
+ border: none;
+ cursor: pointer;
+ border-radius: 5px;
+ text-align: center;
+} 
+ .link .link_btn2 {
+    
+    background-color: blue;
+    position: absolute;
+    border-radius:5px;
+    left: 0px;
+    color:white;
+    font-size: 16px;
+    padding: 8px 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  } 
 }
 @media screen and (max-width: 1200px) {
   #up_btn {
@@ -170,6 +305,51 @@
     right: 220px;
     top: -58vh;
   }
+  .link {
+    
+     position: absolute;
+    bottom: 25vh;
+    left: 50px;
+    color:white;
+    font-weight: 200;
+    font-size: 20px; 
+   } 
+   .link .link_text {
+       font-family:'Rubik';
+       font-size: larger;
+       font-weight: 300px;
+       top:5px;
+   }
+.link .link_btn {
+  
+   background-color: white;
+  position: absolute;
+  bottom: 18vh;
+  border-radius:5px;
+  left: 0px;
+  color: blue;
+  border: white;
+ font-size: 16px;
+ padding: 8px 18px;
+ border: none;
+ cursor: pointer;
+ border-radius: 5px;
+ text-align: center;
+} 
+ .link .link_btn2 {
+    
+    background-color: blue;
+    position: absolute;
+    border-radius:5px;
+    left: 0px;
+    color:white;
+    font-size: 16px;
+    padding: 8px 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  } 
 }
 @media screen and (max-width: 1070px) {
   #up_btn {
@@ -184,22 +364,53 @@
     right: 220px;
     top: -50vh;
   }
+  .link {
+    
+     position: absolute;
+    bottom: 21vh;
+    left: 50px;
+    color:white;
+    font-weight: 300;
+    font-size: 20px; 
+   } 
+   .link .link_text {
+       font-family:'Rubik';
+       font-size: larger;
+       font-weight: 300px;
+       top:5px;
+   }
+.link .link_btn {
+  
+   background-color: white;
+  position: absolute;
+  bottom: 16vh;
+  border-radius:5px;
+  left: 0px;
+  color: blue;
+  border: white;
+ font-size: 16px;
+ padding: 8px 18px;
+ border: none;
+ cursor: pointer;
+ border-radius: 5px;
+ text-align: center;
+} */
+ .link .link_btn2 {
+    
+    background-color: blue;
+    position: absolute;
+    border-radius:5px;
+    left: 0px;
+    color:white;
+    font-size: 16px;
+    padding: 8px 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  } 
 }
-@media screen and (max-width: 1000px) {
-  #up_btn {
-    bottom: 38vh;
-    left: 29.5vw;
-  }
-  #down_btn {
-    bottom: 8vh;
-    left: 26.8vw;
-  }
-  #ul_m_li {
-    right: 220px;
-    top: -35vh;
-  }
-}
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 1000px){
   #up_btn {
     bottom: 22vh;
     left: 28.5vw;
@@ -212,60 +423,170 @@
     right: 220px;
     top: -21vh;
   }
-}
-@media screen and (max-width: 900px) {
-  #up_btn {
-    bottom: 37vh;
-    left: 28.5vw;
-  }
-  #down_btn {
-    bottom: 8vh;
-    left: 25.2vw;
-  }
-  #ul_m_li {
-    top: -35vh;
-  }
+  .link {
+     position: absolute;
+    bottom: 7vh;
+    left: 5vh;
+    color:white;
+    font-weight: 300;
+    font-size: 16px; 
+   } 
+   .link .link_text {
+       font-family:'Rubik';
+       font-size: larger;
+       font-weight: 300px;
+       top:5px;
+   }
+.link .link_btn {
+  
+   background-color: white;
+  position: absolute;
+  bottom: 7vh;
+  border-radius:5px;
+  left: 0px;
+  color: #0000ff;
+  border: white;
+ font-size: 10px;
+ padding: 6px 12px;
+ border: none;
+ cursor: pointer;
+ border-radius: 5px;
+ text-align: center;
+} 
+ .link .link_btn2 {
+    
+    background-color: blue;
+    position: absolute;
+    border-radius:5px;
+    left: 0px;
+    color:white;
+    font-size: 10px;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  } 
 }
 @media screen and (max-width: 830px) {
   #up_btn {
+    bottom: 22vh;
+    left: 28.5vw;
+  }
+  #down_btn {
+    bottom: 6vh;
+    left: 25.8vw;
+  }
+  #ul_m_li {
+    right: 220px;
+    top: -21vh;
+  }
+  .link {
+    
+     position: absolute;
+    bottom: 78vh;
+    left: 50px;
+    color:white;
+    font-weight: 300;
+    font-size: 20px; 
+   } 
+   .link .link_text {
+       font-family:'Rubik';
+       font-size: larger;
+       font-weight: 300px;
+       top:5px;
+   }
+.link .link_btn {
+  
+   background-color: white;
+  position: absolute;
+  bottom: 17vh;
+  border-radius:5px;
+  left: 0px;
+  color: blue;
+  border: white;
+ font-size: 16px;
+ padding: 8px 18px;
+ border: none;
+ cursor: pointer;
+ border-radius: 5px;
+ text-align: center;
+} 
+.link .link_btn2 {
+    
+    background-color: blue;
+    position: absolute;
+    border-radius:5px;
+    left: 0px;
+    color:white;
+    font-size: 16px;
+    padding: 8px 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  } 
+}
+
+@media screen and (max-width: 831px) {
+  #up_btn {
     bottom: 23vh;
-    left: 27.5vw;
+    left: 26.5vw;
   }
   #down_btn {
     bottom: 5vh;
     left: 24.2vw;
   }
   #ul_m_li {
-    top: -22vh;
+    top: -22vh !important;
+    
   }
-  .link_btn {
-    /* add this to media queries for the position you want for that link btn */
-    background-color: white;
-    position: absolute;
-    bottom: 7vh;
-    border-radius:5px;
-    left: 15px;
-    color: blue;
-    border: white;
-  }
-  .link_btn2 {
-      /* add this to media queries for the position you want for that link btn */
-      background-color: blue;
-      position: absolute;
-      border-radius:5px;
-      left: 15px;
-      color:white;
-      border:blue;
-    }
   .link {
-      /* add this to media queries for the position you want for that link btn */
-      position: absolute;
-      bottom: 30vh;
-      left: 50px;
-      color:white;
-      font-size: large;
-      font-family: Ruby;
-    }
+    
+     position: absolute;
+    bottom: 7vh;
+    left: 40px;
+    color:white;
+    font-weight: 300;
+    font-size: 18px; 
+   } 
+   .link .link_text {
+       font-family:'Rubik';
+       font-size: larger;
+       font-weight: 300px;
+       top:5px;
+   }
+.link .link_btn {
+  
+   background-color: white;
+  position: absolute;
+  bottom: 8vh;
+  border-radius:5px;
+  left: 0px;
+  color: blue;
+  border: white;
+ font-size: 12px;
+ padding: 6px 12px;
+ border: none;
+ cursor: pointer;
+ border-radius: 5px;
+ text-align: center;
+} 
+ .link .link_btn2 {
+    
+    background-color: blue;
+    position: absolute;
+    border-radius:5px;
+    left: 0px;
+    color:white;
+    font-size: 12px;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    bottom:-2vh
+  } 
 }
 
 @media screen and (min-width: 1300px) {
@@ -284,6 +605,7 @@
   .slick-dots > ul > li > div {
     width: 205px;
   }
+
 }
 @media screen and (min-width: 1150px) {
   .slick-slide-image {
@@ -340,6 +662,7 @@
   .slick-dots > ul > li > div {
     width: 155px;
   }
+
 }
 
 @media screen and (min-width: 900px) {
@@ -358,6 +681,7 @@
   .slick-dots > ul > li > div {
     width: 205px;
   }
+
 }
 @media screen and (max-width: 900px) {
   .slick-dots > ul {
@@ -371,6 +695,7 @@
     bottom: -50px !important;
     right: -33px !important;
   }
+  
 }
 @media screen and (max-width: 800px) {
   .slick-dots > ul {
@@ -396,98 +721,195 @@
   }
   #up_btn {
     bottom: 50px;
-    left: -12vw;
+    left: -16vw !important;
   }
   #down_btn {
     bottom: 50px;
-    left: 15vw;
+    left: 17vw !important;
   }
   #ul_m_li {
     right: 220px;
-    top: -125px;
+    top: -120px !important;
   }
   .link {
-    /* add this to media queries for the position you want for that link btn */
-    position: absolute;
-    bottom: 20vh;
-    left: 20px;
+    
+     position: absolute;
+    bottom: 7vh;
+    left: 45px;
     color:white;
-    font-size: smaller;
-  }
-  .link_btn {
-    /* add this to media queries for the position you want for that link btn */
-    background-color: white;
+    font-weight: 200;
+    font-size: 16px; 
+   } 
+   .link .link_text {
+       font-family:'Rubik';
+       font-size: medium;
+       font-weight: 300px;
+       
+   }
+.link .link_btn {
+  
+   background-color: white;
+  position: absolute;
+  bottom: 8vh;
+  border-radius:5px;
+  left: 0px;
+  color: blue;
+  border: white;
+ font-size: 12px;
+ padding: 4px 12px;
+ border: none;
+ cursor: pointer;
+ border-radius: 5px;
+ text-align: center;
+} 
+ .link .link_btn2 {
+    
+    background-color: blue;
     position: absolute;
-    bottom: 9vh;
+    border-radius:5px;
+    left: 0px;
+    color:white;
+    font-size: 12px;
+    padding: 4px 12px;
+    bottom:-25px;   
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  } 
+
+}
+
+@media screen and (min-width:320px) and (max-width:480px) {
+  .slick-dots > ul {
+    right: 45% !important;
+  }
+  #down_btn {
+    bottom: 50px !important;
+    left:25vw!important;
+  }
+  #ul_m_li {
+    right: 37vw !important;
+    top: -120px !important;
+    width:fit-content;
+  }
+  #up_btn {
+    bottom: 50px !important;
+    left: -24vw !important;
+  }
+}
+
+  @media screen and (min-width:320px) and  (max-width:480px) {
+ 
+  .link {
+   
+     position: absolute;
+    bottom: 33vh;
+    left: 26px;
+    color:white;
+    font-weight: 100;
+  
+   } 
+   .link .link_text {
+       font-family:'Rubik';
+       font-size:x-small;
+       font-weight: 100px;
+      
+   }
+.link .link_btn {
+  
+   background-color: white;
+  position: absolute;
+  bottom: 20vh;
+  border-radius:5px;
+  left: 0px;
+  color: blue;
+  border: white;
+ font-size: 10px;
+ padding: 2px 8px;
+ border: none;
+ cursor: pointer;
+ border-radius: 5px;
+ text-align: center;
+} 
+  .link .link_btn2 {
+   
+    background-color: blue;
+    bottom:-1vh;
+    position: absolute;
+    border-radius:5px;
+    left: 0px;
+    color:white;
+    font-size: 10px;
+    padding: 2px 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  }  
+}
+
+@media screen and (max-width:420px) and (max-height:760px) {
+    #down_btn {
+        bottom: 50px !important;
+        left:23vw!important;
+      }
+      #ul_m_li {
+        right: 220px;
+        top: -120px !important;
+      }
+      #up_btn {
+        bottom: 50px !important;
+        left: -23vw !important;
+      }
+ 
+    .link {
+     
+       position: absolute;
+      bottom: 5vh !important;
+      left: 15px;
+      color:white;
+      font-weight: 100;
+    
+     } 
+     .link .link_text {
+         font-family:'Rubik';
+         font-size:x-small;
+         font-weight: 100px;
+        
+     }
+  .link .link_btn {
+    
+     background-color: white;
+    position: absolute;
+    bottom: 7vh;
     border-radius:5px;
     left: 0px;
     color: blue;
     border: white;
-  }
-  .link_btn2 {
-      /* add this to media queries for the position you want for that link btn */
+   font-size: 10px;
+   padding: 2px 8px;
+   border: none;
+   cursor: pointer;
+   border-radius: 5px;
+   text-align: center;
+  } 
+    .link .link_btn2 {
+     
       background-color: blue;
+      bottom:-1vh;
       position: absolute;
       border-radius:5px;
       left: 0px;
-      bottom:-7px;
       color:white;
-      border:blue;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-}
-
-@media screen and (max-width: 750px) {
-  .slick-dots > ul {
-    right: 45% !important;
+      font-size: 10px;
+      padding: 2px 8px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+    }  
   }
-  #up_btn {
-    bottom: 50px;
-    left: -12vw;
-  }
-  #down_btn {
-    bottom: 50px;
-    left: 15vw;
-  }
-}
 @media screen and (max-width: 680px) {
   .slick-dots > ul {
     right: 45% !important;
@@ -501,35 +923,63 @@
     left: 16vw;
   }
 }
-@media screen and (max-width: 650px) {
+ @media screen and (min-width:481px) and (max-width:790px) { 
   .slick-dots > ul {
     right: 45% !important;
   }
   #up_btn {
     bottom: 50px;
-    left: -16vw;
+    left: -20vw;
   }
   #down_btn {
     bottom: 50px;
     left: 17vw;
   }
-}
-@media screen and (max-width: 550px) {
-  .slick-dots > ul > li > div {
-    height: 20px !important;
-    width: 20px;
-    margin-top: 50px !important;
-    font-size: small;
+  .link {
+   
+    position: absolute;
+   bottom: 8vh;
+   left: 26px;
+   color:white;
+   font-weight: 200;
+ 
+  } 
+  .link .link_text {
+      font-family:'Rubik';
+      font-size:small;
+      font-weight: 100px;
+     
   }
-  .slick-dots > ul {
-    right: 45% !important;
-  }
-  #up_btn {
-    bottom: 50px;
-    left: -19vw;
-  }
-  #down_btn {
-    bottom: 50px;
-    left: 17vw;
-  }
-}
+.link .link_btn {
+ 
+  background-color: white;
+ position: absolute;
+ bottom: 8vh;
+ border-radius:5px;
+ left: 0px;
+ color: blue;
+ border: white;
+font-size: 12px;
+padding: 4px 12px;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+text-align: center;
+} 
+ .link .link_btn2 {
+  
+   background-color: blue;
+   bottom:-2vh;
+   position: absolute;
+   border-radius:5px;
+   left: 0px;
+   color:white;
+   font-size: 12px;
+   padding: 4px 12px;
+   border: none;
+   cursor: pointer;
+   border-radius: 5px;
+   text-align: center;
+ }  
+  
+ }  
