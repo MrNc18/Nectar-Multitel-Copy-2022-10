@@ -11,6 +11,7 @@ import Dashboard from "./components/Admin/Dashboard";
 import NetworkEqui from "./components/Admin/NetworkEqui";
 import Router from "./components/Admin/Router";
 import InternetServices from "./containers/InternetServices";
+import NetworkEquipments from "./containers/NetworkEquipments";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
          <Route path="/ex" element={<Example />} />
 
          {/* <Route path="/admin" element={<AdLanding/>}> */}
+         <Route path="/network-equipments" element={<NetworkEquipments />}/>
          <Route path="/internet-services" element={<InternetServices />} />
           <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
