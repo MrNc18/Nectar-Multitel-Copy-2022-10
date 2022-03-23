@@ -20,9 +20,9 @@ function App() {
         <Route path="/home" element={<Home />} />
          <Route path="/ex" element={<Example />} />
 
-         <Route path="/admin" element={<AdLanding/>}>
+         {/* <Route path="/admin" element={<AdLanding/>}> */}
          <Route path="/internet-services" element={<InternetServices />} />
-         {/* <Route path="/admin" element={<AdLanding/>}>
+          <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
             <Route path="mobiles" element={<Mobile />} />
             <Route path="internet" element={<Internet />} />
