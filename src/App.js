@@ -19,13 +19,13 @@ function App() {
         <Route path="/home" element={<Home />} />
          <Route path="/ex" element={<Example />} />
 
-         {/* <Route path="/admin" element={<AdLanding/>}>
+         <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
             <Route path="mobiles" element={<Mobile />} />
             <Route path="internet" element={<Internet />} />
             <Route path="router" element={<Router />} />
             <Route path="network" element={<NetworkEqui />} />
-           </Route> */}
+           </Route>
       </Routes>
     </BrowserRouter>
   );
