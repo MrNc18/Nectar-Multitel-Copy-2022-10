@@ -7,7 +7,7 @@ import blue3 from "../assets/blue3.png"
 
 const cards = () => {
   return (
-      <div className="flex-container" style={{marginTop:"-35px",justifyContent:"center"}}>
+    <div className="flex-container" style={{marginTop:"-30px",justifyContent:"center"}}>
     <div className="col-12 col-md-6 col-sm-6 col-lg-3 mb-2">
       <div
         className="flex-item-start"
@@ -23,7 +23,6 @@ const cards = () => {
         <div className="row">
           <div className="col-9 col-md-9 col-sm-9 text-left">
             <small className="pl-4 pt-0 pb-3 d-block">
-
               hdvwehcbwehcwc wuicwiechwbcw
             </small>
           </div>
@@ -43,9 +42,9 @@ const cards = () => {
          </div>
        </div>
        <div className="row">
-         <div className="col-9 col-md-9 col-sm-9 text-left">
+         <div className="col-6 col-md-8 col-sm-6 text-left">
            <small className="pl-4 pt-0 pb-3 d-block">
-             hdvwehcbwehcwc wuicwiechwbcw
+           hdvwehcbwehcwc wuicwiechwbcw
            </small>
          </div>
        </div>

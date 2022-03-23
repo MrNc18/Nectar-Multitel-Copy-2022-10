@@ -111,10 +111,10 @@ function App() {
                      }
                      className="link_btn"
                   >
-                    Welcome to multitel
+                    WELCOME TO MULTITEL
                   </button>
-                  <p className="link_text">Experience new generation of Internet<br/>our Plan starts with $20</p>
-                  <button class="link_btn2"><a>Get started</a></button>
+                  <p className="link_text">Take Control With Pure Fiber Broadband<br/>Choose Multitel's best monthly plans starting from $20</p> 
+                  <button class="link_btn2"><a>Start Now</a></button>
                   </div>
 
                   

@@ -20,17 +20,19 @@
   bottom: 15vh;
   border-radius:5px;
   left: 20px;
-  color: blue;
+  color: #0076B5;
   border: white;
 }
 .link_btn2 {
     /* add this to media queries for the position you want for that link btn */
-    background-color: blue;
+    background-color: #0076B5;
     position: absolute;
-    border-radius:5px;
     left: 20px;
     color:white;
-    border:blue;
+    border: #0076B5;
+    width: 40%;
+    height: 45%;
+    border-radius: 4px;
   }
 .link {
     /* add this to media queries for the position you want for that link btn */
