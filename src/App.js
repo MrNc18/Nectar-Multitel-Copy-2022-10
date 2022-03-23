@@ -11,6 +11,7 @@ import Dashboard from "./components/Admin/Dashboard";
 import NetworkEqui from "./components/Admin/NetworkEqui";
 import Router from "./components/Admin/Router";
 import InternetServices from "./containers/InternetServices";
+import Marketplace from "./containers/Marketplace"
 
 function App() {
   return (
@@ -18,9 +19,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Corporate />} />
         <Route path="/home" element={<Home />} />
-         <Route path="/ex" element={<Example />} />
+         {/* <Route path="/ex" element={<Example />} /> */}
 
-         {/* <Route path="/admin" element={<AdLanding/>}> */}
+         <Route path="/marketplace" element={<Marketplace/>}/>
          <Route path="/internet-services" element={<InternetServices />} />
           <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
