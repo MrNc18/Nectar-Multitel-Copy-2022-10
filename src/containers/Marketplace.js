@@ -15,7 +15,7 @@ const  Marketplace = () => {
    subtext="IPV6 support.Transmitt Beamforming Technology"
    subtext1="MU MIMO technology for enhanced Wifi Performance"
    Amount="$20"
-   buttonText="view Details"
+   buttonText="View Details"
    />
    <ProductsList/>
 

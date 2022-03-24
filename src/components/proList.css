@@ -43,8 +43,11 @@
   bottom: 33px;
   width: 110px;
   color:white;
-  background-color:blue;
+  background-color: #0076B5;
 }
 .bestsell_new .card-img-top {
     width:30vh
+}
+.card {
+  margin-bottom: 30px;
 }

@@ -13,7 +13,7 @@ function MarketplaceBanner({img,title,subtext1,subtext,Amount,buttonText}) {
               <small className="white-color text-left">{subtext1}</small><br/>
               <small className="white-color text-left">{subtext}</small><br/>
               <h4 style={{color:'white'}}>{Amount}</h4>
-              <button className="btn-btn-link" style={{color:"blue",backgroundColor:"White",borderColor:"white",borderRadius:"5px"}}>
+              <button className="btn-btn-link" style={{color:"#0076B5",backgroundColor:"White",border:"white",borderRadius:"5px"}}>
                 {buttonText}
               </button>
             </div>

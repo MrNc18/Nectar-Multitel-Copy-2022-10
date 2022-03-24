@@ -2,8 +2,8 @@ import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 
 const Products = () => (
-  <Col xl={3} lg={4} md={6}>
-  <Card style={{ width: "15rem", marginBottom:"20px", }}>
+  <Col xl={4} lg={4} md={6}>
+  <Card style={{ width: "18rem", marginBottom:"20px", }}>
     <Card.Img variant="top" src="/assets/images/product.png" style={{border:"45px solid #F5F6FA"}} />
     <Card.Body style={{textAlign:"left"}}>
       <Card.Title>Equipment Name Here</Card.Title>
@@ -19,7 +19,7 @@ const Products = () => (
         <p style={{textAlign:"left"}}>$.360</p>
       </Col>
       <Col>
-      <Button className="pull-right" variant="primary" size="sm" style={{marginTop:"-42px"}}>
+      <Button className="pull-right" variant="primary" size="sm" style={{marginTop:"-42px", backgroundColor:"#0076B5", background:"#0076B5"}}>
           Add to Cart
         </Button>
       </Col>
