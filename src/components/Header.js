@@ -110,7 +110,7 @@ function Header() {
               </NavDropdown> */}
               <Nav.Link onClick={() => navigate("/home")}>Multitel Home</Nav.Link>
               <Nav.Link href="#link">Multitel-Celular (MVNO)</Nav.Link>
-              <Nav.Link href="#home">Marketplace</Nav.Link>
+              <Nav.Link onClick={() => navigate("/marketplace")}>Marketplace</Nav.Link>
               <Nav.Link href="#link">Client Portal</Nav.Link>
               <Nav.Link href="#link">Contacts</Nav.Link>
             </Nav>
