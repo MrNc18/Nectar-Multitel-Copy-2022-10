@@ -11,11 +11,7 @@ import Dashboard from "./components/Admin/Dashboard";
 import NetworkEqui from "./components/Admin/NetworkEqui";
 import Router from "./components/Admin/Router";
 import InternetServices from "./containers/InternetServices";
-<<<<<<< HEAD
-import NetworkEquipments from "./containers/NetworkEquipments";
-=======
 import Marketplace from "./containers/Marketplace"
->>>>>>> Nagasai
 
 function App() {
   return (
@@ -25,12 +21,9 @@ function App() {
         <Route path="/home" element={<Home />} />
          {/* <Route path="/ex" element={<Example />} /> */}
 
-<<<<<<< HEAD
          {/* <Route path="/admin" element={<AdLanding/>}> */}
          <Route path="/network-equipments" element={<NetworkEquipments />}/>
-=======
          <Route path="/marketplace" element={<Marketplace/>}/>
->>>>>>> Nagasai
          <Route path="/internet-services" element={<InternetServices />} />
           <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
