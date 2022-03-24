@@ -13,34 +13,38 @@
 }
 .bestsell_new .card-text
  {
-  margin-bottom: 5px;
+  margin-bottom: 2px;
+  font-size: x-small;
   color: #000;
 }
 .bestsell_new .price
  {
   color: #1d3557;
-  font-size: 18px;
+  font-size: 12px;
   line-height: 55px;
 }
 .bestsell_new .card-body a
 {
   text-decoration: none;
 }
-.body_heading {
-    line-height: 25px;
-    font-weight: 600;
+ .bestsell_new .body_heading {
+    line-height: 15px;
+    font-weight: 200;
     color: #1d3557;
-    margin-bottom: 30px;
+    font-size: smaller;
+    /* margin-bottom: 30px; */
   }
-  .product_img {
+  /* .product_img {
     padding: 20px 60px;
-    /* background-color: #f5f6fa; */
-  }
+    background-color: #f5f6fa;
+  } */
   .bestsell_new .btn
  {
-  /* position: absolute; */
-  right: 15px;
-  bottom: 33px;
+  position: absolute;
+  right: 17px;
+  bottom: 35px;
+  font-size: x-small;
+  padding:2px;
   width: 110px;
   color:white;
   background-color:blue;

@@ -9,7 +9,7 @@ function MarketplaceBanner({img,title,subtext1,subtext,Amount,buttonText}) {
           <Col xs={12}>
             <div className="">
               <img className="rounded float-right img-fluid" src={img} alt="image" style={{width:"40%"}} />
-              <h2 className="white-color text-left">{title}</h2>
+              <h2 className="white-color text-left" style={{paddingTop:"30px"}}>{title}</h2>
               <small className="white-color text-left">{subtext1}</small><br/>
               <small className="white-color text-left">{subtext}</small><br/>
               <h4 style={{color:'white'}}>{Amount}</h4>
