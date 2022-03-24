@@ -12,6 +12,7 @@ import NetworkEqui from "./components/Admin/NetworkEqui";
 import Router from "./components/Admin/Router";
 import InternetServices from "./containers/InternetServices";
 import Marketplace from "./containers/Marketplace"
+import NetworkEquipments from "./containers/NetworkEquipments";
 
 function App() {
   return (
