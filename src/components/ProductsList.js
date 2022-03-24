@@ -155,7 +155,7 @@ const  ProductsList = ()  => {
     <div className="container">
       <div className="row bestseller">
         <div className="col-md-12">
-          <h2 className="body_heading">our Products</h2>
+          <h2 className="body_heading">Our Products</h2>
           <div className="best_slider">{displayProducts}</div>
         </div>
       </div>
