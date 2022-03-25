@@ -18,7 +18,7 @@ function LineGraph() {
     ],
     datasets: [
       {
-        label: 'Mobiles',
+        label: 'Total Sales',
         data: [63,47,27,48,60,90,32,25,52,52,62,19],
         fill: true,          // Don't fill area under the line
         borderColor: 'blue'  // Line color
@@ -37,7 +37,7 @@ function LineGraph() {
     ],
     datasets: [
       {
-        label: 'Services',
+        label: 'earnings',
         data: [22,19,27,23,22,24,17,25,23,24,20,19],
         fill: true,          // Don't fill area under the line
         borderColor: 'blue'  // Line color
@@ -92,14 +92,14 @@ function LineGraph() {
       <center>
     <div className="row">
       <div>
-        <h4>Total Mobile sale 2022</h4>
+        <h4>Total sales 2022</h4>
         <article className="canvas-container">
           <Line data={data}  />
           {console.log("ytfytf", chart)}
         </article>
       </div>
       <div>
-        <h4>Total Services 2022</h4>
+        <h4>Total Earnings 2022</h4>
         <article className="canvas-container">
           <Line data={data2}  />
         </article>

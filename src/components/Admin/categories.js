@@ -1,10 +1,10 @@
 import React,{useState} from 'react'
 import { Button, Modal, Form, Table } from "react-bootstrap";
 
-function Mobile() {
-    const [show, setShow] = useState("");
+function Categories() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [show, setShow] = useState(false);
     const Data = [
         {
         Brand:"Nokia",
@@ -153,4 +153,4 @@ function Mobile() {
   )
 }
 
-export default Mobile
+export default Categories

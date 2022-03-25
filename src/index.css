@@ -494,6 +494,19 @@ img.dot-middle {
   letter-spacing: 1.02px;
   margin-bottom: 13px;
 }
+#key_board {
+  background: url(/public/assets/images/key_board_bg.png) no-repeat;
+  padding: 100px 0;
+  background-size: cover;
+}
+#key_board h2, #key_board h3, #key_board p {
+  color: white;
+}
+#key_board h3 {
+  font-size: 20px;
+  letter-spacing: 1.02px;
+  margin-bottom: 13px;
+}
 .fw-500{font-weight: 500;}
 .plan_buttons button {
   font-size: 14px;

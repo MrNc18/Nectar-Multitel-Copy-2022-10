@@ -1,93 +1,93 @@
 import React from 'react'
-// import data from "../Data"
+ import data from "../Data"
 import "./proList.css"
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 
-const data = {
-    products: [
-        {
-            _id: '1',
-            image:"/assets/images/Image13.png",
-            title: 'Virtual Reality Helmet Zero spin',
-            new_release: true,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '2',
-            image: '/assets/images/Image15.png',
-            title: 'Mega Speed Router',
-            new_release: false,
-            specification: 'High Speed Router with something',
-            rating: 4,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '3',
-            image: '/assets/images/Image19.png',
-            title: 'Additional Boost Router',
-            new_release: false,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '86$'
-        },
-        {
-            _id: '4',
-            image: '/assets/images/Image20.png',
-            title: 'Virtual Reality Helmet Zero spin',
-            new_release: true,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '5',
-            image: '/assets/images/Image13.png',
-            title: 'Mega Speed Router',
-            new_release: false,
-            specification: 'High Speed Router with something',
-            rating: 4,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '6',
-            image: '/assets/images/Image15.png',
-            title: 'Additional Boost Router',
-            new_release: false,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '86$'
-        },
-        {
-            _id: '7',
-            image: '/assets/images/Image19.png',
-            title: 'Virtual Reality Helmet Zero spin',
-            new_release: true,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '8',
-            image: '/assets/images/Image20.png',
-            title: 'Mega Speed Router',
-            new_release: false,
-            specification: 'High Speed Router with something',
-            rating: 4,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '9',
-            image: '/assets/images/Image13.png',
-            title: 'Additional Boost Router',
-            new_release: false,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '86$'
-        },
-    ]
-}
+// const data = {
+//     products: [
+//         {
+//             _id: '1',
+//             image:"/assets/images/Image13.png",
+//             title: 'Virtual Reality Helmet Zero spin',
+//             new_release: true,
+//             specification: 'High Speed Router',
+//             rating: 5,
+//             price: '3,600.00 Kz'
+//         },
+//         {
+//             _id: '2',
+//             image: '/assets/images/Image15.png',
+//             title: 'Mega Speed Router',
+//             new_release: false,
+//             specification: 'High Speed Router with something',
+//             rating: 4,
+//             price: '3,600.00 Kz'
+//         },
+//         {
+//             _id: '3',
+//             image: '/assets/images/Image19.png',
+//             title: 'Additional Boost Router',
+//             new_release: false,
+//             specification: 'High Speed Router',
+//             rating: 5,
+//             price: '86$'
+//         },
+//         {
+//             _id: '4',
+//             image: '/assets/images/Image20.png',
+//             title: 'Virtual Reality Helmet Zero spin',
+//             new_release: true,
+//             specification: 'High Speed Router',
+//             rating: 5,
+//             price: '3,600.00 Kz'
+//         },
+//         {
+//             _id: '5',
+//             image: '/assets/images/Image13.png',
+//             title: 'Mega Speed Router',
+//             new_release: false,
+//             specification: 'High Speed Router with something',
+//             rating: 4,
+//             price: '3,600.00 Kz'
+//         },
+//         {
+//             _id: '6',
+//             image: '/assets/images/Image15.png',
+//             title: 'Additional Boost Router',
+//             new_release: false,
+//             specification: 'High Speed Router',
+//             rating: 5,
+//             price: '86$'
+//         },
+//         {
+//             _id: '7',
+//             image: '/assets/images/Image19.png',
+//             title: 'Virtual Reality Helmet Zero spin',
+//             new_release: true,
+//             specification: 'High Speed Router',
+//             rating: 5,
+//             price: '3,600.00 Kz'
+//         },
+//         {
+//             _id: '8',
+//             image: '/assets/images/Image20.png',
+//             title: 'Mega Speed Router',
+//             new_release: false,
+//             specification: 'High Speed Router with something',
+//             rating: 4,
+//             price: '3,600.00 Kz'
+//         },
+//         {
+//             _id: '9',
+//             image: '/assets/images/Image13.png',
+//             title: 'Additional Boost Router',
+//             new_release: false,
+//             specification: 'High Speed Router',
+//             rating: 5,
+//             price: '86$'
+//         },
+//     ]
+// }
 
 const  ProductsList = ()  => {
 
@@ -110,7 +110,7 @@ const  ProductsList = ()  => {
                 <p style={{textAlign:"left"}}>{product.price}</p>
               </Col>
               <Col>
-              <Button className="pull-right" variant="primary" size="sm" style={{marginTop:"-100px",marginLeft:"90px"}}>
+              <Button className="pull-right" variant="primary" size="sm" style={{marginTop:"-55px",marginLeft:"90px"}}>
                   Add to Cart
                 </Button>
               </Col>
@@ -125,7 +125,7 @@ const  ProductsList = ()  => {
     <Container>
         <Row>
         <h5 className='text-left' style={{padding:"40px"}}>our products</h5><br/>
-         <div className='row'>{displayProducts}</div>
+         <div className='row' style={{paddingLeft:"65px"}}>{displayProducts}</div>
          </Row>
  
 

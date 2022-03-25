@@ -1,85 +1,178 @@
 const data = {
-    products: [
-        {
-            _id: '1',
-            image: '/assets/images/image13.png',
-            title: 'Virtual Reality Helmet Zero spin',
-            new_release: true,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '2',
-            image: '/assets/images/image15.png',
-            title: 'Mega Speed Router',
-            new_release: false,
-            specification: 'High Speed Router with something',
-            rating: 4,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '3',
-            image: '/assets/images/image19.png',
-            title: 'Additional Boost Router',
-            new_release: false,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '86$'
-        },
-        {
-            _id: '4',
-            image: '/assets/images/image20.png',
-            title: 'Virtual Reality Helmet Zero spin',
-            new_release: true,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '5',
-            image: '/assets/images/image13.png',
-            title: 'Mega Speed Router',
-            new_release: false,
-            specification: 'High Speed Router with something',
-            rating: 4,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '6',
-            image: '/assets/images/image15.png',
-            title: 'Additional Boost Router',
-            new_release: false,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '86$'
-        },
-        {
-            _id: '7',
-            image: '/assets/images/image19.png',
-            title: 'Virtual Reality Helmet Zero spin',
-            new_release: true,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '8',
-            image: '/assets/images/image20.png',
-            title: 'Mega Speed Router',
-            new_release: false,
-            specification: 'High Speed Router with something',
-            rating: 4,
-            price: '3,600.00 Kz'
-        },
-        {
-            _id: '9',
-            image: '/assets/images/image13.png',
-            title: 'Additional Boost Router',
-            new_release: false,
-            specification: 'High Speed Router',
-            rating: 5,
-            price: '86$'
-        },
-    ]
-}
+  products: [
+    {
+      _id: "1",
+      image: "/assets/images/image13.png",
+      title: "Virtual Reality Helmet Zero spin",
+      Category:"Router",
+      new_release: true,
+      specification: "High Speed Router",
+      quantity:10,
+      rating: 5,
+      price: "3,600.00 Kz",
+    },
+    {
+      _id: "2",
+      image: "/assets/images/image15.png",
+      Category:"Router",
+      title: "Mega Speed Router",
+      new_release: false,
+      specification: "High Speed Router with something",
+      rating: 4,
+      price: "3,600.00 Kz",
+      quantity:10,
+
+    },
+    {
+      _id: "3",
+      image: "/assets/images/image19.png",
+      title: "Additional Boost Router",
+      Category:"Router",
+      new_release: false,
+      specification: "High Speed Router",
+      rating: 5,
+      price: "86$",
+      quantity:10,
+    },
+    {
+      _id: "4",
+      image: "/assets/images/image20.png",
+      title: "Virtual Reality Helmet Zero spin",
+      new_release: true,
+      specification: "High Speed Router",
+      rating: 5,
+      Category:"Router",
+      price: "3,600.00 Kz",
+      quantity:10,
+    },
+    {
+      _id: "5",
+      image: "/assets/images/image13.png",
+      title: "Mega Speed Router",
+      new_release: false,
+      specification: "High Speed Router with something",
+      rating: 4,
+      price: "3,600.00 Kz",
+      Category:"Router",
+      quantity:6
+    },
+    {
+      _id: "6",
+      image: "/assets/images/image15.png",
+      title: "Additional Boost Router",
+      new_release: false,
+      Category:"Router",
+      specification: "High Speed Router",
+      rating: 5,
+      price: "86$",
+      quantity:20,
+    },
+    {
+      _id: "7",
+      image: "/assets/images/image19.png",
+      title: "Virtual Reality Helmet Zero spin",
+      new_release: true,
+      Category:"Router",
+      specification: "High Speed Router",
+      rating: 5,
+      price: "3,600.00 Kz",
+      quantity:40,
+    },
+    {
+      _id: "8",
+      image: "/assets/images/image20.png",
+      title: "Mega Speed Router",
+      new_release: false,
+      Category:"Router",
+      specification: "High Speed Router with something",
+      rating: 4,
+      price: "3,600.00 Kz",
+      quantity:50,
+    },
+    {
+      _id: "9",
+      image: "/assets/images/image13.png",
+      title: "High Boost Router",
+      new_release: false,
+      Category:"Router",
+      specification: "High Speed Router",
+      rating: 5,
+      quantity:10,
+      price: "86$",
+    },
+    {
+      _id: "9",
+      image: "/assets/images/image13.png",
+      title: " Router",
+      new_release: false,
+      Category:"Router",
+      specification: "High Speed Router",
+      rating: 5,
+      quantity:100,
+      price: "86$",
+    },
+    {
+      _id: "10",
+      image: "/assets/images/tv.png",
+      title: "one plus smart Tv",
+      new_release: false,
+      Category:"Televion",
+      specification: "smart Tv with 558px graphics",
+      rating: 5,
+      quantity:10,
+      price: "5000$",
+    },
+    {
+      _id: "11",
+      image: "/assets/images/phone.jpg",
+      title: "samsung 5g Mobile",
+      new_release: false,
+      Category:"Mobiles",
+      specification: "12Gb ram 64 Gb memory",
+      rating: 5,
+      quantity:0,
+      price: "500$",
+    },
+    
+
+  ],
+
+  categories: [
+    {
+      _id: "1",
+      image: "/assets/images/internet.png",
+      title: "Internet Services",
+      quantity:"50",
+      link:"internet-services"
+    },
+    {
+      _id: "2",
+      image: "/assets/images/network.png",
+      title: "Network Equipment",
+      quantity:"20",
+      link:'network-equipments'
+    },
+    {
+      _id: "3",
+      image: "/assets/images/cpe.png",
+      title: "CPE'S",
+      link:"cpe",
+      quantity:"100",
+    },
+    {
+      _id: "4",
+      image: "/assets/images/otherproducts.png",
+      title: "Other Products",
+      link:"other-products",
+      quantity:"120",
+    },
+    {
+      _id: "5",
+      image: "/assets/images/promotions.png",
+      title: "Promotions",
+      link:"promotions",
+      quantity:"50"
+    },
+  ],
+};
+export default data;

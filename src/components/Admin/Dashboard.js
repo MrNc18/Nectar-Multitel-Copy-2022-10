@@ -3,36 +3,36 @@ import Chart from "./charts/chart"
 import { Table } from "react-bootstrap";
 
 function Dashboard() {
-    const Data = [
-        {
-        Brand:"Intel",
-        Name:"v5 router",
-        Type:"wireless Router",
-        spec:"Gaming,Websurf,10x fasrter",
-        price:"20$"
-    },
-    {
-        Brand:"Intel",
-        Name:"v5 router",
-        Type:"wireless Router",
-        spec:"Gaming,Websurf,10x fasrter",
-        price:"20$"
+//     const Data = [
+//         {
+//         Brand:"Intel",
+//         Name:"v5 router",
+//         Type:"wireless Router",
+//         spec:"Gaming,Websurf,10x fasrter",
+//         price:"20$"
+//     },
+//     {
+//         Brand:"Intel",
+//         Name:"v5 router",
+//         Type:"wireless Router",
+//         spec:"Gaming,Websurf,10x fasrter",
+//         price:"20$"
 
-    },
-    {
-        Brand:"Intel",
-        Name:"v5 router",
-        Type:"wireless Router",
-        spec:"Gaming,Websurf,10x fasrter",
-        price:"20$"
+//     },
+//     {
+//         Brand:"Intel",
+//         Name:"v5 router",
+//         Type:"wireless Router",
+//         spec:"Gaming,Websurf,10x fasrter",
+//         price:"20$"
 
-    }
-]
+//     }
+// ]
   return (
     <div id="layoutSidenavContent">
       <div className="container-fluid">
         <h3 className="mt-4 mb-4">Dashboard</h3>
-        <div
+        {/* <div
         className="col-xl-12  col-lg-12 col-md-12 col-sm-4"
         style={{ paddingTop: "20px" }}
       >
@@ -70,7 +70,7 @@ function Dashboard() {
               ))}
           </tbody>
         </Table>
-      </div>
+      </div> */}
         <Chart/>
         </div>
         </div>

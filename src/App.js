@@ -5,11 +5,12 @@ import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
 import Example from "./staticCard";
 import AdLanding from "./components/Admin/AdLanding";
-import Mobile from "./components/Admin/Mobile";
-import Internet from "./components/Admin/Internet";
+import Categories from "./components/Admin/categories";
+import Products from "./components/Admin/products";
+import AddProduct from "./components/Admin/AddProduct";
 import Dashboard from "./components/Admin/Dashboard";
-import NetworkEqui from "./components/Admin/NetworkEqui";
-import Router from "./components/Admin/Router";
+import Settings from "./components/Admin/settings";
+import StaticPage from "./components/Admin/staticPage";
 import InternetServices from "./containers/InternetServices";
 import Marketplace from "./containers/Marketplace"
 import NetworkEquipments from "./containers/NetworkEquipments";
@@ -28,10 +29,11 @@ function App() {
          <Route path="/internet-services" element={<InternetServices />} />
           <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
-            <Route path="mobiles" element={<Mobile />} />
-            <Route path="internet" element={<Internet />} />
-            <Route path="router" element={<Router />} />
-            <Route path="network" element={<NetworkEqui />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="products" element={<Products />}/>
+            <Route path="products/newproduct" element={<AddProduct />} />
+            <Route path="staticpages" element={<StaticPage />} />
+            <Route path="settings" element={<Settings />} />
            </Route>
       </Routes>
     </BrowserRouter>
