@@ -4,19 +4,6 @@ import "./staticcard.css"
 
 function example() {
   return (
-//       <center>
-//     <div className='container'>
-//         <img src={test} class="img-fluid" alt="Responsive image"/>
-//         <button class="btn">we're Multitel</button>
-//   <div class="data">
-//   <h4 className='Data'>Experience new generation of Internet</h4>
-//   </div>
-//   <h5 class="sub">our Plan starts with $20</h5>
-
-//   <button class="btnn"><a>Get started</a></button>
- 
-// </div>
-// <br/>
       <div className='container-fluid'>
         <div className='row d-flex'>
           <div className='col-24'>
