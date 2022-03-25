@@ -13,6 +13,8 @@ import Router from "./components/Admin/Router";
 import InternetServices from "./containers/InternetServices";
 import Marketplace from "./containers/Marketplace"
 import NetworkEquipments from "./containers/NetworkEquipments";
+import Promotions from "./containers/Promotions";
+import OtherProducts from "./containers/OtherProducts";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
          <Route path="/network-equipments" element={<NetworkEquipments />}/>
          <Route path="/marketplace" element={<Marketplace/>}/>
          <Route path="/internet-services" element={<InternetServices />} />
+         <Route path="/promotions" element={<Promotions />} />
+         <Route path="/otherproducts" element={<OtherProducts />} />
           <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
             <Route path="mobiles" element={<Mobile />} />

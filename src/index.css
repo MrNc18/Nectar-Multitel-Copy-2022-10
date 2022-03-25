@@ -627,3 +627,14 @@ img.dot_left, img.dot_right{display: none;}
 .broad3 img {
   width: 100%;
 }
+
+#promotions{
+  background: linear-gradient(to top, hsl(199, 58%, 32%), hsla(221, 64%, 38%, 0.4)), url(/public/assets/images/manworkingoncomputer.png) no-repeat;
+  padding: 100px 0;
+  background-size: cover;
+  overflow: hidden;
+  color: #FFFFFF;
+}
+#promotions h1{
+  font-weight: bold;
+}
