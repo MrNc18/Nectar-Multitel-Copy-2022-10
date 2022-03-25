@@ -10,7 +10,7 @@ function LoginModal({ show, handleClose }) {
   const disable = !username || !password;
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} className="login_modal">
       <Modal.Body style={{ padding: "35px 40px" }}>
         <button
           type="button"
