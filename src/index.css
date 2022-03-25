@@ -627,3 +627,32 @@ img.dot_left, img.dot_right{display: none;}
 .broad3 img {
   width: 100%;
 }
+
+
+.primary-color {color: var(--primary)}
+.modal_heading{
+  font-size: 18px;
+    margin-bottom: 10px;
+}
+.client_regn {
+  width: 40%;
+  margin: 0px auto;
+  padding: 50px 80px;
+  box-shadow: 0px 3px 35px #0000000d;
+  border-radius: 4px;
+  background: #fff;
+}
+.regn_form {
+  background: #F5F6FA;
+  padding: 50px 0;
+}
+.dots_regn1 {
+  position: absolute;
+  top: 0;
+}
+img.dots_regn2 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.errorText{font-size: 12px !important; color: red !important;}

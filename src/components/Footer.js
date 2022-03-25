@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
@@ -9,11 +9,14 @@ import FooterTop from "./footer/FooterTop";
 import FooterMiddle from "./footer/FooterMiddle";
 import FooterBottom from "./footer/FooterBottom";
 import FooterProducts from "./footer/FooterProducts";
+import { regnFooter } from "../containers/ClientRegistration";
 
 function Footer() {
+  const regnFlag = useContext(regnFooter)
+
   return (
     <div id="footer">
-      <FooterProducts />
+      {!regnFlag && <FooterProducts />}
       <FooterTop />
       <FooterMiddle />
       <FooterBottom />
