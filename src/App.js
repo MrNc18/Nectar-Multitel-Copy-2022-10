@@ -14,11 +14,8 @@ import StaticPage from "./components/Admin/staticPage";
 import InternetServices from "./containers/InternetServices";
 import Marketplace from "./containers/Marketplace"
 import NetworkEquipments from "./containers/NetworkEquipments";
-<<<<<<< HEAD
-=======
 import Promotions from "./containers/Promotions";
 import OtherProducts from "./containers/OtherProducts";
->>>>>>> 9601ef1533a087a0ac16deff711546901af7fec9
 
 function App() {
   return (
@@ -28,15 +25,9 @@ function App() {
         <Route path="/home" element={<Home />} />
          {/* <Route path="/ex" element={<Example />} /> */}
 
-<<<<<<< HEAD
-         <Route path="/marketplace" element={<Marketplace/>}/>
-         {/* <Route path="/admin" element={<AdLanding/>}> */}
-         <Route path="/network-equipments" element={<NetworkEquipments />}/>
-=======
          {/* <Route path="/admin" element={<AdLanding/>}> */}
          <Route path="/network-equipments" element={<NetworkEquipments />}/>
          <Route path="/marketplace" element={<Marketplace/>}/>
->>>>>>> 9601ef1533a087a0ac16deff711546901af7fec9
          <Route path="/internet-services" element={<InternetServices />} />
          <Route path="/promotions" element={<Promotions />} />
          <Route path="/otherproducts" element={<OtherProducts />} />

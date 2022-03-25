@@ -163,7 +163,7 @@ const data = {
       _id: "4",
       image: "/assets/images/otherproducts.png",
       title: "Other Products",
-      link:"other-products",
+      link:"otherproducts",
       quantity:"120",
     },
     {
