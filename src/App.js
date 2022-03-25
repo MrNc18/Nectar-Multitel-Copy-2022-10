@@ -16,6 +16,7 @@ import Marketplace from "./containers/Marketplace"
 import NetworkEquipments from "./containers/NetworkEquipments";
 import Promotions from "./containers/Promotions";
 import OtherProducts from "./containers/OtherProducts";
+import ClientRegistration from "./containers/ClientRegistration";
 
 function App() {
   return (
@@ -29,9 +30,12 @@ function App() {
          <Route path="/network-equipments" element={<NetworkEquipments />}/>
          <Route path="/marketplace" element={<Marketplace/>}/>
          <Route path="/internet-services" element={<InternetServices />} />
+
          <Route path="/promotions" element={<Promotions />} />
          <Route path="/otherproducts" element={<OtherProducts />} />
           <Route path="/admin" element={<AdLanding/>}>
+         <Route path="/register" element={<ClientRegistration />} />
+         {/* <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
             <Route path="categories" element={<Categories />} />
             <Route path="products" element={<Products />}/>
