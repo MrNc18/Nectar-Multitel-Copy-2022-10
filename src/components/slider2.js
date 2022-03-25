@@ -105,19 +105,21 @@ function App() {
                     src={test}
                   />
                   <div className="link">
-                   <button
-                    onClick={() =>
-                      (window.location.href = "https://google.com")
-                     }
-                     className="link_btn"
-                  >
-                    Welcome to multitel
-                  </button>
-                  <p className="link_text">Experience new generation of Internet<br/>our Plan starts with $20</p>
-                  <button class="link_btn2"><a>Get started</a></button>
+                    <button className="link_btn">Welcome to multitel</button>
+                    <p className="link_text">
+                      <b>Experience new generation of Internet</b>
+                      <br />
+                      our Plan starts with $20
+                    </p>
+                    <button
+                      onClick={() =>
+                        (window.location.href = "https://google.com")
+                      }
+                      class="link_btn2"
+                    >
+                      <a>Get started</a>
+                    </button>
                   </div>
-
-                  
                 </div>
               ))}
             </Slider>
