@@ -50,7 +50,7 @@ const styles = {
 
 function FooterProducts() {
   return (
-    <section id="products" className="py-5">
+    <section id="products" className="py-5 mt-4 mb-4">
         <Container>
           <h2 className="mb-4">Our Quality Products</h2>
           <Row>{getDetails()}</Row>
