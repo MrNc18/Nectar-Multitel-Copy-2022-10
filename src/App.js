@@ -33,9 +33,9 @@ function App() {
 
          <Route path="/promotions" element={<Promotions />} />
          <Route path="/otherproducts" element={<OtherProducts />} />
-          <Route path="/admin" element={<AdLanding/>}>
+          {/* <Route path="/admin" element={<AdLanding/>}> */}
          <Route path="/register" element={<ClientRegistration />} />
-         {/* <Route path="/admin" element={<AdLanding/>}>
+          <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
             <Route path="categories" element={<Categories />} />
             <Route path="products" element={<Products />}/>
