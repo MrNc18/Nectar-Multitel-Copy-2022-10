@@ -9,7 +9,7 @@ import { user } from "../../svg/user";
 
 function Topbar() {
   return (
-    <div id="top_header">
+    <div id="top_header" style={{marginTop:"-40px"}}>
       <Container>
         <Row>
           <Col md={5}>

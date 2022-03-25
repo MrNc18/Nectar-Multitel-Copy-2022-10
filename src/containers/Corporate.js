@@ -5,6 +5,7 @@ import Cards from "../components/cards";
 import LandingPage from "../components/LandingPage";
 import ServiceCard from "../components/atoms/ServiceCard";
 import ServicesSection from "../components/ServicesSection";
+import Slider from "../components/slider"
 
 
 const servicesData = [
