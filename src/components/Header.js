@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,9 +11,12 @@ import { user } from "../svg/user";
 import { DateTime } from "./DateTime";
 import GoogleTranslate from "./google";
 import { useNavigate } from "react-router-dom";
+import LoginModal from "./LoginModal";
 
 function Header() {
   const navigate = useNavigate();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
   return (
     <>
       <div id="top_header">
@@ -66,7 +69,9 @@ function Header() {
                   </div>
                 </li>
                 <li>
-                  <div className="d-flex pt-1 ml-3">
+                  <div className="d-flex pt-1 ml-3"
+                    onClick={() => setShowLoginModal(true)}  
+                  >
                     {user} <span className="ml-1">Login/Signup</span>
                   </div>
                 </li>
@@ -108,8 +113,10 @@ function Header() {
                   TV Services
                 </NavDropdown.Item>
               </NavDropdown> */}
-              <Nav.Link onClick={() => navigate("/home")}>Multitel Home</Nav.Link>
-              <Nav.Link href="#link">Multitel-Celular (MVNO)</Nav.Link>
+              <Nav.Link onClick={() => navigate("/home")}>
+                Multitel Home
+              </Nav.Link>
+              <Nav.Link href="#link">Multitel Móvel</Nav.Link>
               <Nav.Link href="#home">Marketplace</Nav.Link>
               <Nav.Link href="#link">Client Portal</Nav.Link>
               <Nav.Link href="#link">Contacts</Nav.Link>
@@ -117,6 +124,12 @@ function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      {showLoginModal && (
+        <LoginModal
+          show={showLoginModal}
+          handleClose = {() => setShowLoginModal(false)}
+        />
+      )}
     </>
   );
 }

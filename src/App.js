@@ -11,6 +11,7 @@ import Dashboard from "./components/Admin/Dashboard";
 import NetworkEqui from "./components/Admin/NetworkEqui";
 import Router from "./components/Admin/Router";
 import InternetServices from "./containers/InternetServices";
+import ClientRegistration from "./containers/ClientRegistration";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/home" element={<Home />} />
          <Route path="/ex" element={<Example />} />
          <Route path="/internet-services" element={<InternetServices />} />
+         <Route path="/register" element={<ClientRegistration />} />
          {/* <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
             <Route path="mobiles" element={<Mobile />} />
