@@ -44,6 +44,8 @@ const Marketplace = () => {
           {data &&
             data.categories.map((categories) => {
               return (
+                <Row>
+                  <Col md={1}></Col>
                 <Col md={2}>
                   <Card border="light" style={{ width: "10rem", marginBottom: "25px" }}>
                     <a className="nav-link" href={`/${categories.link}`}>
@@ -51,16 +53,18 @@ const Marketplace = () => {
                     <Card.Img
                       variant="top"
                       src={categories.image}
-                      style={{ border: "25px solid white", height: "100px" }}
+                      style={{ border: "25px solid white", height: "100%", width:"100%"}}
                     />
                     </a>
-                    <Card.Body style={{ textAlign: "center", height: "40px" }}>
-                      <Card.Title style={{ fontSize: "x-small" }}>
+                    <Card.Body style={{ textAlign: "center"}}>
+                      <Card.Title style={{ fontSize: "small" }}>
                         {categories.title}
                       </Card.Title>
                     </Card.Body>
                   </Card>
                 </Col>
+                <Col md={1}></Col>
+                </Row>
               );
             })}
         </section>
