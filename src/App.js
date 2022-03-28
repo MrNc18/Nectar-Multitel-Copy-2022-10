@@ -44,10 +44,12 @@ function App() {
             <Route path="products/newproduct" element={<AddProduct />} />
             <Route path="staticpages" element={<StaticPage />} />
             <Route path="settings" element={<Settings />} />
-           </Route>
+           </Route> 
       </Routes>
+     
     </BrowserRouter>
   );
+  
 }
 
 export default App;
