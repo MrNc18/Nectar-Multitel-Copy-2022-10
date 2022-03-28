@@ -17,6 +17,7 @@ import NetworkEquipments from "./containers/NetworkEquipments";
 import Promotions from "./containers/Promotions";
 import OtherProducts from "./containers/OtherProducts";
 import ClientRegistration from "./containers/ClientRegistration";
+import Account from "./containers/Account";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
          <Route path="/otherproducts" element={<OtherProducts />} />
           <Route path="/admin" element={<AdLanding/>} />
          <Route path="/register" element={<ClientRegistration />} />
+         <Route path="profile" element={<Account />}/>
          
          {/* <Route path="/admin" element={<AdLanding/>}>
          <Route path="" element={<Dashboard />} />
