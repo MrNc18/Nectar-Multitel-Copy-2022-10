@@ -349,7 +349,7 @@ img.dot_left {
 }
 
 .prod_name {
-  padding: 15px 65px;
+  padding: 15px;
 }
 
 /* Products hover effect end */
@@ -656,3 +656,16 @@ img.dots_regn2 {
   bottom: 0;
 }
 .errorText{font-size: 12px !important; color: red !important;}
+
+/* Rahul conflict issues */
+.deep_blue_heading {
+  color: var(--big-heading);
+}
+.cpe_img {
+  max-width: 100%;
+  margin-bottom: 25px;
+}
+
+/* Rahul new css */
+.primary_bg{background: var(--primary) !important;}
+.secondary_bg{background: var(--secondary) !important;}

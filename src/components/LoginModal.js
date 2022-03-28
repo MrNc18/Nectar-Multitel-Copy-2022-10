@@ -63,6 +63,7 @@ function LoginModal({ show, handleClose }) {
               <Button 
                 variant="primary"
                 disabled={disable}
+                className="primary_bg"
                 onClick={() => console.log(username, password)}
               >
                 Login

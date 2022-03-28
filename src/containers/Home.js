@@ -91,10 +91,10 @@ function Home() {
                     <p>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</p>
                     <p className="fw-500">Movie Pack Plans Starting @</p>
                     <div className="plan_buttons mt-4">
-                        <Button variant="primary">
+                        <Button variant="primary primary_bg">
                             $50/month
                         </Button>
-                        <Button variant="primary">
+                        <Button variant="primary primary_bg">
                             $150/6month
                         </Button>
                     </div>

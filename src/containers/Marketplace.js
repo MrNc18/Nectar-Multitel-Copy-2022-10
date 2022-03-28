@@ -36,8 +36,10 @@ const Marketplace = () => {
             <Col md={2}></Col>
           </Container>
         </section>
-             <div style={{marginTop:"30px"}}>
-        <center><h4>categories</h4></center>
+             <div id="deserve" style={{marginTop:"30px", textAlign: "center"}}>
+             <p className="mb-2">Lets Browse By</p>
+              <h2 className="mb-3">Categories</h2>
+        {/* <center><h4>categories</h4></center> */}
         <section className="row" style={{justifyContent:"center"}}>
           {data &&
             data.categories.map((categories) => {
