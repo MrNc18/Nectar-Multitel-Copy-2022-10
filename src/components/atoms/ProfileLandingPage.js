@@ -16,7 +16,7 @@ function ProfileLandingPage() {
               <Col md={12}>
               <Card.Text>Account Overview</Card.Text>
               <CardGroup>
-              <Card>
+              <Card class="shadow p-2 mb-5 bg-white rounded">
                 <Card.Body style={{textAlign:"center"}}>
                   <Card.Text style={{ display: "inline-block", marginRight:"30px", fontWeight:"bold"}}>Bills & Payments</Card.Text>
                   <Card.Link href="#" ><u>View</u></Card.Link>
@@ -25,7 +25,7 @@ function ProfileLandingPage() {
                 </Card.Text>
                 </Card.Body>
               </Card>
-              <Card>
+              <Card class="shadow p-3 mb-5 bg-white rounded">
                 <Card.Body style={{textAlign:"center"}}>
                   <Card.Text style={{ display: "inline-block", marginRight:"5px", fontWeight:"bold"}}>Balanace & Recharge</Card.Text>
                   <Card.Link href="#" ><u>View</u></Card.Link>
@@ -36,7 +36,7 @@ function ProfileLandingPage() {
                 <Button style={{backgroundColor:"#0076B5", background:"#0076B5"}}>Process To Pay</Button>{' '}
                 </Card.Body>
               </Card>
-              <Card>
+              <Card class="shadow p-3 mb-5 bg-white rounded">
                 <Card.Body style={{textAlign:"center"}}>
                   <Card.Text style={{ display: "inline-block", marginRight:"30px", fontWeight:"bold"}}>Robert Plaska</Card.Text>
                   <Card.Link href="#" ><u>View</u></Card.Link>
@@ -47,7 +47,7 @@ function ProfileLandingPage() {
                 </Card.Text>
                 </Card.Body>
               </Card>
-              <Card>
+              <Card class="shadow p-3 mb-5 bg-white rounded">
                 <Card.Body style={{textAlign:"center"}}>
                   <Card.Text style={{ display: "inline-block", marginRight:"30px", fontWeight:"bold"}}>Broadband</Card.Text>
                   <Card.Link href="#" ><u>View</u></Card.Link>
