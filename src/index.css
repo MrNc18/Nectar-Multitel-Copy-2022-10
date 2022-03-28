@@ -349,7 +349,7 @@ img.dot_left {
 }
 
 .prod_name {
-  padding: 15px 65px;
+  padding: 15px;
 }
 
 /* Products hover effect end */
@@ -494,19 +494,6 @@ img.dot-middle {
   letter-spacing: 1.02px;
   margin-bottom: 13px;
 }
-#key_board {
-  background: url(/public/assets/images/key_board_bg.png) no-repeat;
-  padding: 100px 0;
-  background-size: cover;
-}
-#key_board h2, #key_board h3, #key_board p {
-  color: white;
-}
-#key_board h3 {
-  font-size: 20px;
-  letter-spacing: 1.02px;
-  margin-bottom: 13px;
-}
 .fw-500{font-weight: 500;}
 .plan_buttons button {
   font-size: 14px;
@@ -522,9 +509,6 @@ img.dot-middle {
 
 /********** RESPONSIVE ************/
 @media (max-width: 575.98px) { 
-  .login_modal .modal-body {
-    padding: 35px 28px !important;
-}
   .broadband_card {
     padding: 30px !important;
 }
@@ -582,19 +566,9 @@ img.dot_left, img.dot_right{display: none;}
 .header-right-ul {
   flex-direction: column;
 }
-.client_regn {
-  width: 100% !important;
-  padding: 50px 43px !important;
-}
-.dots_regn1, .dots_regn2 {
-  display: none;
-}
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) { 
-  .client_regn {
-    width: 65% !important;
-}
   .plan_buttons button {
     padding: 14px;
 }
@@ -695,9 +669,15 @@ img.dots_regn2 {
 }
 .errorText{font-size: 12px !important; color: red !important;}
 
-.deep_blue_heading{color: var(--big-heading);}
-img.cpe_img {
-  margin-bottom: 25px;
+/* Rahul conflict issues */
+.deep_blue_heading {
+  color: var(--big-heading);
+}
+.cpe_img {
   max-width: 100%;
+  margin-bottom: 25px;
 }
 
+/* Rahul new css */
+.primary_bg{background: var(--primary) !important;}
+.secondary_bg{background: var(--secondary) !important;}

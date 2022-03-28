@@ -13,7 +13,7 @@ import Dashboard from "./components/Admin/Dashboard";
 import Settings from "./components/Admin/settings";
 import StaticPage from "./components/Admin/staticPage";
 import InternetServices from "./containers/InternetServices";
-import Marketplace from "./containers/Marketplace"
+import Marketplace from "./containers/Marketplace";
 import NetworkEquipments from "./containers/NetworkEquipments";
 import Promotions from "./containers/Promotions";
 import OtherProducts from "./containers/OtherProducts";
@@ -28,12 +28,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Corporate />} />
         <Route path="/home" element={<Home />} />
-         {/* <Route path="/ex" element={<Example />} /> */}
-
-         {/* <Route path="/admin" element={<AdLanding/>}> */}
-         <Route path="/network-equipments" element={<NetworkEquipments />}/>
-         <Route path="/marketplace" element={<Marketplace/>}/>
-         <Route path="/internet-services" element={<InternetServices />} />
+        <Route path="/network-equipments" element={<NetworkEquipments />} />
+        <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="/internet-services" element={<InternetServices />} />
 
          <Route path="/promotions" element={<Promotions />} />
          <Route path="/otherproducts" element={<OtherProducts />} />
@@ -41,7 +38,7 @@ function App() {
          <Route path="/register" element={<ClientRegistration />} />
          <Route path="/cpe" element={<CPE />} />
           <Route path="/admin" element={<AdLanding/>}>
-         <Route path="" element={<Dashboard />} />
+            <Route path="" element={<Dashboard />} />
             <Route path="categories" element={<Categories />} />
             <Route path="products" element={<Products />}/>
             <Route path="products/newproduct" element={<AddProduct />} />
