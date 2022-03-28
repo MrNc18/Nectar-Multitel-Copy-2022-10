@@ -55,9 +55,8 @@ function ClientRegistration() {
       };
 
   return (
-      <regnFooter.Provider value={true}>
-    <LandingPage>
-      <ServiceBanner title="Client Registration" />
+    <LandingPage woproducts>
+      <ServiceBanner title="Client Registration" regnPage/>
       <section className="regn_form pos-relative">
         <div className="client_regn">
           <h3 className="modal_heading mb-4">
@@ -135,6 +134,7 @@ function ClientRegistration() {
               >
                 <Button
                   variant="primary"
+                  className="primary_bg"
                   disabled={!buttonEnabled || !checked}
                   onClick={signIn}
                 >
@@ -165,7 +165,6 @@ function ClientRegistration() {
         />
       )}
     </LandingPage>
-    </regnFooter.Provider>
   );
 }
 
