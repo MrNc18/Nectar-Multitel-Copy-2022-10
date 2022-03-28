@@ -11,9 +11,9 @@ const  ProductsList = ()  => {
         <Col md={4}>
           <Card style={{ width: "16rem",marginBottom:"25px" }}>
             <Card.Img variant="top" src={product.image} style={{border:"25px solid #F5F6FA",height:"180px"}} />
-            <Card.Body style={{textAlign:"left",height:"140px"}}>
-              <Card.Title style={{fontSize:"x-small"}}>{product.title}</Card.Title>
-              <Card.Text style={{textAlign:"left",fontSize:"xx-small"}}>
+            <Card.Body style={{textAlign:"left",height:"180px"}}>
+              <Card.Title><h5>{product.title}</h5></Card.Title>
+              <Card.Text style={{textAlign:"left",fontSize:"small"}}>
                 {product.specification}
               </Card.Text>
               <Col xs={12} md={8} style={{color:"orange", textAlign:"left",paddingLeft:"initial"}}>
@@ -22,7 +22,7 @@ const  ProductsList = ()  => {
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
-                <p style={{textAlign:"left"}}>{product.price}</p>
+                <p style={{textAlign:"left",color:"#1D3557"}}>{product.price}</p>
               </Col>
               <Col>
               <Button className="pull-right" variant="primary" size="sm" style={{marginTop:"-55px",marginLeft:"90px"}}>

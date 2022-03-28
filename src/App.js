@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import {Provider} from "react-redux"
 import './App.css';
 import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
@@ -18,9 +19,11 @@ import Promotions from "./containers/Promotions";
 import OtherProducts from "./containers/OtherProducts";
 import ClientRegistration from "./containers/ClientRegistration";
 import CPE from "./containers/CPE";
+import store from "./components/redux/store"
 
 function App() {
   return (
+    // <Provider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Corporate />} />
@@ -48,6 +51,7 @@ function App() {
       </Routes>
      
     </BrowserRouter>
+    // </Provider>
   );
   
 }

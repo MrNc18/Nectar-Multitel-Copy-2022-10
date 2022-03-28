@@ -190,7 +190,7 @@ const data = {
     },
     {
       _id: "11",
-      image: "/assets/images/phone.jpg",
+      image: "/assets/images/phone2.jpg",
       title: "samsung 5g Mobile",
       new_release: false,
       Category:"Mobiles",
