@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { loginUser } from "../services/authentication";
+import { Link, useNavigate } from "react-router-dom";
+
 import InputField from "./atoms/InputField";
 import {useNavigate} from "react-router-dom"
 import { showAlert } from "../utils/showAlert"
@@ -31,6 +32,8 @@ function LoginModal({ show, handleClose }) {
     }
   };
 
+
+  const navigate = useNavigate();
 
   return (
     <Modal show={show} onHide={handleClose} className="login_modal">
@@ -72,7 +75,10 @@ function LoginModal({ show, handleClose }) {
             >
               <InputField type="checkbox" label="Remember me" />
 
-              <a href="#" className="text-primary fw-500">
+              <a
+                onClick={() => navigate("/forgot-password")}
+                className="text-primary fw-500"
+              >
                 Forgot Password
               </a>
             </div>
@@ -83,7 +89,7 @@ function LoginModal({ show, handleClose }) {
               className="custom-control custom-checkbox d-flex align-items-center justify-content-between"
               style={{ paddingLeft: 0 }}
             >
-              <Button 
+              <Button
                 variant="primary"
                 disabled={disable}
                 className="primary_bg"
