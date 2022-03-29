@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import {Provider} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import './App.css';
 import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
@@ -23,12 +23,12 @@ import ForgotPassword from "./containers/ForgotPassword";
 import ResetPassword from "./containers/ResetPassword";
 import ProductDetail from "./containers/ProductDetail";
 import VerifyEmail from "./containers/VerifyEmail";
-// import store from "./components/redux/store"
+
 
 
 function App() {
   return (
-    // <Provider>
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Corporate />} />
@@ -59,7 +59,7 @@ function App() {
       </Routes>
      
     </BrowserRouter>
-    // </Provider>
+    
   );
   
 }
