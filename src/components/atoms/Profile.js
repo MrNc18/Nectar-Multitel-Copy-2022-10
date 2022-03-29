@@ -7,15 +7,15 @@ function Profile() {
     <Container>
       <Row>
         <Col md={12}>
-          <Card>
+          <Card className="mt-5">
             <Card.Header style={{ display: "inline-block" }}>
               <div style={{ display: "inline-block" }}>
                 <img
                   src="/assets/images/cloud.png"
                   alt=""
-                  style={{ height: "30%", width: "20%", borderRadius: "50%" }}
+                  style={{ height: "30%", width: "15%", borderRadius: "50%" }}
                 />{" "}
-                <h6 style={{ display: "inline-block" }}>Robert Plaska</h6>
+                <p style={{ display: "inline-block" }}>Alan Plaska</p>
               </div>
               <div
                 style={{
@@ -27,12 +27,12 @@ function Profile() {
                 <Nav>
                   <Nav.Item>
                     <Nav.Link href="#second" style={{ color: "white" }}>
-                      Edit Profile
+                    Edit Profile
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link href="#third" style={{ color: "white" }}>
-                      My Profile
+                      My Products
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
@@ -53,7 +53,6 @@ function Profile() {
                 </Nav>
               </div>
             </Card.Header>
-            <ProfileLandingPage />
           </Card>
         </Col>
       </Row>

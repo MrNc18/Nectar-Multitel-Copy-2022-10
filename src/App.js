@@ -22,7 +22,8 @@ import OtherProducts from "./containers/OtherProducts";
 import ClientRegistration from "./containers/ClientRegistration";
 import Account from "./containers/Account";
 import CPE from "./containers/CPE";
-// import Store from "./components/redux/Store"
+// import Store from "./components/redux/Store";
+import EditProfile from "./containers/EditProfile";
 
 function App() {
   const account  = useSelector((data)=>data)
@@ -45,6 +46,8 @@ function App() {
           {/* <Route path="/admin" element={<AdLanding/>}> */}
          <Route path="/register" element={<ClientRegistration />} />
          <Route path="profile" element={<Account />}/>
+         <Route path="editprofile" element={<EditProfile />}/>
+
          
          {/* {/* <Route path="/admin" element={<AdLanding/>}> */}
          <Route path="" element={<Dashboard />} />

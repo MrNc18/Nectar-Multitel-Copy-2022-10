@@ -708,3 +708,11 @@ img.dots_regn2 {
 /* Rahul new css */
 .primary_bg{background: var(--primary) !important;}
 .secondary_bg{background: var(--secondary) !important;}
+
+/* Edit Profile css exists here */
+.fa-city, .fa-user, .fa-cake-candles, .fa-mercury, .fa-mobile-screen-button, .fa-envelope-open, .fa-user-tie, .fa-usps{
+  color: #0076B5;
+}
+.form-group{
+  text-align: center!important;
+}

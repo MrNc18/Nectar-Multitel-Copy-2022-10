@@ -1,9 +1,12 @@
 import React from 'react';
-import { Button, Col, Container, Row, Card, Nav, CardGroup } from "react-bootstrap";
+import { Button, Col, Container, Row, Card, CardGroup } from "react-bootstrap";
 
 function ProfileLandingPage() {
   return (
-    <Card>
+    <Container>
+      <Row>
+        <Col>
+        <Card style={{marginTop:"-35px"}}>
         <Card.Body>
               <Col md={8} style={{ display: "inline-block" }}>
               <Card.Title >Hi Robert, welcome to Your Account</Card.Title>
@@ -62,6 +65,9 @@ function ProfileLandingPage() {
               </Col>
             </Card.Body>
     </Card>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

@@ -2,16 +2,16 @@ import React from "react";
 import LandingPage from "../components/LandingPage";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import Profile from "../components/atoms/Profile";
-import ProfileLandingPage from "../components/atoms/ProfileLandingPage";
+import EditProfileForm from "../components/atoms/EditProfileForm";
 
-function Account() {
+function EditProfile() {
   return (
     <LandingPage>
-      <ServiceBanner title="Account" />
+      <ServiceBanner title="Edit Profile" />
       <Profile />
-      <ProfileLandingPage />
+      <EditProfileForm />
     </LandingPage>
   );
 }
 
-export default Account;
+export default EditProfile;
