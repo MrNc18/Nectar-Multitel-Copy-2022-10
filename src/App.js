@@ -23,7 +23,7 @@ import ForgotPassword from "./containers/ForgotPassword";
 import ResetPassword from "./containers/ResetPassword";
 import ProductDetail from "./containers/ProductDetail";
 import VerifyEmail from "./containers/VerifyEmail";
-import store from "./components/redux/store"
+// import store from "./components/redux/store"
 
 
 function App() {
