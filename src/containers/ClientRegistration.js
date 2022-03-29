@@ -1,28 +1,37 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import InputField from "../components/atoms/InputField";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import LoginModal from "../components/LoginModal";
 import { isValidEmail } from "../utils/validators";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../services/authentication";
+import {showAlert} from "../utils/showAlert"
 
 export const regnFooter = React.createContext()
 
 function ClientRegistration() {
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [checked, setChecked] = useState(false);
-    const [name, setName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
+    const [gendar,setGendar]=useState('')
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [btnLoading, setBbtnLoading] = useState("");
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
     const [emailError, setEmailError] = useState("");
 
+    const navigate = useNavigate();
+
     const value = {
-        name,
+        firstName,
+        lastName,
+        gendar,
         username,
         email,
         password,
@@ -33,9 +42,9 @@ function ClientRegistration() {
         },
       };
 
-      const buttonEnabled = name && username && password && email && confirmPassword;
+      const buttonEnabled = firstName && lastName && username && password && email && confirmPassword;
 
-      const signIn = () => {
+      const signIn = async () => {
         setEmailError("");
         setConfirmPasswordError("");
         let hasError = false;
@@ -52,12 +61,29 @@ function ClientRegistration() {
         if (hasError) return;
     
         console.log(value)
+        try {
+          setBbtnLoading(true);
+          await registerUser({
+            first_name: firstName,
+            last_name: lastName,
+            user_name:username,
+            gendar:gendar,
+            email,
+            password,
+            role: 2,
+          });
+          navigate("/home")
+          showAlert("Sign-up successfull.", "success");
+        } catch (error) {
+          showAlert(error.data.massage, "error");
+        } finally {
+          setBbtnLoading(false);
+        }
       };
 
   return (
-      <regnFooter.Provider value={true}>
-    <LandingPage>
-      <ServiceBanner title="Client Registration" />
+    <LandingPage woproducts>
+      <ServiceBanner title="Client Registration" regnPage/>
       <section className="regn_form pos-relative">
         <div className="client_regn">
           <h3 className="modal_heading mb-4">
@@ -66,11 +92,18 @@ function ClientRegistration() {
 
           <Form>
             <InputField
-              id="name"
-              label="Name"
+              id="firstName"
+              label="firstName"
               mendetory
               value={value}
-              handleChange={(e) => setName(e.target.value)}
+              handleChange={(e) => setFirstName(e.target.value)}
+            />
+             <InputField
+              id="lastName"
+              label='lastName'
+              mendetory
+              value={value}
+              handleChange={(e) => setLastName(e.target.value)}
             />
             <InputField
               id="username"
@@ -135,6 +168,7 @@ function ClientRegistration() {
               >
                 <Button
                   variant="primary"
+                  className="primary_bg"
                   disabled={!buttonEnabled || !checked}
                   onClick={signIn}
                 >
@@ -165,7 +199,6 @@ function ClientRegistration() {
         />
       )}
     </LandingPage>
-    </regnFooter.Provider>
   );
 }
 

@@ -69,8 +69,9 @@ function Header() {
                   </div>
                 </li>
                 <li>
-                  <div className="d-flex pt-1 ml-3"
-                    onClick={() => setShowLoginModal(true)}  
+                  <div
+                    className="d-flex pt-1 ml-3"
+                    onClick={() => setShowLoginModal(true)}
                   >
                     {user} <span className="ml-1">Login/Signup</span>
                   </div>
@@ -114,15 +115,11 @@ function Header() {
                 </NavDropdown.Item>
               </NavDropdown> */}
 
-              <Nav.Link onClick={() => navigate("/home")}>Multitel Home</Nav.Link>
-              <Nav.Link href="#link">Multitel-Celular (MVNO)</Nav.Link>
-              <Nav.Link onClick={() => navigate("/marketplace")}>Marketplace</Nav.Link>
-
               <Nav.Link onClick={() => navigate("/home")}>
                 Multitel Home
               </Nav.Link>
-              <Nav.Link href="#link">Multitel Móvel</Nav.Link>
-              <Nav.Link href="#home">Marketplace</Nav.Link>
+              <Nav.Link href="#link">Multitel Mobile</Nav.Link>
+              <Nav.Link onClick={() => navigate("/marketplace")}>Marketplace</Nav.Link>
 
               <Nav.Link href="#link">Client Portal</Nav.Link>
               <Nav.Link href="#link">Contacts</Nav.Link>
@@ -133,7 +130,7 @@ function Header() {
       {showLoginModal && (
         <LoginModal
           show={showLoginModal}
-          handleClose = {() => setShowLoginModal(false)}
+          handleClose={() => setShowLoginModal(false)}
         />
       )}
     </>

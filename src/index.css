@@ -349,7 +349,7 @@ img.dot_left {
 }
 
 .prod_name {
-  padding: 15px 65px;
+  padding: 15px;
 }
 
 /* Products hover effect end */
@@ -494,6 +494,19 @@ img.dot-middle {
   letter-spacing: 1.02px;
   margin-bottom: 13px;
 }
+.fw-500{font-weight: 500;}
+.plan_buttons button {
+  font-size: 14px;
+  padding: 18px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+.tv_img {
+  width: 75%;
+  margin: 0 auto;
+  display: block;
+}
+
 #key_board {
   background: url(/public/assets/images/key_board_bg.png) no-repeat;
   padding: 100px 0;
@@ -514,11 +527,12 @@ img.dot-middle {
   margin-right: 20px;
   border-radius: 10px;
 }
-.tv_img {
+/* .tv_img {
   width: 75%;
   margin: 0 auto;
   display: block;
-}
+} */
+
 
 /********** RESPONSIVE ************/
 @media (max-width: 575.98px) { 
@@ -682,3 +696,15 @@ img.dots_regn2 {
 }
 .errorText{font-size: 12px !important; color: red !important;}
 
+/* Rahul conflict issues */
+.deep_blue_heading {
+  color: var(--big-heading);
+}
+.cpe_img {
+  max-width: 100%;
+  margin-bottom: 25px;
+}
+
+/* Rahul new css */
+.primary_bg{background: var(--primary) !important;}
+.secondary_bg{background: var(--secondary) !important;}

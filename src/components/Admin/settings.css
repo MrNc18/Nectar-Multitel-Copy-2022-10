@@ -1,0 +1,37 @@
+#pass {
+    margin: 0 auto;
+    color: black;
+    margin-top: 10px;
+    width: 280px;
+    height: 45px;
+    font-size: 18px;
+    margin-bottom: 14px;
+    max-width: 527px;
+    padding: 0 10%;
+    border-radius: 7px;
+    border: 1.5px solid grey;
+  }
+  .required:after {
+    content:" *";
+    color: red;
+  }
+
+  label {
+    font-weight: bold;
+    display: block;
+  }
+  
+  .pass-wrapper {
+    position: relative;
+    margin-bottom: 14px;
+  }
+  
+  .pass-wrapper i {
+    position: absolute;
+    top: 49%;
+    right: 20%;
+  }
+  .pass-wrapper i:hover {
+    color: #8EC131;
+    cursor: pointer;
+  }
