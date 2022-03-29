@@ -1,13 +1,36 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { loginUser } from "../services/authentication";
 import InputField from "./atoms/InputField";
+import {useNavigate} from "react-router-dom"
+import { showAlert } from "../utils/showAlert"
+import { setCookie, AUTH_TOKEN } from "../utils/cookie"
 
 function LoginModal({ show, handleClose }) {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const [btnLoading, setBtnLoading] = useState();
 
-  const disable = !username || !password;
+  const navigate = useNavigate();
+
+
+  const disable = !username || !password || btnLoading;
+
+  const login = async () => {
+    try {
+      setBtnLoading(true);
+      const response = await loginUser(username, password);
+      showAlert("Logged in.", "success");
+      setCookie(AUTH_TOKEN, "Bearer " + response?.data?.result?.token);
+      navigate("/home");
+    } catch (error) {
+      showAlert("Please enter valid credentials.", "error");
+    } finally {
+      setBtnLoading(false);
+    }
+  };
+
 
   return (
     <Modal show={show} onHide={handleClose} className="login_modal">
@@ -64,7 +87,7 @@ function LoginModal({ show, handleClose }) {
                 variant="primary"
                 disabled={disable}
                 className="primary_bg"
-                onClick={() => console.log(username, password)}
+                onClick={() =>login()}
               >
                 Login
               </Button>

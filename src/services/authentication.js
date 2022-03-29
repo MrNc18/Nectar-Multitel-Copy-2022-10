@@ -9,16 +9,14 @@ export const updateUser = async (data) => {
     return await doPut("api/user/updateProfile", data);
   };
   
-//   export const loginUser = async (email, password) => {
-//     const response = await doPost("admin/userLogin", {
-//       userName: email,
-//       password,
-//     });
-//     new FormModel("userDetails")._createForm(response?.data?.data);
-//     updateUserAccessInRedux(response?.data?.data?.role);
+  export const loginUser = async (username, password) => {
+    const response = await doPost("api/user/login", {
+      username,
+      password,
+    });
   
-//     return response;
-//   };
+    return response;
+  };
   
   export const forgotPassword = async (email) => {
     return await doPost("api/user/forgotPassword", { email });
