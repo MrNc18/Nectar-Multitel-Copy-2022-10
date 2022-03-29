@@ -1,6 +1,8 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import {Provider} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
+import {bindActionCreators} from 'redux'
+import {actionCreator} from './components/redux/actionType'
 import './App.css';
 import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
@@ -19,11 +21,16 @@ import Promotions from "./containers/Promotions";
 import OtherProducts from "./containers/OtherProducts";
 import ClientRegistration from "./containers/ClientRegistration";
 import CPE from "./containers/CPE";
-import store from "./components/redux/store"
+// import Store from "./components/redux/Store"
 
 function App() {
+  const account  = useSelector((data)=>data)
+  console.log('account',account)
+  const dispatch = useDispatch();
+  const action = bindActionCreators(actionCreator,dispatch)
+  console.log('action',action)
   return (
-    // <Provider>
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Corporate />} />
@@ -48,7 +55,7 @@ function App() {
       </Routes>
      
     </BrowserRouter>
-    // </Provider>
+    
   );
   
 }
