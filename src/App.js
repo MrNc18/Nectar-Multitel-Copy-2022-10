@@ -18,6 +18,10 @@ import Promotions from "./containers/Promotions";
 import OtherProducts from "./containers/OtherProducts";
 import ClientRegistration from "./containers/ClientRegistration";
 import CPE from "./containers/CPE";
+import ForgotPassword from "./containers/ForgotPassword";
+import ResetPassword from "./containers/ResetPassword";
+import ProductDetail from "./containers/ProductDetail";
+import VerifyEmail from "./containers/VerifyEmail";
 
 function App() {
   return (
@@ -27,11 +31,16 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/network-equipments" element={<NetworkEquipments />} />
         <Route path="/marketplace" element={<Marketplace />} />
-        <Route path="/internet-services" element={<InternetServices />} />
-
+        <Route path="/products/:name" element={<ProductDetail />} />
+        <Route path="/internet-services" element={<InternetServices />} />        
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/otherproducts" element={<OtherProducts />} />
         <Route path="/register" element={<ClientRegistration />} />
+
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
         <Route path="/cpe" element={<CPE />} />
         <Route path="/admin" element={<AdLanding />}>
           <Route path="" element={<Dashboard />} />
