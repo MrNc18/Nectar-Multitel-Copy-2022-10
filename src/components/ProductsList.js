@@ -4,91 +4,6 @@ import "./proList.css";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-// const data = {
-//     products: [
-//         {
-//             _id: '1',
-//             image:"/assets/images/Image13.png",
-//             title: 'Virtual Reality Helmet Zero spin',
-//             new_release: true,
-//             specification: 'High Speed Router',
-//             rating: 5,
-//             price: '3,600.00 Kz'
-//         },
-//         {
-//             _id: '2',
-//             image: '/assets/images/Image15.png',
-//             title: 'Mega Speed Router',
-//             new_release: false,
-//             specification: 'High Speed Router with something',
-//             rating: 4,
-//             price: '3,600.00 Kz'
-//         },
-//         {
-//             _id: '3',
-//             image: '/assets/images/Image19.png',
-//             title: 'Additional Boost Router',
-//             new_release: false,
-//             specification: 'High Speed Router',
-//             rating: 5,
-//             price: '86$'
-//         },
-//         {
-//             _id: '4',
-//             image: '/assets/images/Image20.png',
-//             title: 'Virtual Reality Helmet Zero spin',
-//             new_release: true,
-//             specification: 'High Speed Router',
-//             rating: 5,
-//             price: '3,600.00 Kz'
-//         },
-//         {
-//             _id: '5',
-//             image: '/assets/images/Image13.png',
-//             title: 'Mega Speed Router',
-//             new_release: false,
-//             specification: 'High Speed Router with something',
-//             rating: 4,
-//             price: '3,600.00 Kz'
-//         },
-//         {
-//             _id: '6',
-//             image: '/assets/images/Image15.png',
-//             title: 'Additional Boost Router',
-//             new_release: false,
-//             specification: 'High Speed Router',
-//             rating: 5,
-//             price: '86$'
-//         },
-//         {
-//             _id: '7',
-//             image: '/assets/images/Image19.png',
-//             title: 'Virtual Reality Helmet Zero spin',
-//             new_release: true,
-//             specification: 'High Speed Router',
-//             rating: 5,
-//             price: '3,600.00 Kz'
-//         },
-//         {
-//             _id: '8',
-//             image: '/assets/images/Image20.png',
-//             title: 'Mega Speed Router',
-//             new_release: false,
-//             specification: 'High Speed Router with something',
-//             rating: 4,
-//             price: '3,600.00 Kz'
-//         },
-//         {
-//             _id: '9',
-//             image: '/assets/images/Image13.png',
-//             title: 'Additional Boost Router',
-//             new_release: false,
-//             specification: 'High Speed Router',
-//             rating: 5,
-//             price: '86$'
-//         },
-//     ]
-// }
 
 const ProductsList = () => {
   const displayProducts =
@@ -96,6 +11,7 @@ const ProductsList = () => {
     data.products.map((product) => {
       return (
         <Col md={4}>
+
           <Card style={{ width: "16rem", marginBottom: "25px" }}>
             <Link state={{product}} to={`/products/${product.title}`}>
               <Card.Img
@@ -111,6 +27,13 @@ const ProductsList = () => {
               </Card.Title>
             </Link>
               <Card.Text style={{ textAlign: "left", fontSize: "xx-small" }}>
+
+          <Card style={{ width: "16rem",marginBottom:"25px" }}>
+            <Card.Img variant="top" src={product.image} style={{border:"25px solid #F5F6FA",height:"180px"}} />
+            <Card.Body style={{textAlign:"left",height:"180px"}}>
+              <Card.Title><h5>{product.title}</h5></Card.Title>
+              <Card.Text style={{textAlign:"left",fontSize:"small"}}>
+
                 {product.specification}
               </Card.Text>
               <Col
@@ -127,7 +50,7 @@ const ProductsList = () => {
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
-                <p style={{ textAlign: "left" }}>{product.price}</p>
+                <p style={{textAlign:"left",color:"#1D3557"}}>{product.price}</p>
               </Col>
               <Col>
                 <Button

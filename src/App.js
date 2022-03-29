@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import "./App.css";
+import {Provider} from "react-redux"
+import './App.css';
 import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
 import Example from "./staticCard";
@@ -22,15 +23,19 @@ import ForgotPassword from "./containers/ForgotPassword";
 import ResetPassword from "./containers/ResetPassword";
 import ProductDetail from "./containers/ProductDetail";
 import VerifyEmail from "./containers/VerifyEmail";
+import store from "./components/redux/store"
+
 
 function App() {
   return (
+    // <Provider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Corporate />} />
         <Route path="/home" element={<Home />} />
         <Route path="/network-equipments" element={<NetworkEquipments />} />
         <Route path="/marketplace" element={<Marketplace />} />
+
         <Route path="/products/:name" element={<ProductDetail />} />
         <Route path="/internet-services" element={<InternetServices />} />        
         <Route path="/promotions" element={<Promotions />} />
@@ -50,9 +55,13 @@ function App() {
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
         </Route>
+
       </Routes>
+     
     </BrowserRouter>
+    // </Provider>
   );
+  
 }
 
 export default App;
