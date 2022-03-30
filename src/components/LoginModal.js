@@ -2,29 +2,31 @@ import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { loginUser } from "../services/authentication";
 import { Link, useNavigate } from "react-router-dom";
-
 import InputField from "./atoms/InputField";
-import {useNavigate} from "react-router-dom"
 import { showAlert } from "../utils/showAlert"
 import { setCookie, AUTH_TOKEN } from "../utils/cookie"
 
 function LoginModal({ show, handleClose }) {
-  const [username, setUsername] = useState();
+  const [ userName, setuserName] = useState();
   const [password, setPassword] = useState();
   const [btnLoading, setBtnLoading] = useState();
 
   const navigate = useNavigate();
 
 
-  const disable = !username || !password || btnLoading;
+  const disable = ! userName || !password || btnLoading;
 
   const login = async () => {
     try {
       setBtnLoading(true);
-      const response = await loginUser(username, password);
+      const response = await loginUser( userName, password);
+      console.log("ressss",response)
       showAlert("Logged in.", "success");
-      setCookie(AUTH_TOKEN, "Bearer " + response?.data?.result?.token);
-      navigate("/home");
+      setCookie(AUTH_TOKEN,response.data.data.jwtToken);
+      // console.log("token",response.data.data.jwtToken)
+      handleClose()
+      navigate("/redirect")
+      
     } catch (error) {
       showAlert("Please enter valid credentials.", "error");
     } finally {
@@ -33,7 +35,7 @@ function LoginModal({ show, handleClose }) {
   };
 
 
-  const navigate = useNavigate();
+ 
 
   return (
     <Modal show={show} onHide={handleClose} className="login_modal">
@@ -53,12 +55,12 @@ function LoginModal({ show, handleClose }) {
 
         <Form>
           <InputField
-            id="username"
+            id=" userName"
             type="text"
-            label="Username"
+            label=" userName"
             mendetory
-            value={{ username }}
-            handleChange={(e) => setUsername(e.target.value)}
+            value={{  userName }}
+            handleChange={(e) => setuserName(e.target.value)}
           />
           <InputField
             id="password"

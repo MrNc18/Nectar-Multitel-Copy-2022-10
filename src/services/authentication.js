@@ -1,4 +1,5 @@
 import { doGet, doPost, doPut }  from "../utils/request"
+import { FormModel } from "../Model/FormModel"
 
 export const registerUser = async (data) => {
     return await doPost("api/user/userRegistration", data);
@@ -9,9 +10,9 @@ export const updateUser = async (data) => {
     return await doPut("api/user/updateProfile", data);
   };
   
-  export const loginUser = async (username, password) => {
-    const response = await doPost("api/user/login", {
-      username,
+  export const loginUser = async (userName, password) => {
+    const response = await doPost("api/user/userlogin", {
+      userName,
       password,
     });
   
@@ -25,8 +26,21 @@ export const updateUser = async (data) => {
   export const changePassword = async (data) => {
     return await doPost("api/user/changePassword", data);
   };
-  
-  export const resetPassword = async (email, otp) => {
-    return await doPost("api/user/resetPassword", { email, otp });
+  export const verifyotp = async (data) => {
+    return await doPost("api/user/checkOtpisVailid", data);
   };
   
+  export const resetPassword = async (data) => {
+    return await doPost("api/user/resetPassword",data);
+  };
+
+  export const EmailVerification = async (verficationToken) => {
+    return await doGet(`api/user/emailVerification/${verficationToken}`);
+  };
+  
+  export const getUserDetailsByToken = async () => {
+    const response = await doPost("api/user/getUserByToken");
+    new FormModel("userDetails")._createForm(response?.result);
+  
+    return response;
+  };

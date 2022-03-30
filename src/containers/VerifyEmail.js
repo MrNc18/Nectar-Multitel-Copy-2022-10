@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import InputField from "../components/atoms/InputField";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
+import { verifyotp } from "../services/authentication";
 import { showAlert } from "../utils/showAlert";
 
 function VerifyEmail() {
@@ -14,24 +15,25 @@ function VerifyEmail() {
 
   const navigate = useNavigate();
 
-  const verify = () => {
-    navigate("/reset-password");
-    // try {
+  const verify = async () => {
 
-    //     setBtnLoading(true);
-    //     const data = {
-    //         email,
-    //         code: otp,
-    //     };
-    // //   await verifyEmail(data);
-    //     navigate("/reset-passsword", { state: data });
-    //     showAlert("Email verification successfull.", "success");
-    // } catch (error) {
-    //     console.log(error);
-    //     showAlert(error.data.massage, "error");
-    // } finally {
-    //     setBtnLoading(false);
-    // }
+    try {
+        setBtnLoading(true);
+        const data = {
+            email,
+            otp: otp,
+        };
+      await verifyotp(data);
+        showAlert("Email verification successfull.", "success");
+        alert("Email verification successfull.", "success");
+        navigate("/reset-password", { state: {email,otp} });
+        console.log("dattt",email,otp)
+    } catch (error) {
+        console.log(error);
+        showAlert(error.data.massage, "error");
+    } finally {
+        setBtnLoading(false);
+    }
   };
   const resend = async () => {
       console.log("resend")
