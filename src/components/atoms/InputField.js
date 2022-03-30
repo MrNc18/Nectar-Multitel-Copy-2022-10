@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-// import { FormModel } from "./../../model/FormModel";
+import { FormModel } from "../../Model/FormModel"
 
 export const InputField = ({
   label,
@@ -41,9 +41,9 @@ export const InputField = ({
                 maxLength={maxLength}
                 disabled={disabled}
                 onChange={(e) =>
-                  handleChange &&
-                    handleChange(e, id)
-                    
+                  handleChange
+                    ? handleChange(e, id)
+                    : new FormModel(formName)._update({ [id]: e.target.value })
                 }
                 value={value[id]}
               />
@@ -76,9 +76,9 @@ export const InputField = ({
               disabled={disabled}
               maxLength={maxLength}
               onChange={(e) =>
-                handleChange &&
-                  handleChange(e, id)
-                  
+                handleChange
+                  ? handleChange(e, id)
+                  : new FormModel(formName)._update({ [id]: e.target.value })
               }
               value={value[id]}
             />
@@ -96,9 +96,9 @@ export const InputField = ({
               disabled={disabled}
               max={max}
               onChange={(e) =>
-                handleChange &&
-                  handleChange(e, id)
-                  
+                handleChange
+                  ? handleChange(e, id)
+                  : new FormModel(formName)._update({ [id]: e.target.value })
               }
 
               value={value[id]}
@@ -119,9 +119,9 @@ export const InputField = ({
               min={min}
               max={max}
               onChange={(e) =>
-                handleChange &&
-                  handleChange(e, id)
-                  
+                handleChange
+                  ? handleChange(e, id)
+                  : new FormModel(formName)._update({ [id]: e.target.value })
               }
               value={value[id]}
               onKeyDown={(e) => {

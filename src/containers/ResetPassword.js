@@ -1,44 +1,71 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import InputField from "../components/atoms/InputField";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
+import { useLocation, useNavigate } from "react-router-dom";
 import LoginModal from "../components/LoginModal";
 import { isValidEmail } from "../utils/validators";
+import { showAlert } from "../utils/showAlert";
+import {resetPassword} from "../services/authentication"
+import {FormModel} from "../Model/FormModel"
+import {useSelector} from "react-redux"
+
 
 
 function ResetPassword() {
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+
   const [btnLoading, setBtnLoading] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const { state } = useLocation();
+  const { email,otp } = state;
+  const navigate = useNavigate();
+  const formName = "resetForm"
 
-  const buttonEnabled = newPassword && confirmPassword;
 
-  const formValue = {
-    newPassword,
-    confirmPassword,
-    validation: { confirmPassword: confirmPasswordError },
+  
+
+
+  useEffect(() => {
+    new FormModel(formName)._createForm({
+      password: "",
+      confirmPassword: "",
+    });
+  }, []);
+
+  const formInput = useSelector((state) => state.forms[formName]) || {};
+
+  const commonProps = {
+    value: formInput,
+    formName,
   };
 
-  const resetPassword = async () => {
+  const { password, confirmPassword, } = formInput;
+  const buttonEnabled = password && confirmPassword;
+
+
+  const reset = async () => {
     setConfirmPasswordError("");
-    if (newPassword !== confirmPassword) {
-      setConfirmPasswordError("Passwords not matching.");
+    if (password !== confirmPassword) {
+      new FormModel(formName)._updateValidation({
+        confirmPassword: "Password is not matching",
+      });
       return;
     }
-    console.log(newPassword)
-    // try {
-    //   setBbtnLoading(true);
-    //   await forgotPassword(email);
-    //   history.push("/auth/login");
-    //   showAlert("Recovery link sent to your mail, Please check..", "success");
-    // } catch (error) {
-    //   showAlert(error.data.message, "error");
-    // } finally {
-    //   setBbtnLoading(false);
-    // }
+    console.log(password)
+    try {
+      setBtnLoading(true);
+      await resetPassword({email,otp,password});
+      // history.push("/auth/login");
+      navigate("/home")
+      showAlert("password Changed Sucessfully.", "success");
+      alert("password Changed Sucessfully.", "success");
+    } catch (error) {
+      showAlert(error.data.message, "error");
+      alert(error.data.message, "error");
+    } finally {
+      setBtnLoading(false);
+    }
   };
 
   return (
@@ -52,25 +79,24 @@ function ResetPassword() {
 
           <Form>
             <InputField
-              id="newPassword"
+              id="password"
               type="password"
               label="New Password"
               mendetory
-              value={formValue}
-              handleChange={(e) => setNewPassword(e.target.value)}
+             {...commonProps}
             />
             <InputField
               id="confirmPassword"
               type="password"
               label="Confirm Password"
               mendetory
-              value={formValue}
-              handleChange={(e) => setConfirmPassword(e.target.value)}
+              {...commonProps}
             />
+             {confirmPasswordError && <p className="errorText">{confirmPasswordError}</p>}
             <Button
               disabled={btnLoading || !buttonEnabled}
               className="primary_bg"
-              onClick={resetPassword}
+              onClick={reset}
             >
             {btnLoading ? "Resetting...." : "Reset Password"}
           </Button>

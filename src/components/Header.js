@@ -12,7 +12,7 @@ import { DateTime } from "./DateTime";
 import GoogleTranslate from "./google";
 import { useNavigate } from "react-router-dom";
 import LoginModal from "./LoginModal";
-
+import {AUTH_TOKEN, getCookie} from "../utils/cookie"
 function Header() {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -120,7 +120,7 @@ function Header() {
               </Nav.Link>
               <Nav.Link href="#link">Multitel Mobile</Nav.Link>
               <Nav.Link onClick={() => navigate("/marketplace")}>Marketplace</Nav.Link>
-
+               {/* <button onClick={console.log(()=>getCookie(AUTH_TOKEN))}>GEt</button> */}
               <Nav.Link href="#link">Client Portal</Nav.Link>
               <Nav.Link href="#link">Contacts</Nav.Link>
             </Nav>

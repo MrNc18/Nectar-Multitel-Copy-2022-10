@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import {Provider} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import './App.css';
 import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
@@ -26,11 +26,14 @@ import VerifyEmail from "./containers/VerifyEmail";
 import RegnConfirmation from "./containers/RegnConfirmation";
 import Login from "./components/Admin/Login";
 // import store from "./components/redux/store"
+import { RedirectComponent } from "./containers/RedirectPage";
+
+
 
 
 function App() {
   return (
-    // <Provider>
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Corporate />} />
@@ -44,10 +47,11 @@ function App() {
         <Route path="/otherproducts" element={<OtherProducts />} />
         <Route path="/register" element={<ClientRegistration />} />
         <Route path="/register-confirmation" element={<RegnConfirmation />} />
-
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/redirect" element={<RedirectComponent />} />
+
 
         <Route path="/cpe" element={<CPE />} />
         <Route path="/admin/login" element={<Login />} />
@@ -63,7 +67,7 @@ function App() {
       </Routes>
      
     </BrowserRouter>
-    // </Provider>
+    
   );
   
 }

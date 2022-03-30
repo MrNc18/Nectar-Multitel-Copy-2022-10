@@ -4,29 +4,30 @@ import { useNavigate } from "react-router-dom";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import { showAlert } from "../utils/showAlert";
+import {EmailVerification} from "../services/authentication"
 
 function RegnConfirmation() {
   const [btnLoading, setBtnLoading] = useState();
 
+  let url = window.location.pathname
+  console.log("url",url)
+  let token = url && url.split('/')[2]
+  console.log('token',token)
+
   const navigate = useNavigate();
 
-  const confirm = () => {
-    // try {
-
-    //     setBtnLoading(true);
-    //     const data = {
-    //         email,
-    //         code: otp,
-    //     };
-    // //   await verifyEmail(data);
-    //     navigate("/reset-passsword", { state: data });
-    //     showAlert("Email verification successfull.", "success");
-    // } catch (error) {
-    //     console.log(error);
-    //     showAlert(error.data.massage, "error");
-    // } finally {
-    //     setBtnLoading(false);
-    // }
+  const confirm = async () => {
+    try {
+        setBtnLoading(true);
+           await EmailVerification(token);
+        navigate("/home");
+        showAlert("Email verification successfull.", "success");
+    } catch (error) {
+        console.log(error);
+        showAlert(error.data.massage, "error");
+    } finally {
+        setBtnLoading(false);
+    }
   };
 
 
