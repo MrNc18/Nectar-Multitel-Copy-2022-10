@@ -5,10 +5,10 @@ import "./admin.css"
 
 const Tabs = Object.freeze([
   { label: "Dashboard", link: "admin/" },
-  { label: "categories", link: "admin/categories" },
+  { label: "Categories", link: "admin/categories" },
   { label: "Products", link: "admin/products" },
-  { label: "static pages", link: "admin/staticpages" },
-  { label: "settings", link: "admin/settings" },
+  { label: "Static pages", link: "admin/staticpages" },
+  { label: "Settings", link: "admin/settings" },
 //   { label: "Service Request", link: "admin/servicerequest" },
 //   { label: "Reimbursement", link: "admin/reimbursement" },
 //   { label: "Holidays", link: "admin/holidays" },

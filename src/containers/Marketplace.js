@@ -21,7 +21,7 @@ const Marketplace = () => {
           buttonText="view Details"
         />
         <ProductsList />
-        <section id="key_board" classNameName="mb-4">
+        <section id="key_board" className="mb-4">
           <Container>
             <Row>
               <Col md={2}></Col>
@@ -44,7 +44,7 @@ const Marketplace = () => {
           {data &&
             data.categories.map((categories) => {
               return (
-                <Row>
+                <Row key={categories._id}>
                   <Col md={1}></Col>
                 <Col md={2}>
                   <Card border="light" style={{ width: "10rem", marginBottom: "25px" }}>
