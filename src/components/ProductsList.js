@@ -2,28 +2,45 @@ import React from "react";
 import data from "../Data";
 import "./proList.css";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProductsList = () => {
+  const navigate = useNavigate();
+
   const displayProducts =
     data &&
     data.products.map((product) => {
       return (
-        <Col md={4}>
+        <Col md={4} key={product._id}>
           <Card style={{ width: "16rem", marginBottom: "25px" }}>
-            <Link state={{ product }} to={`/products/${product.title}`}>
+            {/* <Link state={{ product }} to={`/products/${product.title}`}>
               <Card.Img
                 variant="top"
                 src={product.image}
                 style={{ border: "25px solid #F5F6FA", height: "180px" }}
               />
-            </Link>
+            </Link> */}
+            <a
+              onClick={() =>
+                navigate(`/products/${product.title}`, { state: { product } })
+              }
+            >
+              <Card.Img
+                variant="top"
+                src={product.image}
+                style={{ border: "25px solid #F5F6FA", height: "180px" }}
+              />
+            </a>
             <Card.Body style={{ textAlign: "left", height: "180px" }}>
-              <Link to={`/products/${product.title}`}>
+              <a
+                onClick={() =>
+                  navigate(`/products/${product.title}`, { state: { product } })
+                }
+              >
                 <Card.Title style={{ fontSize: "x-small" }}>
                   {product.title}
                 </Card.Title>
-              </Link>
+              </a>
               <Card.Text style={{ textAlign: "left", fontSize: "small" }}>
                 {product.specification}
               </Card.Text>
@@ -36,11 +53,11 @@ const ProductsList = () => {
                   paddingLeft: "initial",
                 }}
               >
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
+                <span className="fa fa-star checked"></span>
+                <span className="fa fa-star checked"></span>
+                <span className="fa fa-star checked"></span>
+                <span className="fa fa-star checked"></span>
+                <span className="fa fa-star checked"></span>
                 <p style={{ textAlign: "left", color: "#1D3557" }}>
                   {product.price}
                 </p>

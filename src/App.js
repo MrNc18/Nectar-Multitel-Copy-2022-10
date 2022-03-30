@@ -23,6 +23,8 @@ import ForgotPassword from "./containers/ForgotPassword";
 import ResetPassword from "./containers/ResetPassword";
 import ProductDetail from "./containers/ProductDetail";
 import VerifyEmail from "./containers/VerifyEmail";
+import RegnConfirmation from "./containers/RegnConfirmation";
+import Login from "./components/Admin/Login";
 // import store from "./components/redux/store"
 
 
@@ -41,12 +43,14 @@ function App() {
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/otherproducts" element={<OtherProducts />} />
         <Route path="/register" element={<ClientRegistration />} />
+        <Route path="/register-confirmation" element={<RegnConfirmation />} />
 
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/reset-password" element={<ResetPassword />} />
 
         <Route path="/cpe" element={<CPE />} />
+        <Route path="/admin/login" element={<Login />} />
         <Route path="/admin" element={<AdLanding />}>
           <Route path="" element={<Dashboard />} />
           <Route path="categories" element={<Categories />} />
