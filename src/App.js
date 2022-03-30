@@ -25,6 +25,7 @@ import CPE from "./containers/CPE";
 // import Store from "./components/redux/Store";
 import EditProfile from "./containers/EditProfile";
 import MyProducts from "./containers/MyProducts";
+import HelpDesk from "./containers/HelpDesk";
 
 function App() {
   const account  = useSelector((data)=>data)
@@ -49,6 +50,7 @@ function App() {
          <Route path="/profile" element={<Account />}/>
          <Route path="/editprofile" element={<EditProfile />}/>
          <Route path="/myproducts" element={<MyProducts />}/>
+         <Route path="/helpdesk" element={<HelpDesk />} />
 
          
          {/* {/* <Route path="/admin" element={<AdLanding/>}> */}
