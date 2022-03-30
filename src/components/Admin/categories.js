@@ -122,20 +122,6 @@ function Categories() {
                         name="categoryName"
                         onChange={handleChange}
                       ></Form.Control>
-                      <Form.Label>Product Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        value={ProductName}
-                        name="ProductName"
-                        onChange={handleChange}
-                      ></Form.Control>
-                      <Form.Label>Quantity</Form.Label>
-                      <Form.Control
-                        type="number"
-                        value={quantity}
-                        name="quantity"
-                        onChange={handleChange}
-                      ></Form.Control>
                       <Form.Label>Description</Form.Label>
                       <Form.Control
                         type="textarea"
