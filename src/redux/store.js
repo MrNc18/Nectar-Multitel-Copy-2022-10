@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
-import {  formReducer } from "./reducer/index"
+import {  formReducer,modelReducer } from "./reducer/index"
 
 const reducers = combineReducers({
-//   models: modelReducer,
+  models: modelReducer,
   forms: formReducer,
 });
 

@@ -1,6 +1,8 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import data from '../../Data';
+import { useSelector } from "react-redux";
+import {getAllCategories,addProductCategory} from "../../services/category"
 
 function Categories() {
     const handleClose = () => setShow(false);
@@ -10,7 +12,7 @@ function Categories() {
     const[DeleteShow,setDeleteShow]=useState(false)
     const[file,setFile]=useState('')
     const[errorMsg,setErrorMsg]=useState('')
-
+    const ProductCategory = useSelector((state) => state.models.ProductCategory) || []
     const [data2,setData2]=useState({
       id:'',
       categoryName:'',
@@ -39,7 +41,7 @@ function Categories() {
       alert("Category Deleted Sucessfully")
       setDeleteShow(false)
     }
-     const handleSubmit = () =>{
+     const handleSubmit = async () => {
        if(
       id === "" ||
       ProductName === "" ||
@@ -51,11 +53,25 @@ function Categories() {
       {
         setErrorMsg("Fill the Mandatory Filelds")
       }
-      else{
-        console.log("dataaa",data2,file)
-        setShow(false)
-      }
-     }
+      else
+      try
+      {
+        const Data ={
+          name:categoryName,
+          description:description,
+          image:file
+        }
+       
+        await addProductCategory(Data)
+        alert("Added  category.", "success");
+      setShow(false);
+    }catch (error) {
+      alert(error.data.message, "error");
+    } finally {
+      setShow(false)
+    }
+  };
+    
 
     //  edit API
      const handleEditShow = (item) =>{
@@ -75,6 +91,12 @@ function Categories() {
     const handleEditClose = () =>{
       setShowEditModal(false)
     }
+    // console.log("state",state)
+
+    useEffect(() => {
+      getAllCategories();
+      
+    }, []);
     
 
   return (
@@ -169,26 +191,24 @@ function Categories() {
           <thead style={{ backgroundColor: "#0076B5",color:"white" }}>
             <tr>
               <th>Sr.No.</th>
+              <th>Id</th>
               <th>category</th>
               <th>Image</th>
-              <th>Quantity</th>
+              {/* <th>Quantity</th> */}
               <th>ACtion</th>
             </tr>
           </thead>
           <tbody>
-            {data &&
-               data.categories
-            // .slice(
-            //     pagesVisited,
-            //     pagesVisited + usersPerPage
-            //   )
-            .map((item, i) => (
+            {ProductCategory &&
+              ProductCategory.map((item, i) => (
                 <tr>
+                  {console.log("pc",ProductCategory)}
                 
                   <td>{i+1}</td>
-                  <td>{item.title}</td>
-                  <td><img src={item.image} style={{width:"60px"}}/></td>
-                  <td>{item.quantity}</td>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td><img src={item.image && item.image} style={{width:"60px"}}/></td>
+                  {/* <td>{item.quantity}</td> */}
                   <td>
                       <a className="nav-link"
                       onClick={()=>{handleDeleteshow(item)}}>
