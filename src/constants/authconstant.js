@@ -1,4 +1,6 @@
 export const ROLE = Object.freeze({
-    USER: "1",
-    VENDOR: "2",
+    USER: "4",
+    VENDOR: "3",
+    ADMIN:"2",
+    SUPERADMIN:"1"
   });

@@ -218,6 +218,8 @@ function ClientRegistration() {
               </label>
             </div>
 
+            {<p className="errorText">{confirmPasswordError}</p>}
+
             <div className="form-group small mb-1 mt-3">
               <div
                 className="custom-control custom-checkbox d-flex align-items-center justify-content-between"

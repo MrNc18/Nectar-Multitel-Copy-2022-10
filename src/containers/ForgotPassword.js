@@ -3,9 +3,11 @@ import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import InputField from "../components/atoms/InputField";
 import ServiceBanner from "../components/atoms/ServiceBanner";
+import { showAlert } from "../utils/showAlert";
 import LandingPage from "../components/LandingPage";
 import LoginModal from "../components/LoginModal";
 import { isValidEmail } from "../utils/validators";
+import {forgotPassword} from "../services/authentication"
 
 
 function ForgotPassword() {
@@ -26,17 +28,17 @@ function ForgotPassword() {
       return;
     }
     console.log(email)
-    navigate('/verify-email', {state: {email}} )
-    // try {
-    //   setBbtnLoading(true);
-    //   await forgotPassword(email);
-    //   history.push("/auth/login");
-    //   showAlert("Recovery link sent to your mail, Please check..", "success");
-    // } catch (error) {
-    //   showAlert(error.data.message, "error");
-    // } finally {
-    //   setBbtnLoading(false);
-    // }
+    // navigate('/verify-email', {state: {email}} )
+    try {
+      setBtnLoading(true);
+      await forgotPassword(email);
+      showAlert("Recovery link sent to your mail, Please check..", "success");
+      navigate("/verify-email", { state: { email } })
+    } catch (error) {
+      showAlert(error.data.message, "error");
+    } finally {
+      setBtnLoading(false);
+    }
   };
 
   return (
@@ -57,6 +59,7 @@ function ForgotPassword() {
               value={formValue}
               handleChange={(e) => setEmail(e.target.value)}
             />
+            {emailError && <p className="errorText">{emailError}</p>}
             <Button
               disabled={btnLoading || !email}
               className="primary_bg"
