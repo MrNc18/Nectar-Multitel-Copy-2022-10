@@ -26,6 +26,8 @@ import CPE from "./containers/CPE";
 import EditProfile from "./containers/EditProfile";
 import MyProducts from "./containers/MyProducts";
 import HelpDesk from "./containers/HelpDesk";
+import Invoice from "./containers/Invoice";
+import InvoiceDetails from "./containers/InvoiceDetails";
 
 function App() {
   const account  = useSelector((data)=>data)
@@ -51,6 +53,8 @@ function App() {
          <Route path="/editprofile" element={<EditProfile />}/>
          <Route path="/myproducts" element={<MyProducts />}/>
          <Route path="/helpdesk" element={<HelpDesk />} />
+         <Route path="/invoice" element={<Invoice />} />
+         <Route path="/invoicedetails" element={<InvoiceDetails />} />
 
          
          {/* {/* <Route path="/admin" element={<AdLanding/>}> */}
