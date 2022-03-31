@@ -1,9 +1,17 @@
 // Create List for react select option
+// import {
+//   author,
+//   superAdmin,
+//   admin,
+//   consignee,
+//   buyer,
+// } from "./../constant/access";
+import  {FormModel}  from "../Model/FormModel"
 
 export const createOptionForReactSelect = (
   list,
-  labelKey,
-  valueKey,
+  // labelKey,
+  // valueKey,
   newObject = {}
 ) => {
   const options = [];
@@ -13,8 +21,8 @@ export const createOptionForReactSelect = (
 
   list.map((instance) => {
     options.push({
-      value: getValueFromKey(instance, valueKey),
-      label: getValueFromKey(instance, labelKey),
+      // value: getValueFromKey(instance, valueKey),
+      // label: getValueFromKey(instance, labelKey),
       ...instance,
       ...newObject,
     });
@@ -50,6 +58,8 @@ export const groupBy = (list, f) => {
   );
 };
 
+
+//Right Access
 // export const updateUserAccessInRedux = (userType) => {
 //   let access = {};
 //   switch (userType) {
@@ -60,10 +70,10 @@ export const groupBy = (list, f) => {
 //       access = admin;
 //       break;
 //     case 3:
-//       access = author;
+//       access = consignee;
 //       break;
 //     case 4:
-//       access = consignee;
+//       access = author;
 //       break;
 //     case 5:
 //       access = buyer;
@@ -86,8 +96,4 @@ export const requestSearch = (data, searchValue) => {
   });
 
   return filteredRows;
-};  
-
-export const budgetOutput = (budgetType) => {
-  return budgetType === "Hourly" ? "/Hr" : ""
-}
+};

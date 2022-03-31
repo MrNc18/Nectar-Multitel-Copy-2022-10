@@ -1,24 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import data from "../../Data";
+import { useSelector } from "react-redux";
+import {
+  getAllCategories,
+  getAddCategory,
+  getDeleteCategory,
+  getEditCategory,
+} from "../../services/category";
 
 function Categories() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [show, setShow] = useState(false);
+  const[deleteRecord,setDeleteRecord]=useState('')
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [DeleteShow, setDeleteShow] = useState(false);
   const [file, setFile] = useState("");
+  const [banfile, setBanfile] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-
+  const [categoryList, setcategoryList] = useState("");
+  const [tableData, setTableData] = useState("");
+  const ProductCategory =
+    useSelector((state) => state.models.ProductCategory) || [];
   const [data2, setData2] = useState({
     id: "",
-    categoryName: "",
-    ProductName: "",
-    quantity: "",
+    name: "",
     description: "",
   });
-  const { id, categoryName, ProductName, quantity, description } = data2;
+  const { id, name, description } = data2;
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
@@ -27,52 +37,118 @@ function Categories() {
     setFile(event.target.files);
     console.log(file);
   };
-  const handleDeleteshow = () => {
+  const handleBanFileChange = (event) => {
+    setBanfile(event.target.files);
+  };
+  const handleDeleteshow = (item) => {
     setDeleteShow(true);
+    setDeleteRecord(item)
   };
   const handlecloseDelete = () => {
     setDeleteShow(false);
   };
 
-  const handleDeleteProduct = () => {
-    console.log("record Deleted");
+  const handleDeleteProduct = async (deleteRecord) => {
+    const data = {
+      id:deleteRecord.id
+    }
+    try{   
+       await getDeleteCategory(data)
     alert("Category Deleted Sucessfully");
     setDeleteShow(false);
+    handleAllCategories()
+  }
+  catch (error) {
+    console.log("error", error);
+    alert("Something Went Wrong");
+  }
+
+
+
   };
-  const handleSubmit = () => {
-    if (
-      id === "" ||
-      ProductName === "" ||
-      categoryName === "" ||
-      description === "" ||
-      quantity === "" ||
-      file === ""
-    ) {
-      setErrorMsg("Fill the Mandatory Filelds");
-    } else {
-      console.log("dataaa", data2, file);
-      setShow(false);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData();
+    for (var x = 0; x < file.length; x++) {
+      data.append("file", file[x]);
+      data.append("banfile",banfile[x]);
+      data.append("description",description)
+      data.append("name",name)
     }
+  
+    if (name === "" || description === "") {
+      setErrorMsg("Fill the Mandatory Filelds");
+    } else
+      try {
+      await getAddCategory(data)
+        alert("Added  category.", "success");
+        setShow(false);
+      } catch (error) {
+        alert(error.data.message, "error");
+      } finally {
+        setShow(false);
+      }
   };
 
   //  edit API
   const handleEditShow = (item) => {
     setData2({
       id: item.id,
-      categoryName: item.title,
-      ProductName: item.product,
-      quantity: item.quantity,
+      name: item.name,
       description: item.description,
     });
     setShowEditModal(true);
   };
-  const handleEditProduct = () => {
-    console.log(data2);
-    setShowEditModal(false);
+  const handleEditProduct = async () => {
+    const data = new FormData();
+    for (var x = 0; x < file.length; x++) {
+      data.append("file", file[x]);
+      data.append("banfile",banfile[x]);
+      data.append("description",description)
+      data.append("name",name)
+      data.append("id", id)
+    }
+    try {
+      await getEditCategory(data)
+      alert("Category Edited Sucessfully")
+      setShowEditModal(false);
+    }
+    catch(error){
+      alert("Something Went Wrong")
+    }   
   };
   const handleEditClose = () => {
     setShowEditModal(false);
   };
+
+
+  //Get All Category Api
+
+  const handleAllCategories = async () => {
+    try {
+      let tableDataArr = [];
+      const resp = await getAllCategories();
+      setcategoryList(resp && resp.data);
+      console.log("resp", resp);
+      resp &&
+        resp.data.map((data, i) => {
+          const value = {
+            id: data.id,
+            name: data.name,
+            description: data.description,
+            file: data.image,
+          };
+          tableDataArr.push(value);
+        });
+    } catch (error) {
+      console.log("error", error);
+      alert("something went Wrong");
+    }
+  };
+
+  useEffect(() => {
+    handleAllCategories();
+  }, []);
 
   return (
     <div id="layoutSidenavContent">
@@ -118,8 +194,8 @@ function Categories() {
                       <Form.Label>Category Name</Form.Label>
                       <Form.Control
                         type="text"
-                        value={categoryName}
-                        name="categoryName"
+                        value={name}
+                        name="name"
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
@@ -139,7 +215,7 @@ function Categories() {
                       <Form.Control
                         type="file"
                         id="banner"
-                        onChange={handleFileChange}
+                        onChange={handleBanFileChange}
                       ></Form.Control>
                     </Form.Group>
                   </div>
@@ -166,48 +242,50 @@ function Categories() {
           <thead style={{ backgroundColor: "#0076B5", color: "white" }}>
             <tr>
               <th>Sr.No.</th>
+              <th>Id</th>
               <th>Category</th>
               <th>Image</th>
-              <th>Quantity</th>
-              <th>Actions</th>
+              {/* <th>Quantity</th> */}
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {data &&
-              data.categories
-                // .slice(
-                //     pagesVisited,
-                //     pagesVisited + usersPerPage
-                //   )
-                .map((item, i) => (
-                  <tr>
-                    <td>{i + 1}</td>
-                    <td>{item.title}</td>
-                    <td>
-                      <img src={item.image} style={{ width: "60px" }} />
-                    </td>
-                    <td>{item.quantity}</td>
-                    <td>
-                      <a
-                        className="nav-link"
-                        onClick={() => {
-                          handleDeleteshow(item);
-                        }}
-                      >
-                        {" "}
-                        <i className="fa fa-trash-o" />
-                      </a>
-                      <a
-                        className="nav-link"
-                        onClick={() => {
-                          handleEditShow(item);
-                        }}
-                      >
-                        <i className="fa fa-edit" />
-                      </a>
-                    </td>
-                  </tr>
-                ))}
+            {categoryList &&
+              categoryList.map((item, i) => (
+                <tr>
+                  {console.log("pc", categoryList)}
+
+                  <td>{i + 1}</td>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td>
+                    <img
+                      src={item.image && item.image}
+                      style={{ width: "60px" }}
+                    />
+                  </td>
+                  {/* <td>{item.quantity}</td> */}
+                  <td>
+                    <a
+                      className="nav-link"
+                      onClick={() => {
+                        handleDeleteshow(item);
+                      }}
+                    >
+                      {" "}
+                      <i className="fa fa-trash-o" />
+                    </a>
+                    <a
+                      className="nav-link"
+                      onClick={() => {
+                        handleEditShow(item);
+                      }}
+                    >
+                      <i className="fa fa-edit" />
+                    </a>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </Table>
       </div>
@@ -219,14 +297,14 @@ function Categories() {
         </Modal.Header>
 
         <Modal.Body>
-          <p>Are you sure want to delete this Category?</p>
+          <p>Are you sure want to delete this Category ?</p>
         </Modal.Body>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={() => handlecloseDelete()}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => handleDeleteProduct()}>
+          <Button variant="primary" onClick={() => handleDeleteProduct(deleteRecord)}>
             Delete
           </Button>
         </Modal.Footer>
@@ -247,22 +325,8 @@ function Categories() {
                   <Form.Label>Category Name</Form.Label>
                   <Form.Control
                     type="text"
-                    value={categoryName}
-                    name="categoryName"
-                    onChange={handleChange}
-                  ></Form.Control>
-                  <Form.Label>Product Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={ProductName}
-                    name="ProductName"
-                    onChange={handleChange}
-                  ></Form.Control>
-                  <Form.Label>Quantity</Form.Label>
-                  <Form.Control
-                    type="number"
-                    value={quantity}
-                    name="quantity"
+                    value={name}
+                    name="name"
                     onChange={handleChange}
                   ></Form.Control>
                   <Form.Label>Description</Form.Label>
@@ -277,6 +341,12 @@ function Categories() {
                     type="file"
                     id="file"
                     onChange={handleFileChange}
+                  ></Form.Control>
+                  <Form.Label>Upload Banner</Form.Label>{" "}
+                  <Form.Control
+                    type="file"
+                    id="file"
+                    onChange={handleBanFileChange}
                   ></Form.Control>
                 </Form.Group>
               </div>
