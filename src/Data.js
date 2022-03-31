@@ -4,12 +4,18 @@ const data = {
       _id: "1",
       image: "/assets/images/image13.png",
       title: "Virtual Reality Helmet Zero spin",
-      Category:"Router",
+      Category:"Internet Services",
       new_release: true,
       specification: "High Speed Router",
       quantity:10,
       rating: 5,
-      price: "3,600.00 Kz",
+      price: "3600",
+      date:"11/13/1993",
+      discountPrice:"1000",
+      offer:'-',
+      warranty:"2",
+      description:"gvcwvcqxjxbqsx",
+      availability:"Available"
     },
     {
       _id: "2",
@@ -21,6 +27,12 @@ const data = {
       rating: 4,
       price: "3,600.00 Kz",
       quantity:10,
+      date:"13-11-1993",
+      discountPrice:"1000",
+      offer:'-',
+      warranty:"2 years",
+      description:"gvcwvcqxjxbqsx",
+      availability:"yes"
 
     },
     {
@@ -33,6 +45,12 @@ const data = {
       rating: 5,
       price: "86$",
       quantity:10,
+      date:"29-11-1993",
+      discountPrice:"2000",
+      offer:'10% discount',
+      warranty:"3 years",
+      description:"gvcwvcqxjxbqsx",
+      availability:"yes"
     },
     {
       _id: "4",
@@ -44,6 +62,12 @@ const data = {
       Category:"Router",
       price: "3,600.00 Kz",
       quantity:10,
+      date:"13-11-1993",
+      discountPrice:"1000",
+      offer:'-',
+      warranty:"2 years",
+      description:"gvcwvcqxjxbqsx",
+      availability:"yes"
     },
     {
       _id: "5",
@@ -54,7 +78,13 @@ const data = {
       rating: 4,
       price: "3,600.00 Kz",
       Category:"Router",
-      quantity:6
+      quantity:6,
+      date:"13-11-1993",
+      discountPrice:"1000",
+      offer:'-',
+      warranty:"2 years",
+      description:"gvcwvcqxjxbqsx",
+      availability:"yes"
     },
     {
       _id: "6",
@@ -66,6 +96,12 @@ const data = {
       rating: 5,
       price: "86$",
       quantity:20,
+      date:"13-11-1993",
+      discountPrice:"1000",
+      offer:'-',
+      warranty:"2 years",
+      description:"gvcwvcqxjxbqsx",
+      availability:"yes"
     },
     {
       _id: "7",
@@ -77,6 +113,12 @@ const data = {
       rating: 5,
       price: "3,600.00 Kz",
       quantity:40,
+      date:"13-11-1993",
+      discountPrice:"1000",
+      offer:'-',
+      warranty:"2 years",
+      description:"gvcwvcqxjxbqsx",
+      availability:"no"
     },
     {
       _id: "8",
@@ -88,6 +130,12 @@ const data = {
       rating: 4,
       price: "3,600.00 Kz",
       quantity:50,
+      date:"13-11-1993",
+      discountPrice:"5000",
+      offer:'-',
+      warranty:"2 years",
+      description:"gvcwvcqxjxbqsx",
+      availability:"yes"
     },
     {
       _id: "9",
@@ -99,9 +147,15 @@ const data = {
       rating: 5,
       quantity:10,
       price: "86$",
+      date:"13-11-1993",
+      discountPrice:"1000",
+      offer:'-',
+      warranty:"2 years",
+      description:"gvcwvcqxjxbqsx",
+      availability:"yes"
     },
     {
-      _id: "9",
+      _id: "10",
       image: "/assets/images/image13.png",
       title: " Router",
       new_release: false,
@@ -110,9 +164,15 @@ const data = {
       rating: 5,
       quantity:100,
       price: "86$",
+      date:"13-11-1993",
+      discountPrice:"1000",
+      offer:'-',
+      warranty:"2 years",
+      description:"gvcwvcqxjxbqsx",
+      availability:"yes"
     },
     {
-      _id: "10",
+      _id: "11",
       image: "/assets/images/tv.png",
       title: "one plus smart Tv",
       new_release: false,
@@ -121,16 +181,28 @@ const data = {
       rating: 5,
       quantity:10,
       price: "5000$",
+      date:"13-11-1993",
+      discountPrice:"1000",
+      offer:'-',
+      warranty:"2 years",
+      description:"gvcwvcqxjxbqsx",
+      availability:"yes"
     },
     {
-      _id: "11",
-      image: "/assets/images/phone.jpg",
+      _id: "12",
+      image: "/assets/images/phone2.jpg",
       title: "samsung 5g Mobile",
       new_release: false,
       Category:"Mobiles",
       specification: "12Gb ram 64 Gb memory",
       rating: 5,
       quantity:0,
+      date:"13-11-1993",
+      discountPrice:"1000",
+      offer:'-',
+      warranty:"2 years",
+      description:"gvcwvcqxjxbqsx",
+      availability:"yes",
       price: "500$",
     },
     
@@ -142,15 +214,19 @@ const data = {
       _id: "1",
       image: "/assets/images/internet.png",
       title: "Internet Services",
-      quantity:"50",
-      link:"internet-services"
+      quantity:"5",
+      link:"internet-services",
+      product:'something',
+      description:"jwkcjwdcbw"
     },
     {
       _id: "2",
       image: "/assets/images/network.png",
       title: "Network Equipment",
-      quantity:"20",
-      link:'network-equipments'
+      quantity:"10",
+      link:'network-equipments',
+      product:'something',
+      description:"jwkcjwdcbw"
     },
     {
       _id: "3",
@@ -158,6 +234,7 @@ const data = {
       title: "CPE'S",
       link:"cpe",
       quantity:"100",
+      product:'something', description:"jwkcjwdcbw"
     },
     {
       _id: "4",
@@ -165,14 +242,35 @@ const data = {
       title: "Other Products",
       link:"otherproducts",
       quantity:"120",
+      product:'something',
+      description:"jwkcjwdcbw"
     },
     {
       _id: "5",
       image: "/assets/images/promotions.png",
       title: "Promotions",
       link:"promotions",
-      quantity:"50"
+      quantity:"50",
+      product:'something',
+      description:"jwkcjwdcbw"
     },
   ],
+
+  static:[
+    {
+      id:"1",
+      image: "/assets/images/cpe1.png",
+      title:"Home Banner",
+      subheading:" hdcgwdgchdwgogeocqec",
+      link:"/internet-services"
+    },
+    {
+      id:"2",
+      image: "/assets/images/cpe2.png",
+      title:"Home Banner",
+      subheading:" hdcgwdgchdwgogeocqec",
+      link:"/internet-services"
+    }
+  ]
 };
 export default data;

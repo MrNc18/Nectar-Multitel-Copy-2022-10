@@ -39,6 +39,7 @@ body {
   font-size: 14px;
   padding-top: 15px;
   line-height: 17px;
+  margin-top: -40px;
 }
 .header-ul {
   list-style-type: none;
@@ -349,7 +350,7 @@ img.dot_left {
 }
 
 .prod_name {
-  padding: 15px 65px;
+  padding: 15px;
 }
 
 /* Products hover effect end */
@@ -494,6 +495,19 @@ img.dot-middle {
   letter-spacing: 1.02px;
   margin-bottom: 13px;
 }
+.fw-500{font-weight: 500;}
+.plan_buttons button {
+  font-size: 14px;
+  padding: 18px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+.tv_img {
+  width: 75%;
+  margin: 0 auto;
+  display: block;
+}
+
 #key_board {
   background: url(/public/assets/images/key_board_bg.png) no-repeat;
   padding: 100px 0;
@@ -514,11 +528,12 @@ img.dot-middle {
   margin-right: 20px;
   border-radius: 10px;
 }
-.tv_img {
+/* .tv_img {
   width: 75%;
   margin: 0 auto;
   display: block;
-}
+} */
+
 
 /********** RESPONSIVE ************/
 @media (max-width: 575.98px) { 
@@ -652,7 +667,7 @@ img.dot_left, img.dot_right{display: none;}
 #promotions h1{
   font-weight: bold;
 }
-=======
+
 
 .primary-color {color: var(--primary)}
 .modal_heading{
@@ -682,3 +697,214 @@ img.dots_regn2 {
 }
 .errorText{font-size: 12px !important; color: red !important;}
 
+/* Rahul conflict issues */
+.deep_blue_heading {
+  color: var(--big-heading);
+}
+.cpe_img {
+  max-width: 100%;
+  margin-bottom: 25px;
+}
+
+/* Rahul new css */
+.primary_bg{background: var(--primary) !important;}
+.secondary_bg{background: var(--secondary) !important;}
+
+/* Product details pg start */
+.form-one label {font-size: 13px;color: #1D3557;}
+.view-box {background: #F5F6FA;border: #E2E2E2 solid 1px;width: 100%;padding: 15px;margin: 0 0 50px;height: auto;min-height: 60px;display: inline-block;}
+.view-box ul {margin: 0;padding: 0;display: flex;height: auto;min-height: 38px;align-items: center;}
+.view-box ul li {list-style: none;margin: 0 0px 0 20px;}
+.view-box ul li img {width: 20px;margin: 0 8px 0 0;}
+.view-box a {background: #000;color: #fff;text-transform: uppercase;padding: 8px 15px;font-size: 15px;display: inline-block;margin: 0;border-radius: 4px;}
+.view-box a:hover {background: #00BF78;text-decoration: none;}
+.book-full-img {
+    padding: 80px 50px;
+    border: 1px solid #F5F6FA;
+    position: relative;
+}
+.book-details h1 {
+    color: #1D3557;
+    font-size: 35px;
+    line-height: 25px;
+    font-weight: 600;
+}
+.book-details .price {
+    color: #000;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 55px;
+}
+.book-details .old_price {
+    font-size: 20px;
+    line-height: 55px;
+    font-weight: 400;
+    padding-left: 5px;
+    text-decoration: line-through;
+}
+.book-details .rating span {
+    color: #436185;
+}
+.rating .review {
+    font-size: 15px;
+    padding-left: 10px;
+    border-left: 1px solid #436185;
+    margin-left: 5px
+}
+.book-details {
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 10px;
+}
+.book-specs .book_auth {
+    color: #2E4765;
+    font-weight: 500;
+    font-size: 22px;
+}
+.book_auth .auth_name {
+    color: #2E4DD4;
+}
+.book-specs {
+    padding: 10px 0 5px;
+    border-bottom: 1px solid #e2e2e2;
+}
+.book-specs .book_info {
+    color: #436185;
+    font-size: 18px;
+}
+.black_clr {
+    color: #000;
+}
+.magnify-icon {
+    position: absolute;
+    right: 13%;
+    top: 13%;
+}
+.book-qty {
+    padding: 10px 0;
+    border-bottom: 1px solid #e2e2e2;
+}
+.book-qty .qty {
+    font-weight: 500;
+    color: #436185;
+    font-size: 22px;
+}
+.qty_counter {
+    border: 1px solid #E2E2E2;
+    padding: 0;
+}
+.qty_counter .minus, .qty_counter .plus {
+    background: #fff;
+    border: none;
+}
+.qty_counter .input-qty {
+    border: none;
+}
+.addcart .contact_btn {
+    letter-spacing: 0.36px;
+    font-size: 17px;
+    padding: 5px 15px;
+}
+.add_wishlist button {
+    background: #F5F6FA !important;
+    border: none;
+    border-radius: 4px;
+    color: #436185 !important;
+}
+.add_wishlist img {
+    width: 19px;
+    margin-right: 5px;
+}
+h2.book_social {
+    font-weight: 500;
+    color: #436185;
+}
+.book_social span {
+    color: #2E4DD4;
+}
+.author_links i {
+    color: #00BF78;
+    padding-right: 10px;
+    font-size: 20px;
+}
+.author_pic_name {
+    border-top: 1px solid #e2e2e2;
+}
+.author_pic_name span {
+    color: #436185;
+    font-size: 22px;
+    font-weight: 500;
+}
+.u_may_like {
+    padding: 60px 0 0;
+}
+.book_tabs {
+    padding: 30px 0;
+}
+.book_tabs .nav {
+  border-bottom: 1px solid #E2E2E2;
+  border-top: 1px solid #E2E2E2;
+}
+.book_tabs .nav-link {
+    color: #000;
+    font-size: 22px;
+    font-weight: 500;
+}
+.book_tabs .nav-pills .nav-link.active, .book_tabs .nav-pills .show>.nav-link {
+    color: #2E4DD4;
+    background: transparent;
+}
+#pills-desc .desc_text {
+    font-size: 15px;
+    line-height: 30px;
+    color: #000;
+}
+#pills-desc h4 {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+    color: #1D3557;
+    letter-spacing: 0.04px;
+}
+.our_bet {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 20px;
+}
+#pills-desc .btm_line {
+    font-size: 13px;
+    color: #000;
+    letter-spacing: 0.03px;
+    font-weight: 500;
+}
+.book_info_tbl td {
+    border: 1px solid #E2E2E2;
+    background: #fff;
+    padding: 10px;
+}
+td.short {
+    width: 25%;
+}
+#pills-reviews h5 {
+    color: #1D3557;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.04px;
+}
+#pills-reviews .rating span {
+    color: #436185;
+}
+.review_form #gridCheck {
+    margin-top: 7px;
+}
+.review_form .form-check-label {
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 300;
+}
+.review_form label {
+    color: #1D3557;
+    font-size: 13px;
+    line-height: 15px;
+}
+/* Product details pg end */

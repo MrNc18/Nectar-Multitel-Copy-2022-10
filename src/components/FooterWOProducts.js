@@ -12,11 +12,9 @@ import FooterProducts from "./footer/FooterProducts";
 import { regnFooter } from "../containers/ClientRegistration";
 import { opFooter } from "../containers/OtherProducts";
 
-function Footer() {
-
+function FooterWOProducts() {
   return (
     <div id="footer">
-      <FooterProducts />
       <FooterTop />
       <FooterMiddle />
       <FooterBottom />
@@ -24,4 +22,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default FooterWOProducts;

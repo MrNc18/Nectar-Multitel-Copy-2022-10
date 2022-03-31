@@ -12,7 +12,7 @@ function ServiceCard({ src, title, home }) {
             Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut
             labore et dolore magna aliqua.
           </Card.Text>
-          {!home && <Button variant="primary">See Plans</Button>}
+          {!home && <Button className="primary_bg">See Plans</Button>}
         </Card.Body>
       </Card>
     </Col>

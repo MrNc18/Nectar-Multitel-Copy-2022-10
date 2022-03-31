@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import './App.css';
 import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
@@ -12,25 +13,58 @@ import Dashboard from "./components/Admin/Dashboard";
 import Settings from "./components/Admin/settings";
 import StaticPage from "./components/Admin/staticPage";
 import InternetServices from "./containers/InternetServices";
-import Marketplace from "./containers/Marketplace"
+import Marketplace from "./containers/Marketplace";
 import NetworkEquipments from "./containers/NetworkEquipments";
 import Promotions from "./containers/Promotions";
 import OtherProducts from "./containers/OtherProducts";
 import ClientRegistration from "./containers/ClientRegistration";
+import CPE from "./containers/CPE";
+import ForgotPassword from "./containers/ForgotPassword";
+import ResetPassword from "./containers/ResetPassword";
+import ProductDetail from "./containers/ProductDetail";
+import VerifyEmail from "./containers/VerifyEmail";
+import RegnConfirmation from "./containers/RegnConfirmation";
+import Login from "./components/Admin/Login";
+// import store from "./components/redux/store"
+import { RedirectComponent } from "./containers/RedirectPage";
+
+
+
 
 function App() {
   return (
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Corporate />} />
         <Route path="/home" element={<Home />} />
-         {/* <Route path="/ex" element={<Example />} /> */}
+        <Route path="/network-equipments" element={<NetworkEquipments />} />
+        <Route path="/marketplace" element={<Marketplace />} />
 
-         {/* <Route path="/admin" element={<AdLanding/>}> */}
-         <Route path="/network-equipments" element={<NetworkEquipments />}/>
-         <Route path="/marketplace" element={<Marketplace/>}/>
-         <Route path="/internet-services" element={<InternetServices />} />
+        <Route path="/products/:name" element={<ProductDetail />} />
+        <Route path="/internet-services" element={<InternetServices />} />        
+        <Route path="/promotions" element={<Promotions />} />
+        <Route path="/otherproducts" element={<OtherProducts />} />
+        <Route path="/register" element={<ClientRegistration />} />
+        <Route path="/register-confirmation" element={<RegnConfirmation />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/redirect" element={<RedirectComponent />} />
 
+
+        <Route path="/cpe" element={<CPE />} />
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin" element={<AdLanding />}>
+          <Route path="" element={<Dashboard />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="products" element={<Products />} />
+          <Route path="products/newproduct" element={<AddProduct />} />
+          <Route path="staticpages" element={<StaticPage />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+
+<<<<<<< HEAD
          <Route path="/promotions" element={<Promotions />} />
          <Route path="/otherproducts" element={<OtherProducts />} />
          <Route path="/register" element={<ClientRegistration />} />
@@ -42,9 +76,14 @@ function App() {
             <Route path="staticpages" element={<StaticPage />} />
             <Route path="settings" element={<Settings />} />
            </Route>
+=======
+>>>>>>> d6ebd33bfe4958ed29ada27107e8080ca0dadb96
       </Routes>
+     
     </BrowserRouter>
+    
   );
+  
 }
 
 export default App;

@@ -1,63 +1,111 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import InputField from "../components/atoms/InputField";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import LoginModal from "../components/LoginModal";
 import { isValidEmail } from "../utils/validators";
+import { useNavigate, useLocation } from "react-router-dom";
+import { registerUser } from "../services/authentication";
+import { showAlert } from "../utils/showAlert";
+import { useSelector } from "react-redux";
+import { FormModel } from "../Model/FormModel";
+import { ROLE } from "../constants/authconstant";
 
-export const regnFooter = React.createContext()
+export const regnFooter = React.createContext();
 
 function ClientRegistration() {
-    const [showLoginModal, setShowLoginModal] = useState(false);
-    const [checked, setChecked] = useState(false);
-    const [name, setName] = useState("");
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [btnLoading, setBbtnLoading] = useState("");
-    const [confirmPasswordError, setConfirmPasswordError] = useState("");
-    const [emailError, setEmailError] = useState("");
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [gendar, setGendar] = useState("");
+  const [btnLoading, setBbtnLoading] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
-    const value = {
-        name,
-        username,
+  const navigate = useNavigate();
+  let { state } = useLocation();
+
+  const formName = "signupForm";
+
+  useEffect(() => {
+    new FormModel(formName)._createForm({
+      first_name: "",
+      last_name: "",
+      password: "",
+      confirmPassword: "",
+      email: "",
+      user_name: "",
+      role: "",
+    });
+  }, []);
+
+  const formInput = useSelector((state) => state.forms[formName]) || {};
+  // console.log('formInput',formInput)
+  const commonProps = {
+    value: formInput,
+    formName,
+  };
+
+  const {
+    first_name,
+    last_name,
+    password,
+    confirmPassword,
+    email,
+    user_name,
+    role,
+  } = formInput;
+
+  // const buttonEnabled =
+  //   first_name &&
+  //   last_name &&
+  //   user_name &&
+  //   password &&
+  //   email &&
+  //   confirmPassword &&
+  //   role;
+
+  const signIn = async () => {
+    setEmailError("");
+    setConfirmPasswordError("");
+    let hasError = false;
+    if (!isValidEmail(email)) {
+      hasError = true;
+      setEmailError("Email is not valid. Please enter a valid email.");
+    }
+
+    if (password !== confirmPassword) {
+      hasError = true;
+      setConfirmPasswordError("Passwords not matching.");
+    }
+
+    if (hasError) return;
+
+    // console.log(value)
+    try {
+      setBbtnLoading(true);
+      await registerUser({
+        first_name,
+        last_name,
+        user_name,
+        gendar,
         email,
         password,
-        confirmPassword,
-        validation: {
-          confirmPassword: confirmPasswordError,
-          email: emailError,
-        },
-      };
-
-      const buttonEnabled = name && username && password && email && confirmPassword;
-
-      const signIn = () => {
-        setEmailError("");
-        setConfirmPasswordError("");
-        let hasError = false;
-        if (!isValidEmail(email)) {
-          hasError = true;
-          setEmailError("Email is not valid. Please enter a valid email.");
-        }
-    
-        if (password !== confirmPassword) {
-          hasError = true;
-          setConfirmPasswordError("Passwords not matching.");
-        }
-    
-        if (hasError) return;
-    
-        console.log(value)
-      };
+        role,
+      });
+      showAlert("sign-up successfull.", "success");
+      navigate("/home");
+    } catch (error) {
+      showAlert("Signup Failed! Please try again.", "error");
+    } finally {
+      setBbtnLoading(false);
+    }
+  };
 
   return (
-      <regnFooter.Provider value={true}>
-    <LandingPage>
-      <ServiceBanner title="Client Registration" />
+    <LandingPage woproducts>
+      <ServiceBanner title="Client Registration" regnPage />
       <section className="regn_form pos-relative">
         <div className="client_regn">
           <h3 className="modal_heading mb-4">
@@ -65,43 +113,39 @@ function ClientRegistration() {
           </h3>
 
           <Form>
+            <InputField id="first_name" label="firstName" {...commonProps} />
             <InputField
-              id="name"
-              label="Name"
+              id="last_name"
+              label="lastName"
               mendetory
-              value={value}
-              handleChange={(e) => setName(e.target.value)}
+              {...commonProps}
             />
             <InputField
-              id="username"
+              id="user_name"
               label="Username"
               mendetory
-              value={value}
-              handleChange={(e) => setUsername(e.target.value)}
+              {...commonProps}
             />
             <InputField
               id="email"
               type="email"
               label="Email Address"
               mendetory
-              value={value}
-              handleChange={(e) => setEmail(e.target.value)}
+              {...commonProps}
             />
             <InputField
               id="password"
               type="password"
               label="Password"
               mendetory
-              value={value}
-              handleChange={(e) => setPassword(e.target.value)}
+              {...commonProps}
             />
             <InputField
               id="confirmPassword"
               type="password"
               label="Confirm Password"
               mendetory
-              value={value}
-              handleChange={(e) => setConfirmPassword(e.target.value)}
+              {...commonProps}
             />
 
             {/* <InputField
@@ -115,18 +159,66 @@ function ClientRegistration() {
               }
             /> */}
 
-            <div className="form-check">
-                <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="exampleCheck1"
-                    checked={checked}
-                    onChange={(e) => setChecked(e.target.checked)}
-                />
-                <label className="form-check-label" htmlFor="exampleCheck1">
-                By clicking "Register", I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>
+            <div className="row ">
+              <p className="mb-1 col-sm-12">I want to:</p>
+              <div
+                className="col btn-group btn-group-toggle"
+                data-toggle="buttons"
+              >
+                <label
+                  className={`btn ${
+                    role === ROLE.USER ? "btn-info" : "btn-light"
+                  }  btn-sm mr-2`}
+                >
+                  <input
+                    checked={role === ROLE.USER}
+                    type="radio"
+                    name="options"
+                    id="option1"
+                    onChange={() =>
+                      new FormModel(formName)._update({ role: ROLE.USER })
+                    }
+                  />{" "}
+                  USER
                 </label>
-                </div>
+
+                <label
+                  className={`btn ${
+                    role === ROLE.VENDOR ? "btn-info" : "btn-light"
+                  }  btn-sm`}
+                  onChange={() =>
+                    new FormModel(formName)._update({ role: ROLE.VENDOR })
+                  }
+                >
+                  <input
+                    checked={role === ROLE.VENDOR}
+                    type="radio"
+                    name="options"
+                    id="option2"
+                  />{" "}
+                  VENDOR
+                </label>
+              </div>
+            </div>
+
+            <br />
+
+            <div className="form-check">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="exampleCheck1"
+                checked={checked}
+                onChange={(e) => setChecked(e.target.checked)}
+              />
+              <label className="form-check-label" htmlFor="exampleCheck1">
+                By clicking "Register", I agree to the{" "}
+                <a href="#">Terms and Conditions</a> and{" "}
+                <a href="#">Privacy Policy</a>
+              </label>
+            </div>
+
+            {<p className="errorText">{confirmPasswordError}</p>}
 
             <div className="form-group small mb-1 mt-3">
               <div
@@ -135,7 +227,8 @@ function ClientRegistration() {
               >
                 <Button
                   variant="primary"
-                  disabled={!buttonEnabled || !checked}
+                  className="primary_bg"
+                  // disabled={!buttonEnabled || !checked}
                   onClick={signIn}
                 >
                   Register
@@ -161,11 +254,10 @@ function ClientRegistration() {
       {showLoginModal && (
         <LoginModal
           show={showLoginModal}
-          handleClose = {() => setShowLoginModal(false)}
+          handleClose={() => setShowLoginModal(false)}
         />
       )}
     </LandingPage>
-    </regnFooter.Provider>
   );
 }
 

@@ -12,7 +12,7 @@ import { DateTime } from "./DateTime";
 import GoogleTranslate from "./google";
 import { useNavigate } from "react-router-dom";
 import LoginModal from "./LoginModal";
-
+import {AUTH_TOKEN, getCookie} from "../utils/cookie"
 function Header() {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -69,8 +69,9 @@ function Header() {
                   </div>
                 </li>
                 <li>
-                  <div className="d-flex pt-1 ml-3"
-                    onClick={() => setShowLoginModal(true)}  
+                  <div
+                    className="d-flex pt-1 ml-3"
+                    onClick={() => setShowLoginModal(true)}
                   >
                     {user} <span className="ml-1">Login/Signup</span>
                   </div>
@@ -114,16 +115,12 @@ function Header() {
                 </NavDropdown.Item>
               </NavDropdown> */}
 
-              <Nav.Link onClick={() => navigate("/home")}>Multitel Home</Nav.Link>
-              <Nav.Link href="#link">Multitel-Celular (MVNO)</Nav.Link>
-              <Nav.Link onClick={() => navigate("/marketplace")}>Marketplace</Nav.Link>
-
               <Nav.Link onClick={() => navigate("/home")}>
                 Multitel Home
               </Nav.Link>
-              <Nav.Link href="#link">Multitel Móvel</Nav.Link>
-              <Nav.Link href="#home">Marketplace</Nav.Link>
-
+              <Nav.Link href="#link">Multitel Mobile</Nav.Link>
+              <Nav.Link onClick={() => navigate("/marketplace")}>Marketplace</Nav.Link>
+               {/* <button onClick={console.log(()=>getCookie(AUTH_TOKEN))}>GEt</button> */}
               <Nav.Link href="#link">Client Portal</Nav.Link>
               <Nav.Link href="#link">Contacts</Nav.Link>
             </Nav>
@@ -133,7 +130,7 @@ function Header() {
       {showLoginModal && (
         <LoginModal
           show={showLoginModal}
-          handleClose = {() => setShowLoginModal(false)}
+          handleClose={() => setShowLoginModal(false)}
         />
       )}
     </>

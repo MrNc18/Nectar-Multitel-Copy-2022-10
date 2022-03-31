@@ -21,7 +21,7 @@ const Marketplace = () => {
           buttonText="view Details"
         />
         <ProductsList />
-        <section id="key_board" classNameName="mb-4">
+        <section id="key_board" className="mb-4">
           <Container>
             <Row>
               <Col md={2}></Col>
@@ -36,12 +36,16 @@ const Marketplace = () => {
             <Col md={2}></Col>
           </Container>
         </section>
-             <div style={{marginTop:"30px"}}>
-        <center><h4>categories</h4></center>
+             <div id="deserve" style={{marginTop:"30px", textAlign: "center"}}>
+             <p className="mb-2">Lets Browse By</p>
+              <h2 className="mb-3">Categories</h2>
+        {/* <center><h4>categories</h4></center> */}
         <section className="row" style={{justifyContent:"center"}}>
           {data &&
             data.categories.map((categories) => {
               return (
+                <Row key={categories._id}>
+                  <Col md={1}></Col>
                 <Col md={2}>
                   <Card border="light" style={{ width: "10rem", marginBottom: "25px" }}>
                     <a className="nav-link" href={`/${categories.link}`}>
@@ -49,16 +53,18 @@ const Marketplace = () => {
                     <Card.Img
                       variant="top"
                       src={categories.image}
-                      style={{ border: "25px solid white", height: "100px" }}
+                      style={{ border: "25px solid white", height: "100%", width:"100%"}}
                     />
                     </a>
-                    <Card.Body style={{ textAlign: "center", height: "40px" }}>
-                      <Card.Title style={{ fontSize: "x-small" }}>
+                    <Card.Body style={{ textAlign: "center"}}>
+                      <Card.Title style={{ fontSize: "small" }}>
                         {categories.title}
                       </Card.Title>
                     </Card.Body>
                   </Card>
                 </Col>
+                <Col md={1}></Col>
+                </Row>
               );
             })}
         </section>
