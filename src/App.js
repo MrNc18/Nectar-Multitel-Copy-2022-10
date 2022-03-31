@@ -46,7 +46,7 @@ function App() {
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/otherproducts" element={<OtherProducts />} />
         <Route path="/register" element={<ClientRegistration />} />
-        <Route path="/register-confirmation" element={<RegnConfirmation />} />
+        <Route path="/register-confirmation/:token" element={<RegnConfirmation />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/reset-password" element={<ResetPassword />} />
