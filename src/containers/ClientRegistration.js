@@ -57,14 +57,14 @@ function ClientRegistration() {
     role,
   } = formInput;
 
-  // const buttonEnabled =
-  //   first_name &&
-  //   last_name &&
-  //   user_name &&
-  //   password &&
-  //   email &&
-  //   confirmPassword &&
-  //   role;
+  const buttonEnabled =
+    first_name &&
+    last_name &&
+    user_name &&
+    password &&
+    email &&
+    confirmPassword &&
+    role;
 
   const signIn = async () => {
     setEmailError("");
@@ -94,10 +94,13 @@ function ClientRegistration() {
         password,
         role,
       });
-      showAlert("sign-up successfull.", "success");
+      // showAlert("sign-up successfull.", "success");
+      alert("Sign up successful! Please click on the verification link sent to your mail.")
       navigate("/home");
     } catch (error) {
-      showAlert("Signup Failed! Please try again.", "error");
+      // showAlert("Signup Failed! Please try again.", "error");
+      alert(error)
+      console.log(error)
     } finally {
       setBbtnLoading(false);
     }
@@ -113,10 +116,10 @@ function ClientRegistration() {
           </h3>
 
           <Form>
-            <InputField id="first_name" label="firstName" {...commonProps} />
+            <InputField id="first_name" label="First Name" mendetory {...commonProps} />
             <InputField
               id="last_name"
-              label="lastName"
+              label="Last Name"
               mendetory
               {...commonProps}
             />
@@ -228,7 +231,7 @@ function ClientRegistration() {
                 <Button
                   variant="primary"
                   className="primary_bg"
-                  // disabled={!buttonEnabled || !checked}
+                  disabled={!buttonEnabled || !checked}
                   onClick={signIn}
                 >
                   Register
