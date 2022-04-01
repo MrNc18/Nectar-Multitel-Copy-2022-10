@@ -7,11 +7,12 @@ class GoogleTranslate extends Component {
         /* eslint-disable no-new */
         new window.google.translate.TranslateElement({
         //  pageLanguage: 'en',
-        includedLanguages :'en,pt',
-        //  layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
+        includedLanguages : 'it,en,pt',
+         layout: window.google.translate.TranslateElement.InlineLayout.NONE
     },
      'google_translate_element')
      }
+
 
     componentDidMount() {
         // alert("test")

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+
+import React,{useState,useEffect} from "react";
 import LandingPage from "../components/LandingPage";
-import { Button, Col, Container, Row ,Card } from "react-bootstrap";
+import { Button, Col, Container, Row, Card } from "react-bootstrap";
 import MarketplaceBanner from "../components/MarketplaceBanner";
 import vqr from "../assets/vqr.png";
 import ProductsList from "../components/ProductsList";

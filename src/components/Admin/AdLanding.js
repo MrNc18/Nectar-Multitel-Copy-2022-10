@@ -8,12 +8,10 @@ const Tabs = Object.freeze([
   { label: "Categories", link: "admin/categories" },
   { label: "Products", link: "admin/products" },
   { label: "Static pages", link: "admin/staticpages" },
+  { label: "Settings", link: "admin/Promotions" },
+  { label: "Static pages", link: "admin/InternetServices" },
   { label: "Settings", link: "admin/settings" },
-//   { label: "Service Request", link: "admin/servicerequest" },
-//   { label: "Reimbursement", link: "admin/reimbursement" },
-//   { label: "Holidays", link: "admin/holidays" },
-//   { label: "Settings", link: "admin/setting" },
-//   { label: "Help & Support", link: "admin/helpandsupport" },
+
 ]);
 
 

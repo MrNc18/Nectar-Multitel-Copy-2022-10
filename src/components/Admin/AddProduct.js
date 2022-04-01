@@ -1,10 +1,12 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import data from "../../Data"
 import { useNavigate } from "react-router-dom";
+import {getAddProduct, getAllCategories} from "../../services/category"
 
 
 function AddProduct() {
     const[errorMsg,setErrorMsg]=useState('')
+    const[categoryList,setcategoryList]=useState('')
     const[file,setFile]=useState([])
     const navigate = useNavigate()
   const [data2, setData2] = useState({
@@ -39,15 +41,37 @@ function AddProduct() {
   } = data2;
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
+    console.log("target",e.target)
   };
   const handleFileChange = (event) => {
     setFile(event.target.files);
     console.log(file);
   };
 
-  const handleSubmit = () =>{
+  const handleSubmit = async () =>{
+    let categoryId = ''
+    {categoryList &&
+      categoryList.map((item) => {
+        if(item.name === category){
+          categoryId = item.id
+          console.log("tem.id")
+        }
+      })
+      }
+      const data = new FormData();
+    for (var x = 0; x < file.length; x++) {
+      data.append("image", file[x]);
+      data.append("description",description)
+      data.append("name",productName)
+      data.append("availability",availability)
+      data.append("product_category",category)
+      data.append("warranty",warranty)
+      data.append("details",details)
+      data.append("quantity",quantity)
+      data.append("price",price)
+      data.append("category_id",categoryId)
+    }
       if(
-      id === "" ||
       productName === "" ||
       availability === "" ||
       category === "" ||
@@ -58,15 +82,22 @@ function AddProduct() {
       price === "" ||
       date === "" ||
       details === "" ||
-    file === ""
+      file === ""
       )
       {
           setErrorMsg("please Fill the Required Data")
       }
       else{
+      try {
+        await getAddProduct(data)
+          alert("Added Product.", "success");
+          handleAllCategories()
+        } catch (error) {
+          alert("something Went Wrong", "error");
+        } finally {
           setErrorMsg('')
-          console.log("Dtaa",data2,file)
-          setData2({id: "",
+          // console.log("Dtaa",data2,file)
+          setData2({
           productName: "",
           category: "",
           quantity: "",
@@ -79,11 +110,27 @@ function AddProduct() {
           offers: "",
           details: ""
         })
-          setFile([])
+          setFile([''])
       }
-
+    }
 
   }
+
+  const handleAllCategories = async () => {
+    try {
+      const resp = await getAllCategories();
+      setcategoryList(resp && resp.data);
+      console.log(resp,"respp")
+    } catch (error) {
+      console.log("error", error);
+      alert("something went Wrong");
+    }
+  };
+
+  useEffect(() => {
+    handleAllCategories()
+  }, []);
+
 
   return (
     <div>
@@ -104,7 +151,7 @@ function AddProduct() {
       <div className="detail-box">
         <div className="card-body form-custom">
           <div className="row">
-            <div className="col-12 col-sm-6 col-md-6 col-lg-4">
+            {/* <div className="col-12 col-sm-6 col-md-6 col-lg-4">
               <div className="form-group">
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Product ID :
@@ -118,7 +165,7 @@ function AddProduct() {
                      onChange={handleChange}
                 />
               </div>
-            </div>
+            </div> */}
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
               <div className="form-group">
                 <label htmlFor="exampleInputtext" className="mb-1">
@@ -138,20 +185,21 @@ function AddProduct() {
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
               <div className="form-group">
                 <label htmlFor="exampleInputtext" className="mb-1">
-                  category
+                  Category
                 </label>
                 <select
                   className="form-control"
                   id="exampleFormControlSelect1"
                   name="category"
-                     value={category}
-                     onChange={handleChange}
+                   value={category}
+                  onChange={handleChange}
                 >
+                  {console.log("cl",categoryList)}
                   <option>select the category</option>
-                  {data &&
-                 data.categories.map((item) => (
+                  {categoryList &&
+                 categoryList.map((item) => (
                    
-                   <option value={item.title}>{item.title}</option>
+                   <option value={item.name}>{item.name}</option>
                    
                  ))}
                 </select>
@@ -206,7 +254,7 @@ function AddProduct() {
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
               <div className="form-group">
                 <label htmlFor="exampleInputtext" className="mb-1">
-                  price
+                  Price
                 </label>
                 <input
                   className="form-control"
@@ -269,7 +317,7 @@ function AddProduct() {
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
               <div className="form-group">
                 <label htmlFor="exampleInputtext" className="mb-1">
-                  offers
+                  Offers
                 </label>
                 <textarea
                   type="text"
@@ -296,7 +344,7 @@ function AddProduct() {
             </div>
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
               <div className="form-group">
-                <label htmlFor="exampleInputtext">product Image</label>
+                <label htmlFor="exampleInputtext">Product Image</label>
                 <input
                   className="form-control"
                   type="file"
@@ -317,7 +365,7 @@ function AddProduct() {
                 data-target="#exampleModalCenter"
                  onClick={handleSubmit}
               >
-                submit
+                Submit
               </button>
             </div>
             <label style={{ color: "red", justifyContent: "center" }}>

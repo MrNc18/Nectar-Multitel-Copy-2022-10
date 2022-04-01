@@ -27,6 +27,8 @@ import RegnConfirmation from "./containers/RegnConfirmation";
 import Login from "./components/Admin/Login";
 // import store from "./components/redux/store"
 import { RedirectComponent } from "./containers/RedirectPage";
+import AdPromotions from "./components/Admin/Promotions";
+import AdinternetServices from "./components/Admin/internetServices"
 import Category from "./containers/Category";
 
 
@@ -63,6 +65,9 @@ function App() {
           <Route path="products/newproduct" element={<AddProduct />} />
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="internetServices" element={<AdinternetServices />} />
+          <Route path="promotions" element={<AdPromotions />} />
+
         </Route>
 
       </Routes>
