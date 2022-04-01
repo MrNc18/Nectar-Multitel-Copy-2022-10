@@ -27,6 +27,7 @@ import RegnConfirmation from "./containers/RegnConfirmation";
 import Login from "./components/Admin/Login";
 // import store from "./components/redux/store"
 import { RedirectComponent } from "./containers/RedirectPage";
+import Category from "./containers/Category";
 
 
 
@@ -38,10 +39,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Corporate />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/network-equipments" element={<NetworkEquipments />} />
         <Route path="/marketplace" element={<Marketplace />} />
-
         <Route path="/products/:name" element={<ProductDetail />} />
+        <Route path="/categories/:slug" element={<Category />} />
+        <Route path="/network-equipments" element={<NetworkEquipments />} />
         <Route path="/internet-services" element={<InternetServices />} />        
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/otherproducts" element={<OtherProducts />} />
@@ -64,20 +65,6 @@ function App() {
           <Route path="settings" element={<Settings />} />
         </Route>
 
-<<<<<<< HEAD
-         <Route path="/promotions" element={<Promotions />} />
-         <Route path="/otherproducts" element={<OtherProducts />} />
-         <Route path="/register" element={<ClientRegistration />} />
-         <Route path="/admin" element={<AdLanding/>}>
-         <Route path="" element={<Dashboard />} />
-            <Route path="categories" element={<Categories />} />
-            <Route path="products" element={<Products />}/>
-            <Route path="products/newproduct" element={<AddProduct />} />
-            <Route path="staticpages" element={<StaticPage />} />
-            <Route path="settings" element={<Settings />} />
-           </Route>
-=======
->>>>>>> d6ebd33bfe4958ed29ada27107e8080ca0dadb96
       </Routes>
      
     </BrowserRouter>
