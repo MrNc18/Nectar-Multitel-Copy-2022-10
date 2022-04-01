@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Container, Row, Table } from "react-bootstrap";
 
 function InvoiceBill() {
   return (
