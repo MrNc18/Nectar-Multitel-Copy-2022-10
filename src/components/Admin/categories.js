@@ -83,6 +83,7 @@ function Categories() {
       await getAddCategory(data)
         alert("Added  category.", "success");
         setShow(false);
+        handleAllCategories()
       } catch (error) {
         alert(error.data.message, "error");
       } finally {
@@ -112,6 +113,7 @@ function Categories() {
       await getEditCategory(data)
       alert("Category Edited Sucessfully")
       setShowEditModal(false);
+      handleAllCategories()
     }
     catch(error){
       alert("Something Went Wrong")

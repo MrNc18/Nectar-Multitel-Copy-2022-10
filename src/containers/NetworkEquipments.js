@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import ProductCard from '../components/atoms/ProductCard';
+import ProductCard from "../components/atoms/ProductCard";
 import ServiceBanner from "../components/atoms/ServiceBanner";
+import CommonSection from "../components/CommonSection";
 import LandingPage from "../components/LandingPage";
+import { getProductsByCategory } from "../services/category";
 
 function NetworkEquipments() {
+  const [productList, setProductList] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getProductsByCategory({
+        slug: "network-equipments",
+      });
+      console.log(response?.data?.data?.products);
+      setProductList(response?.data?.data?.products);
+    })();
+  }, []);
+
   return (
     <LandingPage>
       <ServiceBanner title="Network Equipments" />
@@ -16,27 +30,19 @@ function NetworkEquipments() {
               <p className="mb-2 mt-4">Have a look on</p>
               <h2 className="mb-3">Our Network Equipments</h2>
               <div className="broadband_services my-5">
-                  <ProductCard />
+                <Row>
+                  {productList.map((product) => (
+                    <ProductCard product={product} key={product?.id} />
+                  ))}
+                </Row>
               </div>
             </Col>
           </Row>
         </Container>
       </section>
-      <section id="tv_services" className="mb-4">
-        <Container>
-          <Row>
-          <Col md={2}></Col>
-          <Col md={8} style={{color: "white", textAlign:"center"}}>
-            <b><h2>We Deliver The Best Networking Equipments</h2></b>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus beatae aliquid asperiores harum suscipit. Necessitatibus, est itaque</p>
-            <Button variant="outline-secondary" style={{backgroundColor: "white", color: "#0076B5"}}>Browse Router</Button>
-          </Col>
-          </Row>
-          <Col md={2}></Col>
-        </Container>
-      </section>
+      <CommonSection />
     </LandingPage>
-  )
+  );
 }
 
-export default NetworkEquipments
+export default NetworkEquipments;

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import ServiceBanner from "../components/atoms/ServiceBanner";
+import CommonSection from "../components/CommonSection";
 import LandingPage from "../components/LandingPage";
+import { getProductsByCategory } from "../services/category";
+import { baseurl } from "../utils/request";
 
 const cpes = [
   {
@@ -31,6 +34,16 @@ const cpes = [
 ];
 
 function CPE() {
+  const [productList, setProductList] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getProductsByCategory({ slug: "cpe" });
+      console.log(response?.data?.data?.products);
+      setProductList(response?.data?.data?.products);
+    })();
+  }, []);
+
   return (
     <LandingPage>
       <ServiceBanner title="Customer Premises Equipment (CPE)" />
@@ -43,42 +56,26 @@ function CPE() {
             </Col>
           </Row>
           <Row>
-            {cpes.map((cpe) => (
+            {productList.map((cpe) => (
               <Col key={cpe.id} md={6}>
                 <div className="cpe_card text-center mb-5">
-                  <img className="cpe_img" src={cpe.image} />
-                  <p className="black-color mb-2">{cpe.subtitle}</p>
-                  <h4 className="deep_blue_heading">{cpe.title}</h4>
+                  <img
+                    className="cpe_img"
+                    src={
+                      cpe?.cover_img
+                        ? `${baseurl}/images/${cpe?.cover_img}`
+                        : "/assets/images/cpe1.png"
+                    }
+                  />
+                  <p className="black-color mb-2">{cpe.description}</p>
+                  <h4 className="deep_blue_heading">{cpe.name}</h4>
                 </div>
               </Col>
             ))}
           </Row>
         </Container>
       </section>
-      <section id="tv_services" className="mb-4">
-        <Container>
-          <Row>
-            <Col md={2}></Col>
-            <Col md={8} style={{ color: "white", textAlign: "center" }}>
-              <b>
-                <h2>We Deliver The Best Networking Equipments</h2>
-              </b>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Accusamus beatae aliquid asperiores harum suscipit.
-                Necessitatibus, est itaque
-              </p>
-              <Button
-                variant="outline-secondary"
-                style={{ backgroundColor: "white", color: "#0076B5" }}
-              >
-                Browse Router
-              </Button>
-            </Col>
-          </Row>
-          <Col md={2}></Col>
-        </Container>
-      </section>
+      <CommonSection />
     </LandingPage>
   );
 }

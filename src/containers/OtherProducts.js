@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row } from "react-bootstrap";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import OtherProduct from '../components/atoms/OtherProduct';
 import OtherServices from '../components/OtherServices';
+import CommonSection from '../components/CommonSection';
+import { getProductsByCategory } from '../services/category';
+import ProductCard from '../components/atoms/ProductCard';
 
 export const opFooter = React.createContext()
 
 function OtherProducts() {
+  const [productList, setProductList] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getProductsByCategory({
+        slug: "other-productsservices-1",
+      });
+      console.log(response?.data?.data?.products);
+      setProductList(response?.data?.data?.products);
+    })();
+  }, []);
+
   return (
       <LandingPage woproducts>
         <ServiceBanner title="Other Products/Services (Parc.)" />
@@ -19,25 +34,17 @@ function OtherProducts() {
                 <p className="mb-2 mt-4">Have a look on our</p>
                 <h2 className="mb-3">Other Products</h2>
                 <div className="broadband_services my-5">
-                    <OtherProduct />
+                  <Row>
+                    {productList.map((product) => (
+                      <ProductCard product={product} key={product?.id} />
+                    ))}
+                  </Row>
                 </div>
               </Col>
             </Row>
           </Container>
         </section>
-        <section id="tv_services" className="mb-4">
-          <Container>
-            <Row>
-            <Col md={2}></Col>
-            <Col md={8} style={{color: "white", textAlign:"center"}}>
-              <b><h2>We Deliver The Best Networking Equipments</h2></b>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus beatae aliquid asperiores harum suscipit. Necessitatibus, est itaque</p>
-              <Button variant="outline-secondary" style={{backgroundColor: "white", color: "#0076B5"}}>Browse Router</Button>
-            </Col>
-            </Row>
-            <Col md={2}></Col>
-          </Container>
-        </section>
+        <CommonSection />
         <section id="deserve">
           <Container>
             <Row>
