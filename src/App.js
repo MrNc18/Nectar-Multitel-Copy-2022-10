@@ -29,6 +29,7 @@ import Login from "./components/Admin/Login";
 import { RedirectComponent } from "./containers/RedirectPage";
 import AdPromotions from "./components/Admin/Promotions";
 import AdinternetServices from "./components/Admin/internetServices"
+import Category from "./containers/Category";
 
 
 
@@ -40,10 +41,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Corporate />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/network-equipments" element={<NetworkEquipments />} />
         <Route path="/marketplace" element={<Marketplace />} />
-
         <Route path="/products/:name" element={<ProductDetail />} />
+        <Route path="/categories/:slug" element={<Category />} />
+        <Route path="/network-equipments" element={<NetworkEquipments />} />
         <Route path="/internet-services" element={<InternetServices />} />        
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/otherproducts" element={<OtherProducts />} />

@@ -31,19 +31,19 @@ export const RedirectComponent = () => {
 
   const redirectUser = (result) => {
     console.log("result",result.data.data.role)
-    if (result.data.data.role = ROLE.ADMIN) {
+    if (result.data.data.role == ROLE.ADMIN) {
         navigate("/admin");
     }
-    else if (result.data.data.role = ROLE.SUPERADMIN)
+    else if (result.data.data.role == ROLE.SUPERADMIN)
     {
             navigate("/admin");
         }
-        else if (result.data.data.role = ROLE.USER)
+        else if (result.data.data.role == ROLE.USER)
     {
             navigate("/home");
         }
 
-        else if (result.data.data.role = ROLE.VENDOR)
+        else if (result.data.data.role == ROLE.VENDOR)
         {
                 navigate("/home");
             }

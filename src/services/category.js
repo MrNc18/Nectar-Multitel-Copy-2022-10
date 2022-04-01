@@ -16,6 +16,7 @@ export const getAllCategories = async () => {
   export const getDeleteCategory = async(data) =>{
     return await doDelete('api/product/deleteCategory',data);
   }
+  
 //Product APIS 
   export const getAllProducts = async () => {
     return await doGet("api/product")
@@ -33,3 +34,5 @@ export const getAllCategories = async () => {
    export const getProductsByCategory = async(data) =>{
      return await doPost('api/product/getProductsByCategory',data)
    }
+
+ 
