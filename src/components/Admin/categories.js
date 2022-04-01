@@ -6,14 +6,15 @@ import {
   getAllCategories,
   getAddCategory,
   getDeleteCategory,
-  getEditCategory,
+  getEditCategory,imageUrl
 } from "../../services/category";
+import { Link } from "react-router-dom";
 
 function Categories() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [show, setShow] = useState(false);
-  const[deleteRecord,setDeleteRecord]=useState('')
+  const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [DeleteShow, setDeleteShow] = useState(false);
   const [file, setFile] = useState("");
@@ -27,8 +28,9 @@ function Categories() {
     id: "",
     name: "",
     description: "",
+    slug: "",
   });
-  const { id, name, description } = data2;
+  const { id, name, slug, description, link } = data2;
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
@@ -42,47 +44,44 @@ function Categories() {
   };
   const handleDeleteshow = (item) => {
     setDeleteShow(true);
-    setDeleteRecord(item)
+    setDeleteRecord(item);
   };
   const handlecloseDelete = () => {
     setDeleteShow(false);
   };
 
-  const handleDeleteProduct = async (deleteRecord) => {
+  const handleDeleteProduct = async () => {
     const data = {
-      id:deleteRecord.id
+      id: deleteRecord.id,
+    };
+    try {
+      await getDeleteCategory(data);
+      alert("Category Deleted Sucessfully");
+      setDeleteShow(false);
+      handleAllCategories();
+    } catch (error) {
+      console.log("error", error);
+      alert("Something Went Wrong");
     }
-    try{   
-       await getDeleteCategory(data)
-    alert("Category Deleted Sucessfully");
-    setDeleteShow(false);
-    handleAllCategories()
-  }
-  catch (error) {
-    console.log("error", error);
-    alert("Something Went Wrong");
-  }
-
-
-
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
-      data.append("file", file[x]);
-      data.append("banfile",banfile[x]);
-      data.append("description",description)
-      data.append("name",name)
+      data.append("image", file[x]);
+      data.append("banfile", banfile[x]);
+      data.append("description", description);
+      data.append("name", name);
     }
-  
-    if (name === "" || description === "") {
+
+    if (name === "" || description === "" || file === "") {
       setErrorMsg("Fill the Mandatory Filelds");
     } else
       try {
-      await getAddCategory(data)
+        await getAddCategory(data);
         alert("Added  category.", "success");
         setShow(false);
+        handleAllCategories();
       } catch (error) {
         alert(error.data.message, "error");
       } finally {
@@ -96,31 +95,33 @@ function Categories() {
       id: item.id,
       name: item.name,
       description: item.description,
+
     });
     setShowEditModal(true);
   };
   const handleEditProduct = async () => {
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
-      data.append("file", file[x]);
-      data.append("banfile",banfile[x]);
-      data.append("description",description)
-      data.append("name",name)
-      data.append("id", id)
+      data.append("image", file[x]);
+      data.append("banfile", banfile[x]);
     }
+      data.append("description", description);
+      data.append("name", name);
+      data.append("id", id);
+    
+   
     try {
-      await getEditCategory(data)
-      alert("Category Edited Sucessfully")
+      await getEditCategory(data);
+      alert("Category Edited Sucessfully");
       setShowEditModal(false);
+      handleAllCategories();
+    } catch (error) {
+      alert("Something Went Wrong");
     }
-    catch(error){
-      alert("Something Went Wrong")
-    }   
   };
   const handleEditClose = () => {
     setShowEditModal(false);
   };
-
 
   //Get All Category Api
 
@@ -155,7 +156,7 @@ function Categories() {
       <div className="container-fluid">
         <div className="row" style={{ justifyContent: "space-between" }}>
           <h3 className="mt-4 mb-4">Categories</h3>
-          <div className="col-xl-9 col-lg-3 col-md-9 col-sm-9">
+          <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3">
             <div className="header justify-content-end">
               <button
                 type="button"
@@ -260,7 +261,7 @@ function Categories() {
                   <td>{item.name}</td>
                   <td>
                     <img
-                      src={item.image && item.image}
+                      src={imageUrl(item.image)}
                       style={{ width: "60px" }}
                     />
                   </td>
@@ -304,7 +305,10 @@ function Categories() {
           <Button variant="secondary" onClick={() => handlecloseDelete()}>
             Close
           </Button>
-          <Button variant="primary" onClick={() => handleDeleteProduct(deleteRecord)}>
+          <Button
+            variant="primary"
+            onClick={() => handleDeleteProduct(deleteRecord)}
+          >
             Delete
           </Button>
         </Modal.Footer>
@@ -340,6 +344,7 @@ function Categories() {
                   <Form.Control
                     type="file"
                     id="file"
+                    // value={file}
                     onChange={handleFileChange}
                   ></Form.Control>
                   <Form.Label>Upload Banner</Form.Label>{" "}
