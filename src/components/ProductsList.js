@@ -15,6 +15,7 @@ const ProductsList = () => {
     try{
     const resp =  await getAllProducts()
     setAllProducts(resp.data)
+    console.log("resp",resp)
     }
     catch(error) {
       alert("something Went Wrong","Error") 
@@ -42,7 +43,7 @@ const ProductsList = () => {
             >
               <Card.Img
                 variant="top"
-                src={imageUrl(product.cover_img) !=null ?product.cover_img:Image19}
+                src={(imageUrl(product.cover_img) !=null) ? imageUrl(product.cover_img):Image19}
                 style={{ border: "25px solid #F5F6FA", height: "180px" }}
               />
             </a>
