@@ -6,14 +6,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAllProducts,imageUrl} from "../services/category";
 import Image19 from ".././assets/Image19.png"
 import {formatAmount} from "../utils/AmountFormatter"
+import { baseurl } from "../utils/request";
+import ProductCard from "./atoms/ProductCard";
 
 const ProductsList = () => {
   const navigate = useNavigate();
-  const [allProducts,setAllProducts] = useState('')
+  const [allProducts,setAllProducts] = useState([])
 
   const handleGetallProducts  = async () =>{
     try{
     const resp =  await getAllProducts()
+    console.log(resp)
     setAllProducts(resp.data)
     console.log("resp",resp)
     }
@@ -30,10 +33,9 @@ const ProductsList = () => {
   
 
   const displayProducts =
-  
-  allProducts &&
   allProducts.map((product) => {
       return (
+
         <Col md={4} key={product.id}>
           <Card style={{ width: "16rem", marginBottom: "25px" }}>
             <a
@@ -76,27 +78,28 @@ const ProductsList = () => {
                 <span className="fa fa-star checked"></span>
 
 
+
                 <p style={{ textAlign: "left", color: "#1D3557" }}>                 
-                {formatAmount(product.price)}
-                </p>
+                 {formatAmount(product.price)}
+                 </p>
               </Col>
-              <Col>
+             <Col>
                 <Button
-                  className="pull-right secondary_bg"
-                  variant="primary"
-                  size="sm"
-                  style={{
-                    marginTop: "-55px",
-                    marginLeft: "90px",
-                    border: "none",
-                  }}
-                >
+                className="pull-right secondary_bg"
+                   variant="primary"
+                   size="sm"
+                   style={{
+                     marginTop: "-55px",
+                     marginLeft: "90px",
+                     border: "none",
+                   }}
+                 >
                   Add to Cart
-                </Button>
-              </Col>
-            </Card.Body>
+                 </Button>
+               </Col>
+             </Card.Body>
           </Card>
-        </Col>
+         </Col>
       );
     });
   return (
@@ -105,11 +108,11 @@ const ProductsList = () => {
         <h5 className="text-left" style={{ padding: "40px" }}>
           Products
         </h5>
-        <br />
-        <div className="row" style={{ paddingLeft: "65px" }}>
-          {displayProducts}
-        </div>
       </Row>
+        <div className="row" style={{ paddingLeft: "65px" }}>
+          {allProducts.length ? displayProducts : "Loading..."}
+        </div>
+      
     </Container>
   );
 };
