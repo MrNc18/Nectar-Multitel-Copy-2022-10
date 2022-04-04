@@ -25,6 +25,12 @@ function InternetServices() {
                       imgdiv={<div className="round_icon">{tvIcon}</div>}
                       head1="Single Deal"
                       head2="Broadband Only"
+                      content={
+                          <p className="black-color my-4" style={{ fontSize: "14px" }}>
+                            Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore
+                            et dolore magna aliqua.
+                          </p>
+                      }
                     />
                   </Col>
                   <Col md={6} lg={4}>
@@ -36,6 +42,12 @@ function InternetServices() {
                       }
                       head1="Half Package"
                       head2="Broadband & Phones"
+                      content={
+                          <p className="black-color my-4" style={{ fontSize: "14px" }}>
+                            Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore
+                            et dolore magna aliqua.
+                          </p>
+                      }
                     />
                   </Col>
                   <Col md={6} lg={4}>
@@ -47,6 +59,12 @@ function InternetServices() {
                       }
                       head1="Full Package"
                       head2="TV , Broadband & Phones"
+                      content={
+                          <p className="black-color my-4" style={{ fontSize: "14px" }}>
+                            Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore
+                            et dolore magna aliqua.
+                          </p>
+                      }
                     />
                   </Col>
                 </Row>

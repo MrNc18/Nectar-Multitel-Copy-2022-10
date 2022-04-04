@@ -30,6 +30,8 @@ import { RedirectComponent } from "./containers/RedirectPage";
 import AdPromotions from "./components/Admin/Promotions";
 import AdinternetServices from "./components/Admin/internetServices"
 import Category from "./containers/Category";
+import PromotionDetail from "./containers/PromotionDetail";
+import InternetServicesDetail from "./containers/InternetServicesDetail";
 
 
 
@@ -44,10 +46,11 @@ function App() {
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/products/:name" element={<ProductDetail />} />
         <Route path="/categories/:slug" element={<Category />} />
-        <Route path="/network-equipments" element={<NetworkEquipments />} />
-        <Route path="/internet-services" element={<InternetServices />} />        
-        <Route path="/promotions" element={<Promotions />} />
-        <Route path="/otherproducts" element={<OtherProducts />} />
+        {/* <Route path="/network-equipments" element={<NetworkEquipments />} /> */}
+        {/* <Route path="/internet-services" element={<InternetServices />} />    */}
+        <Route path="/categories/internet-services/:tag" element={<InternetServicesDetail />} />    
+        <Route path="/categories/promotions/:tag" element={<PromotionDetail />} />
+        {/* <Route path="/otherproducts" element={<OtherProducts />} /> */}
         <Route path="/register" element={<ClientRegistration />} />
         <Route path="/register-confirmation/:token" element={<RegnConfirmation />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
