@@ -1,14 +1,27 @@
-import React from "react";
+
+import React,{useState,useEffect} from "react";
 import LandingPage from "../components/LandingPage";
-import { Button, Col, Container, Row ,Card } from "react-bootstrap";
+import { Button, Col, Container, Row, Card } from "react-bootstrap";
 import MarketplaceBanner from "../components/MarketplaceBanner";
 import vqr from "../assets/vqr.png";
 import ProductsList from "../components/ProductsList";
 import data from "../Data";
 import { useNavigate } from "react-router-dom";
+import { getAllCategories } from "../services/category";
+import { baseurl } from "../utils/request";
 
 const Marketplace = () => {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+  const [catList, setCatList] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      const response = await getAllCategories()
+      console.log(response)
+      setCatList(response?.data)
+    })();
+  }, []);
+
   return (
     <>
       <LandingPage>
@@ -21,7 +34,7 @@ const Marketplace = () => {
           buttonText="view Details"
         />
         <ProductsList />
-        <section id="key_board" classNameName="mb-4">
+        <section id="key_board" className="mb-4">
           <Container>
             <Row>
               <Col md={2}></Col>
@@ -41,24 +54,28 @@ const Marketplace = () => {
               <h2 className="mb-3">Categories</h2>
         {/* <center><h4>categories</h4></center> */}
         <section className="row" style={{justifyContent:"center"}}>
-          {data &&
-            data.categories.map((categories) => {
+          {catList.length &&
+            catList.map((cat) => {
               return (
-                <Row>
+                <Row key={cat?.id}>
                   <Col md={1}></Col>
                 <Col md={2}>
                   <Card border="light" style={{ width: "10rem", marginBottom: "25px" }}>
-                    <a className="nav-link" href={`/${categories.link}`}>
-                      {console.log("huchcohwbc",categories.link)}
+                    <a className="nav-link" href={`/categories/${cat?.slug}`}>
+                      {/* {console.log("huchcohwbc",categories.link)} */}
                     <Card.Img
                       variant="top"
-                      src={categories.image}
+                      src={
+                        cat?.image
+                          ? `${baseurl}/images/${cat?.image}`
+                          : "/assets/images/network.png"
+                      }
                       style={{ border: "25px solid white", height: "100%", width:"100%"}}
                     />
                     </a>
                     <Card.Body style={{ textAlign: "center"}}>
                       <Card.Title style={{ fontSize: "small" }}>
-                        {categories.title}
+                        {cat?.name}
                       </Card.Title>
                     </Card.Body>
                   </Card>

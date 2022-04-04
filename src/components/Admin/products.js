@@ -1,89 +1,167 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import data from "../../Data";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import { Navigate, useNavigate } from "react-router-dom";
 import moment from "moment";
+import {
+  getAddProduct,
+  getDeleteProduct,
+  getAllProducts,
+  getEditProduct,
+  getAllCategories,imageUrl
+} from "../../services/category";
+import ProductsList from "../ProductsList";
 
 function Products() {
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [DeleteShow, setDeleteShow] = useState(false);
+  const[deleteRecord,setDeleteRecord]=useState("")
   const handleEditClose = () => setShowEditModal(false);
-  const handleDeleteshow = () => setDeleteShow(true);
   const handlecloseDelete = () => setDeleteShow(false);
+  const [productList, setProductList] = useState("");
+  const[allcategories,setAllcategories]=useState('')
 
   const navigate = useNavigate();
-  const handleDeleteProduct = () => {
-    console.log("delete");
-    setDeleteShow(false);
+
+  const [errorMsg, setErrorMsg] = useState("");
+  const [file, setFile] = useState([]);
+  const [data2, setData2] = useState({
+    id: "",
+    productName: "",
+    category: "",
+    quantity: "",
+    date: "",
+    availability: "",
+    price: "",
+    discount: "",
+    warranty: "",
+    description: "",
+    offers: "",
+    details: "",
+  });
+
+  const {
+    id,
+    productName,
+    category,
+    quantity,
+    date,
+    availability,
+    price,
+    discount,
+    warranty,
+    description,
+    offers,
+    details,
+  } = data2;
+  const handleChange = (e) => {
+    setData2({ ...data2, [e.target.name]: e.target.value });
   };
-  const[errorMsg,setErrorMsg]=useState('')
-  const[file,setFile]=useState([])
-const [data2, setData2] = useState({
-  id: "",
-  productName: "",
-  category: "",
-  quantity: "",
-  date: "",
-  availability: "",
-  price: "",
-  discount: "",
-  warranty: "",
-  description: "",
-  offers: "",
-  details: "",
-});
+  const handleFileChange = (event) => {
+    setFile(event.target.files);
+    console.log(file);
+  };
 
-const {
-  id,
-  productName,
-  category,
-  quantity,
-  date,
-  availability,
-  price,
-  discount,
-  warranty,
-  description,
-  offers,
-  details,
-  
-} = data2;
-const handleChange = (e) => {
-  setData2({ ...data2, [e.target.name]: e.target.value });
-};
-const handleFileChange = (event) => {
-  setFile(event.target.files);
-  console.log(file);
-};
+  // Edit Api
+  const handleEditShow = (item) => {
+    console.log(item, "record");
+    setData2({
+      id:item.id,
+      productName: item.name,
+      category: item.product_category ? item.product_category.name:'',
+      quantity: item.quantity,
+      date: moment(item.date).format("YYYY-MM-DD"),
+      availability: item.availability,
+      price: item.price,
+      discount: item.discountPrice,
+      warranty: item.warranty,
+      description: item.description,
+      offers: item.offer,
+      details: item.specification,
+    });
+    setShowEditModal(true);
+  };
+  const handleEditProduct = async () => {
+    let categoryId = ''
+    {allcategories &&
+      allcategories.map((item) => {
+        if(item.name === category){
+          categoryId = item.id
+        }
+      })
+      }
+    const data = new FormData();
+    for (var x = 0; x < file.length; x++) {
+      data.append("image", file[x]);
+      data.append("description", description);
+      data.append("name", productName);
+      data.append("id",id);
+      data.append("quantity", quantity);
+      data.append("price", price);
+      data.append("category_id",categoryId)
+      // data.append("slug","test-product 2")
+    }
+    try {
+      await getEditProduct(data);
+      alert("Category Edited Sucessfully");
+      setShowEditModal(false);
+      handleAllProducts();
+    } catch (error) {
+      alert("Something Went Wrong");
+    }
+  };
 
-// Edit Api
-const handleEditShow = (item) =>{ 
-  console.log(item,"record")
-  setData2({
-    productName:item.title,
-    category:item.Category,
-    quantity:item.quantity,
-    date: moment(item.date).format("YYYY-MM-DD"),
-    availability:item.availability,
-    price:item.price,
-    discount:item.discountPrice,
-    warranty:item.warranty,
-    description:item.description,
-    offers:item.offer,
-    details:item.specification
+  const handleAllCategories = async () => {
+    try {
+      const resp = await getAllCategories();
+      setAllcategories(resp.data)
+    } catch (error) {
+      alert("Something Went Wrong");
+    }
+  };
 
-  })
-  setShowEditModal(true);
+  const handleAllProducts = async () => {
+    try {
+      const resp = await getAllProducts();
+      setProductList(resp && resp.data);
+      console.log("resp", resp);
+    } catch (error) {
+      console.log("error", error);
+      alert("something went Wrong");
+    }
+  };
+  useEffect(() => {
+    handleAllProducts();
+    handleAllCategories()
+  }, []);
+//delete APi
+  const handleDeleteshow = (item) => {
+     setDeleteShow(true);
+     setDeleteRecord(item)
 }
-const handleEditProduct = () => {
-  console.log(data2);
-};
+
+  const handleDeleteProduct = async () => {
+    console.log("dr",deleteRecord)
+    const data = {
+      id: deleteRecord.id,
+    };
+    try {
+      await getDeleteProduct(data);
+      alert("Product Deleted Sucessfully");
+      setDeleteShow(false);
+      handleAllProducts();
+    } catch (error) {
+      console.log("error", error);
+      alert("Something Went Wrong");
+    }
+  };
+
   return (
     <div id="layoutSidenavContent">
       <div className="container-fluid">
         <div className="row" style={{ justifyContent: "space-between" }}>
           <h3 className="mt-4 mb-4">Products</h3>
-          <div className="col-xl-9 col-lg-3 col-md-9 col-sm-9">
+          <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3">
             <div className="header justify-content-end">
               <button
                 type="button"
@@ -110,35 +188,45 @@ const handleEditProduct = () => {
             </tr>
           </thead>
           <tbody>
-            {data &&
-              data.products
-                // .slice(
-                //     pagesVisited,
-                //     pagesVisited + usersPerPage
-                //   )
-                .map((item, i) => (
-                  <tr>
-                    {console.log("hxwjh", item)}
-                    <td>{i + 1}</td>
-                    <td>{item.title}</td>
-                    <td>
-                      <img src={item.image} style={{ width: "50px" }} />
-                    </td>
-                    <td>{item.Category}</td>
-                    <td>{item.quantity}</td>
-                    <td>{item.specification}</td>
-                    <td>{item.price}</td>
-                    <td>
-                      <a className="nav-link" onClick={()=>{handleDeleteshow(item)}}>
-                        {" "}
-                        <i className="fa fa-trash-o" />
-                      </a>
-                      <a className="nav-link" onClick={() =>{handleEditShow(item)}}>
-                        <i className="fa fa-edit" />
-                      </a>
-                    </td>
-                  </tr>
-                ))}
+            {productList &&
+              productList.map((item, i) => (
+                <tr>
+                  {console.log("hxwjh", productList)}
+                  <td>{i + 1}</td>
+                  <td>{item ? item.name : ""}</td>
+                  <td>
+                    <img
+                      src={imageUrl(item.cover_img)}
+                      style={{ width: "50px" }}
+                    />
+                  </td>
+                  <td>
+                    {item.product_category ? item.product_category.name : ""}
+                  </td>
+                  <td>{item ? item.quantity : ""}</td>
+                  <td>{item ? item.description : ""}</td>
+                  <td>{item ? item.price : ""}</td>
+                  <td>
+                    <a
+                      className="nav-link"
+                      onClick={() => {
+                        handleDeleteshow(item);
+                      }}
+                    >
+                      {" "}
+                      <i className="fa fa-trash-o" />
+                    </a>
+                    <a
+                      className="nav-link"
+                      onClick={() => {
+                        handleEditShow(item);
+                      }}
+                    >
+                      <i className="fa fa-edit" />
+                    </a>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </Table>
       </div>
@@ -163,11 +251,9 @@ const handleEditProduct = () => {
         </Modal.Footer>
       </Modal>
 
-     
-
       <div className="col-xl-5  col-lg-4 col-md-3 col-sm-2">
         <div className="header">
-          <Modal show={ShowEditModal} onHide={handleEditClose} size="lg"> 
+          <Modal show={ShowEditModal} onHide={handleEditClose} size="lg">
             <Modal.Header closeButton>
               <Modal.Title style={{ color: "#8ec131", marginLeft: "25px" }}>
                 Edit product List
@@ -175,7 +261,6 @@ const handleEditProduct = () => {
             </Modal.Header>
             <Modal.Body>
               <div className="row">
-               
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                   <div className="form-group">
                     <label htmlFor="exampleInputtext" className="mb-1">
@@ -205,9 +290,10 @@ const handleEditProduct = () => {
                       onChange={handleChange}
                     >
                       <option>select the category</option>
-                      {data &&
-                        data.categories.map((item) => (
-                          <option value={item.title}>{item.title}</option>
+                      {console.log("A;;",allcategories)}
+                      {productList &&
+                        productList.map((item) => (
+                          <option value={item.product_category ? item.product_category.name : ""}>{item.product_category ? item.product_category.name : ""}</option>
                         ))}
                     </select>
                   </div>

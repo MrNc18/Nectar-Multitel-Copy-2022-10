@@ -155,7 +155,7 @@ const data = {
       availability:"yes"
     },
     {
-      _id: "9",
+      _id: "10",
       image: "/assets/images/image13.png",
       title: " Router",
       new_release: false,
@@ -172,7 +172,7 @@ const data = {
       availability:"yes"
     },
     {
-      _id: "10",
+      _id: "11",
       image: "/assets/images/tv.png",
       title: "one plus smart Tv",
       new_release: false,
@@ -189,7 +189,7 @@ const data = {
       availability:"yes"
     },
     {
-      _id: "11",
+      _id: "12",
       image: "/assets/images/phone2.jpg",
       title: "samsung 5g Mobile",
       new_release: false,
@@ -265,7 +265,7 @@ const data = {
       link:"/internet-services"
     },
     {
-      id:"1",
+      id:"2",
       image: "/assets/images/cpe2.png",
       title:"Home Banner",
       subheading:" hdcgwdgchdwgogeocqec",

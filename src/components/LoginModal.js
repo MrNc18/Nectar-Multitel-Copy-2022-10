@@ -1,13 +1,43 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { loginUser } from "../services/authentication";
+import { Link, useNavigate } from "react-router-dom";
 import InputField from "./atoms/InputField";
+import { showAlert } from "../utils/showAlert"
+import { setCookie, AUTH_TOKEN } from "../utils/cookie"
 
 function LoginModal({ show, handleClose }) {
-  const [username, setUsername] = useState();
+  const [ userName, setuserName] = useState();
   const [password, setPassword] = useState();
+  const [btnLoading, setBtnLoading] = useState();
 
-  const disable = !username || !password;
+  const navigate = useNavigate();
+
+
+  const disable = ! userName || !password || btnLoading;
+
+  const login = async () => {
+    try {
+      setBtnLoading(true);
+      const response = await loginUser( userName, password);
+      console.log("ressss",response)
+      alert("Logged in")
+      showAlert("Logged in.", "success");
+      setCookie(AUTH_TOKEN,response.data.data.jwtToken);
+      // console.log("token",response.data.data.jwtToken)
+      handleClose()
+      navigate("/redirect")
+      
+    } catch (error) {
+      showAlert("Please enter valid credentials.", "error");
+      alert(error)
+    } finally {
+      setBtnLoading(false);
+    }
+  };
+
+
+ 
 
   return (
     <Modal show={show} onHide={handleClose} className="login_modal">
@@ -27,12 +57,12 @@ function LoginModal({ show, handleClose }) {
 
         <Form>
           <InputField
-            id="username"
+            id=" userName"
             type="text"
-            label="Username"
+            label=" userName"
             mendetory
-            value={{ username }}
-            handleChange={(e) => setUsername(e.target.value)}
+            value={{  userName }}
+            handleChange={(e) => setuserName(e.target.value)}
           />
           <InputField
             id="password"
@@ -49,7 +79,10 @@ function LoginModal({ show, handleClose }) {
             >
               <InputField type="checkbox" label="Remember me" />
 
-              <a href="#" className="text-primary fw-500">
+              <a
+                onClick={() => navigate("/forgot-password")}
+                className="text-primary fw-500"
+              >
                 Forgot Password
               </a>
             </div>
@@ -60,11 +93,11 @@ function LoginModal({ show, handleClose }) {
               className="custom-control custom-checkbox d-flex align-items-center justify-content-between"
               style={{ paddingLeft: 0 }}
             >
-              <Button 
+              <Button
                 variant="primary"
                 disabled={disable}
                 className="primary_bg"
-                onClick={() => console.log(username, password)}
+                onClick={() =>login()}
               >
                 Login
               </Button>

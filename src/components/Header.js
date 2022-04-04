@@ -12,10 +12,28 @@ import { DateTime } from "./DateTime";
 import GoogleTranslate from "./google";
 import { useNavigate } from "react-router-dom";
 import LoginModal from "./LoginModal";
+import { AUTH_TOKEN, deleteCookie, getCookie } from "../utils/cookie";
+import { getUserDetailsByToken } from "../services/authentication";
+import { Dropdown } from "react-bootstrap";
 
 function Header() {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [username, setUsername] = useState("");
+  const isAuthenticated = getCookie(AUTH_TOKEN);
+  console.log(isAuthenticated);
+
+  const getDataByToken = async () => {
+    if (isAuthenticated) {
+      const result = await getUserDetailsByToken();
+      console.log(result);
+      setUsername(result?.data?.data?.first_name);
+    }
+  };
+
+  React.useEffect(() => {
+    getDataByToken();
+  }, []);
 
   return (
     <>
@@ -69,12 +87,42 @@ function Header() {
                   </div>
                 </li>
                 <li>
-                  <div
-                    className="d-flex pt-1 ml-3"
-                    onClick={() => setShowLoginModal(true)}
-                  >
-                    {user} <span className="ml-1">Login/Signup</span>
-                  </div>
+                  {!isAuthenticated ? (
+                    <div
+                      className="d-flex pt-1 ml-3"
+                      onClick={() => setShowLoginModal(true)}
+                    >
+                      {user} <span className="ml-1">Login/Signup</span>
+                    </div>
+                  ) : (
+                    <Dropdown style={{position: "relative",top:"-5px"}}>
+                      <Dropdown.Toggle
+                        id="dropdown-basic"
+                        style={{ background: "transparent", border: "none" }}
+                      >
+                        <img
+                          className="usericon"
+                          src="/assets/images/user.png"
+                        />
+                        <span className="username">Hey {username}</span>
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => {
+                            deleteCookie(AUTH_TOKEN);
+                            alert('Logged out.')
+                            // navigate('/redirect')
+                            window.location.reload();
+
+                          }}
+                        >
+                          Logout
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  )}
                 </li>
               </ul>
             </Col>
@@ -119,8 +167,10 @@ function Header() {
                 Multitel Home
               </Nav.Link>
               <Nav.Link href="#link">Multitel Mobile</Nav.Link>
-              <Nav.Link onClick={() => navigate("/marketplace")}>Marketplace</Nav.Link>
-
+              <Nav.Link onClick={() => navigate("/marketplace")}>
+                Marketplace
+              </Nav.Link>
+              {/* <button onClick={console.log(()=>getCookie(AUTH_TOKEN))}>GEt</button> */}
               <Nav.Link href="#link">Client Portal</Nav.Link>
               <Nav.Link href="#link">Contacts</Nav.Link>
             </Nav>

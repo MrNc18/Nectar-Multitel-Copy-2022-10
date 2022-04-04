@@ -1,12 +1,14 @@
 import axios from "axios";
 import { AUTH_TOKEN, getCookie } from "./cookie";
 
-// export const baseurl = "https://mployeed.herokuapp.com";
 export const baseurl = 'http://159.65.145.21:3003';
+
 
 const header = () => ({
   Authorization: getCookie(AUTH_TOKEN),
 });
+
+
 
 export const doGet = async (path) => {
   const response = await axios.get(`${baseurl}/${path}`, {
