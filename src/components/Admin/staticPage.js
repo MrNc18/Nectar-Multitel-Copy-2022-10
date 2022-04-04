@@ -5,6 +5,7 @@ import data from "../../Data"
 function Staticpage() {
   const[show,setShow]=useState(false)
   const[DeleteShow,setDeleteShow]=useState(false)
+  const [ShowEditModal, setShowEditModal] = useState(false);
   const[errorMsg,setErrorMsg]=useState('')
   const[file,setFile]=useState('')
   const[data2,setData2]=useState({
@@ -57,11 +58,48 @@ function Staticpage() {
    }
   }
 
+  //  edit API
+  const handleEditShow = (item) => {
+    setData2({
+      id: item?.id,
+      Title: item?.title,
+      subheading: item?.subheading,
+      link: item?.link,
+      description: item?.description
+    });
+    setShowEditModal(true);
+  };
+
+  const handleEditContent = async () => {
+    console.log("content edited")
+    // const data = new FormData();
+    // for (var x = 0; x < file.length; x++) {
+    //   data.append("image", file[x]);
+    //   data.append("banfile", banfile[x]);
+    // }
+    //   data.append("description", description);
+    //   data.append("name", name);
+    //   data.append("id", id);
+    
+   
+    // try {
+    //   await getEditCategory(data);
+    //   alert("Category Edited Sucessfully");
+    //   setShowEditModal(false);
+    //   handleAllCategories();
+    // } catch (error) {
+    //   alert("Something Went Wrong");
+    // }
+  };
+  const handleEditClose = () => {
+    setShowEditModal(false);
+  };
+
   return (
     <div id="layoutSidenavContent">
     <div className="container-fluid">
         <div className='row' style={{justifyContent:"space-between"}}>
-      <h3 className="mt-4 mb-4">StaticPage</h3>
+      <h3 className="mt-4 mb-4">Content Management</h3>
       <div className="col-xl-9 col-lg-3 col-md-9 col-sm-9">
             <div className="header justify-content-end">
               <button
@@ -70,25 +108,19 @@ function Staticpage() {
                 style={{ width: "150px", marginRight:"15px",backgroundColor:"#0076B5" }}
                 onClick={()=>{setShow(true)}}
               >
-                <i className="fas fa-plus-circle"></i> Add New Category
+                <i className="fas fa-plus-circle"></i> Add New Content
               </button>
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title
                     style={{ color: "#0076B5", marginLeft: "25px" }}
                   >
-                    Add New static
+                    Add New Content
                   </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   <div className="container">
                     <Form.Group>
-                     <Form.Label>Id</Form.Label>
-                      <Form.Control
-                       type="text" 
-                       value={id} 
-                       name="id" 
-                       onChange={handleChange}></Form.Control>
                       <Form.Label>Title</Form.Label>
                       <Form.Control
                         type="text"
@@ -151,7 +183,8 @@ function Staticpage() {
               <th>Sr.No.</th>
               <th>Title</th>
               <th>Image</th>
-              <th>subHeading</th>
+              <th>Subheading</th>
+              <th>Description</th>
               <th>link</th>
               <th>Action</th>
             </tr>
@@ -170,6 +203,7 @@ function Staticpage() {
                   <td>{item.title}</td>
                   <td><img src={item.image} style={{width:"60px"}}/></td>
                   <td>{item.subheading}</td>
+                  <td>{item.description}</td>
                   <td>{item.link}</td>
                   <td>
                       <a className="nav-link"
@@ -178,7 +212,7 @@ function Staticpage() {
                         <i className="fa fa-trash-o" />
                       </a>
                       <a className="nav-link"
-                      //  onClick={() =>{handleEditShow(item)}}
+                       onClick={() =>{handleEditShow(item)}}
                        >
                         <i className="fa fa-edit" />
                       </a>
@@ -195,11 +229,11 @@ function Staticpage() {
 
         <Modal show={DeleteShow} onHide={handlecloseDelete}>
         <Modal.Header closeButton>
-          <Modal.Title style={{ color: "#0076B5"}}>Delete Product</Modal.Title>
+          <Modal.Title style={{ color: "#0076B5"}}>Delete Content</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <p>Are you sure want to delete this Category</p>
+          <p>Are you sure want to delete this Content?</p>
         </Modal.Body>
 
         <Modal.Footer>
@@ -211,6 +245,71 @@ function Staticpage() {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      <Modal show={ShowEditModal} onHide={handleEditClose}>
+          <Modal.Header closeButton>
+            <Modal.Title
+              style={{ color: "#0076B5", marginLeft: "25px" }}
+            >
+              Edit Content
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="container">
+              <Form.Group>
+                <Form.Label>Title</Form.Label>
+                <Form.Control
+                  type="text"
+                    value={Title}
+                  name="Title"
+                    onChange={handleChange}
+                ></Form.Control>
+                <Form.Label>SubHeading</Form.Label>
+                <Form.Control
+                  type="text"
+                    value={subheading}
+                  name="subheading"
+                  onChange={handleChange}
+                ></Form.Control>
+                <Form.Label>Link</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={link}
+                  name="link"
+                  onChange={handleChange}
+                ></Form.Control>
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  type="textarea"
+                  value={description}
+                  name="description"
+                  onChange={handleChange}
+                ></Form.Control>
+              <Form.Label>Upload</Form.Label>{" "}
+                <Form.Control
+                type="file"
+                id="file"
+                
+                onChange={handleFileChange}
+              ></Form.Control>
+            </Form.Group>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="primary"
+              size="lg"
+                onClick={handleEditContent}
+              style={{ width: "200%" }}
+            >
+              submit
+            </Button>
+            
+            <label style={{ color: "red", justifyContent: "center" }}>
+              {errorMsg}
+            </label>
+          </Modal.Footer>
+        </Modal> 
       </div>
   )
 }

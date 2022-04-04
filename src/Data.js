@@ -262,6 +262,7 @@ const data = {
       image: "/assets/images/cpe1.png",
       title:"Home Banner",
       subheading:" hdcgwdgchdwgogeocqec",
+      description: "hdcgwdgchdwgogeocqec",
       link:"/internet-services"
     },
     {
@@ -269,6 +270,7 @@ const data = {
       image: "/assets/images/cpe2.png",
       title:"Home Banner",
       subheading:" hdcgwdgchdwgogeocqec",
+      description: "hdcgwdgchdwgogeocqec",
       link:"/internet-services"
     }
   ]

@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LandingPage from "../components/LandingPage";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import { Button, Col, Container, Row, Card } from "react-bootstrap";
 import PromotionCard from "../components/atoms/PromotionCard";
+import { useNavigate } from "react-router-dom";
+import { getAllPromotions } from "../services/promotions";
 
 function Promotions() {
+  const navigate = useNavigate();
+  const [initial, setInitial] = useState("Loading...");
+  const [promotionList, setPromotionList] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getAllPromotions();
+      console.log(response);
+      setPromotionList(response?.data);
+      !response?.data?.length && setInitial("No promotions found");
+    })();
+  }, []);
+
   return (
     <LandingPage>
       <ServiceBanner title="Promotions" />
@@ -22,8 +37,13 @@ function Promotions() {
         </Container>
       </section>
       <Container>
-        <PromotionCard />
-        <PromotionCard />
+        {promotionList.length ? (
+          promotionList.map((promo) => (
+            <PromotionCard promo={promo} key={promo.id} />
+          ))
+        ) : (
+          <p>{initial}</p>
+        )}
         {/* <Row style={{justifyContent:"center"}}>
           <Col lg={12} md={12} sm={12} xs={12}>
             <Card style={{ flexDirection: "row", justifyContent:"center" }}>
@@ -73,7 +93,7 @@ function Promotions() {
               <h3>Promotions</h3>
               <h1>Untimited Broadband Deals</h1>
               <h5>
-                FROM<span> $20</span>  PER MONTH
+                FROM<span> $20</span> PER MONTH
               </h5>
             </Col>
           </Row>

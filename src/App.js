@@ -49,7 +49,7 @@ function App() {
         {/* <Route path="/network-equipments" element={<NetworkEquipments />} /> */}
         {/* <Route path="/internet-services" element={<InternetServices />} />    */}
         <Route path="/categories/internet-services/:tag" element={<InternetServicesDetail />} />    
-        <Route path="/categories/promotions/:tag" element={<PromotionDetail />} />
+        <Route path="/categories/promotions/:slug" element={<PromotionDetail />} />
         {/* <Route path="/otherproducts" element={<OtherProducts />} /> */}
         <Route path="/register" element={<ClientRegistration />} />
         <Route path="/register-confirmation/:token" element={<RegnConfirmation />} />
