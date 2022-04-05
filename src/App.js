@@ -40,6 +40,7 @@ import AdinternetServices from "./components/Admin/internetServices"
 import Category from "./containers/Category";
 import PromotionDetail from "./containers/PromotionDetail";
 import InternetServicesDetail from "./containers/InternetServicesDetail";
+import InformaticAndAccessories from "./containers/InformaticAndAccessories";
 
 
 
@@ -92,6 +93,7 @@ function App() {
          <Route path="/invoice" element={<Invoice />} />
          <Route path="/invoicedetails" element={<InvoiceDetails />} />
          <Route path="/internetqualitygraph" element={<InternetQualityGraph />} />
+         <Route path="/informaticandaccesories" element={<InformaticAndAccessories />} />
 
          
          {/* {/* <Route path="/admin" element={<AdLanding/>}> */}
