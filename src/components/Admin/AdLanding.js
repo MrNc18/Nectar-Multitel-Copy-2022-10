@@ -7,9 +7,10 @@ const Tabs = Object.freeze([
   { label: "Dashboard", link: "admin/" },
   { label: "Categories", link: "admin/categories" },
   { label: "Products", link: "admin/products" },
+  { label: "services Category", link: "admin/Service-categories" },
   { label: "Internet Services", link: "admin/internetServices" },
   { label: "Promotions", link: "admin/promotions" },
-  { label: "StaticPages", link: "admin/staticpages" },
+  { label: "Content Management", link: "admin/staticpages" },
   { label: "Settings", link: "admin/Promotions" },
   
 

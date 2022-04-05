@@ -64,7 +64,7 @@ function Products() {
 
   // Edit Api
   const handleEditShow = (item) => {
-    console.log(item, "record");
+    console.log(allcategories, "allcategories");
     setData2({
       id:item.id,
       productName: item.name,
@@ -126,7 +126,7 @@ function Products() {
       setProductList(resp && resp.data);
       console.log("resp", resp);
     } catch (error) {
-      console.log("error", error);
+      console.log("error", error); 
       alert("something went Wrong");
     }
   };
@@ -291,9 +291,9 @@ function Products() {
                     >
                       <option>select the category</option>
                       {console.log("A;;",allcategories)}
-                      {productList &&
-                        productList.map((item) => (
-                          <option value={item.product_category ? item.product_category.name : ""}>{item.product_category ? item.product_category.name : ""}</option>
+                      {allcategories &&
+                        allcategories.map((item) => (
+                          <option value={item.name? item.name : ""}>{item? item.name : ""}</option>
                         ))}
                     </select>
                   </div>

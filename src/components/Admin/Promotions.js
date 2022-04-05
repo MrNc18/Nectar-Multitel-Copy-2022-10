@@ -34,6 +34,18 @@ function Promotions() {
   });
   const { id, name, tag, description, options } = data2;
 
+//   const Tabletag = (item) =>(item.Promotion_tags.map((data) => `${(data.name)}`))
+
+  const Tabletag = (item) =>{
+    return(item.Promotion_tags.map((data)=> {
+        return(
+            <div>
+                <p>{data.name}</p>
+            </div>
+        )
+    }))
+  }
+
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
@@ -73,7 +85,7 @@ function Promotions() {
   };
 
   //Multi select Create
-  
+
   const handleDeleteshow = (item) => {
     setDeleteShow(true);
     setDeleteRecord(item);
@@ -98,20 +110,25 @@ function Promotions() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const finalMultiValue = tagValue && tagValue.map((data)=>{
-        return data.value
-    })
+    const finalMultiValue =
+      tagValue &&
+      tagValue.map((data) => {
+        return data.value;
+      });
     // console.log("AddMultiValue",finalMultiValue)
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
     }
-      data.append("description", description);
-      data.append("name", name);
-      data.append("tag", finalMultiValue);
-    
+    data.append("description", description);
+    data.append("name", name);
+    data.append("tag", finalMultiValue);
 
-    if (name === "" || description === "" || file === "" || finalMultiValue === "") {
+    if (
+      name === "" ||
+      description === "" ||
+      finalMultiValue === ""
+    ) {
       setErrorMsg("Fill the Mandatory Filelds");
     } else
       try {
@@ -132,19 +149,20 @@ function Promotions() {
       id: item.id,
       name: item.name,
       description: item.description,
-    //   tag: item.tags,
     });
-    setTagValue([ createOption(
-        item.Promotion_tags.map((tags)=>{ return tags.name})
-    )]);
+    const editdata = item.Promotion_tags.map((tags) => createOption(tags.name));
+    console.log("editdata", editdata);
+    setTagValue(editdata);
     setShowEditModal(true);
-    console.log("item",item)
+    console.log("item", item);
   };
   const handleEditPromotion = async () => {
-   const finalMultiValue = tagValue && tagValue.map((data)=>{
-        return data.value
-    })
-    console.log('finalMultiValue',finalMultiValue)
+    const finalMultiValue =
+      tagValue &&
+      tagValue.map((data) => {
+        return data.value;
+      });
+    // console.log('finalMultiValue',finalMultiValue)
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
@@ -152,11 +170,17 @@ function Promotions() {
     data.append("description", description);
     data.append("name", name);
     data.append("id", id);
-    data.append("tag",finalMultiValue);
+    data.append("tag", finalMultiValue);
 
     try {
       await getEditPromotion(data);
       alert("Promotion Edited Sucessfully");
+      setData2({
+        id: "",
+        name: "",
+        description: "",
+      });
+      setFile("");
       setShowEditModal(false);
       handleAllPromotions();
     } catch (error) {
@@ -305,7 +329,8 @@ function Promotions() {
                   <td>
                     <img src={imageUrl(item.image)} style={{ width: "60px" }} />
                   </td>
-                  <td>{item.tags ? item.tags : ""}</td>
+                  
+                  <td>{item.Promotion_tags && Tabletag(item)}</td>
                   <td>
                     <a
                       className="nav-link"
@@ -382,17 +407,17 @@ function Promotions() {
                   ></Form.Control>
                   <Form.Label>Key(tags)</Form.Label>
                   <Creatable
-                        isClearable
-                        isMulti
-                        components={{ DropdownIndicator: null }}
-                        inputValue={tagInputValue}
-                        onChange={(value) => handleTagChange("tags", value)}
-                        onInputChange={handleInputChange}
-                        placeholder="Please enter the tags and Click Enter"
-                        onKeyDown={handleKeyDown}
-                        menuIsOpen={false}
-                        value={tagValue}
-                      />
+                    isClearable
+                    isMulti
+                    components={{ DropdownIndicator: null }}
+                    inputValue={tagInputValue}
+                    onChange={(value) => handleTagChange("tags", value)}
+                    onInputChange={handleInputChange}
+                    placeholder="Please enter the tags and Click Enter"
+                    onKeyDown={handleKeyDown}
+                    menuIsOpen={false}
+                    value={tagValue}
+                  />
                   <Form.Label>Upload</Form.Label>{" "}
                   <Form.Control
                     type="file"
