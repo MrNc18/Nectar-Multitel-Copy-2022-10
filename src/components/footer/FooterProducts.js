@@ -73,7 +73,7 @@ function FooterProducts() {
   ));
 
   return (
-    <section id="products" className="py-5 mt-4 mb-4">
+    <section id="products" className="py-5 my-0">
       <Container>
         <h2 className="mb-4">Latest Products</h2>
         <Row>{allProducts.length ? displayProducts : "Loading..."}</Row>
