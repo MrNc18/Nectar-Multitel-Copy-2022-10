@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import BroadbandCard from "../components/atoms/BroadbandCard";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import Services from "../components/Services";
+import { getAllServices } from "../services/intservices";
 import { tvIcon } from "../svg/tv";
 
 function InternetServices() {
+  const navigate = useNavigate();
+  const [initial, setInitial] = useState("Loading...");
+  const [categoryList, setCategoryList] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getAllServices();
+      console.log(response);
+      setCategoryList(response?.data);
+      !response?.data?.length && setInitial("No service categories found");
+    })();
+  }, []);
+
   return (
     <LandingPage>
       <ServiceBanner title="Internet Services" />
@@ -20,7 +35,14 @@ function InternetServices() {
               <h2 className="mb-3">Our Broadband Services</h2>
               <div className="broadband_services my-5">
                 <Row>
-                  <Col md={6} lg={4}>
+                {categoryList.length ? (
+                    categoryList.map((cat) => (
+                      <BroadbandCard cat={cat} key={cat?.id} />
+                    ))
+                  ) : (
+                    <p>{initial}</p>
+                  )}
+                  {/* <Col md={6} lg={4}>
                     <BroadbandCard
                       imgdiv={<div className="round_icon">{tvIcon}</div>}
                       head1="Single Deal"
@@ -32,41 +54,7 @@ function InternetServices() {
                           </p>
                       }
                     />
-                  </Col>
-                  <Col md={6} lg={4}>
-                    <BroadbandCard
-                      imgdiv={
-                        <div className="broad2">
-                          <img src="/assets/images/broad2.png" />
-                        </div>
-                      }
-                      head1="Half Package"
-                      head2="Broadband & Phones"
-                      content={
-                          <p className="black-color my-4" style={{ fontSize: "14px" }}>
-                            Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua.
-                          </p>
-                      }
-                    />
-                  </Col>
-                  <Col md={6} lg={4}>
-                    <BroadbandCard
-                      imgdiv={
-                        <div className="broad3">
-                          <img src="/assets/images/broad3.png" />
-                        </div>
-                      }
-                      head1="Full Package"
-                      head2="TV , Broadband & Phones"
-                      content={
-                          <p className="black-color my-4" style={{ fontSize: "14px" }}>
-                            Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua.
-                          </p>
-                      }
-                    />
-                  </Col>
+                  </Col> */}
                 </Row>
               </div>
             </Col>

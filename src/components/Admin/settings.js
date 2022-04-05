@@ -33,7 +33,7 @@ function Settings() {
   return (
     <div id="layoutSidenavContent">
       <div className="container-fluid">
-        <h3 className="mt-4 mb-4">settings</h3>
+        <h3 className="mt-4 mb-4">Settings</h3>
         <div
                       style={{
                         width: "330px",
@@ -86,8 +86,8 @@ function Settings() {
                       </div>
 
                       <div
-                        className="bttn"
-                        style={{ marginTop: "50px", borderRadius: "10px" }}
+                        className="bttn d-flex"
+                        style={{ marginTop: "30px", borderRadius: "10px" }}
                       >
                         <button
                           type="button"

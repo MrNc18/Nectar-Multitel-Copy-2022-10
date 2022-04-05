@@ -29,9 +29,9 @@ function Promotions() {
             <Col md={12} className="text-center">
               <p className="mb-2 mt-4">Just Check Out</p>
               <h2 className="mb-3">Our Promotions</h2>
-              <div className="broadband_services my-5">
-                {/* <ProductCard /> */}
-              </div>
+              {/* <div className="broadband_services my-5">
+               <ProductCard /> 
+              </div> */}
             </Col>
           </Row>
         </Container>
