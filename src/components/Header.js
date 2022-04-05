@@ -21,12 +21,12 @@ function Header() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [username, setUsername] = useState("");
   const isAuthenticated = getCookie(AUTH_TOKEN);
-  console.log(isAuthenticated);
+  // console.log(isAuthenticated);
 
   const getDataByToken = async () => {
     if (isAuthenticated) {
       const result = await getUserDetailsByToken();
-      console.log(result);
+      // console.log(result);
       setUsername(result?.data?.data?.first_name);
     }
   };

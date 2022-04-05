@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
 import BroadbandCard from "../components/atoms/BroadbandCard";
+import BroadbandCardDetail from "../components/atoms/BroadbandCardDetail";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
-import Services from "../components/Services";
-import { tvIcon } from "../svg/tv";
+import { getProductsByService } from "../services/intservices";
 
 function InternetServicesDetail() {
+  const navigate = useNavigate();
+  const [initial, setInitial] = useState("Loading...");
+  const [productsList, setProductsList] = useState([]);
+
+  const params = useParams()
+  console.log(params?.tag)
+
+  useEffect(() => {
+    (async () => {
+      const response = await getProductsByService({slug: params?.tag})
+      console.log(response);
+      const products = response?.data?.data?.service_products;
+      products ? setProductsList(products) : setInitial("No service products found");
+      // !response?.data?.length && setInitial("No service products found");
+    })();
+  }, []);
+
   return (
     <LandingPage>
       <ServiceBanner title="Broadband Packages" backlink="/categories/internet-services" />
@@ -18,7 +36,14 @@ function InternetServicesDetail() {
               <h2 className="mb-3">Our Broadband Packages</h2>
               <div className="broadband_services my-5">
                 <Row>
-                  <Col md={6} lg={4}>
+                {productsList.length ? (
+                  productsList.map((product) => (
+                    <BroadbandCardDetail product={product} key={product.id} />
+                  ))
+                ) : (
+                  <p>{initial}</p>
+                )}
+                  {/* <Col md={6} lg={4}>
                     <BroadbandCard
                       detail
                       imgdiv={<div className="round_icon">{tvIcon}</div>}
@@ -97,7 +122,7 @@ function InternetServicesDetail() {
                         </>
                       }
                     />
-                  </Col>
+                  </Col> */}
                 </Row>
               </div>
             </Col>
