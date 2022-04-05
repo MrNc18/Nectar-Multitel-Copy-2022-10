@@ -54,16 +54,31 @@ export const getAllCategories = async () => {
   //  }
 
   export const getAllInternetServices = async () => {
-    return await doGet("api/product")
+    return await doGet("api/service/getAllservice")
    }
    export const getAddServices = async(data) =>{
-     return await doPost('api/product/add',data);
+     return await doPost('api/service/addservice',data);
    }
    export const getEditServices = async(data) =>{
-     return await doPut('api/product/edit',data);
+     return await doPut('api/service/editservice',data);
    }
    export const getDeleteServices = async(data) =>{
-     return await doDelete('api/product/delete',data);
+     return await doDelete('api/service/deleteservice',data);
    }
+
+   export const getAllServicesProducts = async () => {
+    return await doGet("api/service/product")
+   }
+   export const getAddServiceProducts = async(data) =>{
+     return await doPost('api/service/product/add',data);
+   }
+   export const getEditServiceProducts = async(data) =>{
+     return await doPut('api/service/product/edit',data);
+   }
+   export const getDeleteServiceProducts = async(data) =>{
+     return await doDelete('api/service/product/delete',data);
+   }
+
+  
 
  

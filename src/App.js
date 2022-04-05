@@ -32,6 +32,7 @@ import AdinternetServices from "./components/Admin/internetServices"
 import Category from "./containers/Category";
 import PromotionDetail from "./containers/PromotionDetail";
 import InternetServicesDetail from "./containers/InternetServicesDetail";
+import ServicesCategory from "./components/Admin/ServicesCategory";
 
 
 
@@ -68,6 +69,8 @@ function App() {
           <Route path="products/newproduct" element={<AddProduct />} />
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="Service-categories" element={<ServicesCategory />} />
+
           <Route path="internetServices" element={<AdinternetServices />} />
           <Route path="promotions" element={<AdPromotions />} />
 

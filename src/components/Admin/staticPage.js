@@ -61,7 +61,7 @@ function Staticpage() {
     <div id="layoutSidenavContent">
     <div className="container-fluid">
         <div className='row' style={{justifyContent:"space-between"}}>
-      <h3 className="mt-4 mb-4">StaticPage</h3>
+      <h3 className="mt-4 mb-4">Content Management</h3>
       <div className="col-xl-9 col-lg-3 col-md-9 col-sm-9">
             <div className="header justify-content-end">
               <button
