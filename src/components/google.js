@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import "../App.css"
 
 class GoogleTranslate extends Component {
     googleTranslateElementInit () {
@@ -7,12 +6,11 @@ class GoogleTranslate extends Component {
         /* eslint-disable no-new */
         new window.google.translate.TranslateElement({
         //  pageLanguage: 'en',
-        includedLanguages : 'it,en,pt',
+        includedLanguages : 'ar,sq,it,en,pt',
          layout: window.google.translate.TranslateElement.InlineLayout.NONE
     },
      'google_translate_element')
      }
-
 
     componentDidMount() {
         // alert("test")

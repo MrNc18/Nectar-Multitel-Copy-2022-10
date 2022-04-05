@@ -92,6 +92,7 @@ function AddProduct() {
         await getAddProduct(data)
           alert("Added Product.", "success");
           handleAllCategories()
+          navigate('/admin/products')
         } catch (error) {
           alert("something Went Wrong", "error");
         } finally {
