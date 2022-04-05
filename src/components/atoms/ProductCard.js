@@ -1,5 +1,7 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { formatAmount } from "../../utils/AmountFormatter";
 import { baseurl } from "../../utils/request";
 
 // const Products = () => (
@@ -38,6 +40,8 @@ import { baseurl } from "../../utils/request";
 // };
 
 function ProductCard({ product }) {
+  const navigate = useNavigate()
+
   return (
     // <Container>
     //   <Row>
@@ -46,6 +50,11 @@ function ProductCard({ product }) {
     // </Container>
     <Col xl={4} lg={4} md={6}>
       <Card style={{ width: "18rem", marginBottom: "20px" }}>
+      <a
+        onClick={() =>
+          navigate(`/products/${product.slug}`, {state: {product}})
+        }
+      >
         <Card.Img
           variant="top"
           src={
@@ -53,35 +62,42 @@ function ProductCard({ product }) {
               ? `${baseurl}/images/${product?.cover_img}`
               : "/assets/images/product.png"
           }
-          style={{ border: "45px solid #F5F6FA" }}
+          style={{ border: "45px solid #F5F6FA", height: "242px" }}
         />
+      </a>
         <Card.Body style={{ textAlign: "left" }}>
-          <Card.Title>{product?.name}</Card.Title>
-          <Card.Text style={{ textAlign: "left" }}>
+        <a
+          onClick={() =>
+            navigate(`/products/${product.slug}`, {state: {product}})
+          }
+        >
+          <Card.Title style={{fontSize:"18px"}}>{product?.name}</Card.Title>
+        </a>
+          <Card.Text style={{ textAlign: "left",fontSize:"14px" }}>
             {product?.description}
           </Card.Text>
-          <Col xs={12} md={6} style={{ color: "orange", textAlign: "left" }}>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <p style={{ textAlign: "left" }}>${product?.price}</p>
-          </Col>
-          <Col>
+          <Row>
+            <Col xs={12} md={6} style={{ color: "orange", textAlign: "left" }}>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <p style={{ textAlign: "left" }}>{formatAmount(product.price)}</p>
+            </Col>
+            <Col xs={12} md={6}>
             <Button
               className="pull-right"
               variant="primary"
               size="sm"
               style={{
-                marginTop: "-42px",
                 backgroundColor: "#0076B5",
-                background: "#0076B5",
               }}
             >
               Add to Cart
             </Button>
           </Col>
+          </Row>
         </Card.Body>
       </Card>
     </Col>

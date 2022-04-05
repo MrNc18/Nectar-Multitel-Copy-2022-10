@@ -4,18 +4,22 @@ import "./proList.css";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { getAllProducts,imageUrl} from "../services/category";
-import Image19 from ".././assets/Image19.png";
-import {formatAmount} from "../utils/AmountFormatter";
+import Image19 from ".././assets/Image19.png"
+import {formatAmount} from "../utils/AmountFormatter"
+import { baseurl } from "../utils/request";
+import ProductCard from "./atoms/ProductCard";
 import ReactPaginate from "react-paginate";
 
 const ProductsList = () => {
   const navigate = useNavigate();
-  const [allProducts,setAllProducts] = useState('')
+  const [allProducts,setAllProducts] = useState([])
 
   const handleGetallProducts  = async () =>{
     try{
     const resp =  await getAllProducts()
+    console.log(resp)
     setAllProducts(resp.data)
+    console.log("resp",resp)
     }
     catch(error) {
       alert("something Went Wrong","Error") 
@@ -42,6 +46,7 @@ const ProductsList = () => {
   allProducts &&
   allProducts.slice(pagesVisited, pagesVisited + usersPerPage).map((product) => {
       return (
+
         <Col md={4} key={product.id}>
           <Card style={{ width: "16rem", marginBottom: "25px" }}>
             <a
@@ -51,7 +56,7 @@ const ProductsList = () => {
             >
               <Card.Img
                 variant="top"
-                src={imageUrl(product.cover_img) !=null ?product.cover_img:Image19}
+                src={(imageUrl(product.cover_img) !=null) ? imageUrl(product.cover_img):Image19}
                 style={{ border: "25px solid #F5F6FA", height: "180px" }}
               />
             </a>
@@ -84,27 +89,28 @@ const ProductsList = () => {
                 <span className="fa fa-star checked"></span>
 
 
+
                 <p style={{ textAlign: "left", color: "#1D3557" }}>                 
-                {formatAmount(product.price)}
-                </p>
+                 {formatAmount(product.price)}
+                 </p>
               </Col>
-              <Col>
+             <Col>
                 <Button
-                  className="pull-right secondary_bg"
-                  variant="primary"
-                  size="sm"
-                  style={{
-                    marginTop: "-55px",
-                    marginLeft: "90px",
-                    border: "none",
-                  }}
-                >
+                className="pull-right secondary_bg"
+                   variant="primary"
+                   size="sm"
+                   style={{
+                     marginTop: "-55px",
+                     marginLeft: "90px",
+                     border: "none",
+                   }}
+                 >
                   Add to Cart
-                </Button>
-              </Col>
-            </Card.Body>
+                 </Button>
+               </Col>
+             </Card.Body>
           </Card>
-        </Col>
+         </Col>
       );
     });
   return (
@@ -113,11 +119,13 @@ const ProductsList = () => {
         <h5 className="text-left" style={{ padding: "40px" }}>
           Products
         </h5>
-        <br />
+      </Row>
         <div className="row" style={{ paddingLeft: "65px" }}>
-          {displayProducts}
+          {allProducts.length ? displayProducts : "Loading..."}
+        </div>
+        <Row>
           <div className="col-md-7"></div>
-          <div className="col-md-5" style={{display:"inherit", marginBottom:"20px", marginTop:"20px"}}>
+        <div className="col-md-5" style={{display:"inherit", marginBottom:"20px", marginTop:"20px"}}>
         <ReactPaginate 
               previousLabel={"Previous"}
               nextLabel={"Next"}
@@ -130,8 +138,8 @@ const ProductsList = () => {
               activeClassName={"paginationActive"}
             />
         </div>
-        </div>
-      </Row>
+        </Row>
+      
     </Container>
   );
 };

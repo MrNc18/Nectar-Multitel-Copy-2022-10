@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const styles = {
   padding: "7px",
@@ -12,18 +13,20 @@ const styles = {
   margin: "0 auto",
 };
 
-function BroadbandCard({imgdiv, head1, head2}) {
+function BroadbandCard({ imgdiv, head1, head2, content, detail }) {
+  let navigate = useNavigate();
   return (
     <div className="broadband_card">
-      <p className="blue_small">{head1}</p>
+      <p className={detail ? "blue_big" : "blue_small"}>{head1}</p>
       <p className="black-color brd_heading">{head2}</p>
       {imgdiv}
-      <p className="black-color my-4" style={{ fontSize: "14px" }}>
-        Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua.
-      </p>
-      <Button className="portfolio-item__link" style={styles}>
-        Read More
+      {content}
+      <Button
+        className="portfolio-item__link"
+        style={styles}
+        onClick={() => navigate("/categories/internet-services/tag")}
+      >
+        {detail ? "Start Now" : "Read More"}
       </Button>
     </div>
   );

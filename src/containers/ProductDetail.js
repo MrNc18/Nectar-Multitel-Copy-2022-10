@@ -4,6 +4,8 @@ import { useLocation, useParams } from "react-router-dom";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import CommonSection from "../components/CommonSection";
 import LandingPage from "../components/LandingPage";
+import { formatAmount } from "../utils/AmountFormatter";
+import { baseurl } from "../utils/request";
 
 const AdditionalInfo = () => (
 
@@ -135,21 +137,28 @@ function ProductDetail() {
 
   return (
     <LandingPage>
-      <ServiceBanner title="Product Detail" />
+      <ServiceBanner title={product?.name} />
       <section className="container mt-5 pt-4 mb-0 pb-4">
         <div className="row">
           <div className="col-12 col-md-5">
             <div className="book-full-img">
-              <img src={product?.image} className="img-fluid" />
-              {/* <img src="assets/images/magnify-icon.png" className="img-fluid magnify-icon" /> */}
+              <img
+                src={
+                  product?.cover_img
+                    ? `${baseurl}/images/${product?.cover_img}`
+                    : "/assets/images/product.png"
+                }
+                className="img-fluid" 
+              />
+              
             </div>
           </div>
           <div className="col-12 col-md-7">
             <div className="book-details">
-              <h1>{params?.name}</h1>
-              <p>{product?.specification}</p>
+              <h1>{product?.name}</h1>
+              {/* <p>{product?.specification}</p> */}
               <div className="price">
-                ${product?.price}&nbsp;<span className="old_price">$7200</span>
+                {formatAmount(product?.price)}
               </div>
               {/* <div className="rating">
                 <span> <i className="fa fa-star-o"></i> </span>
@@ -215,12 +224,7 @@ function ProductDetail() {
             <div className="product_desc mt-3">
               <h2 className="book_social">Description</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                blandit interdum felis sit amet vehicula. Vestibulum sagittis
-                luctus elit, non lobortis neque fringilla non. Duis tempus
-                sollicitudin nunc id placerat. Vestibulum non nibh a lacus
-                viverra congue nec ut velit. Sed id dui nisi. Proin at suscipit
-                velit.
+                {product?.description}
               </p>
             </div>
 

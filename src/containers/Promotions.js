@@ -2,6 +2,7 @@ import React from "react";
 import LandingPage from "../components/LandingPage";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import { Button, Col, Container, Row, Card } from "react-bootstrap";
+import PromotionCard from "../components/atoms/PromotionCard";
 
 function Promotions() {
   return (
@@ -21,7 +22,9 @@ function Promotions() {
         </Container>
       </section>
       <Container>
-        <Row style={{justifyContent:"center"}}>
+        <PromotionCard />
+        <PromotionCard />
+        {/* <Row style={{justifyContent:"center"}}>
           <Col lg={12} md={12} sm={12} xs={12}>
             <Card style={{ flexDirection: "row", justifyContent:"center" }}>
               <Card.Img variant="top" src="/assets/images/fiber.png" style={{width:"35%"}} />
@@ -60,7 +63,7 @@ function Promotions() {
               </Card.Body>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
       <section id="promotions" className="mb-4">
         <Container>
