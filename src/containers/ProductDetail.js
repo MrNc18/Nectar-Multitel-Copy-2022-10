@@ -134,7 +134,7 @@ function ProductDetail() {
       setProduct(response?.data?.data);
       // !response?.data?.length && setInitial("No promotions found");
     })();
-  }, []);  
+  }, [params?.name]);  
 
   const TabList = Object.freeze([
     { label: "Additional Information", state: "additional" },

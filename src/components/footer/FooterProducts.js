@@ -51,8 +51,11 @@ function FooterProducts() {
           <div className="portfolio-item__info">
             <div className="portfolio-item__links">
               <div className="portfolio-item__link-block">
-                <Button className="portfolio-item__link" style={styles}>
-                  Add to Cart
+                <Button className="portfolio-item__link" style={styles}
+                onClick={() =>
+                  navigate(`/products/${product?.slug}`, {state: {product}})
+                }>
+                  Read More
                 </Button>
               </div>
             </div>

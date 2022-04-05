@@ -95,8 +95,11 @@ function ProductCard({ product }) {
               style={{
                 backgroundColor: "#0076B5",
               }}
+              onClick={() =>
+                navigate(`/products/${product.slug}`, {state: {product}})
+              }
             >
-              Add to Cart
+              Read More
             </Button>
           </Col>
           </Row>
