@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useLocation, useParams } from "react-router-dom";
 import ServiceBanner from "../components/atoms/ServiceBanner";
@@ -6,6 +6,7 @@ import CommonSection from "../components/CommonSection";
 import LandingPage from "../components/LandingPage";
 import { formatAmount } from "../utils/AmountFormatter";
 import { baseurl } from "../utils/request";
+import { getProductBySlug } from "../services/category";
 
 const AdditionalInfo = () => (
 
@@ -117,11 +118,23 @@ const Reviews = () => (
 );
 
 function ProductDetail() {
-  const params = useParams();
-  const { state } = useLocation();
-  const { product } = state;
-  console.log(product);
+  // const { state } = useLocation();
+  // const { product } = state;
+  // console.log(product);
+
+  const [product, setProduct] = useState({})
   const [step, setStep] = useState("additional");
+  const params = useParams()
+  console.log(params?.name)
+
+  useEffect(() => {
+    (async () => {
+      const response = await getProductBySlug({slug: params?.name})
+      console.log(response);
+      setProduct(response?.data?.data);
+      // !response?.data?.length && setInitial("No promotions found");
+    })();
+  }, []);  
 
   const TabList = Object.freeze([
     { label: "Additional Information", state: "additional" },

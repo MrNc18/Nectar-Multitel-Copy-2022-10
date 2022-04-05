@@ -344,7 +344,7 @@ img.dot_left {
 .single_product {
   background: #fff;
 }
-.prod_name span {
+.prod_name a {
   font-size: 14px;
   font-weight: 500;
 }
@@ -653,7 +653,8 @@ img.dot_left, img.dot_right{display: none;}
   width: 63%;
 }
 .broad3 img {
-  width: 100%;
+  max-width: 200px;
+    width: auto;
 }
 
 

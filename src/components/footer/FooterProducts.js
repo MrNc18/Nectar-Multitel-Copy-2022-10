@@ -1,27 +1,52 @@
-import React from 'react'
-import { Button, Container, Row } from 'react-bootstrap'
+import React, { useEffect, useState } from "react";
+import { Button, Container, Row } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { getAllProducts } from "../../services/category";
+import { baseurl } from "../../utils/request";
 
 const styles = {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    padding: "7px",
-    borderRadius: "5px",
-    display: "inline-block",
-    fontSize: "12px",
-    border: "none",
-    color: "#fff",
-    background: "var(--secondary)",
+  position: "absolute",
+  top: 0,
+  right: 0,
+  padding: "7px",
+  borderRadius: "5px",
+  display: "inline-block",
+  fontSize: "12px",
+  border: "none",
+  color: "#fff",
+  background: "var(--secondary)",
+};
+
+function FooterProducts() {
+  const navigate = useNavigate();
+  const [allProducts, setAllProducts] = useState([]);
+
+  const handleGetallProducts = async () => {
+    try {
+      const resp = await getAllProducts();
+      console.log(resp);
+      setAllProducts(resp.data);
+    } catch (error) {
+      alert("something Went Wrong", "Error");
+    }
   };
-  
-  const ProductCard = () => (
+
+  useEffect(() => {
+    handleGetallProducts();
+    console.log("allProducts", allProducts);
+  }, []);
+
+  const displayProducts = allProducts.slice(0,8).map((product) => (
     <div className="col-md-6 col-lg-3 mb-4">
       <div className="single_product">
         <div className="portfolio-item portfolio-effect__item portfolio-item--eff1">
           <img
             className="portfolio-item__image img-fluid rounded"
-            src="/assets/images/product.png"
-            alt="Portfolio Item"
+            src={
+              product?.cover_img
+                ? `${baseurl}/images/${product?.cover_img}`
+                : "/assets/images/product.png"
+            }
           />
           <div className="portfolio-item__info">
             <div className="portfolio-item__links">
@@ -34,29 +59,27 @@ const styles = {
           </div>
         </div>
         <div className="prod_name text-center">
-          <span>Mega Speed Router</span>
+          <a
+            onClick={() =>
+              navigate(`/products/${product.slug}`, { state: { product } })
+            }
+            style={{cursor:"pointer"}}
+          >
+            {product?.name}
+          </a>
         </div>
       </div>
     </div>
-  );
-  
-  const getDetails = () => {
-    let content = [];
-    for (let i = 0; i < 8; i++) {
-      content.push(<ProductCard key={i} />);
-    }
-    return content;
-  };
+  ));
 
-function FooterProducts() {
   return (
     <section id="products" className="py-5 mt-4 mb-4">
-        <Container>
-          <h2 className="mb-4">Latest Products</h2>
-          <Row>{getDetails()}</Row>
-        </Container>
-      </section>
-  )
+      <Container>
+        <h2 className="mb-4">Latest Products</h2>
+        <Row>{allProducts.length ? displayProducts : "Loading..."}</Row>
+      </Container>
+    </section>
+  );
 }
 
-export default FooterProducts
+export default FooterProducts;

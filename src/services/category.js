@@ -35,6 +35,10 @@ export const getAllCategories = async () => {
      return await doPost('api/product/getProductsByCategory',data)
    }
 
+   export const getProductBySlug = async(data) =>{
+    return await doPost('api/product/getProductBySlug',data)
+  }
+
    //promotions
    export const getAllPromotions = async () => {
     return await doGet("api/promotion/getAllpromotions")

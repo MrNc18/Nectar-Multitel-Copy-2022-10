@@ -105,7 +105,7 @@ function App() {
                     src={test}
                   />
                   <div className="link">
-                    <button className="link_btn">Welcome to multitel</button>
+                    <button className="link_btn">Welcome to Multitel</button>
                     <p className="link_text">
                       <b>Experience new generation of Internet</b>
                       <br />
