@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { backIcon } from '../../svg/backIcon'
 
-function ServiceBanner({title,regnPage}) {
+function ServiceBanner({title,regnPage,backlink="/marketplace"}) {
   return (
     <section id="inner_banner">
         <Container>
@@ -11,7 +11,7 @@ function ServiceBanner({title,regnPage}) {
             <Row>
                 <Col xs={12}>
                     <div className=''>
-                    {!regnPage && <Link to={"/marketplace"}>{backIcon}</Link>}
+                    {!regnPage && <Link to={backlink}>{backIcon}</Link>}
                 <h1 className='white-color text-center'>{title}</h1>
                 </div>
                 </Col>

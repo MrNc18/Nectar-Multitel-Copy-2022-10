@@ -35,4 +35,35 @@ export const getAllCategories = async () => {
      return await doPost('api/product/getProductsByCategory',data)
    }
 
+   //promotions
+   export const getAllPromotions = async () => {
+    return await doGet("api/promotion/getAllpromotions")
+   }
+   export const getAddPromotion = async(data) =>{
+     return await doPost('api/promotion/addpromotions',data);
+   }
+   export const getEditPromotion = async(data) =>{
+     return await doPut('api/promotion/editpromotions',data);
+   }
+   export const getDeletePromotion = async(data) =>{
+     return await doDelete('api/promotion/deletepromotions',data);
+   }
+
+  //  export const getProductsByCategory = async(data) =>{
+  //    return await doPost('api/product/getProductsByCategory',data)
+  //  }
+
+  export const getAllInternetServices = async () => {
+    return await doGet("api/product")
+   }
+   export const getAddServices = async(data) =>{
+     return await doPost('api/product/add',data);
+   }
+   export const getEditServices = async(data) =>{
+     return await doPut('api/product/edit',data);
+   }
+   export const getDeleteServices = async(data) =>{
+     return await doDelete('api/product/delete',data);
+   }
+
  
