@@ -114,6 +114,7 @@ function Categories() {
       await getEditCategory(data);
       alert("Category Edited Sucessfully");
       setShowEditModal(false);
+      setData2(' ')
       handleAllCategories();
     } catch (error) {
       alert("Something Went Wrong");
@@ -121,6 +122,7 @@ function Categories() {
   };
   const handleEditClose = () => {
     setShowEditModal(false);
+    setData2(' ')
   };
 
   //Get All Category Api

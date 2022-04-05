@@ -93,6 +93,7 @@ function Products() {
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
+    }
       data.append("description", description);
       data.append("name", productName);
       data.append("id",id);
@@ -100,7 +101,7 @@ function Products() {
       data.append("price", price);
       data.append("category_id",categoryId)
       // data.append("slug","test-product 2")
-    }
+   
     try {
       await getEditProduct(data);
       alert("Category Edited Sucessfully");
