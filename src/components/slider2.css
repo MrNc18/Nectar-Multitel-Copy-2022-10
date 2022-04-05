@@ -210,37 +210,36 @@
 
 @media screen and (max-width: 1300px) {
   #up_btn {
-    bottom:382px;
-    left: 33vw;
+    bottom:337px;
+    left: 31.5vw;
   }
   #down_btn {
-    bottom:150px;
-    left: 31vw;
+    bottom: 108px;
+    left: 29.5vw;
   }
   #ul_m_li {
     right: 220px;
-    top: -360px;
+    top: -320px;
   }
   .link {
     
      position: absolute;
-    bottom: 23vh;
+    bottom:130px;
     left: 50px;
     color:white;
-    font-weight: 300;
+    font-weight: 200;
     font-size: 20px; 
    } 
    .link .link_text {
        font-family:'Rubik';
        font-size: larger;
        font-weight: 300px;
-       top:5px;
    }
 .link .link_btn {
   
    background-color: white;
   position: absolute;
-  bottom: 13vh;
+  bottom: 105px;
   border-radius:5px;
   left: 0px;
   color: blue;
