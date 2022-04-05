@@ -166,10 +166,10 @@ function Products() {
               <button
                 type="button"
                 className="btn btn-primary btn-sm my-3"
-                style={{ width: "150px", marginRight: "15px" }}
+                style={{ marginRight: "15px" }}
                 onClick={() => navigate("/admin/products/newproduct")}
               >
-                <i className="fas fa-plus-circle"></i> Add New Products
+                <i className="fas fa-plus-circle"></i> Add New Product
               </button>
             </div>
           </div>
