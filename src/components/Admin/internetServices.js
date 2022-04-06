@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import CreateMultiselect from "../atoms/CreateMultiselect";
 import {
+  getAddServiceProducts,
+  getAllServicesProducts,
+  getDeleteServiceProducts,
+  getEditServiceProducts,
   getAllInternetServices,
-  getAddServices,
-  getDeleteServices,
-  getEditServices,
   imageUrl,
 } from "../../services/category";
 import { Link } from "react-router-dom";
 
 function InternetServices() {
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {setShow(true) ;  console.log("serviceList",servicesList)};
   const [show, setShow] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
@@ -21,14 +22,19 @@ function InternetServices() {
   //   const [banfile, setBanfile] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [servicesList, setServicesList] = useState("");
+  const[productsList,setProductsList]=useState('')
 
   const [data2, setData2] = useState({
     id: "",
     name: "",
     description: "",
     tag: "",
+    price: "",
+    category: "",
+    SortDescription: "",
   });
-  const { id, name, tag, description } = data2;
+  const { id, name, tag, description, price, category, SortDescription } =
+    data2;
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
@@ -37,9 +43,7 @@ function InternetServices() {
     setFile(event.target.files);
     console.log(file);
   };
-  //   const handleBanFileChange = (event) => {
-  //     setBanfile(event.target.files);
-  //   };
+
   const handleDeleteshow = (item) => {
     setDeleteShow(true);
     setDeleteRecord(item);
@@ -53,10 +57,10 @@ function InternetServices() {
       id: deleteRecord.id,
     };
     try {
-      await getDeleteServices(data);
+      await getDeleteServiceProducts(data);
       alert("Promotion Deleted Sucessfully");
       setDeleteShow(false);
-      handleAllServices();
+      handleAllServiceProducts();
     } catch (error) {
       console.log("error", error);
       alert("Something Went Wrong");
@@ -64,22 +68,37 @@ function InternetServices() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let ServiceId = ''
+    {servicesList &&
+        servicesList.map((item) => {
+        if(item.name === category){
+            ServiceId = item.id
+          console.log("item.id",item.id)
+        }
+      })
+      }
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
+    }
       data.append("description", description);
       data.append("name", name);
-      data.append("tag", tag);
-    }
+      data.append("price", price);
+      data.append("category", category);
+      data.append("service_id", ServiceId);
+      data.append("SortDescription", SortDescription);
+   
 
-    if (name === "" || description === "" || file === "" || tag === "") {
+    if (name === "" || description === "" || price === "" || category === "") {
       setErrorMsg("Fill the Mandatory Filelds");
     } else
       try {
-        await getAddServices(data);
-        alert("Added  Promotion.", "success");
+        await getAddServiceProducts(data);
+        alert("Added  Services Succesfully.", "success");
+        setErrorMsg("");
+        setData2(' ')
         setShow(false);
-        handleAllServices();
+        handleAllServiceProducts();
       } catch (error) {
         alert(error.data.message, "error");
       } finally {
@@ -93,38 +112,74 @@ function InternetServices() {
       id: item.id,
       name: item.name,
       description: item.description,
-      tag: item.tag,
+      category:item.service.name,
+      price:item.price,
+      SortDescription:item.service.sort_description
+
     });
     setShowEditModal(true);
   };
   const handleEditServices = async () => {
+    let EditServiceId = ''
+    {servicesList &&
+        servicesList.map((item) => {
+        if(item.name === category){
+            EditServiceId = item.id
+          console.log("item.id",item.id)
+        }
+      })
+      }
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
     }
-    data.append("description", description);
-    data.append("name", name);
-    data.append("id", id);
-    data.append("tag", tag);
+      data.append("description", description);
+      data.append("name", name);
+      data.append("price", price);
+      data.append("category", category);
+      data.append("serviceId", EditServiceId);
+      data.append("SortDescription", SortDescription);
+      data.append("id", id);
+
+    
 
     try {
-      await getEditServices(data);
-      alert("Promotion Edited Sucessfully");
+      await getEditServiceProducts(data);
+      alert("Service Product Edited Sucessfully");
+      setData2("");
+      setFile('')
       setShowEditModal(false);
-      handleAllServices();
+      handleAllServiceProducts();
     } catch (error) {
       alert("Something Went Wrong");
     }
   };
   const handleEditClose = () => {
+    setData2("");
     setShowEditModal(false);
   };
 
   //Get All Category Api
 
+  const handleAllServiceProducts = async () => {
+    try {
+      const resp = await getAllServicesProducts();
+      setProductsList(resp && resp.data);
+      console.log("resp", resp);
+    } catch (error) {
+      console.log("error", error);
+      alert("something went Wrong");
+    }
+  };
+
+  useEffect(() => {
+    handleAllServiceProducts();
+    
+  }, []);
+
+
   const handleAllServices = async () => {
     try {
-      let tableDataArr = [];
       const resp = await getAllInternetServices();
       setServicesList(resp && resp.data);
       console.log("resp", resp);
@@ -158,11 +213,6 @@ function InternetServices() {
                 <i className="fas fa-plus-circle"></i> Add New service
               </button>
               <Modal show={show} onHide={handleClose} className="add_cat_modal">
-                {/* <Modal.Header closeButton>
-                  <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                    Add New Category
-                  </Modal.Title>
-                </Modal.Header> */}
 
                 <Modal.Body>
                   <button
@@ -193,18 +243,45 @@ function InternetServices() {
                         name="description"
                         onChange={handleChange}
                       ></Form.Control>
-                      <Form.Label>Upload Image</Form.Label>{" "}
+                      <Form.Label>Sort Description</Form.Label>
+                      <Form.Control
+                        type="textarea"
+                        value={SortDescription}
+                        name="SortDescription"
+                        onChange={handleChange}
+                      ></Form.Control>
+                      {/* <Form.Label>Upload Image</Form.Label>{" "}
                       <Form.Control
                         type="file"
                         id="file"
                         onChange={handleFileChange}
-                      ></Form.Control>
+                      ></Form.Control> */}
                       <Form.Label>Service Category</Form.Label> <br />
-                      <Form.Select size="default" style={{height:"35px",color:"grey",borderColor:"beige"}}>
-                        <option>     Please select the Category     </option>
+                      <Form.Select
+                        value={category}
+                        name="category"
+                        onChange={handleChange}
+                        size="default"
+                        style={{
+                          height: "35px",
+                          color: "grey",
+                          borderColor: "beige",
+                        }}
+                      >
+                        <option> Please select the Category </option>
+                        {servicesList &&
+                        servicesList.map((item) => (
+                          <option value={item.name? item.name : ""}>{item? item.name : ""}</option>
+                        ))}
                       </Form.Select>
                       <br />
-                      <Form.Label>Key (tags)</Form.Label> <CreateMultiselect />
+                      <Form.Label>Price</Form.Label>
+                      <Form.Control
+                        type="number"
+                        value={price}
+                        name="price"
+                        onChange={handleChange}
+                      ></Form.Control>
                     </Form.Group>
                   </div>
                 </Modal.Body>
@@ -229,31 +306,28 @@ function InternetServices() {
         <Table striped bordered hover size="md" responsive>
           <thead style={{ backgroundColor: "#0076B5", color: "white" }}>
             <tr>
-              <th>Sr.No.</th>
               <th>Id</th>
-              <th>Services</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price</th>
               <th>Image</th>
-              <th>Tags</th>
               <th>Action</th>
             </tr>
           </thead>
-          {/* <tbody>
-            {categoryList &&
-              categoryList.map((item, i) => (
+          <tbody>
+            {productsList &&
+              productsList.map((item, i) => (
                 <tr>
-                  {console.log("pc", categoryList)}
+                  {console.log("pc", productsList)}
 
-                  <td>{i + 1}</td>
                   <td>{item.id}</td>
                   <td>{item.name}</td>
+                  <td>{item.service.name}</td>
+                  <td>{item.price}</td>
                   <td>
-                    <img
-                      src={imageUrl(item.image)}
-                      style={{ width: "60px" }}
-                    />
+                    <img src={imageUrl(item.service.image)} style={{ width: "60px" }} />
                   </td>
-                  {/* <td>{item.quantity}</td> */}
-          {/* <td>
+                  <td>
                     <a
                       className="nav-link"
                       onClick={() => {
@@ -272,9 +346,9 @@ function InternetServices() {
                       <i className="fa fa-edit" />
                     </a>
                   </td>
-                </tr> */}
-          {/* ))}
-          </tbody>  */}
+                </tr>
+              ))}
+          </tbody>
         </Table>
       </div>
       {/* Delete Modal */}
@@ -327,13 +401,47 @@ function InternetServices() {
                     name="description"
                     onChange={handleChange}
                   ></Form.Control>
-                  <Form.Label>Upload</Form.Label>{" "}
+                  <Form.Label>Sort Description</Form.Label>
+                  <Form.Control
+                    type="textarea"
+                    value={SortDescription}
+                    name="SortDescription"
+                    onChange={handleChange}
+                  ></Form.Control>
+                  <Form.Label>Service Category</Form.Label> <br />
+                  <Form.Select
+                    value={category}
+                    name="category"
+                    onChange={handleChange}
+                    size="default"
+                    style={{
+                      height: "35px",
+                      color: "grey",
+                      borderColor: "beige",
+                    }}
+                  >
+                    <option> Please select the Category </option>
+                    {servicesList &&
+                        servicesList.map((item) => (
+                          <option value={item.name? item.name : ""}>{item? item.name : ""}</option>
+                        ))}
+                    
+                  </Form.Select>
+                  <br />
+                  <Form.Label>Price</Form.Label>
+                  <Form.Control
+                    type="number"
+                    value={price}
+                    name="price"
+                    onChange={handleChange}
+                  ></Form.Control>
+                  {/* <Form.Label>Upload</Form.Label>{" "}
                   <Form.Control
                     type="file"
                     id="file"
                     // value={file}
                     onChange={handleFileChange}
-                  ></Form.Control>
+                  ></Form.Control> */}
                 </Form.Group>
               </div>
             </Modal.Body>

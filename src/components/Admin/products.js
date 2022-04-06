@@ -64,7 +64,7 @@ function Products() {
 
   // Edit Api
   const handleEditShow = (item) => {
-    console.log(item, "record");
+    console.log(allcategories, "allcategories");
     setData2({
       id:item.id,
       productName: item.name,
@@ -93,6 +93,7 @@ function Products() {
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
+    }
       data.append("description", description);
       data.append("name", productName);
       data.append("id",id);
@@ -100,7 +101,7 @@ function Products() {
       data.append("price", price);
       data.append("category_id",categoryId)
       // data.append("slug","test-product 2")
-    }
+   
     try {
       await getEditProduct(data);
       alert("Category Edited Sucessfully");
@@ -126,7 +127,7 @@ function Products() {
       setProductList(resp && resp.data);
       console.log("resp", resp);
     } catch (error) {
-      console.log("error", error);
+      console.log("error", error); 
       alert("something went Wrong");
     }
   };
@@ -166,10 +167,10 @@ function Products() {
               <button
                 type="button"
                 className="btn btn-primary btn-sm my-3"
-                style={{ width: "150px", marginRight: "15px" }}
+                style={{ marginRight: "15px" }}
                 onClick={() => navigate("/admin/products/newproduct")}
               >
-                <i className="fas fa-plus-circle"></i> Add New Products
+                <i className="fas fa-plus-circle"></i> Add New Product
               </button>
             </div>
           </div>
@@ -291,9 +292,9 @@ function Products() {
                     >
                       <option>select the category</option>
                       {console.log("A;;",allcategories)}
-                      {productList &&
-                        productList.map((item) => (
-                          <option value={item.product_category ? item.product_category.name : ""}>{item.product_category ? item.product_category.name : ""}</option>
+                      {allcategories &&
+                        allcategories.map((item) => (
+                          <option value={item.name? item.name : ""}>{item? item.name : ""}</option>
                         ))}
                     </select>
                   </div>

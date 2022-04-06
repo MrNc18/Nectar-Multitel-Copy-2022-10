@@ -54,6 +54,7 @@ function ProductCard({ product }) {
         onClick={() =>
           navigate(`/products/${product.slug}`, {state: {product}})
         }
+        style={{cursor:"pointer"}}
       >
         <Card.Img
           variant="top"
@@ -70,6 +71,7 @@ function ProductCard({ product }) {
           onClick={() =>
             navigate(`/products/${product.slug}`, {state: {product}})
           }
+          style={{cursor:"pointer"}}
         >
           <Card.Title style={{fontSize:"18px"}}>{product?.name}</Card.Title>
         </a>
@@ -93,8 +95,11 @@ function ProductCard({ product }) {
               style={{
                 backgroundColor: "#0076B5",
               }}
+              onClick={() =>
+                navigate(`/products/${product.slug}`, {state: {product}})
+              }
             >
-              Add to Cart
+              Read More
             </Button>
           </Col>
           </Row>

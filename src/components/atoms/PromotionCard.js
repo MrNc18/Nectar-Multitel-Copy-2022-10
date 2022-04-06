@@ -1,56 +1,45 @@
 import React from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { baseurl } from "../../utils/request";
 
-function PromotionCard({ detail }) {
+function PromotionCard({ promo, detail }) {
   let navigate = useNavigate();
   return (
     <Row style={{ justifyContent: "center" }}>
       <Col lg={12} md={12} sm={12} xs={12}>
-        <Card className="my-5" style={{ flexDirection: "row", justifyContent: "center" }}>
+        <Card
+          className="my-5"
+          style={{ flexDirection: "row", justifyContent: "center" }}
+        >
           <Card.Img
             variant="top"
-            src="/assets/images/fiber.png"
+            src={
+              promo?.image
+                ? `${baseurl}/images/${promo?.image}`
+                : "/assets/images/fiber.png"
+            }
             style={{ width: "35%" }}
           />
           <Card.Body>
-            <Card.Title>Unlimited Business</Card.Title>
+            <Card.Title>{promo?.name}</Card.Title>
             {!detail ? (
               <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                {promo?.description?.split(" ").splice(0, 15).join(" ") +
+                  (promo?.description?.split(" ").length > 15 ? "..." : "")}
               </Card.Text>
             ) : (
-              <>
-                <Card.Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                  blandit interdum felis sit amet vehicula. Vestibulum sagittis
-                  luctus elit, non lobortis neque fringilla non. Duis tempus
-                  sollicitudin nunc id placerat. Vestibulum non nibh a lacus
-                  viverra congue nec ut velit. Sed id dui nisi. Proin at
-                  suscipit velit.
-                </Card.Text>
-                <Card.Text>
-                  Sed id lacus metus. Proin ultrices turpis vitae eleifend
-                  tempus. Nam dapibus vitae augue consequat facilisis. Phasellus
-                  rhoncus ac dui at tristique. Etiam porttitor eros non orci
-                  fermentum.
-                </Card.Text>
-              </>
+              <Card.Text>{promo?.description}</Card.Text>
             )}
 
             <Row style={{ flexDirection: "row" }}>
-              <Col>
+              {promo?.Promotion_tags?.map((tag) => (
+                <Col>
                 <Button variant="outline-primary" style={{ border: "none" }}>
-                  <i className="fa-solid fa-wifi fa-lg"></i> Internet
+                  <i className="fa-solid fa-wifi fa-lg"></i> {tag?.name}
                 </Button>
               </Col>
-              <Col>
-                <Button variant="outline-primary" style={{ border: "none" }}>
-                  <i class="fa-solid fa-tower-broadcast fa-lg"></i> Unlimited
-                  Data
-                </Button>
-              </Col>
+              ) )}
             </Row>
             {!detail && (
               <>
@@ -58,7 +47,7 @@ function PromotionCard({ detail }) {
                 <Button
                   variant="outline-primary"
                   style={{ border: "none" }}
-                  onClick={() => navigate("/categories/promotions/tag")}
+                  onClick={() => navigate(`/categories/promotions/${promo?.slug}`)}
                 >
                   View Full Details{" "}
                   <i class="fa-solid fa-arrow-right fa-lg"></i>
