@@ -42,6 +42,8 @@ import PromotionDetail from "./containers/PromotionDetail";
 import InternetServicesDetail from "./containers/InternetServicesDetail";
 import InformaticAndAccessories from "./containers/InformaticAndAccessories";
 import ServicesCategory from "./components/Admin/ServicesCategory";
+import ServicesCategory from "./components/Admin/ServicesCategory";
+import InformaticAndAccessories from "./containers/InformaticAndAccessories";
 
 
 
