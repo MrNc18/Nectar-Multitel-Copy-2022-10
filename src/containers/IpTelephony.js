@@ -29,7 +29,7 @@ function IpTelephony() {
           <i class="fa-solid fa-arrow-right  m-4"></i>
           <div className="col-md-3 text-center">
           <i class="fa-brands fa-internet-explorer fa-2x m-4  "></i>
-          <div ><b>Internet</b></div>
+          <div ><b>Internet</b></div> 
           <div>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
        
@@ -50,7 +50,7 @@ function IpTelephony() {
 
 
 
-      
+
 
       <section id="internet_service" className="pos-relative">
         <Row>
