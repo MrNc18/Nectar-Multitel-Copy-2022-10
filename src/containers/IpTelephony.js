@@ -5,86 +5,88 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 
 function IpTelephony() {
   return (
+    <>
     <LandingPage>
       <ServiceBanner title="IP Telephony" />
-      <div className="container my-5">
-        <div className="row">
-          <div className="col-md-2 text-center  ">
+      <Container className="mt-5 mb-5">
+        <Row className="justify-content-center">
+        <Col lg={2} md={4} className="text-center">
             <i
-              class="fa-solid fa-phone fa-2x  text-white    m-4   "
-              // style={{
-              //   backgroundColor: "#0076B5",
-              //   borderRadius: "50px",
-              //   width: "50px",
-              //   height: "50px",
-              // }}
+              class="fa-solid fa-phone fa-2x  text-white  m-4"
               style={{
                 background: "#0076B5",
-                borderRadius: "50px",
-                justifyContent:"space-between",
-                width: "50px",
-                height: "50px",
-                alignItems: "center",
-                margin:50
+                borderRadius: "50%",
+                width: "60px",
+                height: "60px",
+                margin:50,
+                padding:"10px",
+                paddingTop:"15px"
                 }}
             ></i>
             <div>
               <b>LAN</b>
             </div>
             <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-          </div>
+          </Col>
           <div className="text-center">
-            <i class="fa-solid fa-arrow-right-long m-4 p-4 "></i>
+            <i class="fa-solid fa-arrow-right-long p-4 fa-2x" style={{marginTop:"80px"}}></i>
           </div>
-          <div className="col-md-2 text-center">
+          <Col lg={2} md={4} className="text-center">
             <i
-              class="fa-solid fa-cloud fa-2x m-4    text-white "
+              class="fa-solid fa-cloud fa-2x m-4 text-white"
               style={{
                 backgroundColor: "#0076B5",
-                borderRadius: "50px",
-                width: "50px",
-                height: "50px",
+                borderRadius: "50%",
+                width: "60px",
+                height: "60px",
+                padding:"10px",
+                paddingTop:"12px"
+
               }}
             ></i>
             <div>
               <b>Private Network</b>
             </div>
             <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-          </div>
-          <i class="fa-solid fa-arrow-right-long m-4 p-4  "></i>
-          <div className="col-md-2 text-center">
+          </Col>
+          <i class="fa-solid fa-arrow-right-long p-4 fa-2x" style={{marginTop:"80px"}}></i>
+          <Col lg={2} md={4} className="text-center">
             <i
-              class="fa-brands fa-internet-explorer fa-2x m-4  text-white   "
+              class="fa-brands fa-internet-explorer fa-2x m-4 text-white"
               style={{
                 backgroundColor: "#0076B5",
-                borderRadius: "50px",
-                width: "50px",
-                height: "50px",
+                borderRadius: "50%",
+                width: "60px",
+                height: "60px",
+                padding:"10px",
+                paddingTop:"12px"
               }}
             ></i>
             <div>
               <b>Internet</b>
             </div>
             <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-          </div>
-          <i class="fa-solid fa-arrow-right-long m-4 p-4   "></i>
-          <div className="col-md-2 text-center">
+          </Col>
+          <i class="fa-solid fa-arrow-right-long p-4 fa-2x" style={{marginTop:"80px"}}></i>
+          <Col lg={2} md={4} className="text-center">
             <i
-              class="fa-solid fa-mobile-button fa-2x m-4  text-white    "
+              class="fa-solid fa-mobile-button fa-2x m-4  text-white"
               style={{
                 backgroundColor: "#0076B5",
-                borderRadius: "50px",
-                width: "50px",
-                height: "50px",
+                borderRadius: "50%",
+                width: "60px",
+                height: "60px",
+                padding:"10px",
+                paddingTop:"12px"
               }}
             ></i>
             <div>
               <b>PSTN</b>
             </div>
             <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
 
       <section id="internet_service" className="pos-relative">
         <Row>
@@ -134,6 +136,7 @@ function IpTelephony() {
         </Row>
       </section>
     </LandingPage>
+    </>
   );
 }
 
