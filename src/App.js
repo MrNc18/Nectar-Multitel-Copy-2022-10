@@ -41,6 +41,7 @@ import Category from "./containers/Category";
 import PromotionDetail from "./containers/PromotionDetail";
 import InternetServicesDetail from "./containers/InternetServicesDetail";
 import InformaticAndAccessories from "./containers/InformaticAndAccessories";
+import ServicesCategory from "./components/Admin/ServicesCategory";
 
 
 
@@ -58,7 +59,7 @@ function App() {
         {/* <Route path="/network-equipments" element={<NetworkEquipments />} /> */}
         {/* <Route path="/internet-services" element={<InternetServices />} />    */}
         <Route path="/categories/internet-services/:tag" element={<InternetServicesDetail />} />    
-        <Route path="/categories/promotions/:tag" element={<PromotionDetail />} />
+        <Route path="/categories/promotions/:slug" element={<PromotionDetail />} />
         {/* <Route path="/otherproducts" element={<OtherProducts />} /> */}
         <Route path="/register" element={<ClientRegistration />} />
         <Route path="/register-confirmation/:token" element={<RegnConfirmation />} />
@@ -77,6 +78,8 @@ function App() {
           <Route path="products/newproduct" element={<AddProduct />} />
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="Service-categories" element={<ServicesCategory />} />
+
           <Route path="internetServices" element={<AdinternetServices />} />
           <Route path="promotions" element={<AdPromotions />} />
 

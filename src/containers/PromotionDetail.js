@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
 import PromotionCard from '../components/atoms/PromotionCard'
 import ServiceBanner from '../components/atoms/ServiceBanner'
 import ServiceCard from '../components/atoms/ServiceCard'
 import CommonSection from '../components/CommonSection'
 import LandingPage from '../components/LandingPage'
+import { getPromotionBySlug } from '../services/promotions'
+
+
+
 
 const servicesData = [
     {
@@ -30,12 +35,25 @@ const servicesData = [
   ];
 
 function PromotionDetail() {
+  const [promoDetail, setPromoDetail] = useState({})
+  const params = useParams()
+  console.log(params?.slug)
+
+  useEffect(() => {
+    (async () => {
+      const response = await getPromotionBySlug({slug: params?.slug})
+      console.log(response);
+      setPromoDetail(response?.data?.data);
+      // !response?.data?.length && setInitial("No promotions found");
+    })();
+  }, []);
+
   return (
     <LandingPage>
         <ServiceBanner title="Promotions" backlink='/categories/promotions' />
         <section className='promo-det'>
             <Container>
-                <PromotionCard detail />
+                <PromotionCard promo={promoDetail} detail />
             </Container>
         </section>
 

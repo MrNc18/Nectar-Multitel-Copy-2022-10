@@ -352,7 +352,7 @@ img.dot_left {
 .single_product {
   background: #fff;
 }
-.prod_name span {
+.prod_name a {
   font-size: 14px;
   font-weight: 500;
 }
@@ -688,7 +688,10 @@ img.dot-middle {
   width: 63%;
 }
 .broad3 img {
-  width: 100%;
+  max-width: 200px;
+    width: auto;
+    max-height: 63px;
+    height: auto;
 }
 
 #promotions {
