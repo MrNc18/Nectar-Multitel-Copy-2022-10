@@ -26,12 +26,12 @@ function Profile() {
               >
                 <Nav>
                   <Nav.Item>
-                    <Nav.Link href="#second" style={{ color: "white" }}>
+                    <Nav.Link href="/editprofile" style={{ color: "white" }}>
                     Edit Profile
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="#third" style={{ color: "white" }}>
+                    <Nav.Link href="/myproducts" style={{ color: "white" }}>
                       My Products
                     </Nav.Link>
                   </Nav.Item>
