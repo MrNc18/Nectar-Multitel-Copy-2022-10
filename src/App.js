@@ -18,7 +18,15 @@ import NetworkEquipments from "./containers/NetworkEquipments";
 import Promotions from "./containers/Promotions";
 import OtherProducts from "./containers/OtherProducts";
 import ClientRegistration from "./containers/ClientRegistration";
+import Account from "./containers/Account";
 import CPE from "./containers/CPE";
+// import Store from "./components/redux/Store";
+import EditProfile from "./containers/EditProfile";
+import MyProducts from "./containers/MyProducts";
+import HelpDesk from "./containers/HelpDesk";
+import Invoice from "./containers/Invoice";
+import InvoiceDetails from "./containers/InvoiceDetails";
+import InternetQualityGraph from "./containers/InternetQualityGraph";
 import ForgotPassword from "./containers/ForgotPassword";
 import ResetPassword from "./containers/ResetPassword";
 import ProductDetail from "./containers/ProductDetail";
@@ -33,6 +41,7 @@ import Category from "./containers/Category";
 import PromotionDetail from "./containers/PromotionDetail";
 import InternetServicesDetail from "./containers/InternetServicesDetail";
 import ServicesCategory from "./components/Admin/ServicesCategory";
+import InformaticAndAccessories from "./containers/InformaticAndAccessories";
 
 
 
@@ -76,6 +85,31 @@ function App() {
 
         </Route>
 
+         <Route path="/promotions" element={<Promotions />} />
+         <Route path="/otherproducts" element={<OtherProducts />} />
+          {/* <Route path="/admin" element={<AdLanding/>}> */}
+         <Route path="/register" element={<ClientRegistration />} />
+         <Route path="/profile" element={<Account />}/>
+         <Route path="/editprofile" element={<EditProfile />}/>
+         <Route path="/myproducts" element={<MyProducts />}/>
+         <Route path="/helpdesk" element={<HelpDesk />} />
+         <Route path="/invoice" element={<Invoice />} />
+         <Route path="/invoicedetails" element={<InvoiceDetails />} />
+         <Route path="/internetqualitygraph" element={<InternetQualityGraph />} />
+         <Route path="/informaticandaccesories" element={<InformaticAndAccessories />} />
+
+         
+         {/* {/* <Route path="/admin" element={<AdLanding/>}> */}
+         <Route path="" element={<Dashboard />} />
+         <Route path="/cpe" element={<CPE />} />
+          <Route path="/admin" element={<AdLanding/>}>
+            <Route path="" element={<Dashboard />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="products" element={<Products />}/>
+            <Route path="products/newproduct" element={<AddProduct />} />
+            <Route path="staticpages" element={<StaticPage />} />
+            <Route path="settings" element={<Settings />} />
+           </Route> 
       </Routes>
      
     </BrowserRouter>

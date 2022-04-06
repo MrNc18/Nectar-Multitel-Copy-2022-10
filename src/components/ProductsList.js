@@ -8,6 +8,7 @@ import Image19 from ".././assets/Image19.png"
 import {formatAmount} from "../utils/AmountFormatter"
 import { baseurl } from "../utils/request";
 import ProductCard from "./atoms/ProductCard";
+import ReactPaginate from "react-paginate";
 
 const ProductsList = () => {
   const navigate = useNavigate();
@@ -29,10 +30,20 @@ const ProductsList = () => {
      console.log("allProducts",allProducts)
   }, []);
 
+  //pagination
+  const [pageNumber, setPageNumber] = useState(0);
+  const usersPerPage = 12;
+  const pagesVisited = pageNumber * usersPerPage;
+  const pageCount = Math.ceil(allProducts.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
   
 
   const displayProducts =
-  allProducts.map((product) => {
+  
+  allProducts &&
+  allProducts.slice(pagesVisited, pagesVisited + usersPerPage).map((product) => {
       return (
         <ProductCard product={product} key={product.id} />
         // <Col md={4} key={product.id}>
@@ -115,6 +126,22 @@ const ProductsList = () => {
         <div className="row" style={{ paddingLeft: "65px" }}>
           {allProducts.length ? displayProducts : "Loading..."}
         </div>
+        <Row>
+          <div className="col-md-7"></div>
+        <div className="col-md-5" style={{display:"inherit", marginBottom:"20px", marginTop:"20px"}}>
+        <ReactPaginate 
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            />
+        </div>
+        </Row>
       
     </Container>
   );
