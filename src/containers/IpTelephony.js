@@ -9,36 +9,36 @@ function IpTelephony() {
       <ServiceBanner title="IP Telephony" />
       <div className="container">
         <div className="row">
-          <div className="col-md-2" style={{borderRadius:"50%"}} >
-          <i class="fa-solid fa-phone fa-2x bg-primary text-white m-4 " ></i>
-          <div >LAN</div>
+          <div className="col-md-2 text-center"  >
+          <i class="fa-solid fa-phone fa-2x    m-4 "  ></i>
+          <div><b>LAN</b></div>
           <div>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
        
           </div>
           </div>
-          <i class="fa-solid fa-arrow-right"></i>
-          <div className="col-md-3">
-          <i class="fa-solid fa-cloud fa-2x m-4 bg-primary text-white " ></i>
-          <div >Private Network</div>
+          <i class="fa-solid fa-arrow-right m-4" ></i>
+          <div className="col-md-3 text-center">
+          <i class="fa-solid fa-cloud fa-2x m-4   " ></i>
+          <div><b>Private Network</b></div>
           <div>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
        
           </div>
           </div>
-          <i class="fa-solid fa-arrow-right"></i>
-          <div className="col-md-3">
-          <i class="fa-brands fa-internet-explorer fa-2x m-4 bg-primary text-white"></i>
-          <div >Internat</div>
+          <i class="fa-solid fa-arrow-right  m-4"></i>
+          <div className="col-md-3 text-center">
+          <i class="fa-brands fa-internet-explorer fa-2x m-4  "></i>
+          <div ><b>Internet</b></div>
           <div>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
        
           </div>
           </div>
-          <i class="fa-solid fa-arrow-right"></i>
-          <div className="col-md-3">
-          <i class="fa-solid fa-mobile-button fa-2x m-4 bg-primary text-white"></i>
-          <div >PSTN</div>
+          <i class="fa-solid fa-arrow-right  m-4"></i>
+          <div className="col-md-2 text-center">
+          <i class="fa-solid fa-mobile-button fa-2x m-4    "></i>
+          <div ><b>PSTN</b></div>
           <div>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
        
@@ -46,6 +46,11 @@ function IpTelephony() {
           </div>
         </div>
       </div>
+
+
+
+
+      
 
       <section id="internet_service" className="pos-relative">
         <Row>
