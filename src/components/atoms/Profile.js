@@ -8,8 +8,8 @@ function Profile() {
       <Row>
         <Col md={12}>
           <Card className="mt-5">
-            <Card.Header style={{ display: "inline-block" }}>
-              <div style={{ display: "inline-block" }}>
+            <Card.Header style={{display: "flex",flexDirection:'row',justifyContent: 'space-between'}}>
+              <div className='col-md-3'>
                 <img
                   src="/assets/images/cloud.png"
                   alt=""
@@ -36,17 +36,17 @@ function Profile() {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="#four" style={{ color: "white" }}>
+                    <Nav.Link href="/helpdesk" style={{ color: "white" }}>
                       Help Desk
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="#five" style={{ color: "white" }}>
+                    <Nav.Link href="/internetqualitygraph" style={{ color: "white" }}>
                       Internet Quality Graph
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="#six" style={{ color: "white" }}>
+                    <Nav.Link href="/invoice" style={{ color: "white" }}>
                       Invoices
                     </Nav.Link>
                   </Nav.Item>
