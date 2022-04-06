@@ -7,50 +7,84 @@ function IpTelephony() {
   return (
     <LandingPage>
       <ServiceBanner title="IP Telephony" />
-      <div className="container">
+      <div className="container my-5">
         <div className="row">
-          <div className="col-md-2 text-center"  >
-          <i class="fa-solid fa-phone fa-2x    m-4 "  ></i>
-          <div><b>LAN</b></div>
-          <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-       
+          <div className="col-md-2 text-center  ">
+            <i
+              class="fa-solid fa-phone fa-2x  text-white    m-4   "
+              // style={{
+              //   backgroundColor: "#0076B5",
+              //   borderRadius: "50px",
+              //   width: "50px",
+              //   height: "50px",
+              // }}
+              style={{
+                background: "#0076B5",
+                borderRadius: "50px",
+                justifyContent:"space-between",
+                width: "50px",
+                height: "50px",
+                alignItems: "center",
+                margin:50
+                }}
+            ></i>
+            <div>
+              <b>LAN</b>
+            </div>
+            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
           </div>
+          <div className="text-center">
+            <i class="fa-solid fa-arrow-right-long m-4 p-4 "></i>
           </div>
-          <i class="fa-solid fa-arrow-right m-4" ></i>
-          <div className="col-md-3 text-center">
-          <i class="fa-solid fa-cloud fa-2x m-4   " ></i>
-          <div><b>Private Network</b></div>
-          <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-       
-          </div>
-          </div>
-          <i class="fa-solid fa-arrow-right  m-4"></i>
-          <div className="col-md-3 text-center">
-          <i class="fa-brands fa-internet-explorer fa-2x m-4  "></i>
-          <div ><b>Internet</b></div> 
-          <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-       
-          </div>
-          </div>
-          <i class="fa-solid fa-arrow-right  m-4"></i>
           <div className="col-md-2 text-center">
-          <i class="fa-solid fa-mobile-button fa-2x m-4    "></i>
-          <div ><b>PSTN</b></div>
-          <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-       
+            <i
+              class="fa-solid fa-cloud fa-2x m-4    text-white "
+              style={{
+                backgroundColor: "#0076B5",
+                borderRadius: "50px",
+                width: "50px",
+                height: "50px",
+              }}
+            ></i>
+            <div>
+              <b>Private Network</b>
+            </div>
+            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
           </div>
+          <i class="fa-solid fa-arrow-right-long m-4 p-4  "></i>
+          <div className="col-md-2 text-center">
+            <i
+              class="fa-brands fa-internet-explorer fa-2x m-4  text-white   "
+              style={{
+                backgroundColor: "#0076B5",
+                borderRadius: "50px",
+                width: "50px",
+                height: "50px",
+              }}
+            ></i>
+            <div>
+              <b>Internet</b>
+            </div>
+            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+          </div>
+          <i class="fa-solid fa-arrow-right-long m-4 p-4   "></i>
+          <div className="col-md-2 text-center">
+            <i
+              class="fa-solid fa-mobile-button fa-2x m-4  text-white    "
+              style={{
+                backgroundColor: "#0076B5",
+                borderRadius: "50px",
+                width: "50px",
+                height: "50px",
+              }}
+            ></i>
+            <div>
+              <b>PSTN</b>
+            </div>
+            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
           </div>
         </div>
       </div>
-
-
-
-
-
 
       <section id="internet_service" className="pos-relative">
         <Row>
