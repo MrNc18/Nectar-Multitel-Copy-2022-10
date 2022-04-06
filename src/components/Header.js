@@ -108,7 +108,7 @@ function Header() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={() =>navigate("/profile") }>Profile</Dropdown.Item>
                         <Dropdown.Item
                           onClick={() => {
                             deleteCookie(AUTH_TOKEN);

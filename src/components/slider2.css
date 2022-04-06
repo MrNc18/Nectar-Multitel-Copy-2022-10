@@ -367,6 +367,7 @@
  cursor: pointer;
  border-radius: 5px;
  text-align: center;
+}
 
  .link .link_btn2 {
     
@@ -383,6 +384,7 @@
     text-align: center;
   } 
 }
+
 @media screen and (max-width: 1000px){
   #up_btn {
     bottom: 296px;

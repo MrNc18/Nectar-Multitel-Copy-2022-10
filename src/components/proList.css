@@ -55,3 +55,29 @@
 .card {
   margin-bottom: 30px;
 }
+
+/* CSS for pagination */
+
+.paginationBttns a {
+  padding: 12px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #0076B5;
+  color: #0076B5;
+  cursor: pointer;
+  font: 1em sans-serif;
+  font-size: 15px;
+}
+.paginationActive a{
+  background-color: #0076B5;
+}
+.pagination {
+  display: inline-block;
+}
+dl, ol, ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  display: inherit;
+  text-decoration: none;
+  list-style-type: none;
+}
