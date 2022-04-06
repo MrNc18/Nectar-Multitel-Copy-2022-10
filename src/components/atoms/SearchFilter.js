@@ -28,14 +28,22 @@ function SearchFilter() {
     <Container>
       <Row>
         <Col md={12} style={{ marginTop: "30px" }}>
-        <div class="input-group">
-            <input class="form-control py-2 border-right-0 border" type="search" placeholder="Search Here" id="example-search-input" />
+          <div class="input-group">
+            <input
+              class="form-control py-2 border-right-0 border"
+              type="search"
+              placeholder="Search Here"
+              id="example-search-input"
+            />
             <span class="input-group-append">
-                <button class="btn btn-outline-secondary border-left-0 border" type="button">
-                    <i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
+              <button
+                class="btn btn-outline-secondary border-left-0 border"
+                type="button"
+              >
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
           <Card style={{ marginTop: "30px" }}>
             <Card.Header style={{ backgroundColor: "#0076B5", color: "white" }}>
               SHOP BY
@@ -43,8 +51,8 @@ function SearchFilter() {
             <Card.Body>
               <div className="by_price mb-3">
                 <p className="headng mb-2">FILTER BY PRICE</p>
-                <div className="row mb-2">
-                  <div className="col-4">
+                <div className="row mb-2" style={{display:"inline-block"}}>
+                  <div className="col-4" style={{display:"inline-block"}}>
                     <p className="small mb-0">Min</p>
                     <input
                       type="text"
@@ -55,7 +63,7 @@ function SearchFilter() {
                     />
                   </div>
                   to
-                  <div className="col-4">
+                  <div className="col-4" style={{display:"inline-block"}}>
                     <p className="small mb-0">Max</p>
                     <input
                       type="text"
@@ -64,6 +72,9 @@ function SearchFilter() {
                       id="max_price"
                       value={"15000"}
                     />
+                  </div>
+                  <div className="col-3" style={{display:"inline-block", marginLeft:"-10px"}}>
+                    <Button variant="dark" size="sm">Search</Button>{" "}
                   </div>
                 </div>
                 <div className="row">
