@@ -29,7 +29,7 @@ export const doPost = async (path, data) => {
       }
       return reject(response);
     } catch (error) {
-      return reject(error);
+      return reject(error.response);
     }
   });
 };
