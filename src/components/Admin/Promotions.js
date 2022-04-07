@@ -175,11 +175,12 @@ function Promotions() {
     try {
       await getEditPromotion(data);
       alert("Promotion Edited Sucessfully");
-      setData2({
-        id: "",
-        name: "",
-        description: "",
-      });
+      // setData2({
+      //   id: "",
+      //   name: "",
+      //   description: "",
+      // });
+      setData2(' ')
       setFile("");
       setShowEditModal(false);
       handleAllPromotions();
@@ -188,6 +189,7 @@ function Promotions() {
     }
   };
   const handleEditClose = () => {
+    setData2(' ')
     setShowEditModal(false);
   };
 

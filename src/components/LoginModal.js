@@ -29,8 +29,9 @@ function LoginModal({ show, handleClose }) {
       navigate("/redirect")
       
     } catch (error) {
-      showAlert("Please enter valid credentials.", "error");
-      alert(error)
+      // showAlert("Please enter valid credentials.", "error");
+      console.log("erm",error.data.massage)
+      alert(error.data.massage)
     } finally {
       setBtnLoading(false);
     }

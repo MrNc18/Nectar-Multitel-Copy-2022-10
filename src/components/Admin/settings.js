@@ -1,9 +1,12 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { EyeOutlined } from "@ant-design/icons";
+import {changePassword} from "../../services/authentication"
 import "./settings.css"
 
 function Settings() {
   const [errorMsg, seterrorMsg] = useState("");
+  const Token = window.localStorage.getItem("token");
+  const email = window.localStorage.getItem("email");
   const [data, setData] = useState({
     confirmPassword: "",
     oldPassword: "",
@@ -30,6 +33,34 @@ function Settings() {
   const toggleConfNewPasswordVisiblity = () => {
     setConfNewPasswordShown(ConfNewPasswordShown ? false : true);
   };
+
+  const reset = async () => {
+    // console.warn();
+    const payload = {
+      email: email,
+      oldPassword: oldPassword,
+      confirmPassword: confirmPassword,
+      password: newPassword,
+      token: Token,
+    };
+    if (confirmPassword !== newPassword) {
+      seterrorMsg("Password doesn't match");
+    } else {
+      try {
+        const response = await changePassword(payload);
+        setData(" ");
+        seterrorMsg("");
+        alert("Password Updated Sucessfully...")
+      } catch (error) {
+        alert(JSON.stringify(error.message));
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    console.log('window.localStorage.getItem',window.localStorage)
+  }, []);
+
   return (
     <div id="layoutSidenavContent">
       <div className="container-fluid">
@@ -84,6 +115,11 @@ function Settings() {
                         />
                         <i className='eye' onClick={toggleConfNewPasswordVisiblity}>{eye}</i>
                       </div>
+                      <label
+                          style={{ color: "red", justifyContent: "center" }}
+                        >
+                          {errorMsg}
+                        </label>
 
                       <div
                         className="bttn d-flex"
@@ -93,7 +129,7 @@ function Settings() {
                           type="button"
                           className="btn btn-primary btn-lg"
                           onClick={() => {
-                            // reset();
+                            reset();
                           }}
                         >
                           Update Password
@@ -104,11 +140,7 @@ function Settings() {
                         >
                           Cancel
                         </button>
-                        <label
-                          style={{ color: "red", justifyContent: "center" }}
-                        >
-                          {/* {errorMsg} */}
-                        </label>
+                      
                       </div>
                     </div>
         </div>
