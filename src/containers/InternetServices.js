@@ -3,15 +3,17 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import BroadbandCard from "../components/atoms/BroadbandCard";
 import ServiceBanner from "../components/atoms/ServiceBanner";
+import ServiceCardDynamic from "../components/atoms/ServiceCardDynamic";
 import LandingPage from "../components/LandingPage";
 import Services from "../components/Services";
 import { getAllServices } from "../services/intservices";
 import { tvIcon } from "../svg/tv";
 
-function InternetServices() {
+function InternetServices({name}) {
   const navigate = useNavigate();
   const [initial, setInitial] = useState("Loading...");
   const [categoryList, setCategoryList] = useState([]);
+  console.log(name)
 
   useEffect(() => {
     (async () => {
@@ -24,7 +26,7 @@ function InternetServices() {
 
   return (
     <LandingPage>
-      <ServiceBanner title="Internet Services" />
+      <ServiceBanner title={name} />
       <Services />
 
       <section id="deserve">
@@ -32,12 +34,13 @@ function InternetServices() {
           <Row>
             <Col md={12} className="text-center">
               <p className="mb-2">Private. Secure. Super Fast</p>
-              <h2 className="mb-3">Our Broadband Services</h2>
+              <h2 className="mb-3">Our Services</h2>
               <div className="broadband_services my-5">
                 <Row>
                 {categoryList.length ? (
                     categoryList.map((cat) => (
-                      <BroadbandCard cat={cat} key={cat?.id} />
+                      // <BroadbandCard cat={cat} key={cat?.id} />
+                      <ServiceCardDynamic cat={cat} key={cat?.id} />
                     ))
                   ) : (
                     <p>{initial}</p>

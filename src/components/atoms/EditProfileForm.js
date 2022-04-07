@@ -208,7 +208,11 @@ function EditProfileForm() {
                   </div>
                 </div>
                 <div className="d-grid gap-2 mt-5 mb-3">
+
+                  
+
                   <Button variant="primary" size="lg" style={{width:"100%"}} onClick={()=>handleEditProfile()}>
+
                     Update Profile
                   </Button>
                 </div>

@@ -445,7 +445,8 @@ ul.icontext {
   padding-bottom: 15px;
 }
 #deserve p,
-#deserve h2 {
+#deserve h2,
+.blue_hding_subhding p, .blue_hding_subhding h2 {
   color: var(--big-heading);
 }
 .net_service span {
@@ -1018,4 +1019,9 @@ span.username {
   font-weight: bold;
   margin-bottom: 3px;
   letter-spacing: 1.68px;
+}
+
+/* profile pg css by RAhul */
+.profile_cards {
+  margin-right: 10px;
 }

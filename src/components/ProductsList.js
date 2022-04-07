@@ -128,7 +128,7 @@ const ProductsList = () => {
         </div>
         <Row>
           <div className="col-md-7"></div>
-        <div className="col-md-5" style={{display:"inherit", marginBottom:"20px", marginTop:"20px"}}>
+        <div className="col-md-5 product_pagination" style={{display:"inherit", marginBottom:"20px", marginTop:"20px"}}>
         <ReactPaginate 
               previousLabel={"Previous"}
               nextLabel={"Next"}
