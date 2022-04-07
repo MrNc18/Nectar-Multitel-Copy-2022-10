@@ -2,13 +2,15 @@ import React from "react";
 import LandingPage from "../components/LandingPage";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import Vendors from "../components/atoms/Vendors";
 
 function IpTelephony() {
   return (
     <>
     <LandingPage>
       <ServiceBanner title="IP Telephony" />
-      <Container className="mt-5 mb-5">
+      <Vendors />
+      {/* <Container className="mt-5 mb-5">
         <Row className="justify-content-center">
         <Col lg={2} md={4} className="text-center">
             <i
@@ -86,9 +88,9 @@ function IpTelephony() {
             <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
 
-      <section id="internet_service" className="pos-relative">
+      {/* <section id="internet_service" className="pos-relative">
         <Row>
           <Col md={4} lg={5}>
             <h2 className="mb-4 mt-5">Our Landline Telephony Services</h2>
@@ -134,7 +136,7 @@ function IpTelephony() {
           />
           <img src="/assets/images/dot-middle.png" className="dot-middle" />
         </Row>
-      </section>
+      </section> */}
     </LandingPage>
     </>
   );

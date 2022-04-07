@@ -43,6 +43,11 @@ import InternetServicesDetail from "./containers/InternetServicesDetail";
 import IpTelephony from "./containers/IpTelephony";
 import InformaticAndAccessories from "./containers/InformaticAndAccessories";
 import ServicesCategory from "./components/Admin/ServicesCategory";
+import ContactPromotion from "./containers/ContactPromotion";
+import ContactOtherProductSerPart from "./containers/ContactOtherProductSerPart";
+import ContactTelecom from "./containers/ContactTelecom";
+import ContactEquip from "./containers/ContactEquip";
+import ContactCPE from "./containers/ContactCPE";
 
 
 
@@ -99,6 +104,11 @@ function App() {
          <Route path="/internetqualitygraph" element={<InternetQualityGraph />} />
          <Route path="/iptelephony" element={<IpTelephony />} />
          <Route path="/informaticandaccesories" element={<InformaticAndAccessories />} />
+         <Route path="/contactpromotion" element={<ContactPromotion />} />
+         <Route  path="/contactotherproductserpart" element={<ContactOtherProductSerPart />}/>
+         <Route  path="/contacttelecom" element={<ContactTelecom/>} />
+         <Route  path="/contactequip" element={<ContactEquip/>}/>
+         <Route  path="/contactcpe" element={<ContactCPE/>}/>
 
          
          {/* {/* <Route path="/admin" element={<AdLanding/>}> */}
