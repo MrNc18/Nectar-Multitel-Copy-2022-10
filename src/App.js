@@ -42,6 +42,7 @@ import PromotionDetail from "./containers/PromotionDetail";
 import InternetServicesDetail from "./containers/InternetServicesDetail";
 import InformaticAndAccessories from "./containers/InformaticAndAccessories";
 import ServicesCategory from "./components/Admin/ServicesCategory";
+import NetworkEquipmentVendors from "./containers/NetworkEquipmentVendors";
 
 
 
@@ -97,6 +98,7 @@ function App() {
          <Route path="/invoicedetails" element={<InvoiceDetails />} />
          <Route path="/internetqualitygraph" element={<InternetQualityGraph />} />
          <Route path="/informaticandaccesories" element={<InformaticAndAccessories />} />
+         <Route path="/networkequipmentvendors" element={<NetworkEquipmentVendors />} />
 
          
          {/* {/* <Route path="/admin" element={<AdLanding/>}> */}
