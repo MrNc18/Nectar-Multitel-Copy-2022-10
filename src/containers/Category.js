@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import CPE from './CPE';
 import InternetServices from './InternetServices';
 import NetworkEquipments from './NetworkEquipments';
@@ -9,6 +9,8 @@ import Promotions from './Promotions';
 function Category() {
     const params = useParams()
     console.log(params?.slug)
+    const {state} = useLocation()
+    // const {name} = state
 
     const renderDetails = () => {
       switch(params?.slug) {
@@ -17,7 +19,7 @@ function Category() {
         case "network-equipments":
           return <NetworkEquipments />
         case "internet-services":
-          return <InternetServices /> 
+          return <InternetServices name={state ? state?.name : "Services"} /> 
         case "promotions":
           return <Promotions />
         case "other-productsservices-1":

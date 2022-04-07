@@ -74,7 +74,7 @@
 .pagination {
   display: inline-block;
 }
-dl, ol, ul {
+.product_pagination dl,.product_pagination ol, .product_pagination ul {
   margin-top: 0;
   margin-bottom: 1rem;
   display: inherit;

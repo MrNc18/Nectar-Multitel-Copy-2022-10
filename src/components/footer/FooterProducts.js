@@ -37,7 +37,7 @@ function FooterProducts() {
   }, []);
 
   const displayProducts = allProducts.slice(0,8).map((product) => (
-    <div className="col-md-6 col-lg-3 mb-4">
+    <div key={product?.id} className="col-md-6 col-lg-3 mb-4">
       <div className="single_product">
         <div className="portfolio-item portfolio-effect__item portfolio-item--eff1">
           <img

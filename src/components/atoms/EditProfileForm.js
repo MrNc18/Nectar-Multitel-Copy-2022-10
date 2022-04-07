@@ -99,7 +99,7 @@ function EditProfileForm() {
                   </div>
                 </div>
                 <div className="d-grid gap-2 mt-5 mb-3">
-                  <Button variant="primary" size="lg" style={{width:"100%"}}>
+                  <Button variant="primary" size="lg" style={{margin: "0 auto", display: "block"}}>
                     Update Profile
                   </Button>
                 </div>

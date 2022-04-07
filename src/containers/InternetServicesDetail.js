@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import BroadbandCard from "../components/atoms/BroadbandCard";
 import BroadbandCardDetail from "../components/atoms/BroadbandCardDetail";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import { getProductsByService } from "../services/intservices";
+import { baseurl } from "../utils/request";
 
 function InternetServicesDetail() {
   const navigate = useNavigate();
   const [initial, setInitial] = useState("Loading...");
   const [productsList, setProductsList] = useState([]);
+  const [catDetails, setCatDetails] = useState({})
 
   const params = useParams()
   console.log(params?.tag)
@@ -20,20 +22,53 @@ function InternetServicesDetail() {
       const response = await getProductsByService({slug: params?.tag})
       console.log(response);
       const products = response?.data?.data?.service_products;
-      products ? setProductsList(products) : setInitial("No service products found");
-      // !response?.data?.length && setInitial("No service products found");
+      response?.data?.data ? setProductsList(products) : setInitial("No service products found");
+      setCatDetails(response?.data?.data)
     })();
   }, []);
 
   return (
     <LandingPage>
-      <ServiceBanner title="Broadband Packages" backlink="/categories/internet-services" />
+      <ServiceBanner title={catDetails?.name} backlink="/categories/internet-services" />
+      <section className="blue_hding_subhding mt-5">
+        <Row>
+            <Col md={12} className="text-center">
+              <p className="mb-2">Check Out The Services We Provide</p>
+              <h2 className="mb-3">Our Services</h2>
+            </Col>
+          </Row>
+        <Container>
+          <Row style={{ justifyContent: "center" }}>
+            <Col lg={12} md={12} sm={12} xs={12}>
+              <Card
+                className="my-4"
+                style={{ flexDirection: "row", justifyContent: "center" }}
+              >
+                <Card.Img
+                  variant="top"
+                  src={
+                    catDetails?.image
+                      ? `${baseurl}/images/${catDetails?.image}`
+                      : "/assets/images/fiber.png"
+                  }
+                  style={{ width: "35%" }}
+                />
+                <Card.Body>
+                  <Card.Title>{catDetails?.name}</Card.Title>
+                  
+                    <Card.Text>{catDetails?.description}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </section>
       <section id="deserve" className="mt-5">
         <Container>
           <Row>
             <Col md={12} className="text-center">
               <p className="mb-2">The Best in The Segment</p>
-              <h2 className="mb-3">Our Broadband Packages</h2>
+              <h2 className="mb-3">Latest Plans For The Service</h2>
               <div className="broadband_services my-5">
                 <Row>
                 {productsList.length ? (
