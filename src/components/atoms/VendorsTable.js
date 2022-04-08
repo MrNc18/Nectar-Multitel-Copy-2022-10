@@ -1,63 +1,28 @@
-import React from "react";
-import { Table, Card, Col, Row, Container } from "react-bootstrap";
+import React from 'react';
+import { Container, Col, Row, Table } from "react-bootstrap";
 
 function VendorsTable() {
+  
   return (
     <Container>
       <Row>
         <Col md={12}>
-          <Table responsive="md" className="mt-5 mb-4">
-            <thead style={{backgroundColor:"#0076B5", color:"white"}}>
+        <Table responsive="md" className="mt-5 mb-4">
+            <thead>
               <tr>
-                <th>S.No</th>
-                <th>Vendor Name</th>
-                <th>Vendor Phone</th>
-                <th>Vendor Email</th>
-                <th>Vendor Address</th>
+                {"thead"}
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>245-568-5698</td>
-                <td>mark@gmail.com</td>
-                <td>1st Block 1st Cross, Rammurthy nagar</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Mark</td>
-                <td>245-568-5698</td>
-                <td>mark@gmail.com</td>
-                <td>1st Block 1st Cross, Rammurthy nagar</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Mark</td>
-                <td>245-568-5698</td>
-                <td>mark@gmail.com</td>
-                <td>1st Block 1st Cross, Rammurthy nagar</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Mark</td>
-                <td>245-568-5698</td>
-                <td>mark@gmail.com</td>
-                <td>1st Block 1st Cross, Rammurthy nagar</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Mark</td>
-                <td>245-568-5698</td>
-                <td>mark@gmail.com</td>
-                <td>1st Block 1st Cross, Rammurthy nagar</td>
+                {"tdata"}
               </tr>
             </tbody>
           </Table>
         </Col>
       </Row>
     </Container>
-  );
+  )
 }
 
-export default VendorsTable;
+export default VendorsTable
