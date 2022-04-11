@@ -44,6 +44,14 @@ import IpTelephony from "./containers/IpTelephony";
 import InformaticAndAccessories from "./containers/InformaticAndAccessories";
 import ServicesCategory from "./components/Admin/ServicesCategory";
 import NetworkEquipmentVendors from "./containers/NetworkEquipmentVendors";
+import ContactPromotion from "./containers/ContactPromotion";
+import ContactOtherProductSerPart from "./containers/ContactOtherProductSerPart";
+import ContactTelecom from "./containers/ContactTelecom";
+import ContactEquip from "./containers/ContactEquip";
+import ContactCPE from "./containers/ContactCPE";
+
+
+
 
 function App() {
   return (
@@ -108,6 +116,11 @@ function App() {
         <Route path="/otherproducts" element={<OtherProducts />} /> 
         {/* <Route path="/admin" element={<AdLanding/>}> */}
         <Route path="/register" element={<ClientRegistration />} />
+         <Route path="/contactpromotion" element={<ContactPromotion />} />
+         <Route  path="/contactotherproductserpart" element={<ContactOtherProductSerPart />}/>
+         <Route  path="/contacttelecom" element={<ContactTelecom/>} />
+         <Route  path="/contactequip" element={<ContactEquip/>}/>
+         <Route  path="/contactcpe" element={<ContactCPE/>}/>
 
         <Route path="client" element={<Example />}>
           <Route path="profile" element={<Account />}/>
