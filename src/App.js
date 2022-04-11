@@ -51,8 +51,6 @@ import ContactEquip from "./containers/ContactEquip";
 import ContactCPE from "./containers/ContactCPE";
 
 
-
-
 function App() {
   return (
     <BrowserRouter>
@@ -121,6 +119,10 @@ function App() {
          <Route  path="/contacttelecom" element={<ContactTelecom/>} />
          <Route  path="/contactequip" element={<ContactEquip/>}/>
          <Route  path="/contactcpe" element={<ContactCPE/>}/>
+        <Route path="/promotions" element={<Promotions />} />
+        <Route path="/otherproducts" element={<OtherProducts />} /> 
+        {/* <Route path="/admin" element={<AdLanding/>}> */}
+        <Route path="/register" element={<ClientRegistration />} />
 
         <Route path="client" element={<Example />}>
           <Route path="profile" element={<Account />}/>
