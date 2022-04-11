@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import {updateUser} from "../../services/authentication"
 import { AUTH_TOKEN, deleteCookie, getCookie } from "../../utils/cookie";
@@ -19,7 +19,7 @@ function EditProfileForm() {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     getDataByToken();
     setData({
       firstName: userData.first_name,
