@@ -40,11 +40,81 @@ function Vendors() {
       email: "mark@gmail.com",
       address: "1st Block 1st Cross, Rammurthy nagar",
     },
+    {
+      sno:6,
+      name: "Mark",
+      phone: "245-568-5698",
+      email: "mark@gmail.com",
+      address: "1st Block 1st Cross, Rammurthy nagar",
+    },
+    {
+      sno:7,
+      name: "Mark",
+      phone: "245-568-5698",
+      email: "mark@gmail.com",
+      address: "1st Block 1st Cross, Rammurthy nagar",
+    },
+    {
+      sno:8,
+      name: "Mark",
+      phone: "245-568-5698",
+      email: "mark@gmail.com",
+      address: "1st Block 1st Cross, Rammurthy nagar",
+    },
+    {
+      sno:9,
+      name: "Mark",
+      phone: "245-568-5698",
+      email: "mark@gmail.com",
+      address: "1st Block 1st Cross, Rammurthy nagar",
+    },
+    {
+      sno:10,
+      name: "Mark",
+      phone: "245-568-5698",
+      email: "mark@gmail.com",
+      address: "1st Block 1st Cross, Rammurthy nagar",
+    },
+    {
+      sno:11,
+      name: "Mark",
+      phone: "245-568-5698",
+      email: "mark@gmail.com",
+      address: "1st Block 1st Cross, Rammurthy nagar",
+    },
+    {
+      sno:12,
+      name: "Mark",
+      phone: "245-568-5698",
+      email: "mark@gmail.com",
+      address: "1st Block 1st Cross, Rammurthy nagar",
+    },
+    {
+      sno:13,
+      name: "Mark",
+      phone: "245-568-5698",
+      email: "mark@gmail.com",
+      address: "1st Block 1st Cross, Rammurthy nagar",
+    },
+    {
+      sno:14,
+      name: "Mark",
+      phone: "245-568-5698",
+      email: "mark@gmail.com",
+      address: "1st Block 1st Cross, Rammurthy nagar",
+    },
+    {
+      sno:15,
+      name: "Mark",
+      phone: "245-568-5698",
+      email: "mark@gmail.com",
+      address: "1st Block 1st Cross, Rammurthy nagar",
+    },
   ];
 
   //pagination
   const [pageNumber, setPageNumber] = useState(0);
-  const usersPerPage = 3;
+  const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
   const pageCount = Math.ceil(vendors.length / usersPerPage);
   const changePage = ({ selected }) => {
