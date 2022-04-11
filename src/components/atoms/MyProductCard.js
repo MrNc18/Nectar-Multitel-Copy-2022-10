@@ -3,7 +3,7 @@ import { Button, Col, Container, Row, Card, CardGroup } from "react-bootstrap";
 
 function MyProductCard() {
   return (
-    <Container>
+    <Container className="mb-4">
       <Row>
         <Col md={12}>
           <h5 style={{ color: "#0076B5" }}>Check the products below</h5>
@@ -41,7 +41,7 @@ function MyProductCard() {
                       background: "#0076B5",
                     }}
                   >
-                    <i class="fa-solid fa-download"></i> Download Multitel
+                    <i class="fa-solid fa-download mr-1"></i> Download Multitel
                     Mobile App
                   </Button>
                 </Card.Body>

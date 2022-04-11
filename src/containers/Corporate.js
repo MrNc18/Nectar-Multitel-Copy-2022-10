@@ -41,7 +41,7 @@ function Corporate() {
         heading="The Internet you Deserve"
       />
 
-      <section id="img_cards" className="mt-5 mb-5">
+      {/* <section id="img_cards" className="mt-5 mb-5">
         <Container>
           <Row>
             {servicesData.map((service) => (
@@ -53,9 +53,9 @@ function Corporate() {
             ))}
           </Row>          
         </Container>
-      </section>
+      </section> */}
 
-      <section id="triimage">
+      <section id="triimage" className="mt-5">
         <Row>
           <Col md={4} className="tri1">
             <div className="padding_div">
