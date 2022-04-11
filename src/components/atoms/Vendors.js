@@ -2,33 +2,39 @@ import React, {useState} from "react";
 import { Container, Col, Row, Table } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 
+
 function Vendors() {
   const vendors = [
     {
+      sno:1,
       name: "Mark",
       phone: "245-568-5698",
       email: "mark@gmail.com",
       address: "1st Block 1st Cross, Rammurthy nagar",
     },
     {
+      sno:2,
       name: "Mark",
       phone: "245-568-5698",
       email: "mark@gmail.com",
       address: "1st Block 1st Cross, Rammurthy nagar",
     },
     {
+      sno:3,
       name: "Mark",
       phone: "245-568-5698",
       email: "mark@gmail.com",
       address: "1st Block 1st Cross, Rammurthy nagar",
     },
     {
+      sno:4,
       name: "Mark",
       phone: "245-568-5698",
       email: "mark@gmail.com",
       address: "1st Block 1st Cross, Rammurthy nagar",
     },
     {
+      sno:5,
       name: "Mark",
       phone: "245-568-5698",
       email: "mark@gmail.com",
@@ -52,6 +58,7 @@ function Vendors() {
           <Table responsive="md" className="mt-4 mb-4">
             <thead style={{ backgroundColor: "#0076B5", color: "white" }}>
               <tr>
+                <th>S.No.</th>
                 <th>Vendor Name</th>
                 <th>Vendor Phone</th>
                 <th>Vendor Email</th>
@@ -61,6 +68,7 @@ function Vendors() {
             <tbody>
               {vendors.slice(pagesVisited, pagesVisited + usersPerPage).map((item, i) => (
                 <tr key={i}>
+                  <td>{item.sno}</td>
                   <td>{item.name}</td>
                   <td>{item.phone}</td>
                   <td>{item.email}</td>
@@ -72,7 +80,7 @@ function Vendors() {
           <Row>
             <div className="col-md-7"></div>
             <div
-              className="col-md-5"
+              className="col-md-5 product_pagination"
               style={{
                 display: "inherit",
                 marginBottom: "20px",
