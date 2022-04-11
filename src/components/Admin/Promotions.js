@@ -58,16 +58,18 @@ function Promotions() {
 
   const handleTagChange = (tags, value) => {
     setTagValue(value);
-    console.log("value", value);
+    console.log("tagvalue onchange", value);
   };
 
   const handleKeyDown = (event) => {
+    console.log(tagValue)
     if (!tagInputValue) return;
     switch (event.key) {
       case "Enter":
       case "Tab":
         setTagValue([...tagValue, createOption(tagInputValue)]);
         setTagInputValu("");
+        console.log(tagValue)
         event.preventDefault();
         break;
       default:
@@ -81,7 +83,7 @@ function Promotions() {
 
   const handleInputChange = (value) => {
     setTagInputValu(value);
-    console.log("valueI", tagValue);
+    console.log("on inpiutchnage tagvalueI", value);
   };
 
   //Multi select Create
@@ -115,7 +117,7 @@ function Promotions() {
       tagValue.map((data) => {
         return data.value;
       });
-    // console.log("AddMultiValue",finalMultiValue)
+    console.log("AddMultiValue",finalMultiValue)
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
@@ -323,7 +325,7 @@ function Promotions() {
             {PromotionList &&
               PromotionList.map((item, i) => (
                 <tr>
-                  {console.log("pc", PromotionList)}
+                  {/* {console.log("pc", PromotionList)} */}
 
                   <td>{i + 1}</td>
                   <td>{item.id}</td>
@@ -360,11 +362,21 @@ function Promotions() {
       {/* Delete Modal */}
 
       <Modal show={DeleteShow} onHide={handlecloseDelete}>
-        <Modal.Header closeButton>
+        {/* <Modal.Header closeButton>
           <Modal.Title style={{ color: "#0076B5" }}>Delete Product</Modal.Title>
-        </Modal.Header>
+        </Modal.Header> */}
 
         <Modal.Body>
+        <button
+          type="button"
+          className="close"
+          onClick={handlecloseDelete}
+          style={{ position: "absolute", top: "5px", right: "10px" }}
+        >
+          <span aria-hidden="true">×</span>
+          <span className="sr-only">Close</span>
+        </button>
+          <Modal.Title style={{ color: "#0076B5" }}>Delete Product</Modal.Title>
           <p>Are you sure want to delete this Promotion ?</p>
         </Modal.Body>
 
@@ -385,12 +397,24 @@ function Promotions() {
       <div className="col-xl-5  col-lg-4 col-md-3 col-sm-2">
         <div className="header">
           <Modal show={ShowEditModal} onHide={handleEditClose} size="md">
-            <Modal.Header closeButton>
+            {/* <Modal.Header closeButton>
               <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
                 Edit Promotion List
               </Modal.Title>
-            </Modal.Header>
+            </Modal.Header> */}
             <Modal.Body>
+            <button
+              type="button"
+              className="close"
+              onClick={handleEditClose}
+              style={{ position: "absolute", top: "5px", right: "10px" }}
+            >
+              <span aria-hidden="true">×</span>
+              <span className="sr-only">Close</span>
+            </button>
+            <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
+              Edit Promotion
+            </Modal.Title>
               <div className="container">
                 <Form.Group>
                   <Form.Label>Promotion Title</Form.Label>
