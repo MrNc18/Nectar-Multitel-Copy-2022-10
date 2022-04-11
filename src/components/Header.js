@@ -108,7 +108,7 @@ function Header() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={() =>navigate("/profile") }>Profile</Dropdown.Item>
                         <Dropdown.Item
                           onClick={() => {
                             deleteCookie(AUTH_TOKEN);
@@ -164,9 +164,9 @@ function Header() {
               </NavDropdown> */}
 
               <Nav.Link onClick={() => navigate("/home")}>
-                Multitel Home
+                Multitel_Home
               </Nav.Link>
-              <Nav.Link href="#link">Multitel Mobile</Nav.Link>
+              <Nav.Link href="#link">Multitel_Mobile</Nav.Link>
               <Nav.Link onClick={() => navigate("/marketplace")}>
                 Marketplace
               </Nav.Link>

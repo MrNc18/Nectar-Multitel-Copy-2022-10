@@ -6,11 +6,17 @@ import EditProfileForm from "../components/atoms/EditProfileForm";
 
 function EditProfile() {
   return (
-    <LandingPage>
-      <ServiceBanner title="Edit Profile" />
-      <Profile />
+    <div id="layoutTopnavContent">
+    <div className="container-fluid">  
+        {/* <LandingPage>
+      <ServiceBanner title="Edit Profile" /> */}
+      {/* <Profile /> */}
       <EditProfileForm />
-    </LandingPage>
+    {/* </LandingPage> */}
+    </div>
+    </div>
+
+
   );
 }
 

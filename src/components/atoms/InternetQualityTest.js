@@ -4,7 +4,7 @@ import { CircleSlider } from "react-circle-slider";
 
 function InternetQualityTest() {
   return (
-    <Container>
+    <Container className="mb-4">
       <Row>
         <Col md={1}></Col>
         <Col md={3} className="mt-3">
