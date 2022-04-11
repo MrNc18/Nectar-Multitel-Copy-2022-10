@@ -93,7 +93,7 @@ function App() {
         {/* <Route path="/admin" element={<AdLanding/>}> */}
         <Route path="/register" element={<ClientRegistration />} />
 
-        <Route path="client" element={<Example />}>
+        {/* <Route path="client" element={<Example />}>
           <Route path="profile" element={<Account />}/>
           <Route path="editprofile" element={<EditProfile />} />
           <Route path="myproducts" element={<MyProducts />}/>
@@ -105,7 +105,8 @@ function App() {
             element={<InternetQualityGraph />}
           />
           <Route path="settings" element={<Settings />} />
-        </Route>
+        </Route> */}
+        <Route path="profile" element={<Account />} />
         <Route
           path="/informaticandaccesories"
           element={<InformaticAndAccessories />}
