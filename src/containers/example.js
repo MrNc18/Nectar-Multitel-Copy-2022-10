@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import './example.css'
 import AppHeader from "../components/AppHeader";
+import LandingPage from "../components/LandingPage";
 const Tabs = Object.freeze([
     { label: "Client Profile", link: "client/profile" },
   { label: "Edit Profile", link: "client/editprofile" },
@@ -31,7 +32,8 @@ export default function AdLanding() {
             : "sb-nav-fixed bg-light"
         }
       >
-        <AppHeader handleClick={handleClick} />
+        {/* <AppHeader handleClick={handleClick} /> */}
+        {/* <LandingPage> */}
         <div id="layoutSidenav">
           <div id="layoutSidenav_nav">
             <nav
@@ -64,6 +66,7 @@ export default function AdLanding() {
             </div>
           </div>
         </div>
+        {/* </LandingPage> */}
       </div>
     );
   }

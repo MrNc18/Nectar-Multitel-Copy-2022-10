@@ -83,6 +83,18 @@ export const getAllCategories = async () => {
      return await doDelete('api/service/product/delete',data);
    }
 
+   export const getAllCms = async () => {
+    return await doGet("api/cms/getAllCms")
+   }
+   export const getAddcms = async(data) =>{
+     return await doPost('api/cms/add',data);
+   }
+   export const getEditcms = async(data) =>{
+     return await doPut('api/cms/edit',data);
+   }
+   export const getDeletecms = async(data) =>{
+     return await doDelete('api/cms/delete',data);
+   }
   
 
  
