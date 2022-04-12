@@ -113,8 +113,8 @@ function Header() {
                           onClick={() => {
                             deleteCookie(AUTH_TOKEN);
                             alert('Logged out.')
-                            // navigate('/redirect')
-                            window.location.reload();
+                            navigate('/')
+                            // window.location.reload();
 
                           }}
                         >

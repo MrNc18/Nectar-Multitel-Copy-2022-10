@@ -86,6 +86,9 @@ export const getAllCategories = async () => {
    export const getAllCms = async () => {
     return await doGet("api/cms/getAllCms")
    }
+   export const getAllApprovedCms = async () => {
+    return await doPost("api/cms")
+   }
    export const getAddcms = async(data) =>{
      return await doPost('api/cms/add',data);
    }

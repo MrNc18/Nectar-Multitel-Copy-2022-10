@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
-// import Example from "./staticCard";
-import Example from "./containers/example";
+import Example from "./staticCard";
+// import Example from "./containers/example";
 import AdLanding from "./components/Admin/AdLanding";
 import Categories from "./components/Admin/categories";
 import Products from "./components/Admin/products";
@@ -92,7 +92,7 @@ function App() {
         <Route path="/otherproducts" element={<OtherProducts />} /> 
         {/* <Route path="/admin" element={<AdLanding/>}> */}
         <Route path="/register" element={<ClientRegistration />} />
-
+        <Route path="client" element={<Example />} />
         {/* <Route path="client" element={<Example />}>
           <Route path="profile" element={<Account />}/>
           <Route path="editprofile" element={<EditProfile />} />
