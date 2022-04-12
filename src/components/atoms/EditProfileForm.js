@@ -4,11 +4,13 @@ import { updateUser } from "../../services/authentication";
 import { AUTH_TOKEN, deleteCookie, getCookie } from "../../utils/cookie";
 import { getUserDetailsByToken } from "../../services/authentication";
 import { baseurl } from "../../utils/request";
+import {imageUrl} from "../../services/category"
 import moment from "moment";
 
 function EditProfileForm() {
   const [userData, setUserData] = useState({});
   const isAuthenticated = getCookie(AUTH_TOKEN);
+  const[file,setFile] = useState('')
   // console.log(isAuthenticated);
   const [data, setData] = useState({
     userId: "",
@@ -21,8 +23,10 @@ function EditProfileForm() {
     proffesion: "",
     zipcode: "",
     dob: "",
-    profile_img: "",
+    // profile_img: "",
   });
+
+ 
 
   const getDataByToken = async () => {
     if (isAuthenticated) {
@@ -51,7 +55,7 @@ function EditProfileForm() {
       dob: moment(userData?.dob_date).format("YYYY-MM-DD"),
       proffesion: userData?.proffesion,
       zipcode: userData?.zipcode,
-      profile_img: userData?.profile_img,
+      // profile_img: userData?.profile_img,
     });
   }, [userData]);
 
@@ -66,29 +70,38 @@ function EditProfileForm() {
     proffesion,
     zipcode,
     dob,
-    profile_img,
+    // profile_img,
   } = data;
   // console.log(userData)
   // console.log(data)
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
+  const handleFileChange = (event) => {
+    setFile(event.target.files);
+    console.log(file);
+  };
+
 
   const handleEditProfile = async () => {
-    const finaldata = {
-      userId: userId,
-      first_name: firstName,
-      last_name: lastName,
-      email: mail,
-      gendar: gender,
-      city: city,
-      phone: number,
-      dob_date: dob,
-      proffesion,
-      zipcode,
-    };
+   
+      const data = new FormData();
+        for (var x = 0; x < file.length; x++) {
+          data.append("image", file[x]);
+        }
+      data.append('userId', userId);
+      data.append('first_name', firstName);
+      data.append('last_name', lastName);
+       data.append('email', mail);
+       data.append('gendar', gender);
+       data.append('city', city);
+       data.append('phone', number);
+       data.append('dob_date', dob);
+       data.append('proffesion',proffesion);
+       data.append('zipcode',zipcode);
+      
     try {
-      const resp = await updateUser(finaldata);
+       await updateUser(data);
       alert("Profile Updated Sucessfully....");
     } catch (error) {
       console.log("error", error);
@@ -105,14 +118,15 @@ function EditProfileForm() {
               <p className="text-right">Profile {">"} Edit Profile</p>
             </Col>
           </Row>
-          <Row>
-            <Col md={12}>
+          <Row style={{justifyContent:"center"}}>
+            <Col md={4}>
               <div className="form-group text-center img_upload">
-                <img
+                <img style={{maxwidth:'100%',borderRadius:"50%"}}
                   src={
-                    profile_img
-                      ? `${baseurl}/images/${profile_img}`
+                    userData.profile_img
+                      ? `${baseurl}/images/${userData.profile_img}`
                       : "/assets/images/userimg.png"
+
                   }
                   className="img-fluid"
                 />
@@ -124,7 +138,8 @@ function EditProfileForm() {
                   <br />
                   <input
                     type="file"
-                    name=""
+                    name="file"
+                    onChange={handleFileChange}
                     className="form-control"
                     style={{ display: "none" }}
                   />
