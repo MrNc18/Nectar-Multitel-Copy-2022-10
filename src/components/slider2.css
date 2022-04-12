@@ -958,3 +958,6 @@ text-align: center;
  }  
   
  }  
+ .corp_slider .carousel-indicators {
+  display: none;
+}
