@@ -164,9 +164,9 @@ function Header() {
               </NavDropdown> */}
 
               <Nav.Link onClick={() => navigate("/home")}>
-                Multitel_Home
+                Multitel Home
               </Nav.Link>
-              <Nav.Link href="#link">Multitel_Mobile</Nav.Link>
+              <Nav.Link href="#link">Multitel Mobile</Nav.Link>
               <Nav.Link onClick={() => navigate("/marketplace")}>
                 Marketplace
               </Nav.Link>

@@ -1,7 +1,7 @@
 import { doGet, doPost, doPut,doDelete }  from "../utils/request"
 
  export const imageUrl =  (imagePath)  => {
-    return (`http://159.65.145.21:3003/images/${imagePath}`)
+    return (`http://50.28.104.48:3003/images/${imagePath}`)
  }
 
 export const getAllCategories = async () => {
@@ -21,6 +21,11 @@ export const getAllCategories = async () => {
   export const getAllProducts = async () => {
     return await doGet("api/product")
    }
+
+   export const getLatestProducts = async () => {
+    return await doGet("api/product/getLatestProducts")
+   }
+
    export const getAddProduct= async(data) =>{
      return await doPost('api/product/add',data);
    }

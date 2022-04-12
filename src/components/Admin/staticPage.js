@@ -81,8 +81,8 @@ function Staticpage() {
       subheading === "" ||
       description === "" ||
       link === "" ||
-      page_slug === "" 
-      // file === ""
+      page_slug === "" ||
+      file === ""
     ) {
       setErrorMsg("Fill the Mandatory Filelds");
     } else
