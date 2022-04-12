@@ -28,7 +28,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div id="slider">
       {sliderList?.length && (
         <section className="corp_slider">
           <Row>
@@ -73,7 +73,7 @@ function App() {
           </Row>
         </section>
       )}
-    </>
+    </div>
   );
 }
 

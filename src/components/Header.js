@@ -36,7 +36,7 @@ function Header() {
   }, []);
 
   return (
-    <>
+    <div id="Header">
       <div id="top_header">
         <Container>
           <Row>
@@ -183,7 +183,7 @@ function Header() {
           handleClose={() => setShowLoginModal(false)}
         />
       )}
-    </>
+    </div>
   );
 }
 
