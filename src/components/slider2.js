@@ -17,23 +17,25 @@ import { useNavigate } from "react-router-dom";
 
 function App() {
   const [sliderList, setSliderList] = useState([]);
+  const [iniText, setIniText] = useState("Loading...")
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
-      const response = await getAllApprovedCms();
+      const response = await getAllApprovedCms({page_slug: 'corporate'});
       console.log(response);
-      setSliderList(response?.data?.data);
+      response?.data?.data ? setSliderList(response?.data?.data) : setIniText("")
+      // setSliderList([...sliderList, ...response?.data?.data]);
     })();
   }, []);
 
   return (
     <div id="slider">
-      {sliderList?.length && (
+      {sliderList?.length ? (
         <section className="corp_slider">
           <Row>
             <Carousel nextLabel="" prevLabel={null}>
-              {sliderList.map((slide) => (
+              {sliderList?.map((slide) => (
                 <Carousel.Item>
                   <img
                     className="d-block w-100"
@@ -69,7 +71,7 @@ function App() {
                         // class="link_btn2"
                         className="btn-blue"
                       >
-                        Start Now
+                        {slide?.button}
                       </button>
                     </div>
                   </Carousel.Caption>
@@ -78,7 +80,7 @@ function App() {
             </Carousel>
           </Row>
         </section>
-      )}
+      ) : <p className="text-center">{iniText}</p>}
     </div>
   );
 }
