@@ -17,14 +17,16 @@ import { useNavigate } from "react-router-dom";
 
 function App() {
   const [sliderList, setSliderList] = useState([]);
-  const [iniText, setIniText] = useState("Loading...")
+  const [iniText, setIniText] = useState("Loading...");
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
-      const response = await getAllApprovedCms({page_slug: 'corporate'});
+      const response = await getAllApprovedCms({ page_slug: "corporate" });
       console.log(response);
-      response?.data?.data ? setSliderList(response?.data?.data) : setIniText("")
+      response?.data?.data
+        ? setSliderList(response?.data?.data)
+        : setIniText("");
       // setSliderList([...sliderList, ...response?.data?.data]);
     })();
   }, []);
@@ -36,7 +38,7 @@ function App() {
           <Row>
             <Carousel nextLabel="" prevLabel={null}>
               {sliderList?.map((slide) => (
-                <Carousel.Item>
+                <Carousel.Item key={slide?.id}>
                   <img
                     className="d-block w-100"
                     src={
@@ -74,7 +76,9 @@ function App() {
             </Carousel>
           </Row>
         </section>
-      ) : <p className="text-center">{iniText}</p>}
+      ) : (
+        <p className="text-center">{iniText}</p>
+      )}
     </div>
   );
 }
