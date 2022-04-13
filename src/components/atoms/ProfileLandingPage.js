@@ -43,7 +43,7 @@ function ProfileLandingPage({edit}) {
                     <img src={
                       userImg ? `${baseurl}/images/${userImg}` : "/assets/images/userimg.png"
                     } 
-                      style={{maxWidth: "100%"}}
+                      style={{maxWidth: "100%",borderRadius:"50%"}}
                     />
                     <img className="editimg" src="/assets/images/edit.png"
                       onClick={() => {

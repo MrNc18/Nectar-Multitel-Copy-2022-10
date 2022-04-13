@@ -15,6 +15,7 @@ function Staticpage() {
   const [DeleteShow, setDeleteShow] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
+  const [editImage,setEditImage] = useState('')
   const [errorMsg, setErrorMsg] = useState("");
   const [file, setFile] = useState("");
   const [data2, setData2] = useState({
@@ -108,6 +109,7 @@ function Staticpage() {
       page_slug:item?.page_slug,
       button:item?.button
     });
+    setEditImage(item.image ? item.image:'')
     setShowEditModal(true);
   };
 
@@ -390,13 +392,15 @@ function Staticpage() {
                 name="description"
                 onChange={handleChange}
               ></Form.Control>
-              <Form.Label>Upload</Form.Label>{" "}
+              <Form.Label>Upload</Form.Label>
               <Form.Control
                 type="file"
-                id="file"
+                id="file"  
+                // value={file}
                 onChange={handleFileChange}
               ></Form.Control>
-            </Form.Group>
+                <img src={imageUrl(editImage)} style={{ width: "60px" }} />
+            </Form.Group> 
           </div>
         </Modal.Body>
         <Modal.Footer>

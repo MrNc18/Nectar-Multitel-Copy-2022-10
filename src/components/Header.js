@@ -36,7 +36,7 @@ function Header() {
   }, []);
 
   return (
-    <>
+    <div id="Header">
       <div id="top_header">
         <Container>
           <Row>
@@ -165,9 +165,9 @@ function Header() {
               </NavDropdown> */}
 
               <Nav.Link onClick={() => navigate("/home")}>
-                Multitel_Home
+                Multitel Home
               </Nav.Link>
-              <Nav.Link href="#link">Multitel_Mobile</Nav.Link>
+              <Nav.Link href="#link">Multitel Mobile</Nav.Link>
               <Nav.Link onClick={() => navigate("/marketplace")}>
                 Marketplace
               </Nav.Link>
@@ -184,7 +184,7 @@ function Header() {
           handleClose={() => setShowLoginModal(false)}
         />
       )}
-    </>
+    </div>
   );
 }
 
