@@ -113,7 +113,7 @@ function Header() {
                           onClick={() => {
                             deleteCookie(AUTH_TOKEN);
                             alert('Logged out.')
-                            navigate('/')
+                            navigate('/home')
                             // window.location.reload();
 
                           }}
@@ -133,7 +133,8 @@ function Header() {
       <Navbar expand="lg" variant="light" bg="white">
         <Container>
           <Navbar.Brand
-            onClick={() => navigate("/")}
+            // onClick={() => navigate("/")}
+            href="/"
             style={{ cursor: "pointer" }}
           >
             <img
