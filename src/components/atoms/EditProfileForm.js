@@ -78,6 +78,12 @@ function EditProfileForm() {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('profile');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
     setFile(event.target.files);
     console.log(file);
   };
@@ -121,7 +127,7 @@ function EditProfileForm() {
           <Row style={{justifyContent:"center"}}>
             <Col md={4}>
               <div className="form-group text-center img_upload">
-                <img style={{maxwidth:'100%',borderRadius:"50%"}}
+                <img id='profile' style={{maxwidth:'100%',borderRadius:"50%"}}
                   src={
                     userData.profile_img
                       ? `${baseurl}/images/${userData.profile_img}`
@@ -137,6 +143,7 @@ function EditProfileForm() {
                   <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
                   <br />
                   <input
+                   id="file"
                     type="file"
                     name="file"
                     onChange={handleFileChange}
