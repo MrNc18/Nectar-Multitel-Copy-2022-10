@@ -28,7 +28,7 @@ function Home() {
             <div className="row">
               <div className="col-12">
                 <div className="banner-New">
-                  <div className="banner-New-inner">
+                  <div className="banner-New-inner"> 
                     <TopBanner
                       topText={bannerContent?.title}
                       btnText={bannerContent?.button}

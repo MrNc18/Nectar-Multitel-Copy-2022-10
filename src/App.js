@@ -42,6 +42,7 @@ import PromotionDetail from "./containers/PromotionDetail";
 import InternetServicesDetail from "./containers/InternetServicesDetail";
 import ServicesCategory from "./components/Admin/ServicesCategory";
 import InformaticAndAccessories from "./containers/InformaticAndAccessories";
+import Contact from "./components/Admin/Contact";
 
 function App() {
   return (
@@ -82,6 +83,7 @@ function App() {
           <Route path="products/newproduct" element={<AddProduct />} />
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="Service-categories" element={<ServicesCategory />} />
 
           <Route path="internetServices" element={<AdinternetServices />} />
