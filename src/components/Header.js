@@ -104,7 +104,7 @@ function Header() {
                           className="usericon"
                           src="/assets/images/user.png"
                         />
-                        <span className="username">Hey {username}</span>
+                        <span className="username">Hey&nbsp;{username}</span>
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
@@ -133,8 +133,8 @@ function Header() {
       <Navbar expand="lg" variant="light" bg="white">
         <Container>
           <Navbar.Brand
-            // onClick={() => navigate("/")}
-            href="/"
+            onClick={() => navigate("/")}
+            // href="/"
             style={{ cursor: "pointer" }}
           >
             <img

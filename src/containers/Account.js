@@ -9,6 +9,7 @@ import MyProductCard from "../components/atoms/MyProductCard";
 import HelpDeskCard from "../components/atoms/HelpDeskCard";
 import InternetQualityTest from "../components/atoms/InternetQualityTest";
 import InvoiceTable from "../components/atoms/InvoiceTable";
+import InvoiceBill from "../components/atoms/InvoiceBill";
 import Settings from '../components/Admin/settings';
 import EditProfileForm from "../components/atoms/EditProfileForm";
 import { changePasswordIcon } from "../svg/ChangePasswordIcon";
@@ -21,6 +22,8 @@ import { invIcon } from "../svg/InvoicesIcon";
 function Account() {
   
   const [editMode, setEditMode] = useState(false)
+  const [invDetail, setInvDetail] = useState(false)
+
   return (
     <LandingPage>
       {/* <ServiceBanner title="Account" />
@@ -43,7 +46,7 @@ function Account() {
                 <Nav.Item>
                   <Nav.Link eventKey="graph">{iqgIcon}&nbsp;&nbsp;Internet Quality Graph</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
+                <Nav.Item onClick={() => setInvDetail(false)}>
                   <Nav.Link eventKey="invoices">{invIcon}&nbsp;&nbsp;Invoices</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
@@ -66,7 +69,7 @@ function Account() {
                   <InternetQualityTest />
                 </Tab.Pane>
                 <Tab.Pane eventKey="invoices">
-                  <InvoiceTable />
+                  {invDetail ? <InvoiceBill /> : <InvoiceTable detail={(x) => setInvDetail(x)} />}
                 </Tab.Pane>
                 <Tab.Pane eventKey="password">
                   <Settings clientside/>
