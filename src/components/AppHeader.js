@@ -5,6 +5,7 @@ import "./Admin/admin.css";
 import { AUTH_TOKEN, deleteCookie, getCookie } from "../utils/cookie";
 import { getUserDetailsByToken } from "../services/authentication";
 import { Dropdown } from "react-bootstrap";
+import { ROLE } from "../constants/authconstant";
 
 export default function AppHeader(props) {
   const navigate = useNavigate();
@@ -16,8 +17,20 @@ export default function AppHeader(props) {
   const getDataByToken = async () => {
     if (isAuthenticated) {
       const result = await getUserDetailsByToken();
-      // console.log(result);
-      setUsername(result?.data?.data?.first_name);
+      if (
+        result?.data?.data?.role == ROLE.USER ||
+        result?.data?.data?.role == ROLE.VENDOR
+      ) {
+        navigate("/");
+        alert("Unauthorized");
+        
+      } else {   
+        setUsername(result?.data?.data?.first_name);
+      }
+    } else {
+      navigate("/");
+      alert("Unauthorized");
+      
     }
   };
 
@@ -52,8 +65,8 @@ export default function AppHeader(props) {
 
         <Dropdown
           className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-4 my-2 my-md-0"
-          style={{ position: "relative"}}
-        >  
+          style={{ position: "relative" }}
+        >
           <Dropdown.Toggle
             id="dropdown-basic"
             style={{ background: "transparent", border: "none" }}
