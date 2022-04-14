@@ -3,6 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import BroadbandCard from "../components/atoms/BroadbandCard";
 import ServiceBanner from "../components/atoms/ServiceBanner";
+// import ServiceCardDynamic from "../components/atoms/ServiceCardDynamic";
 import ServiceCardDynamic from "../components/atoms/ServiceCardDynamic";
 import LandingPage from "../components/LandingPage";
 import Services from "../components/Services";
