@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
-// import Example from "./staticCard";
-import Example from "./containers/example";
+import Example from "./staticCard";
+// import Example from "./containers/example";
 import AdLanding from "./components/Admin/AdLanding";
 import Categories from "./components/Admin/categories";
 import Products from "./components/Admin/products";
@@ -40,15 +40,18 @@ import AdinternetServices from "./components/Admin/internetServices";
 import Category from "./containers/Category";
 import PromotionDetail from "./containers/PromotionDetail";
 import InternetServicesDetail from "./containers/InternetServicesDetail";
-import IpTelephony from "./containers/IpTelephony";
-import InformaticAndAccessories from "./containers/InformaticAndAccessories";
 import ServicesCategory from "./components/Admin/ServicesCategory";
+import InformaticAndAccessories from "./containers/InformaticAndAccessories";
+import Contact from "./components/Admin/Contact";
+import IpTelephony from "./containers/IpTelephony";
 import NetworkEquipmentVendors from "./containers/NetworkEquipmentVendors";
 import ContactPromotion from "./containers/ContactPromotion";
 import ContactOtherProductSerPart from "./containers/ContactOtherProductSerPart";
 import ContactTelecom from "./containers/ContactTelecom";
 import ContactEquip from "./containers/ContactEquip";
 import ContactCPE from "./containers/ContactCPE";
+
+
 
 
 function App() {
@@ -90,6 +93,7 @@ function App() {
           <Route path="products/newproduct" element={<AddProduct />} />
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="Service-categories" element={<ServicesCategory />} />
 
           <Route path="internetServices" element={<AdinternetServices />} />
@@ -123,8 +127,8 @@ function App() {
         <Route path="/otherproducts" element={<OtherProducts />} /> 
         {/* <Route path="/admin" element={<AdLanding/>}> */}
         <Route path="/register" element={<ClientRegistration />} />
-
-        <Route path="client" element={<Example />}>
+        <Route path="client" element={<Example />} />
+        {/* <Route path="client" element={<Example />}>
           <Route path="profile" element={<Account />}/>
           <Route path="editprofile" element={<EditProfile />} />
           <Route path="myproducts" element={<MyProducts />}/>
@@ -136,7 +140,8 @@ function App() {
             element={<InternetQualityGraph />}
           />
           <Route path="settings" element={<Settings />} />
-        </Route>
+        </Route> */}
+        <Route path="profile" element={<Account />} />
         <Route
           path="/informaticandaccesories"
           element={<InformaticAndAccessories />}

@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 
+const  setCookie = (key, value, expiry) => {
+    var expires = new Date();
+    expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
+    document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+  }
 class GoogleTranslate extends Component {
+  
+
     googleTranslateElementInit () {
-        //alert("test2")
-        /* eslint-disable no-new */
+        setCookie('googtrans', '/en/en',1);
         new window.google.translate.TranslateElement({
         //  pageLanguage: 'en',
         includedLanguages : 'ar,sq,it,en,pt',

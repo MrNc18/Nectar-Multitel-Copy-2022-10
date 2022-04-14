@@ -36,7 +36,7 @@ function Header() {
   }, []);
 
   return (
-    <>
+    <div id="Header">
       <div id="top_header">
         <Container>
           <Row>
@@ -104,7 +104,7 @@ function Header() {
                           className="usericon"
                           src="/assets/images/user.png"
                         />
-                        <span className="username">Hey {username}</span>
+                        <span className="username">Hey&nbsp;{username}</span>
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
@@ -113,8 +113,8 @@ function Header() {
                           onClick={() => {
                             deleteCookie(AUTH_TOKEN);
                             alert('Logged out.')
-                            // navigate('/redirect')
-                            window.location.reload();
+                            navigate('/home')
+                            // window.location.reload();
 
                           }}
                         >
@@ -134,6 +134,7 @@ function Header() {
         <Container>
           <Navbar.Brand
             onClick={() => navigate("/")}
+            // href="/"
             style={{ cursor: "pointer" }}
           >
             <img
@@ -164,9 +165,9 @@ function Header() {
               </NavDropdown> */}
 
               <Nav.Link onClick={() => navigate("/home")}>
-                Multitel_Home
+                Multitel Home
               </Nav.Link>
-              <Nav.Link href="#link">Multitel_Mobile</Nav.Link>
+              <Nav.Link href="#link">Multitel Mobile</Nav.Link>
               <Nav.Link onClick={() => navigate("/marketplace")}>
                 Marketplace
               </Nav.Link>
@@ -183,7 +184,7 @@ function Header() {
           handleClose={() => setShowLoginModal(false)}
         />
       )}
-    </>
+    </div>
   );
 }
 
