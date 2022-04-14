@@ -146,24 +146,6 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              {/* <NavDropdown
-                title="Home"
-                id="basic-nav-dropdown"
-                // onClick={() => navigate("/home")}
-              >
-                <NavDropdown.Item
-                  onClick={() => navigate("/internet-services")}
-                >
-                  Home Internet services
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Landline Telephony
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  TV Services
-                </NavDropdown.Item>
-              </NavDropdown> */}
-
               <Nav.Link onClick={() => navigate("/home")}>
                 Multitel Home
               </Nav.Link>
@@ -173,7 +155,37 @@ function Header() {
               </Nav.Link>
               {/* <button onClick={console.log(()=>getCookie(AUTH_TOKEN))}>GEt</button> */}
               <Nav.Link href="#link">Client Portal</Nav.Link>
-              <Nav.Link href="#link">Contacts</Nav.Link>
+              <NavDropdown
+                title="Contacts"
+                id="basic-nav-dropdown"
+                // onClick={() => navigate("/home")}
+              >
+                <NavDropdown.Item
+                  onClick={() => navigate("#")}
+                >
+                  Informatics and Accessories
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">
+                  IP Telephony
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">
+                  Networking Equipment
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => navigate("#")}
+                >
+                  CPE´s
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">
+                  Telecom
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">
+                  Promotions
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">
+                  Other Products/Services (Partners)
+                </NavDropdown.Item>
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>

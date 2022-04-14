@@ -17,8 +17,8 @@ export const RedirectComponent = () => {
       const  result  = await getUserDetailsByToken();
       redirectUser(result);
     } catch (error) {
-      showAlert("You are not authorized! Please try again.", "error");
-      alert("You are not authorized! Please try again.", "error");
+      // showAlert("You are not authorized! Please try again.", "error");
+      alert("You are not authorized! Please try again.");
       navigate("/home");
     } finally {
       setLoading(false);
