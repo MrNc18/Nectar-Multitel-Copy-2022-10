@@ -15,6 +15,7 @@ function Staticpage() {
   const [DeleteShow, setDeleteShow] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
+  const [editImage,setEditImage] = useState('')
   const [errorMsg, setErrorMsg] = useState("");
   const [file, setFile] = useState("");
   const [data2, setData2] = useState({
@@ -45,7 +46,11 @@ function Staticpage() {
   const handlecloseDelete = () => {
     setDeleteShow(false);
   };
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setData2('')
+    setFile('')
+  setShow(false);
+}
 
   const handleDeletecms = async () => {
     const data = {
@@ -108,6 +113,7 @@ function Staticpage() {
       page_slug:item?.page_slug,
       button:item?.button
     });
+    setEditImage(item.image ? item.image:'')
     setShowEditModal(true);
   };
 
@@ -117,7 +123,7 @@ function Staticpage() {
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
     }
-    data.append("description", description);
+    data.append("de scription", description);
     data.append("name", name);
     data.append("title", Title);
     data.append("subtitle", subheading);
@@ -128,7 +134,7 @@ function Staticpage() {
     try {
       await getEditcms(data);
       alert("Cms Edited Sucessfully");
-      setData2(" ");
+      setData2("");
       setFile(" ");
       setShowEditModal(false);
       handlegetcms();
@@ -137,7 +143,8 @@ function Staticpage() {
     }
   };
   const handleEditClose = () => {
-    setData2(" ");
+    setData2("");
+    setFile('');
     setShowEditModal(false);
   };
 
@@ -390,13 +397,15 @@ function Staticpage() {
                 name="description"
                 onChange={handleChange}
               ></Form.Control>
-              <Form.Label>Upload</Form.Label>{" "}
+              <Form.Label>Upload</Form.Label>
               <Form.Control
                 type="file"
-                id="file"
+                id="file"  
+                // value={file}
                 onChange={handleFileChange}
               ></Form.Control>
-            </Form.Group>
+                <img src={imageUrl(editImage)} style={{ width: "60px" }} />
+            </Form.Group> 
           </div>
         </Modal.Body>
         <Modal.Footer>

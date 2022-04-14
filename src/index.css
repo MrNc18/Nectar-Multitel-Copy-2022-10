@@ -1025,3 +1025,19 @@ span.username {
 .profile_cards {
   margin-right: 10px;
 }
+.profile_crad {
+  min-height: 180px;
+  height: auto;
+}
+.editimg {
+  position: absolute;
+  right: 32%;
+  width: 18px;
+  cursor: pointer;
+}
+.img_upload .fa-camera{
+  position: absolute;
+  top: 0;
+  right: 22%;
+  font-size: 12px;
+}
