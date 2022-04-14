@@ -44,8 +44,6 @@ import ServicesCategory from "./components/Admin/ServicesCategory";
 import InformaticAndAccessories from "./containers/InformaticAndAccessories";
 import Contact from "./components/Admin/Contact";
 import IpTelephony from "./containers/IpTelephony";
-import InformaticAndAccessories from "./containers/InformaticAndAccessories";
-import ServicesCategory from "./components/Admin/ServicesCategory";
 import NetworkEquipmentVendors from "./containers/NetworkEquipmentVendors";
 import ContactPromotion from "./containers/ContactPromotion";
 import ContactOtherProductSerPart from "./containers/ContactOtherProductSerPart";
