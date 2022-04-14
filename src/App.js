@@ -43,6 +43,17 @@ import InternetServicesDetail from "./containers/InternetServicesDetail";
 import ServicesCategory from "./components/Admin/ServicesCategory";
 import InformaticAndAccessories from "./containers/InformaticAndAccessories";
 import Contact from "./components/Admin/Contact";
+import IpTelephony from "./containers/IpTelephony";
+import InformaticAndAccessories from "./containers/InformaticAndAccessories";
+import ServicesCategory from "./components/Admin/ServicesCategory";
+import ContactPromotion from "./containers/ContactPromotion";
+import ContactOtherProductSerPart from "./containers/ContactOtherProductSerPart";
+import ContactTelecom from "./containers/ContactTelecom";
+import ContactEquip from "./containers/ContactEquip";
+import ContactCPE from "./containers/ContactCPE";
+
+
+
 
 function App() {
   return (
