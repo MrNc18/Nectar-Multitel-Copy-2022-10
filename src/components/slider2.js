@@ -47,12 +47,13 @@ function App() {
                     alt="Second slide"
                   />
                   <Carousel.Caption>
-                    <div className="banner-New-inner-inner"
-                    // className="link"
+                    <div 
+                    // className="banner-New-inner-inner"
+                    className="link"
                     >
                       <button
-                        // className="link_btn"
-                        className='btn-white'
+                        className="link_btn"
+                        // className='btn-white'
                         style={{ textTransform: "uppercase" }}
                       >
                         {slide?.title}
@@ -70,8 +71,8 @@ function App() {
                       {/* </div> */}
                       <button
                         onClick={() => navigate(slide?.link)}
-                        // class="link_btn2"
-                        className="btn-blue"
+                        class="link_btn2"
+                        // className="btn-blue"
                       >
                         {slide?.button}
                       </button>

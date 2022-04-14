@@ -46,7 +46,11 @@ function Staticpage() {
   const handlecloseDelete = () => {
     setDeleteShow(false);
   };
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setData2('')
+    setFile('')
+  setShow(false);
+}
 
   const handleDeletecms = async () => {
     const data = {
@@ -119,7 +123,7 @@ function Staticpage() {
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
     }
-    data.append("description", description);
+    data.append("de scription", description);
     data.append("name", name);
     data.append("title", Title);
     data.append("subtitle", subheading);
@@ -130,7 +134,7 @@ function Staticpage() {
     try {
       await getEditcms(data);
       alert("Cms Edited Sucessfully");
-      setData2(" ");
+      setData2("");
       setFile(" ");
       setShowEditModal(false);
       handlegetcms();
@@ -139,7 +143,8 @@ function Staticpage() {
     }
   };
   const handleEditClose = () => {
-    setData2(" ");
+    setData2("");
+    setFile('');
     setShowEditModal(false);
   };
 
