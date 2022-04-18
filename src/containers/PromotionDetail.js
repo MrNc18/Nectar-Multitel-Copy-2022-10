@@ -50,7 +50,7 @@ function PromotionDetail() {
 
   return (
     <LandingPage>
-        <ServiceBanner title="Promotions" backlink='/categories/promotions' />
+        <ServiceBanner title={promoDetail?.name} backlink='/categories/promotions' />
         <section className='promo-det'>
             <Container>
                 <PromotionCard promo={promoDetail} detail />

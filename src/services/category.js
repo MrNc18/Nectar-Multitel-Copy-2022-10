@@ -1,7 +1,7 @@
 import { doGet, doPost, doPut,doDelete }  from "../utils/request"
 
  export const imageUrl =  (imagePath)  => {
-    return (`http://159.65.145.21:3003/images/${imagePath}`)
+    return (`http://50.28.104.48:3003/images/${imagePath}`)
  }
 
 export const getAllCategories = async () => {
@@ -21,6 +21,11 @@ export const getAllCategories = async () => {
   export const getAllProducts = async () => {
     return await doGet("api/product")
    }
+
+   export const getLatestProducts = async () => {
+    return await doGet("api/product/getLatestProducts")
+   }
+
    export const getAddProduct= async(data) =>{
      return await doPost('api/product/add',data);
    }
@@ -83,6 +88,21 @@ export const getAllCategories = async () => {
      return await doDelete('api/service/product/delete',data);
    }
 
+   export const getAllCms = async () => {
+    return await doGet("api/cms/getAllCms")
+   }
+   export const getAllApprovedCms = async (data) => {
+    return await doPost("api/cms",data)
+   }
+   export const getAddcms = async(data) =>{
+     return await doPost('api/cms/add',data);
+   }
+   export const getEditcms = async(data) =>{
+     return await doPut('api/cms/edit',data);
+   }
+   export const getDeletecms = async(data) =>{
+     return await doDelete('api/cms/delete',data);
+   }
   
 
  

@@ -1,7 +1,8 @@
 import axios from "axios";
 import { AUTH_TOKEN, getCookie } from "./cookie";
 
-export const baseurl = 'http://159.65.145.21:3003';
+// export const baseurl = 'http://159.65.145.21:3003';
+export const baseurl = 'http://50.28.104.48:3003';
 
 
 const header = () => ({
@@ -29,7 +30,7 @@ export const doPost = async (path, data) => {
       }
       return reject(response);
     } catch (error) {
-      return reject(error);
+      return reject(error.response);
     }
   });
 };

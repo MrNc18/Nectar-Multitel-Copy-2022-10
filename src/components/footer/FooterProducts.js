@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { getAllProducts } from "../../services/category";
+import {getLatestProducts } from "../../services/category";
 import { baseurl } from "../../utils/request";
 
 const styles = {
@@ -23,7 +23,7 @@ function FooterProducts() {
 
   const handleGetallProducts = async () => {
     try {
-      const resp = await getAllProducts();
+      const resp = await getLatestProducts();
       console.log(resp);
       setAllProducts(resp.data);
     } catch (error) {
@@ -37,7 +37,7 @@ function FooterProducts() {
   }, []);
 
   const displayProducts = allProducts.slice(0,8).map((product) => (
-    <div className="col-md-6 col-lg-3 mb-4">
+    <div key={product?.id} className="col-md-6 col-lg-3 mb-4">
       <div className="single_product">
         <div className="portfolio-item portfolio-effect__item portfolio-item--eff1">
           <img

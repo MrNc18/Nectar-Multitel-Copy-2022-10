@@ -7,7 +7,7 @@ import blue3 from "../assets/blue3.png"
 
 const cards = () => {
   return (
-      <div className="flex-container" style={{marginTop:"-45px",justifyContent:"center",marginBottom:"30px"}}>
+      <div className="flex-container" style={{justifyContent:"center",marginBottom:"30px"}}>
     <div class="flex-item-start" style={{maxWidth:"18rem",height:"14rem"}}>
   <div class="card-header"><img src={blue1} alt="cloud" style={{color:"blue"}}/></div>
   <div class="card-body">
