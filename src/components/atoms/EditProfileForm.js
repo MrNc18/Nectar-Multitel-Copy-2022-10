@@ -131,7 +131,7 @@ function EditProfileForm() {
                   src={
                     userData.profile_img
                       ? `${baseurl}/images/${userData.profile_img}`
-                      : "/assets/images/userimg.png"
+                      : "/assets/images/default_user.png"
 
                   }
                   className="img-fluid"

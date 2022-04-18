@@ -647,7 +647,7 @@ img.dot-middle {
 /* HOME SUB PAGES */
 #inner_banner {
   background: url(./assets/home_sub_banner.png);
-  min-height: 280px;
+  /* min-height: 280px; */
   height: auto;
   background-size: cover;
   background-repeat: no-repeat;
