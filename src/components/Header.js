@@ -95,7 +95,7 @@ function Header() {
                       {user} <span className="ml-1">Login/Signup</span>
                     </div>
                   ) : (
-                    <Dropdown style={{position: "relative",top:"-5px"}}>
+                    <Dropdown style={{ position: "relative", top: "-5px" }}>
                       <Dropdown.Toggle
                         id="dropdown-basic"
                         style={{ background: "transparent", border: "none" }}
@@ -108,14 +108,15 @@ function Header() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item onClick={() =>navigate("/profile") }>Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={() => navigate("/profile")}>
+                          Profile
+                        </Dropdown.Item>
                         <Dropdown.Item
                           onClick={() => {
                             deleteCookie(AUTH_TOKEN);
-                            alert('Logged out.')
-                            navigate('/home')
+                            alert("Logged out.");
+                            navigate("/home");
                             // window.location.reload();
-
                           }}
                         >
                           Logout
@@ -161,28 +162,64 @@ function Header() {
                 // onClick={() => navigate("/home")}
               >
                 <NavDropdown.Item
-                  onClick={() => navigate("#")}
+                  onClick={() =>
+                    navigate("/contacts/informatics-and-accessories", {
+                      state: { title: "Informatics and Accessories" },
+                    })
+                  }
                 >
                   Informatics and Accessories
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/ip-telephony", {
+                      state: { title: "IP Telephony" },
+                    })
+                  }
+                >
                   IP Telephony
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/networking-equipment", {
+                      state: { title: "Networking Equipment" },
+                    })
+                  }
+                >
                   Networking Equipment
                 </NavDropdown.Item>
                 <NavDropdown.Item
-                  onClick={() => navigate("#")}
+                  onClick={() =>
+                    navigate("/contacts/cpe", { state: { title: "CPE´s" } })
+                  }
                 >
                   CPE´s
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/telecom", {
+                      state: { title: "Telecom" },
+                    })
+                  }
+                >
                   Telecom
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/promotions", {
+                      state: { title: "Promotions" },
+                    })
+                  }
+                >
                   Promotions
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/other-products-services-partners", {
+                      state: { title: " Other Products/Services (Partners)" },
+                    })
+                  }
+                >
                   Other Products/Services (Partners)
                 </NavDropdown.Item>
               </NavDropdown>
