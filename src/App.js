@@ -40,8 +40,6 @@ import AdinternetServices from "./components/Admin/internetServices";
 import Category from "./containers/Category";
 import PromotionDetail from "./containers/PromotionDetail";
 import InternetServicesDetail from "./containers/InternetServicesDetail";
-import ServicesCategory from "./components/Admin/ServicesCategory";
-import InformaticAndAccessories from "./containers/InformaticAndAccessories";
 import Contact from "./components/Admin/Contact";
 import IpTelephony from "./containers/IpTelephony";
 import NetworkEquipmentVendors from "./containers/NetworkEquipmentVendors";
@@ -50,9 +48,6 @@ import ContactOtherProductSerPart from "./containers/ContactOtherProductSerPart"
 import ContactTelecom from "./containers/ContactTelecom";
 import ContactEquip from "./containers/ContactEquip";
 import ContactCPE from "./containers/ContactCPE";
-
-
-
 
 function App() {
   return (
@@ -124,33 +119,28 @@ function App() {
          <Route  path="/contactequip" element={<ContactEquip/>}/>
          <Route  path="/contactcpe" element={<ContactCPE/>}/>
         <Route path="/promotions" element={<Promotions />} />
-        <Route path="/otherproducts" element={<OtherProducts />} /> 
-        {/* <Route path="/admin" element={<AdLanding/>}> */}
+        <Route path="/otherproducts" element={<OtherProducts />} />
         <Route path="/register" element={<ClientRegistration />} />
         <Route path="client" element={<Example />} />
-        {/* <Route path="client" element={<Example />}>
-          <Route path="profile" element={<Account />}/>
-          <Route path="editprofile" element={<EditProfile />} />
-          <Route path="myproducts" element={<MyProducts />}/>
-          <Route path="helpdesk" element={<HelpDesk />} />
-          <Route path="invoice" element={<Invoice />} />
-          <Route path="invoicedetails" element={<InvoiceDetails />} />
-          <Route
-            path="internetqualitygraph"
-            element={<InternetQualityGraph />}
-          />
-          <Route path="settings" element={<Settings />} />
-        </Route> */}
         <Route path="profile" element={<Account />} />
+
+{/* Contact Routes */}
+        <Route path="contact/iptelephony" element={<IpTelephony />} />
         <Route
-          path="/informaticandaccesories"
+          path="contact/informaticandaccesories"
           element={<InformaticAndAccessories />}
         />
-        {/* <Route path="/example" element={<Example />} /> */}
+        <Route path="contact/promotion" element={<ContactPromotion />} />
+        <Route
+          path="contact/otherproductserpart"
+          element={<ContactOtherProductSerPart />}
+        />
+        <Route path="contact/telecom" element={<ContactTelecom />} />
+        <Route path="contact/equip" element={<ContactEquip />} />
+        <Route path="contact/cpe" element={<ContactCPE />} />
 
-        {/* {/* <Route path="/admin" element={<AdLanding/>}> */}
-        <Route path="" element={<Dashboard />} />
-        <Route path="/cpe" element={<CPE />} />
+
+{/* admin Routes */}
         <Route path="/admin" element={<AdLanding />}>
           <Route path="" element={<Dashboard />} />
           <Route path="categories" element={<Categories />} />
