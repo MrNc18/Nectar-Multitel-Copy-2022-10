@@ -50,6 +50,8 @@ import ContactTelecom from "./containers/ContactTelecom";
 import ContactEquip from "./containers/ContactEquip";
 import ContactCPE from "./containers/ContactCPE";
 import VendorDetails from "./containers/VendorDetails";
+import Cart from "./containers/Cart";
+import Checkout from "./containers/Checkout";
 
 function App() {
   return (
@@ -102,6 +104,8 @@ function App() {
         <Route path="/register" element={<ClientRegistration />} />
         <Route path="client" element={<Example />} />
         <Route path="profile" element={<Account />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="checkout" element={<Checkout />} />
 
 {/* Contact Routes */}
         <Route path="contacts/:cat" element={<VendorDetails />} />
