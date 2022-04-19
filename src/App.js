@@ -48,6 +48,9 @@ import ContactOtherProductSerPart from "./containers/ContactOtherProductSerPart"
 import ContactTelecom from "./containers/ContactTelecom";
 import ContactEquip from "./containers/ContactEquip";
 import ContactCPE from "./containers/ContactCPE";
+import InformaticAndAccessories from './containers/InformaticAndAccessories';
+import ServicesCategory from './components/Admin/ServicesCategory';
+
 
 function App() {
   return (
