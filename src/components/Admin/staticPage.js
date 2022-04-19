@@ -15,9 +15,11 @@ function Staticpage() {
   const [DeleteShow, setDeleteShow] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
-  const [editImage,setEditImage] = useState('')
+  const [editImage, setEditImage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [file, setFile] = useState("");
+  let imageWidth = 1920;
+  let imageHeight = 593;
   const [data2, setData2] = useState({
     id: "",
     Title: "",
@@ -26,14 +28,38 @@ function Staticpage() {
     description: "",
     name: "",
     button: "",
-    page_slug:'',
+    page_slug: "",
   });
 
-  const { id, Title, subheading, link, description, name, button,page_slug } = data2;
+  const { id, Title, subheading, link, description, name, button, page_slug } =
+    data2;
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
+
+  // const handleFileChange = (event) => {
+  //   var reader = new FileReader();
+  //   reader.readAsDataURL(event.target.files[0]);
+  //   reader.onload = function (e) {
+  //     var image = new Image();
+  //     image.src = e.target.result;
+  //     console.log("image",image)
+  //     image.onload = function () {
+  //       var height = this.height;
+  //       var width = this.width;
+  //       if (height == 593 || width == 1920) {
+  //         setFile(event.target.files);
+  //       } else {
+  //         setFile("");
+  //       }
+  //     };
+  //   };
+
+    // setFile(event.target.files);
+  //   console.log(file, "file");
+  // };
+
   const handleFileChange = (event) => {
     setFile(event.target.files);
     console.log(file);
@@ -47,10 +73,10 @@ function Staticpage() {
     setDeleteShow(false);
   };
   const handleClose = () => {
-    setData2('')
-    setFile('')
-  setShow(false);
-}
+    setData2("");
+    setFile("");
+    setShow(false);
+  };
 
   const handleDeletecms = async () => {
     const data = {
@@ -89,7 +115,12 @@ function Staticpage() {
       file === ""
     ) {
       setErrorMsg("Fill the Mandatory Filelds");
-    } else
+    }
+    // else if (file.width != imageWidth && file.height != imageHeight)
+    // {
+    //   setErrorMsg("Please Upload the Image with given height and width")
+    // }
+    else
       try {
         await getAddcms(data);
         setErrorMsg("");
@@ -108,12 +139,12 @@ function Staticpage() {
       Title: item?.title,
       subheading: item?.subtitle,
       link: item?.link,
-      name:item?.name,
+      name: item?.name,
       description: item?.description,
-      page_slug:item?.page_slug,
-      button:item?.button
+      page_slug: item?.page_slug,
+      button: item?.button,
     });
-    setEditImage(item.image ? item.image:'')
+    setEditImage(item.image ? item.image : "");
     setShowEditModal(true);
   };
 
@@ -144,7 +175,7 @@ function Staticpage() {
   };
   const handleEditClose = () => {
     setData2("");
-    setFile('');
+    setFile("");
     setShowEditModal(false);
   };
 
@@ -165,16 +196,18 @@ function Staticpage() {
   return (
     <div id="layoutSidenavContent">
       <div className="container-fluid">
-        <div className="row" style={{ justifyContent: "space-between" }}>
+      <div class="row d-flex align-items-center justify-content-between">
+         <div class="col-lg-6 col-md-6 text-left">
           <h3 className="mt-4 mb-4">Content Management</h3>
-          <div className="col-xl-9 col-lg-3 col-md-9 col-sm-9">
+          </div>
+          <div className="col-lg-6 col-md-6 text-right">
             <div className="header justify-content-end">
               <button
                 type="button"
                 className="btn btn-primary btn-sm my-3"
                 style={{
                   width: "150px",
-                  marginRight: "15px",
+                  // marginRight: "15px",
                   backgroundColor: "#0076B5",
                 }}
                 onClick={() => {
@@ -242,6 +275,10 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Upload</Form.Label>{" "}
+                      <p style={{ fontSize: "small" }}>
+                        <span style={{ color: "red" }}>* </span>Image should be
+                        the size of 1920*600px
+                      </p>
                       <Form.Control
                         type="file"
                         id="file"
@@ -398,14 +435,18 @@ function Staticpage() {
                 onChange={handleChange}
               ></Form.Control>
               <Form.Label>Upload</Form.Label>
+              <p style={{ fontSize: "small" }}>
+                <span style={{ color: "red" }}>* </span>Image should be the size
+                of 1920*600px
+              </p>
               <Form.Control
                 type="file"
-                id="file"  
+                id="file"
                 // value={file}
                 onChange={handleFileChange}
               ></Form.Control>
-                <img src={imageUrl(editImage)} style={{ width: "60px" }} />
-            </Form.Group> 
+              <img src={imageUrl(editImage)} style={{ width: "60px" }} />
+            </Form.Group>
           </div>
         </Modal.Body>
         <Modal.Footer>
