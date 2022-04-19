@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import CommonSection from "../components/CommonSection";
 import LandingPage from "../components/LandingPage";
@@ -9,22 +9,20 @@ import { baseurl } from "../utils/request";
 import { getProductBySlug } from "../services/category";
 
 const AdditionalInfo = () => (
-
-    <p className="desc_text">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit
-      interdum felis sit amet vehicula. Vestibulum sagittis luctus elit, non
-      lobortis neque fringilla non. Duis tempus sollicitudin nunc id placerat.
-      Vestibulum non nibh a lacus viverra congue nec ut velit. Sed id dui nisi.
-      Proin at suscipit velit.
-    </p>
-
+  <p className="desc_text">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit
+    interdum felis sit amet vehicula. Vestibulum sagittis luctus elit, non
+    lobortis neque fringilla non. Duis tempus sollicitudin nunc id placerat.
+    Vestibulum non nibh a lacus viverra congue nec ut velit. Sed id dui nisi.
+    Proin at suscipit velit.
+  </p>
 );
 
 const Reviews = () => (
   <>
     <h5>Reviews</h5>
     <p>There are no reviews yet.</p>
-    
+
     <p>
       Your email address will not be published. Required fields are marked *
     </p>
@@ -118,23 +116,24 @@ const Reviews = () => (
 );
 
 function ProductDetail() {
-  // const { state } = useLocation();
+  const navigate = useNavigate()
   // const { product } = state;
   // console.log(product);
 
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({});
   const [step, setStep] = useState("additional");
-  const params = useParams()
-  console.log(params?.name)
+  const [qty, setQty] = useState(1);
+  const params = useParams();
+  console.log(params?.name);
 
   useEffect(() => {
     (async () => {
-      const response = await getProductBySlug({slug: params?.name})
+      const response = await getProductBySlug({ slug: params?.name });
       console.log(response);
       setProduct(response?.data?.data);
       // !response?.data?.length && setInitial("No promotions found");
     })();
-  }, [params?.name]);  
+  }, [params?.name]);
 
   const TabList = Object.freeze([
     { label: "Additional Information", state: "additional" },
@@ -161,18 +160,15 @@ function ProductDetail() {
                     ? `${baseurl}/images/${product?.cover_img}`
                     : "/assets/images/product.png"
                 }
-                className="img-fluid" 
+                className="img-fluid"
               />
-              
             </div>
           </div>
           <div className="col-12 col-md-7">
             <div className="book-details">
               <h1>{product?.name}</h1>
               {/* <p>{product?.specification}</p> */}
-              <div className="price">
-                {formatAmount(product?.price)}
-              </div>
+              <div className="price">{formatAmount(product?.price)}</div>
               {/* <div className="rating">
                 <span> <i className="fa fa-star-o"></i> </span>
                 <span> <i className="fa fa-star-o"></i> </span>
@@ -205,20 +201,32 @@ function ProductDetail() {
               <div className="col-2 qty">Quantity</div>
               <div className="col-2">
                 <div className="qty_counter d-flex">
-                  <input type="button" value="-" className="minus" />
+                  <input type="button" value="-" className="minus" 
+                    onClick={
+                     () => {
+                       qty > 1 && setQty(qty - 1)
+                     }
+                    }
+                  />
                   <input
                     type="text"
                     name="qty"
-                    value="1"
+                    value={qty}
                     className="text-center input-qty w-100"
                   />
-                  <input type="button" value="+" className="plus" />
+                  <input type="button" value="+" className="plus"
+                    onClick={() => setQty(qty + 1)}
+                  />
                 </div>
               </div>
               <div className="col-3 addcart">
                 <a
                   className="btn btn-primary contact_btn addcart_btn w-100"
                   href="#"
+                  onClick={() => {
+                    alert("Item Added to cart.")
+                    navigate("/cart")
+                  }}
                 >
                   Add to Cart
                 </a>
@@ -236,9 +244,7 @@ function ProductDetail() {
 
             <div className="product_desc mt-3">
               <h2 className="book_social">Description</h2>
-              <p>
-                {product?.description}
-              </p>
+              <p>{product?.description}</p>
             </div>
 
             <div className="author-social pt-2 pb-2">
@@ -306,12 +312,8 @@ function ProductDetail() {
                 </div>
               </div>
             </section>
-
-            
-
           </div>
         </div>
-        
       </section>
       <CommonSection />
     </LandingPage>

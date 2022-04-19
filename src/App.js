@@ -49,6 +49,9 @@ import ContactOtherProductSerPart from "./containers/ContactOtherProductSerPart"
 import ContactTelecom from "./containers/ContactTelecom";
 import ContactEquip from "./containers/ContactEquip";
 import ContactCPE from "./containers/ContactCPE";
+import VendorDetails from "./containers/VendorDetails";
+import Cart from "./containers/Cart";
+import Checkout from "./containers/Checkout";
 
 function App() {
   return (
@@ -101,10 +104,12 @@ function App() {
         <Route path="/register" element={<ClientRegistration />} />
         <Route path="client" element={<Example />} />
         <Route path="profile" element={<Account />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="checkout" element={<Checkout />} />
 
 {/* Contact Routes */}
-        <Route path="contact/iptelephony" element={<IpTelephony />} />
-        <Route
+        <Route path="contacts/:cat" element={<VendorDetails />} />
+        {/* <Route
           path="contact/informaticandaccesories"
           element={<InformaticAndAccessories />}
         />
@@ -115,7 +120,7 @@ function App() {
         />
         <Route path="contact/telecom" element={<ContactTelecom />} />
         <Route path="contact/equip" element={<ContactEquip />} />
-        <Route path="contact/cpe" element={<ContactCPE />} />
+        <Route path="contact/cpe" element={<ContactCPE />} /> */}
 
 
 {/* admin Routes */}
