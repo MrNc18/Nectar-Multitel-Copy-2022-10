@@ -99,8 +99,8 @@ function ClientRegistration() {
       navigate("/home");
     } catch (error) {
       // showAlert("Signup Failed! Please try again.", "error");
-      alert(error)
-      console.log(error)
+      alert(error.data.massage)
+      console.log(error.data)
     } finally {
       setBbtnLoading(false);
     }

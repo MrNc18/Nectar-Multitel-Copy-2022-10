@@ -21,10 +21,10 @@ export default function AppHeader(props) {
         result?.data?.data?.role == ROLE.USER ||
         result?.data?.data?.role == ROLE.VENDOR
       ) {
-        navigate("/");
         alert("Unauthorized");
+        navigate("/");
         
-      } else {   
+      } else  {   
         setUsername(result?.data?.data?.first_name);
       }
     } else {

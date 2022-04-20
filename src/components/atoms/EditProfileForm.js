@@ -81,6 +81,7 @@ function EditProfileForm() {
     var reader = new FileReader();
     reader.onload = function(){
       var output = document.getElementById('profile');
+      console.log("output",output)
       output.src = reader.result;
     };
     reader.readAsDataURL(event.target.files[0]);

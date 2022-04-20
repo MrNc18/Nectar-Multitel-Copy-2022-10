@@ -196,15 +196,17 @@ function InternetServices() {
   return (
     <div id="layoutSidenavContent">
       <div className="container-fluid">
-        <div className="row" style={{ justifyContent: "space-between" }}>
+      <div class="row d-flex align-items-center justify-content-between">
+         <div class="col-lg-6 col-md-6 text-left">
           <h3 className="mt-4 mb-4">Internet Services</h3>
-          <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+          </div>
+          <div className="col-lg-6 col-md-6 text-right">
             <div className="header justify-content-end">
               <button
                 type="button"
                 className="btn btn-primary btn-sm my-3"
                 style={{
-                  marginRight: "15px",
+                  // marginRight: "15px",
                   backgroundColor: "#0076B5",
                   marginTop: "30px !important",
                 }}
