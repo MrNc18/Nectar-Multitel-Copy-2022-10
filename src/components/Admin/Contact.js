@@ -83,7 +83,7 @@ function Contacts() {
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
     }
-    data.append("adress", Adress);
+    data.append("address", Adress);
     data.append("first_name", first_name);
     data.append("last_name", last_name);
     data.append("email", email);
@@ -144,7 +144,7 @@ function Contacts() {
   for (var x = 0; x < file.length; x++) {
     data.append("image", file[x]);
   }
-  data.append("adress", Adress);
+  data.append("address", Adress);
   data.append("first_name", first_name);
   data.append("last_name", last_name);
   data.append("email", email);
