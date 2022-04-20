@@ -52,6 +52,7 @@ import ContactCPE from "./containers/ContactCPE";
 import VendorDetails from "./containers/VendorDetails";
 import Cart from "./containers/Cart";
 import Checkout from "./containers/Checkout";
+import PaymentMethod from "./containers/PaymentMethod";
 
 function App() {
   return (
@@ -106,6 +107,7 @@ function App() {
         <Route path="profile" element={<Account />} />
         <Route path="cart" element={<Cart />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path="payment-methods" element={<PaymentMethod />} />
 
 {/* Contact Routes */}
         <Route path="contacts/:cat" element={<VendorDetails />} />

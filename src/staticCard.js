@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import test from "./assets/test.png"
 import banner from "./assets/home-banner.jpg"
 import abc from "./assets/tv_services_bg.png"
 import LandingPage from './components/LandingPage'
 import "./staticcard.css"
-import { Carousel, Row } from 'react-bootstrap'
+import { Button, Carousel, Row } from 'react-bootstrap'
+import Select from 'react-select'
 
-function example() {
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
+
+function Example() {
+  const [ipValue, setIpValue] = useState("")
+  const [val, setVal] = useState("")  
+  const [multiVal, setMultiVal] = useState([])
+
+  const getValues = () => {
+    const finalVal = val ? val.map(v => v.value) : []
+    console.log(finalVal)
+  }
+
   return (
     <LandingPage>
       <section className="corp_slider">
@@ -74,6 +90,34 @@ function example() {
         </Carousel>
         </Row>
       </section>
+
+      <Select 
+      // defaultValue={[colourOptions[2], colourOptions[3]]}
+        isMulti
+        name="colors"
+        className="basic-multi-select"
+        classNamePrefix="select"
+        options={options} 
+        inputValue={ipValue}
+        value={val}
+        onChange={(value) => {
+          setVal(value)
+          console.log(value)
+        }}
+      />
+      <button
+        type="button"
+        className="btn btn-primary btn-sm my-3"
+        style={{
+          marginRight: "15px",
+          backgroundColor: "#0076B5",
+          marginTop: "30px !important",
+        }}
+        onClick={getValues}
+      >
+        <i className="fas fa-plus-circle"></i> Add New Promotion
+      </button>
+
     </LandingPage>
     // </center> 
 
@@ -81,4 +125,4 @@ function example() {
   )
 }
 
-export default example
+export default Example

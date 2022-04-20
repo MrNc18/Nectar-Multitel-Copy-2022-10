@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import LandingPage from "../components/LandingPage";
 import LoginModal from "../components/LoginModal";
+import { CITY_LIST, COUNTRY_LIST } from "../constants/authconstant";
+import { getUserDetailsByToken } from "../services/authentication";
 import { AUTH_TOKEN, getCookie } from "../utils/cookie";
 import { useStateValue } from "../StateProvider";
 import { imageUrl } from "../services/category";
@@ -9,9 +11,68 @@ import { getBasketTotal } from "../Reducer";
 
 export default function Checkout() {
   const [shipAddress, setShipAddress] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false)
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
   const isAuthenticated = getCookie(AUTH_TOKEN);
   const [{ basket }, dispatch] = useStateValue();
+
+  const getDataByToken = async () => {
+    if (isAuthenticated) {
+      const result = await getUserDetailsByToken();
+      // console.log(result);
+      setUserEmail(result?.data?.data?.email);
+    }
+  };
+
+  React.useEffect(() => {
+    getDataByToken();
+  }, []);
+
+  const [data2, setData2] = useState({
+    first_name: "",
+    last_name: "",
+    company: "",
+    country: "",
+    city: "",
+    address1: "",
+    address2: "",
+    zipcode: "",
+    province: "",
+    phone: "",
+    email: "",
+  });
+
+  const [dataShipping, setDataShipping] = useState({
+    ship_first_name: "",
+    ship_last_name: "",
+    ship_company: "",
+    ship_country: "",
+    ship_city: "",
+    ship_address1: "",
+    ship_address2: "",
+    ship_zipcode: "",
+    ship_province: "",
+    ship_phone: "",
+    ship_email: "",
+  });
+
+  const {
+    first_name,
+    last_name,
+    company,
+    country,
+    city,
+    address1,
+    address2,
+    zipcode,
+    province,
+    phone,
+    email,
+  } = data2;
+
+  const handleChange = (e) => {
+    setData2({ ...data2, [e.target.name]: e.target.value });
+  };
 
   return (
     <LandingPage>
@@ -25,13 +86,13 @@ export default function Checkout() {
               <div className="w-100">
                 <span className="s1 float-left mb-2">Contact Information</span>
                 {!isAuthenticated && (
-                    <span className="s2 float-right mb-2">
+                  <span className="s2 float-right mb-2">
                     Already have an account?{" "}
                     <a onClick={() => setShowLoginModal(true)}>
                       <b>Log in</b>
                     </a>
                   </span>
-                )}   
+                )}
               </div>
               <form className="checkout_form">
                 <div className="form-group">
@@ -41,6 +102,8 @@ export default function Checkout() {
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     placeholder="Email Address"
+                    value={userEmail}
+                    disabled
                   />
                   <div className="form-check mt-2 mb-2">
                     <input
@@ -66,96 +129,126 @@ export default function Checkout() {
                 <div className="row">
                   <div className="col-12 col-md-6 col-sm-6">
                     <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
+                      <label htmlFor="first_name">
                         First Name<em className="red">*</em>
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="formGroupExampleInput"
-                        placeholder=""
+                        id="first_name"
+                        name="first_name"
+                        value={first_name}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
                   <div className="col-12 col-md-6 col-sm-6">
                     <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
+                      <label htmlFor="last_name">
                         Last Name<em className="red">*</em>
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="formGroupExampleInput"
-                        placeholder=""
+                        id="last_name"
+                        name="last_name"
+                        value={last_name}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
                   <div className="col-12 col-md-12 col-sm-12">
                     <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
-                        Company Name (Optional)
-                      </label>
+                      <label>Company Name (Optional)</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="formGroupExampleInput"
-                        placeholder=""
+                        name="company"
+                        value={company}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
                   <div className="col-12 col-md-12 col-sm-12">
                     <div className="form-group">
                       <label htmlFor="formGroupExampleInput">
-                        Country / Town<em className="red">*</em>
+                        Country<em className="red">*</em>
                       </label>
                       <select
                         className="form-control"
                         id="exampleFormControlSelect1"
+                        value={country}
+                        name="country"
+                        onChange={handleChange}
                       >
-                        <option>Select Country/Town</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option>Select Country</option>
+                      {/* {console.log("A;;",allcategories)} */}
+                      {COUNTRY_LIST.map((item) => (
+                          <option value={item}>{item}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
                   <div className="col-12 col-md-12 col-sm-12">
                     <div className="form-group">
                       <label htmlFor="formGroupExampleInput">
-                        Address<em className="red">*</em>
+                        City<em className="red">*</em>
+                      </label>
+                      <select
+                        className="form-control"
+                        value={city}
+                        name="city"
+                        onChange={handleChange}
+                      >
+                        <option>Select City</option>
+                      {/* {console.log("A;;",allcategories)} */}
+                      {CITY_LIST.map((item) => (
+                          <option value={item}>{item}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-12 col-md-12 col-sm-12">
+                    <div className="form-group">
+                      <label htmlFor="formGroupExampleInput">
+                        Address Line 1<em className="red">*</em>
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="formGroupExampleInput"
                         placeholder="Street name and house number"
+                        value={address1}
+                        name="address1"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
                   <div className="col-12 col-md-12 col-sm-12">
                     <div className="form-group">
                       <label htmlFor="formGroupExampleInput">
-                        Address (Optional)
+                        Address Line 2 (Optional)
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="formGroupExampleInput"
                         placeholder=""
+                        value={address2}
+                        name="address2"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
                   <div className="col-12 col-md-6 col-sm-6">
                     <div className="form-group">
                       <label htmlFor="formGroupExampleInput">
-                        Location<em className="red">*</em>
+                        Zip code<em className="red">*</em>
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        id="formGroupExampleInput"
-                        placeholder=""
+                        value={zipcode}
+                        name="zipcode"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -166,13 +259,15 @@ export default function Checkout() {
                       </label>
                       <select
                         className="form-control"
-                        id="exampleFormControlSelect1"
+                        value={province}
+                        name="province"
+                        onChange={handleChange}
                       >
                         <option>Select Province</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                       </select>
                     </div>
                   </div>
@@ -184,8 +279,9 @@ export default function Checkout() {
                       <input
                         type="text"
                         className="form-control"
-                        id="formGroupExampleInput"
-                        placeholder=""
+                        value={phone}
+                        name="phone"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -195,10 +291,11 @@ export default function Checkout() {
                         Email address<em className="red">*</em>
                       </label>
                       <input
-                        type="text"
+                        type="email"
                         className="form-control"
-                        id="formGroupExampleInput"
-                        placeholder=""
+                        value={email}
+                        name="email"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
