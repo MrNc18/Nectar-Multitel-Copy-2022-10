@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Form, Table, Dropdown } from "react-bootstrap";
+import Select from "react-select";
 import "./contacts.css";
 import {
-  // getAddServiceProducts,
-  // getAllServicesProducts,
-  // getDeleteServiceProducts,
-  // getEditServiceProducts,
-  // getAllInternetServices,
+  getAddVendor,
+  getEditVendor,
+  getDeleteVendor,
+  getAllVendors,
   imageUrl,
 } from "../../services/category";
 import { Link } from "react-router-dom";
@@ -22,22 +22,24 @@ function Contacts() {
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [DeleteShow, setDeleteShow] = useState(false);
   const [file, setFile] = useState("");
-  //   const [banfile, setBanfile] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  // const [servicesList, setServicesList] = useState("");
-  const [contactList, setContactList] = useState("");
+  const [vendorList, setVendorList] = useState("");
   const [dropdown, setDropdown] = useState(false);
+  const [category, setCategory] = useState("");
+  const [gender, setGender] = useState("");
   const toggleOpen = () => setDropdown(!dropdown);
 
   const [data2, setData2] = useState({
     id: "",
-    name: "",
+    username: "",
     Phone: "",
     email: "",
     Adress: "",
-    category: "",
+    first_name: "",
+    last_name: "",
   });
-  const { id, name, Phone, email, Adress, category } = data2;
+  const { id, name, Phone, email, Adress, first_name, last_name, username } =
+    data2;
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
@@ -60,8 +62,8 @@ function Contacts() {
       id: deleteRecord.id,
     };
     try {
-      // await getDeleteServiceProducts(data);
-      alert("Promotion Deleted Sucessfully");
+       await getDeleteVendor(data);
+      alert("Vendor Contacts Deleted Sucessfully");
       setDeleteShow(false);
       handleAllContactList();
     } catch (error) {
@@ -71,28 +73,29 @@ function Contacts() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // let ServiceId = ''
-    // {servicesList &&
-    //     servicesList.map((item) => {
-    //     if(item.name === category){
-    //         ServiceId = item.id
-    //       console.log("item.id",item.id)
-    //     }
-    //   })
-    //   }
+    const finalMultiValue =
+      category &&
+      category.map((data) => {
+        return data.value;
+      });
+    console.log("AddMultiValue", finalMultiValue);
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
     }
     data.append("adress", Adress);
-    data.append("name", name);
+    data.append("first_name", first_name);
+    data.append("last_name", last_name);
     data.append("email", email);
-    data.append("category", category);
+    data.append("category", finalMultiValue);
     data.append("phone", Phone);
+    // data.append("gendar", gender);
+    data.append("user_name", username);
     // data.append("adress", Adress);
 
     if (
-      name === "" ||
+      first_name === "" ||
+      last_name === "" ||
       Adress === "" ||
       email === "" ||
       Phone === "" ||
@@ -101,10 +104,11 @@ function Contacts() {
       setErrorMsg("Fill the Mandatory Filelds");
     } else
       try {
-        // await getAddServiceProducts(data);
+        await getAddVendor(data);
         alert("Added  contacts Succesfully.", "success");
         setErrorMsg("");
         setData2(" ");
+        setCategory(" ");
         setShow(false);
         handleAllContactList();
       } catch (error) {
@@ -116,40 +120,42 @@ function Contacts() {
 
   //  edit API
   const handleEditShow = (item) => {
+    console.log("itemcont",item)
     setData2({
-      // id: item.id,
-      // name: item.name,
-      // description: item.description,
-      // category:item.service.name,
-      // price:item.price,
-      // SortDescription:item.service.sort_description
+      id:item.id,
+      username:item.user_name,
+      Phone:item.phone,
+      email:item.email,
+      Adress:item.address,
+      first_name:item.first_name,
+      last_name:item.last_name
     });
+    setCategory(item.category)
     setShowEditModal(true);
   };
   const handleEditContacts = async () => {
-    // let EditServiceId = ''
-    // {servicesList &&
-    //     servicesList.map((item) => {
-    //     if(item.name === category){
-    //         EditServiceId = item.id
-    //       console.log("item.id",item.id)
-    //     }
-    //   })
-    //   }
-    const data = new FormData();
-    for (var x = 0; x < file.length; x++) {
-      data.append("image", file[x]);
-    }
-    data.append("category", category);
-    data.append("name", name);
-    data.append("phone", Phone);
-    data.append("email", email);
-    // data.append("serviceId", EditServiceId);
-    data.append("adress", Adress);
-    data.append("id", id);
+    const finalMultiValue =
+    category &&
+    category.map((data) => {
+      return data.value;
+    });
+  console.log("AddMultiValue", finalMultiValue);
+  const data = new FormData();
+  for (var x = 0; x < file.length; x++) {
+    data.append("image", file[x]);
+  }
+  data.append("adress", Adress);
+  data.append("first_name", first_name);
+  data.append("last_name", last_name);
+  data.append("email", email);
+  data.append("category", finalMultiValue);
+  data.append("phone", Phone);
+  // data.append("gendar", gender);
+  data.append("user_name", username);
+  // data.append("adress", Adress);
 
     try {
-      // await getEditServiceProducts(data);
+       await getEditVendor(data);
       alert("Contacts Edited Sucessfully");
       setData2("");
       setFile("");
@@ -157,7 +163,7 @@ function Contacts() {
       handleAllContactList();
     } catch (error) {
       alert("Something Went Wrong");
-    }
+     }
   };
   const handleEditClose = () => {
     setData2("");
@@ -166,11 +172,11 @@ function Contacts() {
 
   //Get All Category Api
 
-  const handleAllContactList = async () => {
+  const handleAllContactList = async (data) => {
     try {
-      // const resp = await getAllServicesProducts();
-      // setProductsList(resp && resp.data);
-      // console.log("resp", resp);
+      const resp = await getAllVendors(data);
+      setVendorList(resp && resp.data.data);
+      console.log("resp", resp.data.data);
     } catch (error) {
       console.log("error", error);
       alert("something went Wrong");
@@ -183,9 +189,29 @@ function Contacts() {
 
   //filter
 
-  const handleclick = () => {
-    console.log("filter");
+  const handleClick = async (categories) => {
+    console.log("category",categories);
+    const data = {
+      category : categories
+    } 
+    try {
+      const resp = await getAllVendors(data);
+      setVendorList(resp && resp.data.data);
+      console.log("resp", resp.data.data);
+    } catch (error) {
+      console.log("error", error);
+      alert("something went Wrong");
+    } 
   };
+
+  const Categoryoptions = [
+    { value: "Informatics & Accessories", label: "Informatics & Accessories" },
+    { value: "Ip Telephony", label: "Ip Telephony" },
+    { value: "Network equipments", label: "Network equipments" },
+    { value: "cpe", label: "cpe" },
+    { value: "Telecom", label: "Telecom" },
+    { value: "otherproducts", label: "otherproducts" },
+  ];
 
   return (
     <div id="layoutSidenavContent">
@@ -209,11 +235,11 @@ function Contacts() {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item>Ip Telephony</Dropdown.Item>
-                <Dropdown.Item>Network equipments</Dropdown.Item>
-                <Dropdown.Item>cpe</Dropdown.Item>
-                <Dropdown.Item>Telecom</Dropdown.Item>
-                <Dropdown.Item>otherproducts</Dropdown.Item>
+                <Dropdown.Item onClick={() =>handleClick("Ip Telephony")}>Ip Telephony</Dropdown.Item>
+                <Dropdown.Item onClick={() =>handleClick("Network Equipment")}>Network equipments</Dropdown.Item>
+                <Dropdown.Item onClick={() =>handleClick("Cpe")}>cpe</Dropdown.Item>
+                <Dropdown.Item onClick={() =>handleClick("Telecom")}>Telecom</Dropdown.Item>
+                <Dropdown.Item onClick={() =>handleClick("otherproducts")}>otherproducts</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 
@@ -245,11 +271,25 @@ function Contacts() {
                 </Modal.Title>
                 <div className="container">
                   <Form.Group>
-                    <Form.Label>Name</Form.Label>
+                    <Form.Label> First Name</Form.Label>
                     <Form.Control
                       type="text"
-                      value={name}
-                      name="name"
+                      value={first_name}
+                      name="first_name"
+                      onChange={handleChange}
+                    ></Form.Control>
+                    <Form.Label> Last Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={last_name}
+                      name="last_name"
+                      onChange={handleChange}
+                    ></Form.Control>
+                    <Form.Label>User Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={username}
+                      name="username"
                       onChange={handleChange}
                     ></Form.Control>
                     <Form.Label>Phone</Form.Label>
@@ -259,6 +299,20 @@ function Contacts() {
                       name="Phone"
                       onChange={handleChange}
                     ></Form.Control>
+                    <Form.Label>Category</Form.Label>
+                    <Select
+                      isMulti
+                      name="category"
+                      options={Categoryoptions}
+                      // onChange={handleChange}
+                      className="basic-multi-select"
+                      classNamePrefix="select"
+                      value={category}
+                      onChange={(value) => {
+                        setCategory(value);
+                        console.log(value);
+                      }}
+                    />
                     <Form.Label>Email</Form.Label>
                     <Form.Control
                       type="email"
@@ -306,13 +360,14 @@ function Contacts() {
             </tr>
           </thead>
           <tbody>
-            {contactList &&
-              contactList.map((item, i) => (
+            {vendorList &&
+              vendorList.map((item, i) => (
                 <tr>
-                  {console.log("pc", contactList)}
+                  {console.log("pc", vendorList)}
 
                   <td>{i + 1}</td>
-                  <td>{item.name}</td>
+                  <td>{`${item.first_name}${item.last_name}`}</td>
+                  <td>{item.category}</td>
                   <td>{item.email}</td>
                   <td>{item.phone}</td>
                   <td>
@@ -373,38 +428,66 @@ function Contacts() {
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <div className="container">
-                <Form.Group>
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={name}
-                    name="name"
-                    onChange={handleChange}
-                  ></Form.Control>
-                  <Form.Label>Phone</Form.Label>
-                  <Form.Control
-                    type="number"
-                    value={Phone}
-                    name="Phone"
-                    onChange={handleChange}
-                  ></Form.Control>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    type="email"
-                    value={email}
-                    name="email"
-                    onChange={handleChange}
-                  ></Form.Control>
-                  <Form.Label>Adress</Form.Label>
-                  <Form.Control
-                    type="textarea"
-                    value={Adress}
-                    name="Adress"
-                    onChange={handleChange}
-                  ></Form.Control>
-                </Form.Group>
-              </div>
+            <div className="container">
+                  <Form.Group>
+                    <Form.Label> First Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={first_name}
+                      name="first_name"
+                      onChange={handleChange}
+                    ></Form.Control>
+                    <Form.Label> Last Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={last_name}
+                      name="last_name"
+                      onChange={handleChange}
+                    ></Form.Control>
+                    <Form.Label>User Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={username}
+                      name="username"
+                      onChange={handleChange}
+                    ></Form.Control>
+                    <Form.Label>Phone</Form.Label>
+                    <Form.Control
+                      type="number"
+                      value={Phone}
+                      name="Phone"
+                      onChange={handleChange}
+                    ></Form.Control>
+                    <Form.Label>Category</Form.Label>
+                    <Select
+                      isMulti
+                      name="category"
+                      options={Categoryoptions}
+                      // onChange={handleChange}
+                      className="basic-multi-select"
+                      classNamePrefix="select"
+                      value={category}
+                      onChange={(value) => {
+                        setCategory(value);
+                        console.log(value);
+                      }}
+                    />
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      value={email}
+                      name="email"
+                      onChange={handleChange}
+                    ></Form.Control>
+                    <Form.Label>Adress</Form.Label>
+                    <Form.Control
+                      type="textarea"
+                      value={Adress}
+                      name="Adress"
+                      onChange={handleChange}
+                    ></Form.Control>
+                  </Form.Group>
+                </div>
             </Modal.Body>
             <Modal.Footer>
               <Button

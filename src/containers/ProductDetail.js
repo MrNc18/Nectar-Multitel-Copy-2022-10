@@ -7,6 +7,9 @@ import LandingPage from "../components/LandingPage";
 import { formatAmount } from "../utils/AmountFormatter";
 import { baseurl } from "../utils/request";
 import { getProductBySlug } from "../services/category";
+import {useStateValue} from "../StateProvider"
+
+
 
 const AdditionalInfo = () => (
   <p className="desc_text">
@@ -116,6 +119,22 @@ const Reviews = () => (
 );
 
 function ProductDetail() {
+  const [state, dispatch] = useStateValue();
+
+  const addToBasket = () => {
+      dispatch({
+          type: "ADD_TO_BASKET",
+          item: {
+              id: product.id,
+              image: product?.cover_img,
+              name:product.name,
+              price: product.price,
+              quantity:qty,
+              // rating: rating,
+              // subtotal:subtotal
+          },
+      });
+  };
   const navigate = useNavigate()
   // const { product } = state;
   // console.log(product);
@@ -224,6 +243,7 @@ function ProductDetail() {
                   className="btn btn-primary contact_btn addcart_btn w-100"
                   href="#"
                   onClick={() => {
+                    addToBasket()
                     alert("Item Added to cart.")
                     navigate("/cart")
                   }}

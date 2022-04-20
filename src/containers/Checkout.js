@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import LandingPage from "../components/LandingPage";
 import LoginModal from "../components/LoginModal";
 import { AUTH_TOKEN, getCookie } from "../utils/cookie";
+import { useStateValue } from "../StateProvider";
+import { imageUrl } from "../services/category";
+import { formatAmount } from "../utils/AmountFormatter";
+import { getBasketTotal } from "../Reducer";
 
 export default function Checkout() {
   const [shipAddress, setShipAddress] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false)
   const isAuthenticated = getCookie(AUTH_TOKEN);
+  const [{ basket }, dispatch] = useStateValue();
 
   return (
     <LandingPage>
@@ -431,34 +436,23 @@ export default function Checkout() {
                       <td>Product</td>
                       <td className="text-center">Subtotal</td>
                     </tr>
+                    {basket.map((item) => (
                     <tr>
                       <td>
                         <div className="d-flex align-items-center">
                           <img
                             className="cart_book_img"
-                            src="assets/images/cartbook1.png"
+                            src={imageUrl(item.image)}
                           />
                           <span className="cart_book_name">
-                            Prison Reeducation Methods
+                            {item.name}
                           </span>
                         </div>
                       </td>
-                      <td className="cart_price text-center">1800.00 Kz</td>
+                      <td className="cart_price text-center">{formatAmount(item.price)}</td>
                     </tr>
-                    <tr>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          <img
-                            className="cart_book_img"
-                            src="assets/images/cartbook2.png"
-                          />
-                          <span className="cart_book_name">
-                            3rd National Conference on Angolan Literature
-                          </span>
-                        </div>
-                      </td>
-                      <td className="cart_price text-center">3,000.00 Kz</td>
-                    </tr>
+                    ))}
+                   
                   </table>
                 </div>
                 <div className="subtotal row">
@@ -466,7 +460,7 @@ export default function Checkout() {
                     <h2>Subtotal</h2>
                   </div>
                   <div className="col-md-6 text-right">
-                    <h3>4800.00 Kz</h3>
+                    <h3>{formatAmount(getBasketTotal(basket))}</h3>
                   </div>
                   <div className="col-md-6">
                     <h2>Shipping</h2>
