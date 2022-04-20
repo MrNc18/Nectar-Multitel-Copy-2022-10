@@ -210,6 +210,7 @@ function Contacts() {
     { value: "Network equipments", label: "Network equipments" },
     { value: "cpe", label: "cpe" },
     { value: "Telecom", label: "Telecom" },
+    { value: "Promotions", label: "Promotions" },
     { value: "otherproducts", label: "otherproducts" },
   ];
 
@@ -235,10 +236,12 @@ function Contacts() {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
+              <Dropdown.Item onClick={() =>handleClick("InformaticAndAccessories")}>InformaticAndAccessories</Dropdown.Item>
                 <Dropdown.Item onClick={() =>handleClick("Ip Telephony")}>Ip Telephony</Dropdown.Item>
                 <Dropdown.Item onClick={() =>handleClick("Network Equipment")}>Network equipments</Dropdown.Item>
                 <Dropdown.Item onClick={() =>handleClick("Cpe")}>cpe</Dropdown.Item>
                 <Dropdown.Item onClick={() =>handleClick("Telecom")}>Telecom</Dropdown.Item>
+                <Dropdown.Item onClick={() =>handleClick("Promotions")}>Promotions</Dropdown.Item>
                 <Dropdown.Item onClick={() =>handleClick("otherproducts")}>otherproducts</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
