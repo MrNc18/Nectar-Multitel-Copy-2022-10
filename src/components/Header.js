@@ -164,7 +164,7 @@ function Header() {
                 <NavDropdown.Item
                   onClick={() =>
                     navigate("/contacts/informatics-and-accessories", {
-                      state: { title: "Informatics and Accessories" },
+                      state: { title: "Informatics and Accessories", slug: "Informatics & Accessories" },
                     })
                   }
                 >
@@ -173,7 +173,7 @@ function Header() {
                 <NavDropdown.Item
                   onClick={() =>
                     navigate("/contacts/ip-telephony", {
-                      state: { title: "IP Telephony" },
+                      state: { title: "IP Telephony", slug: "Ip Telephony" },
                     })
                   }
                 >
@@ -182,7 +182,7 @@ function Header() {
                 <NavDropdown.Item
                   onClick={() =>
                     navigate("/contacts/networking-equipment", {
-                      state: { title: "Networking Equipment" },
+                      state: { title: "Networking Equipment", slug: "Network Equipment" },
                     })
                   }
                 >
@@ -190,7 +190,7 @@ function Header() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   onClick={() =>
-                    navigate("/contacts/cpe", { state: { title: "CPE´s" } })
+                    navigate("/contacts/cpe", { state: { title: "CPE´s", slug: "Cpe" } })
                   }
                 >
                   CPE´s
@@ -198,7 +198,7 @@ function Header() {
                 <NavDropdown.Item
                   onClick={() =>
                     navigate("/contacts/telecom", {
-                      state: { title: "Telecom" },
+                      state: { title: "Telecom", slug: "Telecom" },
                     })
                   }
                 >
@@ -207,7 +207,7 @@ function Header() {
                 <NavDropdown.Item
                   onClick={() =>
                     navigate("/contacts/promotions", {
-                      state: { title: "Promotions" },
+                      state: { title: "Promotions", slug: "Promotions" },
                     })
                   }
                 >
@@ -216,7 +216,7 @@ function Header() {
                 <NavDropdown.Item
                   onClick={() =>
                     navigate("/contacts/other-products-services-partners", {
-                      state: { title: " Other Products/Services (Partners)" },
+                      state: { title: " Other Products/Services (Partners)", slug: "otherproducts" },
                     })
                   }
                 >

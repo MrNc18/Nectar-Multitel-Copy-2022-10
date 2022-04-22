@@ -8,13 +8,16 @@ import { useStateValue } from "../StateProvider";
 import { imageUrl } from "../services/category";
 import { formatAmount } from "../utils/AmountFormatter";
 import { getBasketTotal } from "../Reducer";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
   const [shipAddress, setShipAddress] = useState(false);
+  const [agreed, setAgreed] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const isAuthenticated = getCookie(AUTH_TOKEN);
   const [{ basket }, dispatch] = useStateValue();
+  const navigate = useNavigate();
 
   const getDataByToken = async () => {
     if (isAuthenticated) {
@@ -31,44 +34,55 @@ export default function Checkout() {
   const [data2, setData2] = useState({
     first_name: "",
     last_name: "",
-    company: "",
     country: "",
     city: "",
     address1: "",
     address2: "",
     zipcode: "",
-    province: "",
     phone: "",
     email: "",
-  });
-
-  const [dataShipping, setDataShipping] = useState({
     ship_first_name: "",
     ship_last_name: "",
-    ship_company: "",
     ship_country: "",
     ship_city: "",
     ship_address1: "",
     ship_address2: "",
     ship_zipcode: "",
-    ship_province: "",
     ship_phone: "",
     ship_email: "",
+    order_notes: "",
   });
 
   const {
     first_name,
     last_name,
-    company,
     country,
     city,
     address1,
     address2,
     zipcode,
-    province,
     phone,
     email,
+
+    ship_first_name,
+    ship_last_name,
+    ship_country,
+    ship_city,
+    ship_address1,
+    ship_address2,
+    ship_zipcode,
+    ship_phone,
+    ship_email,
+    order_notes,
   } = data2;
+
+  const btnDisabled = shipAddress ? (
+    !first_name || !last_name || !country || !city || !address1 || !zipcode || !phone || !email ||
+    !ship_first_name || !ship_last_name || !ship_country || !ship_city || !ship_address1 || 
+    !ship_zipcode || !ship_phone || !ship_email || !agreed
+  ) : (
+    !first_name || !last_name || !country || !city || !address1 || !zipcode || !phone || !email || !agreed
+  )
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
@@ -105,19 +119,6 @@ export default function Checkout() {
                     value={userEmail}
                     disabled
                   />
-                  <div className="form-check mt-2 mb-2">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      id="exampleCheck1"
-                    />
-                    <small
-                      className="form-check-label text-muted"
-                      htmlFor="exampleCheck1"
-                    >
-                      Keep me up to date on new Publish Books
-                    </small>
-                  </div>
                 </div>
               </form>
             </div>
@@ -159,18 +160,6 @@ export default function Checkout() {
                   </div>
                   <div className="col-12 col-md-12 col-sm-12">
                     <div className="form-group">
-                      <label>Company Name (Optional)</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="company"
-                        value={company}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-12 col-md-12 col-sm-12">
-                    <div className="form-group">
                       <label htmlFor="formGroupExampleInput">
                         Country<em className="red">*</em>
                       </label>
@@ -181,29 +170,10 @@ export default function Checkout() {
                         name="country"
                         onChange={handleChange}
                       >
-                        <option>Select Country</option>
-                      {/* {console.log("A;;",allcategories)} */}
-                      {COUNTRY_LIST.map((item) => (
-                          <option value={item}>{item}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                  <div className="col-12 col-md-12 col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
-                        City<em className="red">*</em>
-                      </label>
-                      <select
-                        className="form-control"
-                        value={city}
-                        name="city"
-                        onChange={handleChange}
-                      >
-                        <option>Select City</option>
-                      {/* {console.log("A;;",allcategories)} */}
-                      {CITY_LIST.map((item) => (
-                          <option value={item}>{item}</option>
+                        <option value="">Select Country</option>
+                        {/* {console.log("A;;",allcategories)} */}
+                        {COUNTRY_LIST.map((item,i) => (
+                          <option key={i} value={item}>{item}</option>
                         ))}
                       </select>
                     </div>
@@ -241,13 +211,13 @@ export default function Checkout() {
                   <div className="col-12 col-md-6 col-sm-6">
                     <div className="form-group">
                       <label htmlFor="formGroupExampleInput">
-                        Zip code<em className="red">*</em>
+                        City<em className="red">*</em>
                       </label>
                       <input
                         type="text"
                         className="form-control"
-                        value={zipcode}
-                        name="zipcode"
+                        value={city}
+                        name="city"
                         onChange={handleChange}
                       />
                     </div>
@@ -255,22 +225,18 @@ export default function Checkout() {
                   <div className="col-12 col-md-6 col-sm-6">
                     <div className="form-group">
                       <label htmlFor="formGroupExampleInput">
-                        Province<em className="red">*</em>
+                        Zip code<em className="red">*</em>
                       </label>
-                      <select
+                      <input
+                        type="number"
                         className="form-control"
-                        value={province}
-                        name="province"
+                        value={zipcode}
+                        name="zipcode"
                         onChange={handleChange}
-                      >
-                        <option>Select Province</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select>
+                      />
                     </div>
                   </div>
+
                   <div className="col-12 col-md-6 col-sm-6">
                     <div className="form-group">
                       <label htmlFor="formGroupExampleInput">
@@ -336,116 +302,110 @@ export default function Checkout() {
                       <div className="row ml-1 mr-1">
                         <div className="col-12 col-md-6 col-sm-6">
                           <div className="form-group">
-                            <label htmlFor="formGroupExampleInput">
+                            <label htmlFor="first_name">
                               First Name<em className="red">*</em>
                             </label>
                             <input
                               type="text"
                               className="form-control"
-                              id="formGroupExampleInput"
-                              placeholder=""
+                              name="ship_first_name"
+                              value={ship_first_name}
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
                         <div className="col-12 col-md-6 col-sm-6">
                           <div className="form-group">
-                            <label htmlFor="formGroupExampleInput">
+                            <label htmlFor="last_name">
                               Last Name<em className="red">*</em>
                             </label>
                             <input
                               type="text"
                               className="form-control"
-                              id="formGroupExampleInput"
-                              placeholder=""
+                              name="ship_last_name"
+                              value={ship_last_name}
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
                         <div className="col-12 col-md-12 col-sm-12">
                           <div className="form-group">
                             <label htmlFor="formGroupExampleInput">
-                              Company Name (Optional)
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="formGroupExampleInput"
-                              placeholder=""
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-12 col-sm-12">
-                          <div className="form-group">
-                            <label htmlFor="formGroupExampleInput">
-                              Country / Town<em className="red">*</em>
+                              Country<em className="red">*</em>
                             </label>
                             <select
                               className="form-control"
-                              id="exampleFormControlSelect1"
+                              value={ship_country}
+                              name="ship_country"
+                              onChange={handleChange}
                             >
-                              <option>Select Country/Town</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                              <option value="">Select Country</option>
+                              {/* {console.log("A;;",allcategories)} */}
+                              {COUNTRY_LIST.map((item,i) => (
+                                <option key={i} value={item}>{item}</option>
+                              ))}
                             </select>
                           </div>
                         </div>
                         <div className="col-12 col-md-12 col-sm-12">
                           <div className="form-group">
                             <label htmlFor="formGroupExampleInput">
-                              Address<em className="red">*</em>
+                              Address Line 1<em className="red">*</em>
                             </label>
                             <input
                               type="text"
                               className="form-control"
-                              id="formGroupExampleInput"
                               placeholder="Street name and house number"
+                              value={ship_address1}
+                              name="ship_address1"
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
                         <div className="col-12 col-md-12 col-sm-12">
                           <div className="form-group">
                             <label htmlFor="formGroupExampleInput">
-                              Address (Optional)
+                              Address Line 2 (Optional)
                             </label>
                             <input
                               type="text"
                               className="form-control"
-                              id="formGroupExampleInput"
                               placeholder=""
+                              value={ship_address2}
+                              name="ship_address2"
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
                         <div className="col-12 col-md-6 col-sm-6">
                           <div className="form-group">
                             <label htmlFor="formGroupExampleInput">
-                              Location<em className="red">*</em>
+                              City<em className="red">*</em>
                             </label>
                             <input
                               type="text"
                               className="form-control"
-                              id="formGroupExampleInput"
-                              placeholder=""
+                              value={ship_city}
+                              name="ship_city"
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
                         <div className="col-12 col-md-6 col-sm-6">
                           <div className="form-group">
                             <label htmlFor="formGroupExampleInput">
-                              Province<em className="red">*</em>
+                              Zip code<em className="red">*</em>
                             </label>
-                            <select
+                            <input
+                              type="number"
                               className="form-control"
-                              id="exampleFormControlSelect1"
-                            >
-                              <option>Select Province</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
+                              value={ship_zipcode}
+                              name="ship_zipcode"
+                              onChange={handleChange}
+                            />
                           </div>
                         </div>
+
                         <div className="col-12 col-md-6 col-sm-6">
                           <div className="form-group">
                             <label htmlFor="formGroupExampleInput">
@@ -454,8 +414,9 @@ export default function Checkout() {
                             <input
                               type="text"
                               className="form-control"
-                              id="formGroupExampleInput"
-                              placeholder=""
+                              value={ship_phone}
+                              name="ship_phone"
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
@@ -465,10 +426,11 @@ export default function Checkout() {
                               Email address<em className="red">*</em>
                             </label>
                             <input
-                              type="text"
+                              type="email"
                               className="form-control"
-                              id="formGroupExampleInput"
-                              placeholder=""
+                              value={ship_email}
+                              name="ship_email"
+                              onChange={handleChange}
                             />
                           </div>
                         </div>
@@ -484,10 +446,12 @@ export default function Checkout() {
                         Order notes (optional)
                       </label>
                       <textarea
-                        className="form-control"
-                        id="exampleFormControlTextarea1"
+                        className="form-control"                        
                         rows="3"
                         placeholder="Notes about your order (eg special delivery information)."
+                        value={order_notes}
+                        name="order_notes"
+                        onChange={handleChange}
                       ></textarea>
                     </div>
                   </div>
@@ -534,22 +498,21 @@ export default function Checkout() {
                       <td className="text-center">Subtotal</td>
                     </tr>
                     {basket.map((item) => (
-                    <tr>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          <img
-                            className="cart_book_img"
-                            src={imageUrl(item.image)}
-                          />
-                          <span className="cart_book_name">
-                            {item.name}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="cart_price text-center">{formatAmount(item.price)}</td>
-                    </tr>
+                      <tr>
+                        <td>
+                          <div className="d-flex align-items-center">
+                            <img
+                              className="cart_book_img"
+                              src={imageUrl(item.image)}
+                            />
+                            <span className="cart_book_name">{item.name}</span>
+                          </div>
+                        </td>
+                        <td className="cart_price text-center">
+                          {formatAmount(item.price)}
+                        </td>
+                      </tr>
                     ))}
-                   
                   </table>
                 </div>
                 <div className="subtotal row">
@@ -712,7 +675,7 @@ export default function Checkout() {
                 </div>
                 <div className="col-md-6 text-right">
                   <h6>
-                    <strong>4800.00 Kz</strong>
+                    <strong>{formatAmount(getBasketTotal(basket))}</strong>
                   </h6>
                 </div>
               </div>
@@ -723,6 +686,8 @@ export default function Checkout() {
                       className="form-check-input"
                       type="checkbox"
                       id="gridCheck"
+                      checked={agreed}
+                      onChange={(e) => setAgreed(e.target.checked)}
                     />
                     <label className="form-check-label" htmlFor="gridCheck">
                       I have read and agree to the website{" "}
@@ -731,7 +696,12 @@ export default function Checkout() {
                   </div>
                 </div>
               </div>
-              <button type="submit" className="order-box-btn">
+              <button
+                type="submit"
+                className="order-box-btn"
+                disabled={btnDisabled}
+                onClick={() => navigate("/payment-methods", {state: {data: data2, shipAddress}})}
+              >
                 Place Order
               </button>
             </div>
