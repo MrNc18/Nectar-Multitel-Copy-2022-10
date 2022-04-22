@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Col, Row, Table } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 
-<<<<<<< HEAD
+
 
 function Vendors() {
   const vendors = [
@@ -112,11 +112,11 @@ function Vendors() {
       address: "1st Block 1st Cross, Rammurthy nagar",
     },
   ];
-=======
+
 function Vendors({vendorList}) {
   console.log(vendorList)
 
->>>>>>> main
+
 
   //pagination
   const [pageNumber, setPageNumber] = useState(0);
@@ -134,7 +134,7 @@ function Vendors({vendorList}) {
           <Table responsive="md" className="my-5">
             <thead style={{ backgroundColor: "#0076B5", color: "white" }}>
               <tr>
-<<<<<<< HEAD
+
                 <th>S.No.</th>
                 <th>Vendor Name</th>
                 <th>Vendor Phone</th>
@@ -177,14 +177,14 @@ function Vendors({vendorList}) {
               />
             </div>
           </Row>
-=======
+
                 <th style={{width: "10%"}}>Sl. No.</th>
                 <th style={{width: "20%"}}>Vendor Name</th>
                 <th style={{width: "20%"}}>Vendor Phone</th>
                 <th style={{width: "20%"}}>Vendor Email</th>
                 <th style={{width: "30%"}}>Vendor Address</th>
-              </tr>
-            </thead>
+              {/* </tr>
+            </thead> */}
             <tbody>
               {vendorList
                 .slice(pagesVisited, pagesVisited + usersPerPage)
@@ -198,7 +198,7 @@ function Vendors({vendorList}) {
                   </tr>
                 ))}
             </tbody>
-          </Table>
+          {/* </Table> */}
           {pageCount > 1 && (
             <Row>
               <div className="col-md-7"></div>
@@ -224,16 +224,15 @@ function Vendors({vendorList}) {
               </div>
             </Row>
           )}
->>>>>>> main
+ 
         </Col>
       </Row>
     </Container>
   );
 }
+}
 
 export default Vendors;
-<<<<<<< HEAD
-=======
 
 // import React from 'react';
 // import { Button, Col, Container, Row ,Table } from "react-bootstrap";
@@ -295,4 +294,4 @@ export default Vendors;
 // }
 
 // export default Vendors
->>>>>>> main
+

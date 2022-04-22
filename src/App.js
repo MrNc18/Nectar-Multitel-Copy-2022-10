@@ -48,16 +48,14 @@ import ContactOtherProductSerPart from "./containers/ContactOtherProductSerPart"
 import ContactTelecom from "./containers/ContactTelecom";
 import ContactEquip from "./containers/ContactEquip";
 import ContactCPE from "./containers/ContactCPE";
-<<<<<<< HEAD
 import InformaticAndAccessories from './containers/InformaticAndAccessories';
 import ServicesCategory from './components/Admin/ServicesCategory';
 
-=======
 import VendorDetails from "./containers/VendorDetails";
 import Cart from "./containers/Cart";
 import Checkout from "./containers/Checkout";
 import PaymentMethod from "./containers/PaymentMethod";
->>>>>>> main
+
 
 function App() {
   return (
