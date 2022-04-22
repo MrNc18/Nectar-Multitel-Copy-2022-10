@@ -177,14 +177,15 @@ function Vendors({vendorList}) {
               />
             </div>
           </Row>
-
+              <thead>
+                <tr>   
                 <th style={{width: "10%"}}>Sl. No.</th>
                 <th style={{width: "20%"}}>Vendor Name</th>
                 <th style={{width: "20%"}}>Vendor Phone</th>
                 <th style={{width: "20%"}}>Vendor Email</th>
                 <th style={{width: "30%"}}>Vendor Address</th>
-              {/* </tr>
-            </thead> */}
+              </tr>
+            </thead>
             <tbody>
               {vendorList
                 .slice(pagesVisited, pagesVisited + usersPerPage)
