@@ -236,7 +236,7 @@ function Contacts() {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-              <Dropdown.Item onClick={() =>handleClick("InformaticAndAccessories")}>InformaticAndAccessories</Dropdown.Item>
+              <Dropdown.Item onClick={() =>handleClick("Informatics & Accessories")}>Informatics & Accessories</Dropdown.Item>
                 <Dropdown.Item onClick={() =>handleClick("Ip Telephony")}>Ip Telephony</Dropdown.Item>
                 <Dropdown.Item onClick={() =>handleClick("Network Equipment")}>Network equipments</Dropdown.Item>
                 <Dropdown.Item onClick={() =>handleClick("Cpe")}>cpe</Dropdown.Item>
@@ -323,7 +323,7 @@ function Contacts() {
                       name="email"
                       onChange={handleChange}
                     ></Form.Control>
-                    <Form.Label>Adress</Form.Label>
+                    <Form.Label>Address</Form.Label>
                     <Form.Control
                       type="textarea"
                       value={Adress}

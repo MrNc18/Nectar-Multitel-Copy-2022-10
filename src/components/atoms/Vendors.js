@@ -2,50 +2,15 @@ import React, { useState } from "react";
 import { Container, Col, Row, Table } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 
-function Vendors() {
-  const vendors = [
-    {
-      id: 1,
-      name: "Mark",
-      phone: "245-568-5698",
-      email: "mark@gmail.com",
-      address: "1st Block 1st Cross, Rammurthy nagar",
-    },
-    {
-      id: 2,
-      name: "Mark",
-      phone: "245-568-5698",
-      email: "mark@gmail.com",
-      address: "1st Block 1st Cross, Rammurthy nagar",
-    },
-    {
-      id: 3,
-      name: "Mark",
-      phone: "245-568-5698",
-      email: "mark@gmail.com",
-      address: "1st Block 1st Cross, Rammurthy nagar",
-    },
-    {
-      id: 4,
-      name: "Mark",
-      phone: "245-568-5698",
-      email: "mark@gmail.com",
-      address: "1st Block 1st Cross, Rammurthy nagar",
-    },
-    {
-      id: 5,
-      name: "Mark",
-      phone: "245-568-5698",
-      email: "mark@gmail.com",
-      address: "1st Block 1st Cross, Rammurthy nagar",
-    },
-  ];
+function Vendors({vendorList}) {
+  console.log(vendorList)
+
 
   //pagination
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
-  const pageCount = Math.ceil(vendors.length / usersPerPage);
+  const pageCount = Math.ceil(vendorList.length / usersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };
@@ -57,23 +22,23 @@ function Vendors() {
           <Table responsive="md" className="my-5">
             <thead style={{ backgroundColor: "#0076B5", color: "white" }}>
               <tr>
-                <th>Sl. No.</th>
-                <th>Vendor Name</th>
-                <th>Vendor Phone</th>
-                <th>Vendor Email</th>
-                <th>Vendor Address</th>
+                <th style={{width: "10%"}}>Sl. No.</th>
+                <th style={{width: "20%"}}>Vendor Name</th>
+                <th style={{width: "20%"}}>Vendor Phone</th>
+                <th style={{width: "20%"}}>Vendor Email</th>
+                <th style={{width: "30%"}}>Vendor Address</th>
               </tr>
             </thead>
             <tbody>
-              {vendors
+              {vendorList
                 .slice(pagesVisited, pagesVisited + usersPerPage)
                 .map((item, i) => (
                   <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>
-                    <td>{item.phone}</td>
-                    <td>{item.email}</td>
-                    <td>{item.address}</td>
+                    <td style={{width: "10%"}}>{i + 1}</td>
+                    <td style={{width: "20%"}}>{`${item.first_name} ${item.last_name}`}</td>
+                    <td style={{width: "20%"}}>{item.phone}</td>
+                    <td style={{width: "20%"}}>{item.email}</td>
+                    <td style={{width: "30%"}}>{item.address}</td>
                   </tr>
                 ))}
             </tbody>
