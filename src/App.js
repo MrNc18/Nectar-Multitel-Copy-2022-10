@@ -95,7 +95,6 @@ function App() {
           <Route path="settings" element={<Settings />} />
           <Route path="contact" element={<Contact />} />
           <Route path="Service-categories" element={<ServicesCategory />} />
-
           <Route path="internetServices" element={<AdinternetServices />} />
           <Route path="promotions" element={<AdPromotions />} />
         </Route>
@@ -111,29 +110,17 @@ function App() {
 
 {/* Contact Routes */}
         <Route path="contacts/:cat" element={<VendorDetails />} />
-        {/* <Route
-          path="contact/informaticandaccesories"
-          element={<InformaticAndAccessories />}
-        />
-        <Route path="contact/promotion" element={<ContactPromotion />} />
-        <Route
-          path="contact/otherproductserpart"
-          element={<ContactOtherProductSerPart />}
-        />
-        <Route path="contact/telecom" element={<ContactTelecom />} />
-        <Route path="contact/equip" element={<ContactEquip />} />
-        <Route path="contact/cpe" element={<ContactCPE />} /> */}
 
 
 {/* admin Routes */}
-        <Route path="/admin" element={<AdLanding />}>
+        {/* <Route path="/admin" element={<AdLanding />}>
           <Route path="" element={<Dashboard />} />
           <Route path="categories" element={<Categories />} />
           <Route path="products" element={<Products />} />
           <Route path="products/newproduct" element={<AddProduct />} />
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
-        </Route>
+        </Route> */}
       </Routes>
     </BrowserRouter>
   );

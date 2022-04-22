@@ -24,10 +24,10 @@ export default function Cart() {
 
   React.useEffect(() => {
     // console.log("prodId",prodId)
-    {
+   
       console.log(basket, "basket");
-    }
-  }, []);
+    
+  }, [basket]);
 
   const navigate = useNavigate();
   return (
@@ -56,7 +56,7 @@ export default function Cart() {
                     <td className="text-center">Subtotal</td>
                     <td></td>
                   </tr>
-                  {basket.map((item) => (
+                  {basket.length ? basket.map((item) => (
                     <tr>
                       <td>
                         <div className="d-flex align-items-center">
@@ -71,7 +71,39 @@ export default function Cart() {
                         {formatAmount(item.price)}
                       </td>
                       <td className="cart_price text-center">
-                        {item.quantity}
+                        {/* {item.quantity} */}
+                        <div className="qty_counter d-flex">
+                          <input
+                            type="button"
+                            value="-"
+                            className="minus"
+                            onClick={() => {
+                              dispatch({
+                                type: "CHANGE_QTY",
+                                id: item.id,
+                                payload: "decrement"
+                              });
+                            }}
+                          />
+                          <input
+                            type="text"
+                            name="qty"
+                            value={item.quantity}
+                            className="text-center input-qty w-100"
+                          />
+                          <input
+                            type="button"
+                            value="+"
+                            className="plus"
+                            onClick={() => {
+                              dispatch({
+                                type: "CHANGE_QTY",
+                                id: item.id,
+                                payload: "increment"
+                              });
+                            }}
+                          />
+                        </div>
                       </td>
                       <td className="cart_price text-center">
                         {formatAmount(item.price * item.quantity)}
@@ -81,9 +113,13 @@ export default function Cart() {
                       <td>
                         <a
                           onClick={() => {
-                            deleteRecord(item);
-                            setProdId(item.id);
-                            console.log("prodId", prodId);
+                            // deleteRecord(item);
+                            // setProdId(item.id);
+                            // console.log("prodId", prodId);
+                            dispatch({
+                              type: "REMOVE_FROM_BASKET",
+                              id: item.id,
+                            });
                           }}
                           className="remove_from_cart"
                         >
@@ -91,15 +127,19 @@ export default function Cart() {
                         </a>
                       </td>
                     </tr>
-                  ))}
+                  )) : (
+                    <tr>
+                      <td colspan="5">No items added to cart.</td>
+                    </tr>
+                  )}
                 </table>
               </div>
             </div>
 
-            <div className="row coupon_row mt-4">
+            {/* <div className="row coupon_row mt-4">
               <div className="col-md-12">
                 <div className="bg-light d-flex justify-content-between coupon_inner_row">
-                  {/* <div>
+                   <div>
                     <form className="form-inline">
                       <div className="form-group">
                         <input
@@ -117,14 +157,14 @@ export default function Cart() {
                         Apply coupon
                       </button>
                     </form>
-                  </div> */}
+                  </div> 
 
                   <button type="submit" className="btn btn-primary update_cart">
                     Update cart
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="col-md-4">
