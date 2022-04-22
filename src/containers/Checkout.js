@@ -79,9 +79,9 @@ export default function Checkout() {
   const btnDisabled = shipAddress ? (
     !first_name || !last_name || !country || !city || !address1 || !zipcode || !phone || !email ||
     !ship_first_name || !ship_last_name || !ship_country || !ship_city || !ship_address1 || 
-    !ship_zipcode || !ship_phone || !ship_email || !agreed
+    !ship_zipcode || !ship_phone || !ship_email
   ) : (
-    !first_name || !last_name || !country || !city || !address1 || !zipcode || !phone || !email || !agreed
+    !first_name || !last_name || !country || !city || !address1 || !zipcode || !phone || !email
   )
 
   const handleChange = (e) => {
@@ -515,7 +515,7 @@ export default function Checkout() {
                     ))}
                   </table>
                 </div>
-                <div className="subtotal row">
+                {/* <div className="subtotal row">
                   <div className="col-md-6">
                     <h2>Subtotal</h2>
                   </div>
@@ -640,7 +640,7 @@ export default function Checkout() {
                       </label>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="row">
                 <div className="col-12">

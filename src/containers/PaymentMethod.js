@@ -365,12 +365,12 @@ export default function PaymentMethod() {
                     <div className="col-md-6 text-right">
                       <h3 className="mt-0">{formatAmount(getBasketTotal(basket))}</h3>
                     </div>
-                    <div className="col-md-6">
+                    {/* <div className="col-md-6">
                       <h2 className="mt-3 mb-3">Shipping</h2>
                     </div>
                     <div className="col-md-6 text-right">
                       <h3 className="mt-3 mb-3">$ 10.45</h3>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

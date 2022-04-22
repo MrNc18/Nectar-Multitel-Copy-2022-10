@@ -1265,6 +1265,8 @@ td.cart_price {
 
 .order-box-btn:disabled {
   background-color: gray;
+    opacity: 0.5;
+    cursor: default;
 }
 
 .agree {
