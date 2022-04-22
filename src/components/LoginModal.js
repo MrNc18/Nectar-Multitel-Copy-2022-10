@@ -60,7 +60,7 @@ function LoginModal({ show, handleClose }) {
           <InputField
             id=" userName"
             type="text"
-            label=" userName"
+            label="Email address"
             mendetory
             value={{  userName }}
             handleChange={(e) => setuserName(e.target.value)}

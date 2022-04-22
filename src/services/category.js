@@ -103,6 +103,21 @@ export const getAllCategories = async () => {
    export const getDeletecms = async(data) =>{
      return await doDelete('api/cms/delete',data);
    }
-  
+  //contacts
+
+  export const getAddVendor = async(data) =>{
+    return await doPost('api/vendor/createVendor',data);
+  }
+  export const getEditVendor = async(data) =>{
+    return await doPut('api/vendor/updateVendor',data);
+  }
+  export const getDeleteVendor = async(data) =>{
+    return await doDelete('api/vendor/deleteVendor',data);
+  }
+  export const getAllVendors = async (data) => {
+    return await doPost("api/vendor/getVendors",data)
+   }
+
+
 
  

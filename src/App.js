@@ -48,9 +48,16 @@ import ContactOtherProductSerPart from "./containers/ContactOtherProductSerPart"
 import ContactTelecom from "./containers/ContactTelecom";
 import ContactEquip from "./containers/ContactEquip";
 import ContactCPE from "./containers/ContactCPE";
+<<<<<<< HEAD
 import InformaticAndAccessories from './containers/InformaticAndAccessories';
 import ServicesCategory from './components/Admin/ServicesCategory';
 
+=======
+import VendorDetails from "./containers/VendorDetails";
+import Cart from "./containers/Cart";
+import Checkout from "./containers/Checkout";
+import PaymentMethod from "./containers/PaymentMethod";
+>>>>>>> main
 
 function App() {
   return (
@@ -93,7 +100,6 @@ function App() {
           <Route path="settings" element={<Settings />} />
           <Route path="contact" element={<Contact />} />
           <Route path="Service-categories" element={<ServicesCategory />} />
-
           <Route path="internetServices" element={<AdinternetServices />} />
           <Route path="promotions" element={<AdPromotions />} />
         </Route>
@@ -126,32 +132,23 @@ function App() {
         <Route path="/register" element={<ClientRegistration />} />
         <Route path="client" element={<Example />} />
         <Route path="profile" element={<Account />} />
+        <Route path="cart" element={<Cart />} />
+        <Route path="checkout" element={<Checkout />} />
+        <Route path="payment-methods" element={<PaymentMethod />} />
 
 {/* Contact Routes */}
-        <Route path="contact/iptelephony" element={<IpTelephony />} />
-        <Route
-          path="contact/informaticandaccesories"
-          element={<InformaticAndAccessories />}
-        />
-        <Route path="contact/promotion" element={<ContactPromotion />} />
-        <Route
-          path="contact/otherproductserpart"
-          element={<ContactOtherProductSerPart />}
-        />
-        <Route path="contact/telecom" element={<ContactTelecom />} />
-        <Route path="contact/equip" element={<ContactEquip />} />
-        <Route path="contact/cpe" element={<ContactCPE />} />
+        <Route path="contacts/:cat" element={<VendorDetails />} />
 
 
 {/* admin Routes */}
-        <Route path="/admin" element={<AdLanding />}>
+        {/* <Route path="/admin" element={<AdLanding />}>
           <Route path="" element={<Dashboard />} />
           <Route path="categories" element={<Categories />} />
           <Route path="products" element={<Products />} />
           <Route path="products/newproduct" element={<AddProduct />} />
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
-        </Route>
+        </Route> */}
       </Routes>
     </BrowserRouter>
   );

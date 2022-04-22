@@ -10,6 +10,7 @@ function ProfileLandingPage({edit}) {
   const [fullname, setFullname] = useState("");
   const [editMode, setEditMode] = useState(false);
   const [userImg, setUserImg] = useState("")
+  const [userPhone, setUserPhone] = useState("");
   
   const getDataByToken = async () => {
     const result = await getUserDetailsByToken();
@@ -19,6 +20,7 @@ function ProfileLandingPage({edit}) {
       result?.data?.data?.first_name + " " + result?.data?.data?.last_name
     )
     result?.data?.data?.profile_img && setUserImg(result?.data?.data?.profile_img)
+    setUserPhone(result?.data?.data?.phone)
   };
 
   React.useEffect(() => {
@@ -41,7 +43,7 @@ function ProfileLandingPage({edit}) {
                 <Col md={4}>
                   <div className="userimg text-center pos-relative">
                     <img src={
-                      userImg ? `${baseurl}/images/${userImg}` : "/assets/images/userimg.png"
+                      userImg ? `${baseurl}/images/${userImg}` : "/assets/images/default_user.png"
                     } 
                       style={{maxWidth: "100%",borderRadius:"50%"}}
                     />
@@ -153,7 +155,7 @@ function ProfileLandingPage({edit}) {
                       <Card.Text>
                         <p>
                           <i className="fa-solid fa-mobile-screen-button"></i>{" "}
-                          85426-57894
+                          {userPhone}
                         </p>
                         <p style={{ color: "#0076B5" }}>
                           $20.00 Balance in your
@@ -181,7 +183,7 @@ function ProfileLandingPage({edit}) {
                         </Card.Link>
                       </div>
                       <p>
-                        <i className="fa-solid fa-globe mr-1"></i> 85426-57894
+                        <i className="fa-solid fa-globe mr-1"></i> {userPhone}
                       </p>
                       <Card.Text>
                         <p style={{ color: "#0076B5" }}>Available For</p>

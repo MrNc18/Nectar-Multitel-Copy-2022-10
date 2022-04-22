@@ -95,7 +95,7 @@ function Header() {
                       {user} <span className="ml-1">Login/Signup</span>
                     </div>
                   ) : (
-                    <Dropdown style={{position: "relative",top:"-5px"}}>
+                    <Dropdown style={{ position: "relative", top: "-5px" }}>
                       <Dropdown.Toggle
                         id="dropdown-basic"
                         style={{ background: "transparent", border: "none" }}
@@ -108,14 +108,15 @@ function Header() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item onClick={() =>navigate("/profile") }>Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={() => navigate("/profile")}>
+                          Profile
+                        </Dropdown.Item>
                         <Dropdown.Item
                           onClick={() => {
                             deleteCookie(AUTH_TOKEN);
-                            alert('Logged out.')
-                            navigate('/home')
+                            alert("Logged out.");
+                            navigate("/home");
                             // window.location.reload();
-
                           }}
                         >
                           Logout
@@ -146,24 +147,6 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              {/* <NavDropdown
-                title="Home"
-                id="basic-nav-dropdown"
-                // onClick={() => navigate("/home")}
-              >
-                <NavDropdown.Item
-                  onClick={() => navigate("/internet-services")}
-                >
-                  Home Internet services
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Landline Telephony
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  TV Services
-                </NavDropdown.Item>
-              </NavDropdown> */}
-
               <Nav.Link onClick={() => navigate("/home")}>
                 Multitel Home
               </Nav.Link>
@@ -173,7 +156,73 @@ function Header() {
               </Nav.Link>
               {/* <button onClick={console.log(()=>getCookie(AUTH_TOKEN))}>GEt</button> */}
               <Nav.Link href="#link">Client Portal</Nav.Link>
-              <Nav.Link href="#link">Contacts</Nav.Link>
+              <NavDropdown
+                title="Contacts"
+                id="basic-nav-dropdown"
+                // onClick={() => navigate("/home")}
+              >
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/informatics-and-accessories", {
+                      state: { title: "Informatics and Accessories", slug: "Informatics & Accessories" },
+                    })
+                  }
+                >
+                  Informatics and Accessories
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/ip-telephony", {
+                      state: { title: "IP Telephony", slug: "Ip Telephony" },
+                    })
+                  }
+                >
+                  IP Telephony
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/networking-equipment", {
+                      state: { title: "Networking Equipment", slug: "Network Equipment" },
+                    })
+                  }
+                >
+                  Networking Equipment
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/cpe", { state: { title: "CPE´s", slug: "Cpe" } })
+                  }
+                >
+                  CPE´s
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/telecom", {
+                      state: { title: "Telecom", slug: "Telecom" },
+                    })
+                  }
+                >
+                  Telecom
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/promotions", {
+                      state: { title: "Promotions", slug: "Promotions" },
+                    })
+                  }
+                >
+                  Promotions
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/contacts/other-products-services-partners", {
+                      state: { title: " Other Products/Services (Partners)", slug: "otherproducts" },
+                    })
+                  }
+                >
+                  Other Products/Services (Partners)
+                </NavDropdown.Item>
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>
