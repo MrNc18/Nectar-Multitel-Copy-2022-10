@@ -67,13 +67,13 @@ export default function PaymentMethod() {
                       <a href="#">Change</a>
                     </td>
                   </tr>
-                  <tr className="header_row">
+                  {/* <tr className="header_row">
                     <td className="td1">Ship Method</td>
                     <td className="td2">Small Packet USA Air at 10.45 Kz</td>
                     <td className="td3">
                       <a href="#">Change</a>
                     </td>
-                  </tr>
+                  </tr> */}
                 </table>
               </div>
             </div>

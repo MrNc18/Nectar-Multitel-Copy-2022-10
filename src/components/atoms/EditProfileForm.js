@@ -23,6 +23,7 @@ function EditProfileForm() {
     proffesion: "",
     zipcode: "",
     dob: "",
+    adress:''
     // profile_img: "",
   });
 
@@ -70,6 +71,7 @@ function EditProfileForm() {
     proffesion,
     zipcode,
     dob,
+    adress
     // profile_img,
   } = data;
   // console.log(userData)
@@ -106,6 +108,7 @@ function EditProfileForm() {
        data.append('dob_date', dob);
        data.append('proffesion',proffesion);
        data.append('zipcode',zipcode);
+       data.append("Adress",adress)
       
     try {
        await updateUser(data);
@@ -242,6 +245,21 @@ function EditProfileForm() {
                           id="inputCity"
                           value={city}
                           name="city"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="row mb-3">
+                      <label htmlFor="inputCity" className="col-sm-6 col-form-label">
+                        <i className="fa-solid fa-city mr-5"></i>Adress
+                      </label>
+                      <div className="col-sm-6">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputCity"
+                          value={adress}
+                          name="adress"
                           onChange={handleChange}
                         />
                       </div>
