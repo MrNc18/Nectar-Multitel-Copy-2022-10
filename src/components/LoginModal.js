@@ -62,6 +62,7 @@ function LoginModal({ show, handleClose }) {
             type="text"
             label="Email address"
             mendetory
+            
             value={{  userName }}
             handleChange={(e) => setuserName(e.target.value)}
           />
@@ -70,15 +71,16 @@ function LoginModal({ show, handleClose }) {
             type="password"
             label="Password"
             mendetory
+            
             value={{ password }}
             handleChange={(e) => setPassword(e.target.value)}
           />
           <div className="form-group small mb-1">
             <div
               className="custom-control custom-checkbox d-flex align-items-center justify-content-between"
-              style={{ paddingLeft: 0 }}
+              style={{ paddingLeft: 0  }}
             >
-              <InputField type="checkbox" label="Remember me" />
+              <InputField className="checkbox-lg" type="checkbox" label="Remember me" />
 
               <a
                 onClick={() => navigate("/forgot-password")}

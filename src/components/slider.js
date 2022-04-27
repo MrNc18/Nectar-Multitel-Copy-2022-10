@@ -119,7 +119,7 @@ function App() {
           </div>
           <div className='banner-New-inner'>
                 <div className='banner-New-inner-inner'>
-                  <button class="btn-white">we're Multitel</button>
+                  <button  class="btn-white">we're Multitel</button>
                   <p>Experience new generation of Internet<br/>our Plan starts with $20</p>
                   <button class="btn-blue"><a>Get started</a></button>
                 </div>
