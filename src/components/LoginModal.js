@@ -78,14 +78,14 @@ function LoginModal({ show, handleClose }) {
           <div className="form-group small mb-1">
             <div
               className="custom-control custom-checkbox d-flex align-items-center justify-content-between"
-              style={{ paddingLeft: 0  }}
+              style={{ paddingLeft: 10 ,paddingTop: 10  }}
             >
-              <InputField className="checkbox-lg" type="checkbox" label="Remember me" />
+              <InputField className="checkbox"  style={{ paddingLeft: 100 ,paddingTop: 500  }} type="checkbox" label="Remember me" />
 
               <a
                 onClick={() => navigate("/forgot-password")}
                 className="text-primary fw-500"
-              >
+               style={{paddingButton :"500px"}}>
                 Forgot Password
               </a>
             </div>
