@@ -17,6 +17,7 @@ export default function Checkout() {
   const [userEmail, setUserEmail] = useState("");
   const isAuthenticated = getCookie(AUTH_TOKEN);
   const [{ basket }, dispatch] = useStateValue();
+  const[userData,setUserData] = useState('')
   const navigate = useNavigate();
 
   const getDataByToken = async () => {
@@ -24,15 +25,30 @@ export default function Checkout() {
       const result = await getUserDetailsByToken();
       // console.log(result);
       setUserEmail(result?.data?.data?.email);
+      setUserData(result?.data.data) 
+      setData2({
+      first_name:result?.data.data.first_name,
+      last_name:result?.data.data.last_name,
+      country:result?.data.data.country?result?.data.data.country:'',
+      city:result?.data.data.city,
+      address1:result?.data.data.adress,
+      address2:result?.data.data.adress,
+      zipcode:result?.data.data.zipcode,
+      phone:result?.data.data.phone,
+      email:result?.data.data.email
+      
+      }) 
+      console.log("userData",result.data.data)
     }
   };
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     getDataByToken();
   }, []);
 
+console.log("firstName",userData.first_name)
   const [data2, setData2] = useState({
-    first_name: "",
+    first_name:"",
     last_name: "",
     country: "",
     city: "",
@@ -40,7 +56,7 @@ export default function Checkout() {
     address2: "",
     zipcode: "",
     phone: "",
-    email: "",
+    email:"",
     ship_first_name: "",
     ship_last_name: "",
     ship_country: "",
@@ -75,6 +91,8 @@ export default function Checkout() {
     ship_email,
     order_notes,
   } = data2;
+  
+  
 
   const btnDisabled = shipAddress ? (
     !first_name || !last_name || !country || !city || !address1 || !zipcode || !phone || !email ||
@@ -87,6 +105,8 @@ export default function Checkout() {
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
+  
+
 
   return (
     <LandingPage>

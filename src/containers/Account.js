@@ -71,7 +71,7 @@ function Account() {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="graph">
+                      <Nav.Link eventKey="graph" href="https://multitelsites.speedtestcustom.com/" target="_blank">
                         {iqgIcon}&nbsp;&nbsp;Internet Quality Graph
                       </Nav.Link>
                     </Nav.Item>
@@ -111,7 +111,7 @@ function Account() {
                       <HelpDeskCard />
                     </Tab.Pane>
                     <Tab.Pane eventKey="graph">
-                      <InternetQualityTest />
+                      {/* <InternetQualityTest /> */}
                     </Tab.Pane>
                     <Tab.Pane eventKey="invoices">
                       {invDetail ? (
