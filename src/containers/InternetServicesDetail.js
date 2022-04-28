@@ -20,7 +20,7 @@ function InternetServicesDetail() {
   useEffect(() => {
     (async () => {
       const response = await getProductsByService({slug: params?.tag})
-      console.log(response);
+      console.log(response,"res");
       const products = response?.data?.data?.service_products;
       response?.data?.data ? setProductsList(products) : setInitial("No service products found");
       setCatDetails(response?.data?.data)
@@ -74,6 +74,7 @@ function InternetServicesDetail() {
                 {productsList.length ? (
                   productsList.map((product) => (
                     <BroadbandCardDetail product={product} key={product.id} />
+               
                   ))
                 ) : (
                   <p>{initial}</p>

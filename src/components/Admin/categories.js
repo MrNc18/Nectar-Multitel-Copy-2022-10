@@ -56,7 +56,7 @@ function Categories() {
     };
     try {
       await getDeleteCategory(data);
-      alert("Category Deleted Sucessfully");
+      alert("Category Deleted Successfully");
       setDeleteShow(false);
       handleAllCategories();
     } catch (error) {
@@ -112,7 +112,7 @@ function Categories() {
    
     try {
       await getEditCategory(data);
-      alert("Category Edited Sucessfully");
+      alert("Category Edited Successfully");
       setShowEditModal(false);
       setData2(' ')
       handleAllCategories();
@@ -324,8 +324,9 @@ function Categories() {
           <Modal show={ShowEditModal} onHide={handleEditClose} size="md">
             <Modal.Header closeButton>
               <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                Edit category List
+                Edit Category List
               </Modal.Title>
+              <button type="button" class="btn-close" aria-label="Close"></button>
             </Modal.Header>
             <Modal.Body>
               <div className="container">

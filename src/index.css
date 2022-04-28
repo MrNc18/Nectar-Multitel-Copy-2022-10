@@ -451,7 +451,7 @@ ul.icontext {
   color: var(--big-heading);
 }
 .net_service span {
-  font-size: 15px;
+  font-size: 10px;
   color: var(--big-heading);
   font-weight: 500;
 }
@@ -461,7 +461,7 @@ ul.icontext {
 span.plus {
   font-weight: 700;
   font-size: 20px;
-  margin-top: 8px;
+  margin-top: 0px;
 }
 .net_img {
   min-height: 70px;
@@ -658,7 +658,7 @@ img.dot-middle {
 }
 #inner_banner svg {
   position: relative;
-  top: 30px;
+  top: 34px;
 }
 .black-color {
   color: #000 !important;
@@ -817,7 +817,7 @@ img.dots_regn2 {
 .view-box a:hover {background: #00BF78;text-decoration: none;}
 .book-full-img {
     padding: 80px 50px;
-    border: 1px solid #F5F6FA;
+    border: 2px solid #F5F6FA;
     position: relative;
 }
 .book-details h1 {
@@ -919,7 +919,7 @@ h2.book_social {
     color: #2E4DD4;
 }
 .author_links i {
-    color: #00BF78;
+    color: #2E4DD4;
     padding-right: 10px;
     font-size: 20px;
 }
@@ -1485,3 +1485,17 @@ td.td3 a {font-weight: 400;font-size: 12px;}
     margin: 0 15px 0 auto;
 }
 /*Payment Page End Here*/
+
+.btn-close:before{
+  content: 'X';
+  font-family: FontAwesome;
+  visibility: visible;
+  color: black;
+  font-size: small;
+  font-weight: bold;
+}
+.btn-close{
+  position: absolute;
+  right: 32px;
+  top: 20px;
+}

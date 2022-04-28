@@ -56,7 +56,7 @@ function ServiceCategories() {
     };
     try {
       await getDeleteServices(data);
-      alert("Category Deleted Sucessfully");
+      alert("Category Deleted Successfully");
       setDeleteShow(false);
       handleAllServices();
     } catch (error) {
@@ -120,7 +120,7 @@ function ServiceCategories() {
    
     try {
       await getEditServices(data);
-      alert("Category Edited Sucessfully");
+      alert("Category Edited Successfully");
       setData2(" ")
       setFile(' ')
       setShowEditModal(false);
@@ -151,6 +151,8 @@ function ServiceCategories() {
   useEffect(() => {
     handleAllServices();
   }, []);
+
+  
 
   return (
     <div id="layoutSidenavContent">
@@ -196,6 +198,7 @@ function ServiceCategories() {
                   <div className="container">
                     <Form.Group>
                       <Form.Label>Service Title</Form.Label>
+                      <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="text"
                         value={name}
@@ -210,6 +213,7 @@ function ServiceCategories() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
+                      <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="textarea"
                         value={description}
@@ -224,6 +228,7 @@ function ServiceCategories() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Upload Icon</Form.Label>{" "}
+                      <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="file"
                         id="file"

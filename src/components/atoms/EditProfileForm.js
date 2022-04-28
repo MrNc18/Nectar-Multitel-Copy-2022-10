@@ -112,7 +112,7 @@ function EditProfileForm() {
       
     try {
        await updateUser(data);
-      alert("Profile Updated Sucessfully....");
+      alert("Profile Updated Successfully....");
     } catch (error) {
       console.log("error", error);
       // showAlert('In valide data', "error");
