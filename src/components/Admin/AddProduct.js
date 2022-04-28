@@ -7,6 +7,7 @@ import {getAddProduct, getAllCategories} from "../../services/category"
 function AddProduct() {
     const[errorMsg,setErrorMsg]=useState('')
     const[categoryList,setcategoryList]=useState('')
+    const [buttondisabled,setButtonDisabled] = useState(false);
     const[file,setFile]=useState([])
     const navigate = useNavigate()
   const [data2, setData2] = useState({
@@ -76,19 +77,20 @@ function AddProduct() {
       availability === "" ||
       category === "" ||
       description === "" ||
-      warranty === "" ||
-      details === "" ||
       quantity === "" ||
       price === "" ||
-      date === "" ||
       details === "" ||
       file === ""
       )
       {
-          setErrorMsg("please Fill the Required Data")
+          setErrorMsg("Fill the Mandatory Fields")
+      }
+      else if(price < 0){
+           setErrorMsg("Enter the Valid Price")
       }
       else{
       try {
+        setButtonDisabled(true)
         await getAddProduct(data)
           alert("Added Product.", "success");
           handleAllCategories()
@@ -172,6 +174,7 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Product Name
                 </label>
+                <span style={{color:"red"}}> * </span>
                 <input
                   type="text"
                   className="form-control"
@@ -188,6 +191,7 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Category
                 </label>
+                <span style={{color:"red"}}> * </span>
                 <select
                   className="form-control"
                   id="exampleFormControlSelect1"
@@ -211,10 +215,12 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Quantity
                 </label>
+                <span style={{color:"red"}}> * </span>
                 <input
                   type="number"
                   className="form-control"
                   id=""
+                  min="0"
                   name="quantity"
                      value={quantity}
                      onChange={handleChange}
@@ -239,6 +245,7 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Availabilty
                 </label>
+                <span style={{color:"red"}}> * </span>
                 <select
                   className="form-control"
                   id="exampleFormControlSelect1"
@@ -257,6 +264,7 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Price
                 </label>
+                <span style={{color:"red"}}> * </span>
                 <input
                   className="form-control"
                   type="number"
@@ -289,6 +297,7 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Warranty
                 </label>
+                <span style={{color:"red"}}> * </span>
                 <input
                   type="number"
                   className="form-control"
@@ -305,6 +314,7 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Description
                 </label>
+                <span style={{color:"red"}}> * </span>
                 <textarea
                   type="text"
                   className="form-control"
@@ -332,7 +342,8 @@ function AddProduct() {
             </div>
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
               <div className="form-group">
-                <label htmlFor="exampleInputtext">product Details</label>
+                <label htmlFor="exampleInputtext">Product Details</label>
+                <span style={{color:"red"}}> * </span>
                 <textarea
                   className="form-control"
                   type="text"
@@ -346,6 +357,7 @@ function AddProduct() {
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
               <div className="form-group">
                 <label htmlFor="exampleInputtext">Product Image</label>
+                <span style={{color:"red"}}> * </span>
                 <input
                   className="form-control"
                   type="file"
@@ -362,6 +374,7 @@ function AddProduct() {
                 className="btn btn-primary w-100 mt-4 ml-0"
                 name="submit"
                 type="submit"
+                disabled={buttondisabled}
                 data-toggle="modal"
                 data-target="#exampleModalCenter"
                  onClick={handleSubmit}
@@ -369,7 +382,7 @@ function AddProduct() {
                 Submit
               </button>
             </div>
-            <label style={{ color: "red", justifyContent: "center" }}>
+            <label style={{ color: "red", justifyContent: "center",paddingTop:"30px" }}>
               {errorMsg}
             </label>
           </div>

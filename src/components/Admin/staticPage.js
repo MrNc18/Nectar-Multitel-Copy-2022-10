@@ -7,12 +7,14 @@ import {
   getDeletecms,
   imageUrl,
 } from "../../services/category";
+import { showAlert } from "../../utils/showAlert";
 // import data from "../../Data"
 
 function Staticpage() {
   const [show, setShow] = useState(false);
   const [cmsData, setCmsData] = useState("");
   const [DeleteShow, setDeleteShow] = useState(false);
+  const [buttondisabled,setButtonDisabled] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [editImage, setEditImage] = useState("");
@@ -84,12 +86,12 @@ function Staticpage() {
     };
     try {
       await getDeletecms(data);
-      alert("Category Deleted Successfully");
+      showAlert("Cms Deleted Successfully","success");
       setDeleteShow(false);
       handlegetcms();
     } catch (error) {
       console.log("error", error);
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
 
@@ -114,7 +116,7 @@ function Staticpage() {
       page_slug === "" ||
       file === ""
     ) {
-      setErrorMsg("Fill the Mandatory Filelds");
+      setErrorMsg("Fill the Mandatory Fields");
     }
     // else if (file.width != imageWidth && file.height != imageHeight)
     // {
@@ -122,13 +124,14 @@ function Staticpage() {
     // }
     else
       try {
+        setButtonDisabled(true)
         await getAddcms(data);
         setErrorMsg("");
-        alert("Added  Cms.", "success");
+        showAlert("Added  Cms Successfully", "success");
         setShow(false);
         handlegetcms();
       } catch (error) {
-        alert(error.data.message, "error");
+        showAlert(error.data.message, "error");
       }
   };
 
@@ -164,13 +167,13 @@ function Staticpage() {
     data.append("page_slug", page_slug);
     try {
       await getEditcms(data);
-      alert("Cms Edited Successfully");
+      showAlert("Cms Edited Successfully","success");
       setData2("");
       setFile(" ");
       setShowEditModal(false);
       handlegetcms();
     } catch (error) {
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
   const handleEditClose = () => {
@@ -184,7 +187,7 @@ function Staticpage() {
       const resp = await getAllCms();
       setCmsData(resp.data);
     } catch (error) {
-      alert("something Went Wrong");
+      showAlert("something Went Wrong","error");
     }
   };
 
@@ -226,6 +229,7 @@ function Staticpage() {
                   <div className="container">
                     <Form.Group>
                       <Form.Label>Title</Form.Label>
+                      <span style={{color:"red"}}> * </span>
                       <Form.Control
                         type="text"
                         value={Title}
@@ -247,6 +251,7 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Sub-Title</Form.Label>
+                      <span style={{color:"red"}}> * </span>
                       <Form.Control
                         type="text"
                         value={subheading}
@@ -254,6 +259,7 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Link</Form.Label>
+                      <span style={{color:"red"}}> * </span>
                       <Form.Control
                         type="text"
                         value={link}
@@ -261,6 +267,7 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Page slug</Form.Label>
+                      <span style={{color:"red"}}> * </span>
                       <Form.Control
                         type="text"
                         value={page_slug}
@@ -268,6 +275,7 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
+                      <span style={{color:"red"}}> * </span>
                       <Form.Control
                         type="textarea"
                         value={description}
@@ -275,6 +283,7 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Upload</Form.Label>{" "}
+                      <span style={{color:"red"}}> * </span>
                       <p style={{ fontSize: "small" }}>
                         <span style={{ color: "red" }}>* </span>Image should be
                         the size of 1920*600px
@@ -291,6 +300,7 @@ function Staticpage() {
                   <Button
                     variant="primary"
                     size="lg"
+                    disabled={buttondisabled}
                     onClick={handleSubmit}
                     style={{ width: "200%" }}
                   >

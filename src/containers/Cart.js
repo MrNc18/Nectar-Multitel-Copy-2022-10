@@ -76,6 +76,7 @@ export default function Cart() {
                           <input
                             type="button"
                             value="-"
+                            min="0"
                             className="minus"
                             onClick={() => {
                               dispatch({
@@ -94,6 +95,7 @@ export default function Cart() {
                           <input
                             type="button"
                             value="+"
+                            max='20'
                             className="plus"
                             onClick={() => {
                               dispatch({

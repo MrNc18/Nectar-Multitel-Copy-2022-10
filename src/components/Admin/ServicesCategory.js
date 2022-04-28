@@ -8,7 +8,7 @@ import {
     getEditServices,
     getDeleteServices,imageUrl
 } from "../../services/category";
-import { Link } from "react-router-dom";
+import { showAlert } from "../../utils/showAlert";
 
 function ServiceCategories() {
   const handleClose = () => setShow(false);
@@ -17,6 +17,7 @@ function ServiceCategories() {
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [DeleteShow, setDeleteShow] = useState(false);
+  const [buttondisabled,setButtonDisabled] = useState(false);
   const [file, setFile] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [servicesList, setServicesList] = useState("");
@@ -56,12 +57,12 @@ function ServiceCategories() {
     };
     try {
       await getDeleteServices(data);
-      alert("Category Deleted Successfully");
+      showAlert("Category Deleted Successfully","success");
       setDeleteShow(false);
       handleAllServices();
     } catch (error) {
       console.log("error", error);
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
   const handleSubmit = async (event) => {
@@ -77,17 +78,18 @@ function ServiceCategories() {
    
 
     if (name === "" || description === "" || file === "") {
-      setErrorMsg("Fill the Mandatory Filelds");
+      setErrorMsg("Fill the Mandatory Fields");
     } else
       try {
+        setButtonDisabled(true)
         await getAddServices(data);
-        alert("Added  Service.", "success");
+        showAlert("Added Service successfully", "success");
         setData2('')
         setFile('')
         setShow(false);
         handleAllServices();
       } catch (error) {
-        alert(error.data.message, "error");
+        showAlert(error.data.message, "error");
       } finally {
         setShow(false);
       }
@@ -95,6 +97,7 @@ function ServiceCategories() {
 
   //  edit API
   const handleEditShow = (item) => {
+    console.log("uitem",item)
     setData2({
       id: item.id,
       name: item.title,
@@ -120,13 +123,13 @@ function ServiceCategories() {
    
     try {
       await getEditServices(data);
-      alert("Category Edited Successfully");
+      showAlert("Category Edited Successfully","success");
       setData2(" ")
       setFile(' ')
       setShowEditModal(false);
       handleAllServices();
     } catch (error) {
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
   const handleEditClose = () => {
@@ -144,7 +147,7 @@ function ServiceCategories() {
       console.log("resp", resp);
     } catch (error) {
       console.log("error", error);
-      alert("something went Wrong");
+      showAlert("something went Wrong","error");
     }
   };
 
@@ -241,6 +244,7 @@ function ServiceCategories() {
                   <Button
                     variant="primary"
                     size="lg"
+                    disabled={buttondisabled}
                     onClick={handleSubmit}
                     style={{ width: "200%" }}
                   >

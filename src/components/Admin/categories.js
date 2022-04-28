@@ -8,7 +8,7 @@ import {
   getDeleteCategory,
   getEditCategory,imageUrl
 } from "../../services/category";
-import { Link } from "react-router-dom";
+import { showAlert } from "../../utils/showAlert";
 
 function Categories() {
   const handleClose = () => setShow(false);
@@ -16,6 +16,7 @@ function Categories() {
   const [show, setShow] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
+  const [buttondisabled,setButtonDisabled] = useState(false);
   const [DeleteShow, setDeleteShow] = useState(false);
   const [file, setFile] = useState("");
   const [banfile, setBanfile] = useState("");
@@ -56,12 +57,12 @@ function Categories() {
     };
     try {
       await getDeleteCategory(data);
-      alert("Category Deleted Successfully");
+      showAlert("Category Deleted Successfully","success");
       setDeleteShow(false);
       handleAllCategories();
     } catch (error) {
       console.log("error", error);
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
   const handleSubmit = async (event) => {
@@ -75,15 +76,17 @@ function Categories() {
     }
 
     if (name === "" || description === "" || file === "") {
-      setErrorMsg("Fill the Mandatory Filelds");
+      setErrorMsg("Fill the Mandatory Fields");
     } else
       try {
+        setButtonDisabled(true)
         await getAddCategory(data);
-        alert("Added  category.", "success");
+        showAlert("Added  category.", "success");
         setShow(false);
+        setFile('')
         handleAllCategories();
       } catch (error) {
-        alert(error.data.message, "error");
+        showAlert(error.data.message, "error");
       } finally {
         setShow(false);
       }
@@ -112,17 +115,19 @@ function Categories() {
    
     try {
       await getEditCategory(data);
-      alert("Category Edited Successfully");
+      showAlert("Category Edited Successfully","success");
       setShowEditModal(false);
       setData2(' ')
+      setFile('')
       handleAllCategories();
     } catch (error) {
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
   const handleEditClose = () => {
     setShowEditModal(false);
     setData2(' ')
+    setFile('')
   };
 
   //Get All Category Api
@@ -145,7 +150,7 @@ function Categories() {
         });
     } catch (error) {
       console.log("error", error);
-      alert("something went Wrong");
+      showAlert("something went Wrong","error");
     }
   };
 
@@ -197,6 +202,7 @@ function Categories() {
                   <div className="container">
                     <Form.Group>
                       <Form.Label>Category Name</Form.Label>
+                      <span style={{color:"red"}}> * </span>
                       <Form.Control
                         type="text"
                         value={name}
@@ -204,6 +210,7 @@ function Categories() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
+                      <span style={{color:"red"}}> * </span>
                       <Form.Control
                         type="textarea"
                         value={description}
@@ -211,6 +218,7 @@ function Categories() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Upload Icon</Form.Label>{" "}
+                      <span style={{color:"red"}}> * </span>
                       <Form.Control
                         type="file"
                         id="file"
@@ -229,6 +237,7 @@ function Categories() {
                   <Button
                     variant="primary"
                     size="lg"
+                    disabled={buttondisabled}
                     onClick={handleSubmit}
                     style={{ width: "200%" }}
                   >

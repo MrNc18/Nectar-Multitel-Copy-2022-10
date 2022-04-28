@@ -234,7 +234,7 @@ function ProductDetail() {
                     className="text-center input-qty w-100"
                   />
                   <input type="button" value="+" className="plus"
-                    onClick={() => setQty(qty + 1)}
+                    onClick={() => qty<"25"?setQty(qty + 1):setQty(qty)}
                   />
                 </div>
               </div>
