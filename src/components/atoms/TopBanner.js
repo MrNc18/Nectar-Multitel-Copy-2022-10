@@ -6,14 +6,14 @@ import "../../staticcard.css";
 function TopBanner({ topText, btnText, heading, subheading, link }) {
   const navigate = useNavigate();
 
-  return (
+  return ( 
     <div className="banner-New-inner-inner">
-      <button class="btn-white" style={{ textTransform: "uppercase" }}>
+      <button class="btn-white "  style={{ textTransform: "uppercase" , color:"#0076B5" }}>
         {topText}
       </button>
       <p className="banner-heading">{heading}</p>
       <p className="banner-subheading">{subheading}</p>
-      <button class="btn-blue" onClick={() => navigate(link)}>
+      <button class="btn-blue"   onClick={() => navigate(link)}>
         {btnText}
       </button>
     </div>

@@ -58,17 +58,17 @@ function Corporate() {
         <Row>
           <Col md={4} className="tri1">
             <div className="padding_div">
-              <h2 className="white-text text-center h3">Fast Internet Speeds</h2>
+              <h2 className="white-text text-center h2">Fast Internet Speeds</h2>
             </div>
           </Col>
           <Col md={4} className="tri2">
             <div className="padding_div">
-              <h2 className="white-text text-center  h3">Channel Lineups</h2>
+              <h2 className="white-text text-center  h2">Channel Lineups</h2>
             </div>
           </Col>
           <Col md={4} className="tri3">
             <div className="padding_div">
-              <h2 className="white-text text-center  h3">
+              <h2 className="white-text text-center  h2">
                 Our Ultimate TV Experience
               </h2>
             </div>
