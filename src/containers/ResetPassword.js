@@ -58,8 +58,8 @@ function ResetPassword() {
       await resetPassword({email,otp,password});
       // history.push("/auth/login");
       navigate("/home")
-      showAlert("password Changed Sucessfully.", "success");
-      alert("password Changed Sucessfully.", "success");
+      showAlert("password Changed Successfully.", "success");
+      alert("password Changed Successfully.", "success");
     } catch (error) {
       showAlert(error.data.message, "error");
       alert(error.data.message, "error");

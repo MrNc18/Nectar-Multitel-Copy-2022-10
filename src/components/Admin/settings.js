@@ -50,7 +50,7 @@ function Settings({ clientside }) {
         const response = await changePassword(payload);
         setData(" ");
         seterrorMsg("");
-        alert("Password Updated Sucessfully...");
+        alert("Password Updated Successfully...");
       } catch (error) {
         alert(JSON.stringify(error.message));
       }

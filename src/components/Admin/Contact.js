@@ -63,7 +63,7 @@ function Contacts() {
     };
     try {
        await getDeleteVendor(data);
-      alert("Vendor Contacts Deleted Sucessfully");
+      alert("Vendor Contacts Deleted Successfully");
       setDeleteShow(false);
       handleAllContactList();
     } catch (error) {
@@ -156,7 +156,7 @@ function Contacts() {
 
     try {
        await getEditVendor(data);
-      alert("Contacts Edited Sucessfully");
+      alert("Contacts Edited Successfully");
       setData2("");
       setFile("");
       setShowEditModal(false);
@@ -401,11 +401,11 @@ function Contacts() {
 
       <Modal show={DeleteShow} onHide={handlecloseDelete}>
         <Modal.Header closeButton>
-          <Modal.Title style={{ color: "#0076B5" }}>Delete Product</Modal.Title>
+          <Modal.Title style={{ color: "#0076B5" }}>Delete Contact</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <p>Are you sure want to delete this Promotion ?</p>
+          <p>Are you sure want to delete this Vendor Contact ?</p>
         </Modal.Body>
 
         <Modal.Footer>

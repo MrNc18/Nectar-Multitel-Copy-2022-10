@@ -84,7 +84,7 @@ function Staticpage() {
     };
     try {
       await getDeletecms(data);
-      alert("Category Deleted Sucessfully");
+      alert("Category Deleted Successfully");
       setDeleteShow(false);
       handlegetcms();
     } catch (error) {
@@ -164,7 +164,7 @@ function Staticpage() {
     data.append("page_slug", page_slug);
     try {
       await getEditcms(data);
-      alert("Cms Edited Sucessfully");
+      alert("Cms Edited Successfully");
       setData2("");
       setFile(" ");
       setShowEditModal(false);

@@ -102,7 +102,7 @@ function Promotions() {
     };
     try {
       await getDeletePromotion(data);
-      alert("Promotion Deleted Sucessfully");
+      alert("Promotion Deleted Successfully");
       setDeleteShow(false);
       handleAllPromotions();
     } catch (error) {
@@ -333,7 +333,7 @@ function Promotions() {
                   <td>{item.id}</td>
                   <td>{item.name}</td>
                   <td>
-                    <img src={imageUrl(item.image)} style={{ width: "60px" }} />
+                    <img src={imageUrl(item.image)} alt="No Image" style={{ width: "60px" }} />
                   </td>
                   
                   <td>{item.Promotion_tags && Tabletag(item)}</td>
@@ -378,7 +378,7 @@ function Promotions() {
           <span aria-hidden="true">×</span>
           <span className="sr-only">Close</span>
         </button>
-          <Modal.Title style={{ color: "#0076B5" }}>Delete Product</Modal.Title>
+          <Modal.Title style={{ color: "#0076B5" }}>Delete Promotion</Modal.Title>
           <p>Are you sure want to delete this Promotion ?</p>
         </Modal.Body>
 

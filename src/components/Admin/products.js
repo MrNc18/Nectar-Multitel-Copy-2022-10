@@ -104,7 +104,7 @@ function Products() {
    
     try {
       await getEditProduct(data);
-      alert("Category Edited Sucessfully");
+      alert("Category Edited Successfully");
       setShowEditModal(false);
       handleAllProducts();
     } catch (error) {
@@ -148,7 +148,7 @@ function Products() {
     };
     try {
       await getDeleteProduct(data);
-      alert("Product Deleted Sucessfully");
+      alert("Product Deleted Successfully");
       setDeleteShow(false);
       handleAllProducts();
     } catch (error) {
@@ -183,7 +183,7 @@ function Products() {
               <th>Sr.No.</th>
               <th>Product Name</th>
               <th>Image</th>
-              <th>category</th>
+              <th>Category</th>
               <th>Quantity</th>
               <th>Specifications</th>
               <th>Price</th>

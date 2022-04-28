@@ -58,7 +58,7 @@ function InternetServices() {
     };
     try {
       await getDeleteServiceProducts(data);
-      alert("Promotion Deleted Sucessfully");
+      alert("Promotion Deleted Successfully");
       setDeleteShow(false);
       handleAllServiceProducts();
     } catch (error) {
@@ -67,6 +67,7 @@ function InternetServices() {
     }
   };
   const handleSubmit = async (event) => {
+    console.log("price",price)
     event.preventDefault();
     let ServiceId = ''
     {servicesList &&
@@ -90,8 +91,12 @@ function InternetServices() {
    
 
     if (name === "" || description === "" || price === "" || category === "") {
-      setErrorMsg("Fill the Mandatory Filelds");
-    } else
+      setErrorMsg("Fill the Mandatory Fields");
+    }
+     else if(price < 0 ){
+      setErrorMsg("Enter the Valid Price")
+    }
+    else{
       try {
         await getAddServiceProducts(data);
         alert("Added  Services Succesfully.", "success");
@@ -104,10 +109,14 @@ function InternetServices() {
       } finally {
         setShow(false);
       }
+    }
+    
   };
+
 
   //  edit API
   const handleEditShow = (item) => {
+    console.log("item",item)
     setData2({
       id: item.id,
       name: item.name,
@@ -145,7 +154,7 @@ function InternetServices() {
 
     try {
       await getEditServiceProducts(data);
-      alert("Service Product Edited Sucessfully");
+      alert("Service Product Edited Successfully");
       setData2("");
       setFile('')
       setShowEditModal(false);
@@ -232,6 +241,7 @@ function InternetServices() {
                   <div className="container">
                     <Form.Group>
                       <Form.Label>Name</Form.Label>
+                      <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="text"
                         value={name}
@@ -239,6 +249,7 @@ function InternetServices() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
+                      <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="textarea"
                         value={description}
@@ -252,13 +263,14 @@ function InternetServices() {
                         name="SortDescription"
                         onChange={handleChange}
                       ></Form.Control>
-                      {/* <Form.Label>Upload Image</Form.Label>{" "}
+                      <Form.Label>Upload Image</Form.Label>{" "}
                       <Form.Control
                         type="file"
                         id="file"
                         onChange={handleFileChange}
-                      ></Form.Control> */}
-                      <Form.Label>Service Category</Form.Label> <br />
+                      ></Form.Control>
+                      <Form.Label>Service Category</Form.Label>
+                      <span style={{color:"red"}}>*</span> <br />
                       <Form.Select
                         value={category}
                         name="category"
@@ -278,9 +290,13 @@ function InternetServices() {
                       </Form.Select>
                       <br />
                       <Form.Label>Price</Form.Label>
+                      <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="number"
+                        min="0"
                         value={price}
+                        onkeyup="if(this.value<0){this.value= this.value * -1}"
+                        placeholder="Price should be min 0"
                         name="price"
                         onChange={handleChange}
                       ></Form.Control>
@@ -327,7 +343,7 @@ function InternetServices() {
                   <td>{item.service.name}</td>
                   <td>{item.price}</td>
                   <td>
-                    <img src={imageUrl(item.service.image)} style={{ width: "60px" }} />
+                    <img src={item.cover_img === null ? "/assets/images/broad2.png":imageUrl(item.cover_img)} style={{ width: "60px" }} />
                   </td>
                   <td>
                     <a
@@ -357,11 +373,11 @@ function InternetServices() {
 
       <Modal show={DeleteShow} onHide={handlecloseDelete}>
         <Modal.Header closeButton>
-          <Modal.Title style={{ color: "#0076B5" }}>Delete Product</Modal.Title>
+          <Modal.Title style={{ color: "#0076B5" }}>Delete Service</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <p>Are you sure want to delete this Promotion ?</p>
+          <p>Are you sure want to delete this Service ?</p>
         </Modal.Body>
 
         <Modal.Footer>
@@ -383,7 +399,7 @@ function InternetServices() {
           <Modal show={ShowEditModal} onHide={handleEditClose} size="md">
             <Modal.Header closeButton>
               <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                Edit Promotion List
+                Edit Services List
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -434,16 +450,17 @@ function InternetServices() {
                   <Form.Control
                     type="number"
                     value={price}
+                    min="0"
+                    onkeyup="if(this.value<0){this.value= this.value * -1}"
                     name="price"
                     onChange={handleChange}
                   ></Form.Control>
-                  {/* <Form.Label>Upload</Form.Label>{" "}
+                  <Form.Label>Upload</Form.Label>{" "}
                   <Form.Control
                     type="file"
                     id="file"
-                    // value={file}
                     onChange={handleFileChange}
-                  ></Form.Control> */}
+                  ></Form.Control>
                 </Form.Group>
               </div>
             </Modal.Body>
