@@ -16,38 +16,81 @@ const Brands = () => (
 );
 
 const getDetails = () => {
-    let content = [];
-    for (let i = 0; i < 15; i++) {
-      content.push(<Brands key={i} />);
-    }
-    return content;
-  };
-
-
+  let content = [];
+  for (let i = 0; i < 15; i++) {
+    content.push(<Brands key={i} />);
+  }
+  return content;
+};
 
 function SearchFilter() {
   return (
     <Container>
       <Row>
         <Col md={12} style={{ marginTop: "30px" }}>
-          <form class="form-inline my-2 my-lg-0">
+          <div class="input-group">
             <input
-              class="form-control mr-sm-2"
+              class="form-control py-2 border-right-0 border"
               type="search"
-              placeholder="Search here"
-              aria-label="Search"
+              placeholder="Search Here"
+              id="example-search-input"
             />
-            <button class="btn btn-outline-primary my-sm-0" type="submit">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-          </form>
+            <span class="input-group-append">
+              <button
+                class="btn btn-outline-secondary border-left-0 border"
+                type="button"
+              >
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
           <Card style={{ marginTop: "30px" }}>
             <Card.Header style={{ backgroundColor: "#0076B5", color: "white" }}>
               SHOP BY
             </Card.Header>
             <Card.Body>
-                <h6>FILTER BY PRICE</h6>
-                
+              <div className="by_price mb-3">
+                <p className="headng mb-2">FILTER BY PRICE</p>
+                <div className="row mb-2" style={{display:"inline-block"}}>
+                  <div className="col-4" style={{display:"inline-block"}}>
+                    <p className="small mb-0">Min</p>
+                    <input
+                      type="text"
+                      className="w-100"
+                      name="min_price"
+                      id="min_price"
+                      value={"0"}
+                    />
+                  </div>
+                  to
+                  <div className="col-4" style={{display:"inline-block"}}>
+                    <p className="small mb-0">Max</p>
+                    <input
+                      type="text"
+                      className="w-100"
+                      name="max_price"
+                      id="max_price"
+                      value={"15000"}
+                    />
+                  </div>
+                  <div className="col-3" style={{display:"inline-block", marginLeft:"-10px"}}>
+                    <Button variant="dark" size="sm">Search</Button>{" "}
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-12">
+                    <input
+                      type="range"
+                      className="w-100"
+                      name="rangeInput"
+                      min="0"
+                      max="50000"
+                      defaultValue={""}
+                      step="500"
+                    />
+                  </div>
+                </div>
+              </div>
               <h6 className="mt-3">REFINE YOUR SEARCH</h6>
               <div class="form-check">
                 <input

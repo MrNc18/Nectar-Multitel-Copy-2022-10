@@ -15,20 +15,23 @@ function ServicesSection({tagline,heading}) {
                     <img src="/assets/images/secure.png" style={{width:"40px"}}
                   />
                   </div>
-                  <span>Secure Internet</span>
+                  <br />
+                  <span  >Secure Internet</span>
                 </div>
                 <span className="plus">+</span>
                 <div className="net_service">
                   <div class="net_img">
                     <img src="/assets/images/console.png" style={{width:"40px"}} />
                   </div>
-                  <span>Streaming Services</span>
+                  <br />
+                  <span >Streaming Services</span>
                 </div>
                 <span className="plus">+</span>
                 <div className="net_service">
                   <div class="net_img">
                     <img src="/assets/images/transmission.png" style={{width:"40px"}} />
                   </div>
+                  <br />
                   <span>High Data Transmission</span>
                 </div>
               </div>
