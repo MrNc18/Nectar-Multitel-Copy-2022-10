@@ -1,16 +1,14 @@
 import React from 'react';
 import LandingPage from '../components/LandingPage';
 import ServiceBanner from '../components/atoms/ServiceBanner';
-// import AccesoriesCard from '../components/atoms/AccesoriesCard';
 import Vendors from '../components/atoms/Vendors';
-
-function InformaticAndAccessories() {
+function NetworkEquipmentVendors() {
   return (
     <LandingPage>
-      <ServiceBanner title="Vendors Of Informatic and Accesories" />
+      <ServiceBanner title="Vendors of Network Equipment" />
       <Vendors />
     </LandingPage>
   )
 }
 
-export default InformaticAndAccessories
+export default NetworkEquipmentVendors

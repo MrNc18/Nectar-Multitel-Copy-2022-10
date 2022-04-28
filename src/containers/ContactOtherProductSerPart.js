@@ -10,8 +10,6 @@ function ContactOtherProductSerPart  () {
     <LandingPage>
     <ServiceBanner title="Other Product/Services" />
     <Vendors />
-
-  
     </LandingPage>
     
     </>

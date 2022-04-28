@@ -41,12 +41,12 @@ function Header() {
         <Container>
           <Row>
             <Col lg={5}>
-              <ul className="d-flex justify-content-between header-ul pt-1 ml-2">
+              <ul className=" d-flex justify-content-between header-ul pt-1 ml-2">
                 <li>
                   <DateTime />
                 </li>
                 <li>
-                  {mobile} <span className="fw-500">Contact Us :</span>{" "}
+                  {mobile} <span className="fw-400">Contact Us :</span>{" "}
                   985-236-854-558
                 </li>
               </ul>
@@ -79,7 +79,7 @@ function Header() {
                 </li>
                 <li>
                   <div className="multilingual d-flex pt-1 ml-3">
-                    <span className="fw-500">City:</span>
+                    <span className="fw-400">City:</span>
                     <select name="city" id="city" className="ml-1">
                       <option value="france">France</option>
                       <option value="spain">Spain</option>

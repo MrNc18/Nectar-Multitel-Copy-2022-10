@@ -12,16 +12,16 @@ function Topbar() {
   const[showLoginModal,setShowLoginModal] = useState(false)
   return (
     <>
-    <div id="top_header" style={{marginTop:"-40px"}}>
+    <div id="top_header"  className="h-25" style={{marginTop:"40px"   }}>
       <Container>
         <Row>
           <Col md={5}>
-            <ul className="d-flex justify-content-between header-ul pt-1">
+            <ul className="d-flex justify-content-between header-ul pt-1 fw-bolder">
               <li>
-                <span className="fw-500">Current Time :</span> 12:30 PM
+                <span className=" ">Current Time :</span> 12:30 PM
               </li>
               <li>
-                {mobile} <span className="fw-500">Contact Us :</span>{" "}
+                {mobile} <span className="fw-500 ">Contact Us :</span>{" "}
                 985-236-854-558
               </li>
             </ul>
