@@ -10,10 +10,12 @@ import {
   imageUrl,
 } from "../../services/category";
 import { Link } from "react-router-dom";
+import { showAlert } from "../../utils/showAlert";
 
 function Promotions() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [buttondisabled,setButtonDisabled] = useState(false);
   const [show, setShow] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
@@ -102,12 +104,12 @@ function Promotions() {
     };
     try {
       await getDeletePromotion(data);
-      alert("Promotion Deleted Successfully");
+      showAlert("Promotion Deleted Successfully","success");
       setDeleteShow(false);
       handleAllPromotions();
     } catch (error) {
       console.log("error", error);
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
   const handleSubmit = async (event) => {
@@ -131,15 +133,16 @@ function Promotions() {
       description === "" ||
       finalMultiValue === ""
     ) {
-      setErrorMsg("Fill the Mandatory Filelds");
+      setErrorMsg("Fill the Mandatory Fields");
     } else
       try {
+        setButtonDisabled(true)
         await getAddPromotion(data);
-        alert("Added  Promotion.", "success");
+        showAlert("Added Promotion successfully", "success");
         setShow(false);
         handleAllPromotions();
       } catch (error) {
-        alert(error.data.message, "error");
+        showAlert(error.data.message, "error");
       } finally {
         setShow(false);
       }
@@ -176,7 +179,7 @@ function Promotions() {
 
     try {
       await getEditPromotion(data);
-      alert("Promotion Edited Sucessfully");
+      showAlert("Promotion Edited Sucessfully","success");
       // setData2({
       //   id: "",
       //   name: "",
@@ -184,14 +187,17 @@ function Promotions() {
       // });
       setData2(' ')
       setFile("");
+      setTagValue('')
       setShowEditModal(false);
       handleAllPromotions();
     } catch (error) {
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
   const handleEditClose = () => {
     setData2(' ')
+    setFile('')
+    setTagValue('')
     setShowEditModal(false);
   };
 
@@ -204,7 +210,7 @@ function Promotions() {
       console.log("resp", resp);
     } catch (error) {
       console.log("error", error);
-      alert("something went Wrong");
+      showAlert("something went Wrong","error");
     }
   };
 
@@ -259,6 +265,7 @@ function Promotions() {
                   <div className="container">
                     <Form.Group>
                       <Form.Label>Promotion Title</Form.Label>
+                      <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="text"
                         value={name}
@@ -266,6 +273,7 @@ function Promotions() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
+                      <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="textarea"
                         value={description}
@@ -273,12 +281,14 @@ function Promotions() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Upload Image</Form.Label>{" "}
+                      <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="file"
                         id="file"
                         onChange={handleFileChange}
                       ></Form.Control>
                       <Form.Label>key(tag)</Form.Label>
+                      <span style={{color:"red"}}>*</span>
                       <Creatable
                         isClearable
                         isMulti
@@ -298,6 +308,7 @@ function Promotions() {
                   <Button
                     variant="primary"
                     size="lg"
+                    disabled={buttondisabled}
                     onClick={handleSubmit}
                     style={{ width: "200%" }}
                   >

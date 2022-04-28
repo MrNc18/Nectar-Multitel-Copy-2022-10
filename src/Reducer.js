@@ -56,12 +56,17 @@ const reducer = (state, action) => {
       const prdt = state.basket.find((e) => e.id == action.id);
       if (prdt) {
         if (action.payload == "increment") {
+          if(prdt.quantity < "25"){
           prdt.quantity += 1;
+        }
+        else{
+          alert("Quantity Limit Exceeded")
+        }
         } else if (action.payload == "decrement") {
           if (prdt.quantity > 1) prdt.quantity -= 1;
         }
       } else {
-        console.warn(`Product doesn't exist in the basket!`);
+        alert(`Product doesn't exist in the basket!`);
       }
       localStorage.setItem("basket", JSON.stringify(state.basket));
       return {

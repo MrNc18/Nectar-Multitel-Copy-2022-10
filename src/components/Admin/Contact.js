@@ -10,6 +10,7 @@ import {
   imageUrl,
 } from "../../services/category";
 import { Link } from "react-router-dom";
+import { showAlert } from "../../utils/showAlert";
 
 function Contacts() {
   const handleClose = () => setShow(false);
@@ -19,6 +20,7 @@ function Contacts() {
   };
   const [show, setShow] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
+  const [buttondisabled,setButtonDisabled] = useState(false);
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [DeleteShow, setDeleteShow] = useState(false);
   const [file, setFile] = useState("");
@@ -63,12 +65,12 @@ function Contacts() {
     };
     try {
        await getDeleteVendor(data);
-      alert("Vendor Contacts Deleted Successfully");
+      showAlert("Vendor Contact Deleted Successfully","success");
       setDeleteShow(false);
       handleAllContactList();
     } catch (error) {
       console.log("error", error);
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
   const handleSubmit = async (event) => {
@@ -101,18 +103,19 @@ function Contacts() {
       Phone === "" ||
       category === ""
     ) {
-      setErrorMsg("Fill the Mandatory Filelds");
+      setErrorMsg("Fill the Mandatory Fields");
     } else
       try {
+        setButtonDisabled(true)
         await getAddVendor(data);
-        alert("Added  contacts Succesfully.", "success");
+        showAlert("Added contact Succesfully.", "success");
         setErrorMsg("");
         setData2(" ");
         setCategory(" ");
         setShow(false);
         handleAllContactList();
       } catch (error) {
-        alert(error.data.message, "error");
+        showAlert(error.data.message, "error");
       } finally {
         setShow(false);
       }
@@ -120,7 +123,7 @@ function Contacts() {
 
   //  edit API
   const handleEditShow = (item) => {
-    console.log("itemcont",item)
+    setCategory(item.category)
     setData2({
       id:item.id,
       username:item.user_name,
@@ -129,8 +132,7 @@ function Contacts() {
       Adress:item.address,
       first_name:item.first_name,
       last_name:item.last_name
-    });
-    setCategory(item.category)
+    })
     setShowEditModal(true);
   };
   const handleEditContacts = async () => {
@@ -156,13 +158,13 @@ function Contacts() {
 
     try {
        await getEditVendor(data);
-      alert("Contacts Edited Successfully");
+      showAlert("Contact Edited Successfully","success");
       setData2("");
       setFile("");
       setShowEditModal(false);
       handleAllContactList();
     } catch (error) {
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
      }
   };
   const handleEditClose = () => {
@@ -179,7 +181,7 @@ function Contacts() {
       console.log("resp", resp.data.data);
     } catch (error) {
       console.log("error", error);
-      alert("something went Wrong");
+      showAlert("something went Wrong","error");
     }
   };
 
@@ -200,7 +202,7 @@ function Contacts() {
       console.log("resp", resp.data.data);
     } catch (error) {
       console.log("error", error);
-      alert("something went Wrong");
+      showAlert("something went Wrong","error");
     } 
   };
 
@@ -275,6 +277,7 @@ function Contacts() {
                 <div className="container">
                   <Form.Group>
                     <Form.Label> First Name</Form.Label>
+                    <span style={{color:"red"}}> * </span>
                     <Form.Control
                       type="text"
                       value={first_name}
@@ -282,6 +285,7 @@ function Contacts() {
                       onChange={handleChange}
                     ></Form.Control>
                     <Form.Label> Last Name</Form.Label>
+                    <span style={{color:"red"}}> * </span>
                     <Form.Control
                       type="text"
                       value={last_name}
@@ -296,6 +300,7 @@ function Contacts() {
                       onChange={handleChange}
                     ></Form.Control>
                     <Form.Label>Phone</Form.Label>
+                    <span style={{color:"red"}}> * </span>
                     <Form.Control
                       type="number"
                       value={Phone}
@@ -303,6 +308,7 @@ function Contacts() {
                       onChange={handleChange}
                     ></Form.Control>
                     <Form.Label>Category</Form.Label>
+                    <span style={{color:"red"}}> * </span>
                     <Select
                       isMulti
                       name="category"
@@ -317,6 +323,7 @@ function Contacts() {
                       }}
                     />
                     <Form.Label>Email</Form.Label>
+                    <span style={{color:"red"}}> * </span>
                     <Form.Control
                       type="email"
                       value={email}
@@ -324,6 +331,7 @@ function Contacts() {
                       onChange={handleChange}
                     ></Form.Control>
                     <Form.Label>Address</Form.Label>
+                    <span style={{color:"red"}}> * </span>
                     <Form.Control
                       type="textarea"
                       value={Adress}
@@ -337,6 +345,7 @@ function Contacts() {
                 <Button
                   variant="primary"
                   size="lg"
+                  disabled={buttondisabled}
                   onClick={handleSubmit}
                   style={{ width: "200%" }}
                 >

@@ -11,6 +11,7 @@ import {
   getAllCategories,imageUrl
 } from "../../services/category";
 import ProductsList from "../ProductsList";
+import { showAlert } from "../../utils/showAlert";
 
 function Products() {
   const [ShowEditModal, setShowEditModal] = useState(false);
@@ -104,11 +105,11 @@ function Products() {
    
     try {
       await getEditProduct(data);
-      alert("Category Edited Successfully");
+      showAlert("Category Edited Successfully","success");
       setShowEditModal(false);
       handleAllProducts();
     } catch (error) {
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
 
@@ -117,7 +118,7 @@ function Products() {
       const resp = await getAllCategories();
       setAllcategories(resp.data)
     } catch (error) {
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
 
@@ -128,7 +129,7 @@ function Products() {
       console.log("resp", resp);
     } catch (error) {
       console.log("error", error); 
-      alert("something went Wrong");
+      showAlert("something went Wrong","error");
     }
   };
   useEffect(() => {
@@ -148,12 +149,12 @@ function Products() {
     };
     try {
       await getDeleteProduct(data);
-      alert("Product Deleted Successfully");
+      showAlert("Product Deleted Successfully","success");
       setDeleteShow(false);
       handleAllProducts();
     } catch (error) {
       console.log("error", error);
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
 
@@ -259,7 +260,7 @@ function Products() {
           <Modal show={ShowEditModal} onHide={handleEditClose} size="lg">
             <Modal.Header closeButton>
               <Modal.Title style={{ color: "#8ec131", marginLeft: "25px" }}>
-                Edit product List
+                Edit Product List
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -283,7 +284,7 @@ function Products() {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                   <div className="form-group">
                     <label htmlFor="exampleInputtext" className="mb-1">
-                      category
+                      Category
                     </label>
                     <select
                       className="form-control"
@@ -352,7 +353,7 @@ function Products() {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                   <div className="form-group">
                     <label htmlFor="exampleInputtext" className="mb-1">
-                      price
+                      Price
                     </label>
                     <input
                       className="form-control"
@@ -415,7 +416,7 @@ function Products() {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                   <div className="form-group">
                     <label htmlFor="exampleInputtext" className="mb-1">
-                      offers
+                      Offers
                     </label>
                     <textarea
                       type="text"
@@ -429,7 +430,7 @@ function Products() {
                 </div>
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                   <div className="form-group">
-                    <label htmlFor="exampleInputtext">product Details</label>
+                    <label htmlFor="exampleInputtext">Product Details</label>
                     <textarea
                       className="form-control"
                       type="text"
@@ -442,7 +443,7 @@ function Products() {
                 </div>
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                   <div className="form-group">
-                    <label htmlFor="exampleInputtext">product Image</label>
+                    <label htmlFor="exampleInputtext">Product Image</label>
                     <input
                       className="form-control"
                       type="file"
