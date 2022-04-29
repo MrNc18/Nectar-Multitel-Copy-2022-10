@@ -38,7 +38,7 @@ function Header() {
   return (
     <div id="Header">
       <div id="top_header"  >
-        <Container>
+        <Container  style={{height:"50px"}}>
           <Row>
             <Col lg={5}>
               <ul className="d-flex justify-content-between header-ul pt-1 ml-2">

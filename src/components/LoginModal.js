@@ -60,7 +60,7 @@ function LoginModal({ show, handleClose }) {
           <InputField
             id=" userName"
             type="text"
-            label="User Name"
+            label="Username"
             mendetory
             
             value={{  userName }}

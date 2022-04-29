@@ -24,7 +24,7 @@ function FooterBottom() {
                 <a href="#">FAQ</a>
               </li>
               <li>
-                <a href="#top_header">
+                <a href="#top_header text-center"  >
                   <img src="/assets/images/up-arrow.png" />
                 </a>
               </li>
@@ -33,7 +33,7 @@ function FooterBottom() {
         </Row>
       </Container>
       <a href="#">
-        <img className="chaticon" src="/assets/images/chat.png" />
+        <img className="chaticon"   style={{height:100 ,width:100}}  src="/assets/images/chat.png" />
       </a>
     </div>
   );
