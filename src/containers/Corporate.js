@@ -54,21 +54,21 @@ function Corporate() {
         </Container>
       </section> */}
 
-      <section id="triimage" className="mt-5">
+      <section id="triimage" className="mt-5 container-fluid">
         <Row>
           <Col md={4} className="tri1">
             <div className="padding_div">
-              <h2 className="white-text text-center h2">Fast Internet Speeds</h2>
+              <h2 className="white-text text-center h3">Fast Internet Speeds</h2>
             </div>
           </Col>
           <Col md={4} className="tri2">
             <div className="padding_div">
-              <h2 className="white-text text-center  h2">Channel Lineups</h2>
+              <h2 className="white-text text-center  h3">Channel Lineups</h2>
             </div>
           </Col>
           <Col md={4} className="tri3">
             <div className="padding_div">
-              <h2 className="white-text text-center  h2">
+              <h2 className="white-text text-center  h3">
                 Our Ultimate TV Experience
               </h2>
             </div>
@@ -76,10 +76,10 @@ function Corporate() {
         </Row>
       </section>
 
-      <section id="internet_service" className="pos-relative">
+      <section id="internet_service" className="pos-relative container-fluid">
         <Row>
           <Col md={4} lg={5}>
-            <h2 className="mb-4 mt-5">
+            <h2 className="mb-4 mt-5   h4">
               Internet Service Designed with your Business in Mind.
             </h2>
           </Col>
@@ -90,28 +90,28 @@ function Corporate() {
                 <Col md={8} lg={7}>
                   <ul className="icontext">
                     <li>
-                      <h3 className="white-text">Heading goes here</h3>
+                      <h6 className="white-text">Heading goes here</h6>
                       <p className="white-text">
                         Consectetur adipisicing elit. Sed do eiusmod tempor
                         incididunt ut labore et dolore magna aliqua.
                       </p>
                     </li>
                     <li>
-                      <h3 className="white-text">Heading goes here</h3>
+                      <h6 className="white-text">Heading goes here</h6>
                       <p className="white-text">
                         Consectetur adipisicing elit. Sed do eiusmod tempor
                         incididunt ut labore et dolore magna aliqua.
                       </p>
                     </li>
                     <li>
-                      <h3 className="white-text">Heading goes here</h3>
+                      <h6 className="white-text">Heading goes here</h6>
                       <p className="white-text">
                         Consectetur adipisicing elit. Sed do eiusmod tempor
                         incididunt ut labore et dolore magna aliqua.
                       </p>
                     </li>
                     <li>
-                      <h3 className="white-text">Heading goes here</h3>
+                      <h6 className="white-text">Heading goes here</h6>
                       <p className="white-text">
                         Consectetur adipisicing elit. Sed do eiusmod tempor
                         incididunt ut labore et dolore magna aliqua.

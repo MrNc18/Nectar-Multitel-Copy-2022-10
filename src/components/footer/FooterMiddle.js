@@ -40,7 +40,7 @@ function FooterMiddle() {
               </div>
             </Col>
             <Col md={6} lg={3} className="col23">
-              <h3 className="footer-heading mb-4">Services</h3>
+              <h3 className="footer-heading mb-4 ml-3">Services</h3>
               <ul>
                 <li>
                   <a href="#">Plans & Pricing</a>
@@ -60,7 +60,7 @@ function FooterMiddle() {
               </ul>
             </Col>
             <Col md={6} lg={3} className="col23">
-              <h3 className="footer-heading mb-4">Quick Links</h3>
+              <h3 className="footer-heading mb-4  ml-3">Quick Links</h3>
               <ul>
                 <li>
                   <a href="#">Home</a>
