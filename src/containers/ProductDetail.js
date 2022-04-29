@@ -154,6 +154,11 @@ function ProductDetail() {
     })();
   }, [params?.name]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  
+
   const TabList = Object.freeze([
     { label: "Additional Information", state: "additional" },
     { label: "Reviews(0)", state: "reviews" },
