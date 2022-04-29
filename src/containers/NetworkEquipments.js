@@ -10,6 +10,7 @@ function NetworkEquipments() {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async () => {
       const response = await getProductsByCategory({
         slug: "network-equipments",

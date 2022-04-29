@@ -12,6 +12,7 @@ function Promotions() {
   const [promotionList, setPromotionList] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     (async () => {
       const response = await getAllPromotions();
       console.log(response);

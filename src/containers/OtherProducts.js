@@ -14,6 +14,7 @@ function OtherProducts() {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async () => {
       const response = await getProductsByCategory({
         slug: "other-productsservices-1",
