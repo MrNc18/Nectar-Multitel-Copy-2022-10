@@ -37,6 +37,7 @@ function CPE() {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async () => {
       const response = await getProductsByCategory({ slug: "cpe" });
       console.log(response?.data?.data?.products);

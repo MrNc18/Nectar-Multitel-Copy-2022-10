@@ -17,6 +17,7 @@ function InternetServices({name}) {
   console.log(name)
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async () => {
       const response = await getAllServices();
       console.log(response);
