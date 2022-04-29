@@ -1,5 +1,7 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Corporate from "./containers/Corporate";
@@ -59,6 +61,13 @@ import PaymentMethod from "./containers/PaymentMethod";
 
 function App() {
   return (
+    <>
+    <ToastContainer
+    transition={Slide}
+    position="bottom-center"
+    hideProgressBar
+    newestOnTop={false}
+  />
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Corporate />} />
@@ -149,6 +158,7 @@ function App() {
         </Route> */}
       </Routes>
     </BrowserRouter>
+    </>
   );
 }
 

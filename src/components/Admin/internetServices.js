@@ -9,12 +9,13 @@ import {
   getAllInternetServices,
   imageUrl,
 } from "../../services/category";
-import { Link } from "react-router-dom";
+import { showAlert } from "../../utils/showAlert";
 
 function InternetServices() {
   const handleClose = () => setShow(false);
-  const handleShow = () => {setShow(true) ;  console.log("serviceList",servicesList)};
+  const handleShow = () => {setShow(true);setErrorMsg('')};
   const [show, setShow] = useState(false);
+  const [buttondisabled,setButtonDisabled] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [DeleteShow, setDeleteShow] = useState(false);
@@ -58,12 +59,14 @@ function InternetServices() {
     };
     try {
       await getDeleteServiceProducts(data);
-      alert("Promotion Deleted Successfully");
+      // alert("Service Deleted Successfully");
+      showAlert("Service Deleted Successfully","success")
       setDeleteShow(false);
       handleAllServiceProducts();
     } catch (error) {
       console.log("error", error);
       alert("Something Went Wrong");
+      showAlert("Something Went Wrong","Danger")
     }
   };
   const handleSubmit = async (event) => {
@@ -90,22 +93,26 @@ function InternetServices() {
       data.append("SortDescription", SortDescription);
    
 
-    if (name === "" || description === "" || price === "" || category === "") {
+    if (name === "" || price === "" || category === "" || file === "") {
       setErrorMsg("Fill the Mandatory Fields");
     }
-     else if(price < 0 ){
+     else if(price < 1  || price % 1 != "0"){
       setErrorMsg("Enter the Valid Price")
     }
     else{
+
       try {
+        setButtonDisabled(true)
         await getAddServiceProducts(data);
-        alert("Added  Services Succesfully.", "success");
+        showAlert("Added  Services Succesfully.", "success");
         setErrorMsg("");
         setData2(' ')
+        setButtonDisabled(false)
         setShow(false);
         handleAllServiceProducts();
       } catch (error) {
-        alert(error.data.message, "error");
+        showAlert(error.data.message, "error");
+        setButtonDisabled(false)
       } finally {
         setShow(false);
       }
@@ -154,17 +161,18 @@ function InternetServices() {
 
     try {
       await getEditServiceProducts(data);
-      alert("Service Product Edited Successfully");
+      showAlert("Service Product Edited Successfully","success");
       setData2("");
       setFile('')
       setShowEditModal(false);
       handleAllServiceProducts();
     } catch (error) {
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
   const handleEditClose = () => {
     setData2("");
+    setFile('')
     setShowEditModal(false);
   };
 
@@ -177,7 +185,7 @@ function InternetServices() {
       console.log("resp", resp);
     } catch (error) {
       console.log("error", error);
-      alert("something went Wrong");
+      showAlert("something went Wrong");
     }
   };
 
@@ -194,7 +202,7 @@ function InternetServices() {
       console.log("resp", resp);
     } catch (error) {
       console.log("error", error);
-      alert("something went Wrong");
+      showAlert("something went Wrong");
     }
   };
 
@@ -264,6 +272,7 @@ function InternetServices() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Upload Image</Form.Label>{" "}
+                      <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="file"
                         id="file"
@@ -307,6 +316,7 @@ function InternetServices() {
                   <Button
                     variant="primary"
                     size="lg"
+                    disabled={buttondisabled}
                     onClick={handleSubmit}
                     style={{ width: "200%" }}
                   >

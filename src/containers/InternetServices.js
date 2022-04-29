@@ -8,7 +8,7 @@ import ServiceCardDynamic from "../components/atoms/ServiceCardDynamic";
 import LandingPage from "../components/LandingPage";
 import Services from "../components/Services";
 import { getAllServices } from "../services/intservices";
-import { tvIcon } from "../svg/tv";
+
 
 function InternetServices({name}) {
   const navigate = useNavigate();
