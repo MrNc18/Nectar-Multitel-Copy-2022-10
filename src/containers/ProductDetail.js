@@ -8,6 +8,7 @@ import { formatAmount } from "../utils/AmountFormatter";
 import { baseurl } from "../utils/request";
 import { getProductBySlug } from "../services/category";
 import {useStateValue} from "../StateProvider"
+import { showAlert } from "../utils/showAlert";
 
 
 
@@ -135,6 +136,25 @@ function ProductDetail() {
           },
       });
   };
+
+  const addTowish = () => {
+    dispatch({
+        type: "ADD_TO_WISH",
+        item: {
+            id: product.id,
+            image: product?.cover_img,
+            name:product.name,
+            price: product.price,
+            quantity:qty,
+            slug:product.slug
+            // rating: rating,
+            // subtotal:subtotal
+        },
+    });
+};
+
+
+
   const navigate = useNavigate()
   // const { product } = state;
   // console.log(product);
@@ -148,7 +168,7 @@ function ProductDetail() {
   useEffect(() => {
     (async () => {
       const response = await getProductBySlug({ slug: params?.name });
-      console.log(response);
+      console.log(response,"res");
       setProduct(response?.data?.data);
       // !response?.data?.length && setInitial("No promotions found");
     })();
@@ -247,9 +267,10 @@ function ProductDetail() {
                 <a
                   className="btn btn-primary contact_btn addcart_btn w-100"
                   href="#"
+                  style={{backgroundColor:"#3498db"}}
                   onClick={() => {
                     addToBasket()
-                    alert("Item Added to cart.")
+                    showAlert("Item Added to cart.","success")
                     navigate("/cart")
                   }}
                 >
@@ -260,6 +281,11 @@ function ProductDetail() {
                 <button
                   className="btn btn-primary"
                   style={{ border: "1px solid var(--secondary)" }}
+                  onClick={() => {
+                    addTowish()
+                    showAlert("Item Added to WishList.","success")
+                    // navigate("/cart")
+                  }}
                 >
                   <img src="/assets/images/green-heart-icon.png" />
                   <span>Add to wishlist</span>
@@ -268,12 +294,12 @@ function ProductDetail() {
             </div>
 
             <div className="product_desc mt-3">
-              <h2 className="book_social">Description</h2>
+              <h5 className="book_social">Description</h5>
               <p>{product?.description}</p>
             </div>
 
             <div className="author-social pt-2 pb-2">
-              <h2 className="book_social">Share on social media</h2>
+              <h5 className="book_social">Share on social media</h5>
               <div className="author_links">
                 <a href="#">
                   <i className="fab fa-facebook-f"></i>

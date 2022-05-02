@@ -29,7 +29,7 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
@@ -176,7 +176,7 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
@@ -235,7 +235,7 @@
        font-size: larger;
        font-weight: 300px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
@@ -293,7 +293,7 @@
        font-size: larger;
        font-weight: 300px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
@@ -352,7 +352,7 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
@@ -412,7 +412,7 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
@@ -471,7 +471,7 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500; 
   
    background-color: white;
   position: absolute;
@@ -531,7 +531,7 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
@@ -721,7 +721,7 @@
        font-weight: 300px;
        
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
@@ -791,7 +791,7 @@
        font-weight: 100px;
       
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
@@ -853,7 +853,7 @@
          font-weight: 100px;
         
      }
-  .link .link_btn {
+  .link .link_btn { font-weight:500;
     
      background-color: white;
     position: absolute;
@@ -938,7 +938,7 @@
     font-weight: 300;
 
   }
-.link .link_btn {
+.link .link_btn { font-weight:500;
  
   background-color: white;
  position: absolute;
@@ -994,7 +994,7 @@ and (-webkit-min-device-pixel-ratio: 2) {
     font-weight: 100;
 
   }
-  .link .link_btn {
+  .link .link_btn { font-weight:500;
  
     background-color: white;
    position: absolute;
@@ -1058,7 +1058,7 @@ and (max-device-width: 1024px) {
     font-weight: 300;
 
   }
-.link .link_btn {
+.link .link_btn { font-weight:500;
  
   background-color: white;
  position: absolute;
@@ -1122,7 +1122,7 @@ text-align: center;
     font-weight: 300;
 
   }
-.link .link_btn {
+.link .link_btn { font-weight:500;
  
   background-color: white;
  position: absolute;

@@ -30,9 +30,9 @@ function FooterTop() {
               <Col lg={9} md={11}>
                 <h2 className="mb-lg-5 mb-4 pl-5">Sponsorships</h2>
                 <div className="sponsor_img pl-5" style={{display:"flex"}}>
-                  <img src="/assets/images/sponsors.png" className="mr-3" />
-                  <img src="/assets/images/sponsors.png" className="mr-3" />
-                  <img src="/assets/images/sponsors.png" className="mr-3" />
+                  <img src="/assets/images/sponsors.png" className="mr-4" />
+                  <img src="/assets/images/sponsors.png" className="mr-4" />
+                  <img src="/assets/images/sponsors.png" className="mr-4" />
                 </div>
               </Col>
               <Col lg={3} md={1}>
