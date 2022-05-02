@@ -52,7 +52,7 @@ import ContactEquip from "./containers/ContactEquip";
 import ContactCPE from "./containers/ContactCPE";
 import InformaticAndAccessories from './containers/InformaticAndAccessories';
 import ServicesCategory from './components/Admin/ServicesCategory';
-
+import WishList from "./containers/WishList";
 import VendorDetails from "./containers/VendorDetails";
 import Cart from "./containers/Cart";
 import Checkout from "./containers/Checkout";
@@ -140,6 +140,7 @@ function App() {
         <Route path="client" element={<Example />} />
         <Route path="profile" element={<Account />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="wishlist" element={<WishList />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="payment-methods" element={<PaymentMethod />} />
 

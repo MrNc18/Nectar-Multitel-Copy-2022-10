@@ -4,6 +4,9 @@ export const initialState = {
   basket: localStorage.getItem("basket")
     ? JSON.parse(localStorage.getItem("basket"))
     : [],
+    wish: localStorage.getItem("wish")
+    ? JSON.parse(localStorage.getItem("wish"))
+    : [],
 };
 
 //Selector
@@ -33,25 +36,35 @@ const reducer = (state, action) => {
       };
 
     case "REMOVE_FROM_BASKET":
-    //   const index = state.basket.findIndex(
-    //     (basketItem) => basketItem.id === action.id
-    //   );
-
-    //   let newBasket = [...state.basket];
-
-    //   if (index >= 0) {
-    //     newBasket.splice(index, 1);
-    //   } else {
-    //     console.warn(
-    //       `Can't remove product(id: ${action.id}) as its not in the basket!`
-    //     );
-    //   }
       const newBasket = state.basket.filter((item) => item.id !== action.id)
       localStorage.setItem("basket", JSON.stringify(newBasket));
       return {
         ...state,
         basket: newBasket,
       };
+      case "ADD_TO_WISH":
+        const newWish = action.item;
+        const existWish = state.wish.find((item) => item.id === newWish.id);
+        const WishItems = existWish
+          ? state.wish.map((item) =>
+              item.id === existWish.id ? newWish : item
+            )
+          : [...state.wish, newWish];
+  
+        localStorage.setItem("wish", JSON.stringify(WishItems));
+        return {
+          ...state,
+          wish: WishItems,
+        };
+
+        case "REMOVE_FROM_WISH":
+          const newwish = state.wish.filter((item) => item.id !== action.id)
+          localStorage.setItem("wish", JSON.stringify(newwish));
+          return {
+            ...state,
+            wish: newwish,
+          };
+
     case "CHANGE_QTY":
       const prdt = state.basket.find((e) => e.id == action.id);
       if (prdt) {

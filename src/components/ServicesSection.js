@@ -8,7 +8,7 @@ function ServicesSection({tagline,heading}) {
           <Row>            
             <Col md={12} className="text-center">
               <p className='mb-2'>{tagline}</p>
-              <h6 className="mb-3">{heading}</h6>
+              <h4 className="mb-3">{heading}</h4>
               <div className="d-flex text-center" style={{justifyContent: "center", position:"relative"}}>
                 <div className="net_service">
                   <div class="net_img">

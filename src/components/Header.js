@@ -15,6 +15,7 @@ import LoginModal from "./LoginModal";
 import { AUTH_TOKEN, deleteCookie, getCookie } from "../utils/cookie";
 import { getUserDetailsByToken } from "../services/authentication";
 import { Dropdown } from "react-bootstrap";
+import { useStateValue } from "../StateProvider";
 
 function Header() {
   const navigate = useNavigate();
@@ -22,6 +23,8 @@ function Header() {
   const [username, setUsername] = useState("");
   const isAuthenticated = getCookie(AUTH_TOKEN);
   // console.log(isAuthenticated);
+
+  const [{ wish }, dispatch] = useStateValue();
 
   const getDataByToken = async () => {
     if (isAuthenticated) {
@@ -121,6 +124,14 @@ function Header() {
                           }}
                         >
                           Logout
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => {
+                            navigate("/wishlist");
+                            // window.location.reload();
+                          }}
+                        >
+                          wishlist <span style={{paddingLeft:"20px",color:"#007bff"}}>{wish.length}</span> 
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
