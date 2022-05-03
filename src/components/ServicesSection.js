@@ -16,7 +16,7 @@ function ServicesSection({tagline,heading}) {
                   />
                   </div>
                 
-                  <span style={{fontSize:15}}>Secure Internet</span>
+                  <span style={{fontSize: "14px", lineHeight: "18px"}}>Secure<br /> Internet</span>
                 </div>
                 <span className="plus">+</span>
                 <div className="net_service">
@@ -24,7 +24,7 @@ function ServicesSection({tagline,heading}) {
                     <img src="/assets/images/console.png" style={{width:"40px"}} />
                   </div>
                
-                  <span  style={{fontSize:15}}>Streaming Services</span>
+                  <span style={{fontSize: "14px", lineHeight: "18px"}}>Streaming<br /> Services</span>
                 </div>
                 <span className="plus">+</span>
                 <div className="net_service">
@@ -32,7 +32,7 @@ function ServicesSection({tagline,heading}) {
                     <img src="/assets/images/transmission.png" style={{width:"40px"}} />
                   </div>
                   
-                  <span style={{fontSize:15}}>High Data Transmission</span>
+                  <span style={{fontSize: "14px", lineHeight: "18px"}}>High Data<br /> Transmission</span>
                 </div>
               </div>
             </Col>           
