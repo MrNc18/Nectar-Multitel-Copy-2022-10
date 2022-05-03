@@ -45,7 +45,7 @@ function Header() {
           <Row>
             <Col lg={5}>
               <ul className="d-flex justify-content-between header-ul pt-1 ml-2">
-                <li style={{fontWeight:"500"}}>
+                <li>
 
                   <DateTime />
                 </li>

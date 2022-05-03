@@ -8,7 +8,7 @@ function TopBanner({ topText, btnText, heading, subheading, link }) {
 
   return ( 
     <div className="banner-New-inner-inner">
-      <button class="btn-white "  style={{ textTransform: "uppercase" , color:"#0076B5",fontWeight:"500" }}>
+      <button class="btn-white "  style={{ textTransform: "uppercase" , color:"#0076B5",fontWeight:"500",letterSpacing:"2.5px" }}>
         {topText}
       </button>
       <p className="banner-heading">{heading}</p>

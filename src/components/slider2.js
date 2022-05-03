@@ -55,7 +55,7 @@ function App() {
                        
                         className="link_btn"
                         // className='btn-white'
-                        style={{ textTransform: "uppercase" }}
+                        style={{ textTransform: "uppercase",letterSpacing:"2.5px" }}
                       >
                         {slide?.title}
                       </button>

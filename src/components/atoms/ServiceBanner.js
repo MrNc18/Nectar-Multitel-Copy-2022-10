@@ -12,7 +12,7 @@ function ServiceBanner({title,regnPage,backlink="/marketplace"}) {
                 <Col xs={12}>
                     <div className=''>
                     {!regnPage && <Link to={backlink}>{backIcon}</Link>}
-                <h1 className='white-color text-center'  >{title}</h1>
+                <h1 className='white-color text-center' style={{fontSize: "33px"}}>{title}</h1>
                 </div>
                 </Col>
             </Row>
