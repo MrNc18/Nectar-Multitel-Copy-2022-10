@@ -123,7 +123,12 @@ function Contacts() {
 
   //  edit API
   const handleEditShow = (item) => {
-    setCategory(item.category)
+    console.log(item,"item")
+    const editdata = item.category.split(',')
+    const EditCategory = editdata.map((item) =>createOption(item))
+    // console.log("edit",editdata)
+    // console.log("editcat",EditCategory)
+    setCategory(EditCategory)
     setData2({
       id:item.id,
       username:item.user_name,
@@ -136,6 +141,7 @@ function Contacts() {
     setShowEditModal(true);
   };
   const handleEditContacts = async () => {
+    console.log("setcat",category)
     const finalMultiValue =
     category &&
     category.map((data) => {
@@ -161,6 +167,7 @@ function Contacts() {
       showAlert("Contact Edited Successfully","success");
       setData2("");
       setFile("");
+      setCategory('');
       setShowEditModal(false);
       handleAllContactList();
     } catch (error) {
@@ -169,6 +176,7 @@ function Contacts() {
   };
   const handleEditClose = () => {
     setData2("");
+    setCategory('');
     setShowEditModal(false);
   };
 
@@ -215,6 +223,12 @@ function Contacts() {
     { value: "Promotions", label: "Promotions" },
     { value: "otherproducts", label: "otherproducts" },
   ];
+
+  const createOption = (label) => ({
+    label,
+    value: label,
+  });
+
 
   return (
     <div id="layoutSidenavContent">
@@ -474,6 +488,7 @@ function Contacts() {
                     <Select
                       isMulti
                       name="category"
+                      // defaultValue={edit}
                       options={Categoryoptions}
                       // onChange={handleChange}
                       className="basic-multi-select"

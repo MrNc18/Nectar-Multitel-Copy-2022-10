@@ -27,9 +27,9 @@ const Marketplace = () => {
         <MarketplaceBanner
           img={vqr}
           title="Introducing Router"
-          subtext="IPV6 support.Transmit Beamforming Technology"
-          subtext1="MU MIMO technology for enhanced Wifi Performance"
-          Amount="$20"
+          subtext1="-IPV6 support.Transmit Beamforming Technology"
+          subtext="-MU MIMO technology for enhanced Wifi Performance"
+          Amount="$29.00"
           buttonText="View Details"
         />
         <ProductsList />
