@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./Admin/admin.css";
 import { AUTH_TOKEN, deleteCookie, getCookie } from "../utils/cookie";
 import { getUserDetailsByToken } from "../services/authentication";
+import { showAlert } from "../utils/showAlert";
 import { Dropdown } from "react-bootstrap";
 import { ROLE } from "../constants/authconstant";
 
@@ -21,7 +22,7 @@ export default function AppHeader(props) {
         result?.data?.data?.role == ROLE.USER ||
         result?.data?.data?.role == ROLE.VENDOR
       ) {
-        alert("Unauthorized");
+        showAlert("Unauthorized","error");
         navigate("/");
         
       } else  {   
@@ -29,7 +30,7 @@ export default function AppHeader(props) {
       }
     } else {
       navigate("/");
-      alert("Unauthorized");
+      showAlert("Unauthorized","error");
       
     }
   };
@@ -79,7 +80,7 @@ export default function AppHeader(props) {
             <Dropdown.Item
               onClick={() => {
                 deleteCookie(AUTH_TOKEN);
-                alert("Logged out.");
+                showAlert("Logged out.","success");
                 navigate("/");
                 window.location.reload();
               }}

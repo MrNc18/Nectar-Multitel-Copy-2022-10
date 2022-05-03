@@ -16,6 +16,7 @@ import { AUTH_TOKEN, deleteCookie, getCookie } from "../utils/cookie";
 import { getUserDetailsByToken } from "../services/authentication";
 import { Dropdown } from "react-bootstrap";
 import { useStateValue } from "../StateProvider";
+import { showAlert } from "../utils/showAlert";
 
 function Header() {
   const navigate = useNavigate();
@@ -118,7 +119,7 @@ function Header() {
                         <Dropdown.Item
                           onClick={() => {
                             deleteCookie(AUTH_TOKEN);
-                            alert("Logged out.");
+                            showAlert("Logged out.","success");
                             navigate("/home");
                             // window.location.reload();
                           }}

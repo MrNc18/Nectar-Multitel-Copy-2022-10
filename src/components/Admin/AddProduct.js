@@ -2,6 +2,7 @@ import React,{useEffect, useState} from "react";
 import data from "../../Data"
 import { useNavigate } from "react-router-dom";
 import {getAddProduct, getAllCategories} from "../../services/category"
+import { showAlert } from "../../utils/showAlert";
 
 
 function AddProduct() {
@@ -92,11 +93,11 @@ function AddProduct() {
       try {
         setButtonDisabled(true)
         await getAddProduct(data)
-          alert("Added Product.", "success");
+          showAlert("Added Product.", "success");
           handleAllCategories()
           navigate('/admin/products')
         } catch (error) {
-          alert("something Went Wrong", "error");
+          showAlert("something Went Wrong", "error");
         } finally {
           setErrorMsg('')
           // console.log("Dtaa",data2,file)
@@ -126,7 +127,7 @@ function AddProduct() {
       console.log(resp,"respp")
     } catch (error) {
       console.log("error", error);
-      alert("something went Wrong");
+      showAlert("something went Wrong");
     }
   };
 

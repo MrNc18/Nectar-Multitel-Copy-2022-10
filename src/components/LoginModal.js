@@ -21,7 +21,7 @@ function LoginModal({ show, handleClose }) {
       setBtnLoading(true);
       const response = await loginUser( userName, password);
       console.log("ressss",response)
-      alert("Logged in")
+      // alert("Logged in")
       showAlert("Logged in.", "success");
       setCookie(AUTH_TOKEN,response.data.data.jwtToken);
       // console.log("token",response.data.data.jwtToken)
@@ -31,7 +31,7 @@ function LoginModal({ show, handleClose }) {
     } catch (error) {
       // showAlert("Please enter valid credentials.", "error");
       console.log("erm",error.data.massage)
-      alert(error.data.massage)
+      showAlert(error.data.massage)
     } finally {
       setBtnLoading(false);
     }

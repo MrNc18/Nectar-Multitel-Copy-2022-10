@@ -1,5 +1,5 @@
 // here we define all the application level states and define actions to make the changes to the state
-
+import { showAlert } from "./utils/showAlert";
 export const initialState = {
   basket: localStorage.getItem("basket")
     ? JSON.parse(localStorage.getItem("basket"))
@@ -73,13 +73,13 @@ const reducer = (state, action) => {
           prdt.quantity += 1;
         }
         else{
-          alert("Quantity Limit Exceeded")
+          showAlert("Quantity Limit Exceeded","error")
         }
         } else if (action.payload == "decrement") {
           if (prdt.quantity > 1) prdt.quantity -= 1;
         }
       } else {
-        alert(`Product doesn't exist in the basket!`);
+        showAlert(`Product doesn't exist in the basket!`,"error");
       }
       localStorage.setItem("basket", JSON.stringify(state.basket));
       return {

@@ -65,8 +65,7 @@ function InternetServices() {
       handleAllServiceProducts();
     } catch (error) {
       console.log("error", error);
-      alert("Something Went Wrong");
-      showAlert("Something Went Wrong","Danger")
+      showAlert("Something Went Wrong","error")
     }
   };
   const handleSubmit = async (event) => {
@@ -202,7 +201,7 @@ function InternetServices() {
       console.log("resp", resp);
     } catch (error) {
       console.log("error", error);
-      showAlert("something went Wrong");
+      showAlert("something went Wrong","error");
     }
   };
 

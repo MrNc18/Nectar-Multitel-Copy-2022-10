@@ -54,7 +54,7 @@ function ProductCard({ product }) {
         onClick={() =>
           navigate(`/products/${product.slug}`, {state: {product}})
         }
-        style={{cursor:"pointer"}}
+        style={{cursor:"pointer",border:"45px solid rgb(245, 246, 250)"}}
       >
         <Card.Img
           variant="top"
@@ -63,7 +63,7 @@ function ProductCard({ product }) {
               ? `${baseurl}/images/${product?.cover_img}`
               : "/assets/images/product.png"
           }
-          style={{ border: "45px solid #F5F6FA", height: "242px" }}
+          style={{ border: "2px solid #d7ecff", height: "150px" }}
         />
       </a>
         <Card.Body style={{ textAlign: "left" }}>
