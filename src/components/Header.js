@@ -10,7 +10,7 @@ import { multilingual } from "../svg/multilingual";
 import { user } from "../svg/user";
 import { DateTime } from "./DateTime";
 import GoogleTranslate from "./google";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginModal from "./LoginModal";
 import { AUTH_TOKEN, deleteCookie, getCookie } from "../utils/cookie";
 import { getUserDetailsByToken } from "../services/authentication";
@@ -25,7 +25,7 @@ function Header() {
   const isAuthenticated = getCookie(AUTH_TOKEN);
   // console.log(isAuthenticated);
 
-  const [{ wish }, dispatch] = useStateValue();
+  const [{ wish,basket }, dispatch] = useStateValue();
 
   const getDataByToken = async () => {
     if (isAuthenticated) {
@@ -41,13 +41,12 @@ function Header() {
 
   return (
     <div id="Header">
-      <div id="top_header"  >
-        <Container  style={{height:"50px"}}>
+      <div id="top_header">
+        <Container style={{ height: "50px" }}>
           <Row>
             <Col lg={5}>
               <ul className="d-flex justify-content-between header-ul pt-1 ml-2">
                 <li>
-
                   <DateTime />
                 </li>
                 <li>
@@ -118,26 +117,50 @@ function Header() {
                         </Dropdown.Item>
                         <Dropdown.Item
                           onClick={() => {
+                            navigate("/wishlist");
+                          }}
+                        >
+                          Wishlist{" "}
+                          <span
+                            className="counter"
+                          >
+                            {wish.length}
+                          </span>
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => {
+                            navigate("/cart");
+                          }}
+                        >
+                          Cart{" "}
+                          <span
+                            className="counter"
+                          >
+                            {basket.length}
+                          </span>
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => {
                             deleteCookie(AUTH_TOKEN);
-                            showAlert("Logged out.","success");
+                            showAlert("Logged out.", "success");
                             navigate("/home");
                             // window.location.reload();
                           }}
                         >
                           Logout
                         </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => {
-                            navigate("/wishlist");
-                            // window.location.reload();
-                          }}
-                        >
-                          wishlist <span style={{paddingLeft:"20px",color:"#007bff"}}>{wish.length}</span> 
-                        </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                   )}
                 </li>
+                {/* <li>
+                  <Link to={"/cart"}>
+                    <img
+                      src="/assets/images/cart.png"
+                      style={{ width: "23%", paddingLeft: "5px" }}
+                    />
+                  </Link>
+                </li> */}
               </ul>
             </Col>
           </Row>
@@ -177,7 +200,10 @@ function Header() {
                 <NavDropdown.Item
                   onClick={() =>
                     navigate("/contacts/informatics-and-accessories", {
-                      state: { title: "Informatics and Accessories", slug: "Informatics & Accessories" },
+                      state: {
+                        title: "Informatics and Accessories",
+                        slug: "Informatics & Accessories",
+                      },
                     })
                   }
                 >
@@ -195,7 +221,10 @@ function Header() {
                 <NavDropdown.Item
                   onClick={() =>
                     navigate("/contacts/networking-equipment", {
-                      state: { title: "Networking Equipment", slug: "Network Equipment" },
+                      state: {
+                        title: "Networking Equipment",
+                        slug: "Network Equipment",
+                      },
                     })
                   }
                 >
@@ -203,7 +232,9 @@ function Header() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   onClick={() =>
-                    navigate("/contacts/cpe", { state: { title: "CPE´s", slug: "Cpe" } })
+                    navigate("/contacts/cpe", {
+                      state: { title: "CPE´s", slug: "Cpe" },
+                    })
                   }
                 >
                   CPE´s
@@ -229,7 +260,10 @@ function Header() {
                 <NavDropdown.Item
                   onClick={() =>
                     navigate("/contacts/other-products-services-partners", {
-                      state: { title: " Other Products/Services (Partners)", slug: "otherproducts" },
+                      state: {
+                        title: " Other Products/Services (Partners)",
+                        slug: "otherproducts",
+                      },
                     })
                   }
                 >

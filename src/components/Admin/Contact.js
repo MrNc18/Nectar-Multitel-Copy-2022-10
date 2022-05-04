@@ -252,7 +252,8 @@ function Contacts() {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-              <Dropdown.Item onClick={() =>handleClick("Informatics & Accessories")}>Informatics & Accessories</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleAllContactList()}>All Categories</Dropdown.Item>
+                <Dropdown.Item onClick={() =>handleClick("Informatics & Accessories")}>Informatics & Accessories</Dropdown.Item>
                 <Dropdown.Item onClick={() =>handleClick("Ip Telephony")}>Ip Telephony</Dropdown.Item>
                 <Dropdown.Item onClick={() =>handleClick("Network Equipment")}>Network equipments</Dropdown.Item>
                 <Dropdown.Item onClick={() =>handleClick("Cpe")}>cpe</Dropdown.Item>
@@ -272,7 +273,7 @@ function Contacts() {
               }}
               onClick={handleShow}
             >
-              <i className="fas fa-plus-circle"></i> Add New Contacts
+              <i className="fas fa-plus-circle"></i> Add New Contact
             </button>
             <Modal show={show} onHide={handleClose} className="add_cat_modal">
               <Modal.Body>
@@ -286,7 +287,7 @@ function Contacts() {
                   <span className="sr-only">Close</span>
                 </button>
                 <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                  Add New Contacts
+                  Add New Contact
                 </Modal.Title>
                 <div className="container">
                   <Form.Group>
@@ -392,7 +393,7 @@ function Contacts() {
                   {console.log("pc", vendorList)}
 
                   <td>{i + 1}</td>
-                  <td>{`${item.first_name}${item.last_name}`}</td>
+                  <td>{`${item.first_name} ${item.last_name}`}</td>
                   <td>{item.category}</td>
                   <td>{item.email}</td>
                   <td>{item.phone}</td>
