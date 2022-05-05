@@ -5,6 +5,9 @@ import { getBasketTotal } from "../Reducer";
 import { imageUrl } from "../services/category";
 import { useStateValue } from "../StateProvider";
 import { formatAmount } from "../utils/AmountFormatter";
+import { getcreateRefernceId } from "../services/Payment";
+import { showAlert } from "../utils/showAlert";
+import moment from "moment";
 
 export default function PaymentMethod() {
   const [showCards, setShowCards] = useState(false);
@@ -14,12 +17,46 @@ export default function PaymentMethod() {
   const [userDet, setUserDet] = useState(state?.data || {});
   const [{ basket }, dispatch] = useStateValue();
   const navigate = useNavigate();
-
+console.log("basket",basket)
   useEffect(() => {
     if (!state) {
       navigate("/marketplace");
     }
   }, []);
+
+  const getReference = async () =>{
+    // var date = moment(new Date(new Date().setDate(new Date().getDate() + 30)).format("YYYY-MM-DD"))
+    const getRandomId = (min = 0, max = 500000) => {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      const num =  Math.floor(Math.random() * (max - min + 1)) + min;
+      return num.toString().padStart(7, "0")
+    };
+    const productdata = basket.map((item) => { return item ; })
+    console.log("product",productdata)
+    const data = {
+      "amount": getBasketTotal(basket),
+      "end_datetime": moment().add(30, 'days').format("YYYY-MM-DD"),
+      "custom_fields": {
+        "invoice":`${"MUL"} ${getRandomId()}`,
+        // "product_id":"2",
+        // "product_name":"hvbhbbj",
+        "product_id":basket.id,
+        "product_name":basket.name,
+        "Product_qunatity":basket.quantity,
+        "product_price":basket.price
+     
+        }
+    }
+    try{
+      const resp = await getcreateRefernceId(data);
+      console.log("rsp",resp.data.data)
+      showAlert("RefernceId created Succesfully","success")
+    }
+    catch (error) {
+      console.log("err", error);
+    }
+  }
 
   return (
     <LandingPage>
@@ -80,7 +117,10 @@ export default function PaymentMethod() {
             <div className="cart_top_row">
               <h2 className="body_heading mt-4">Payment Method</h2>
             </div>
-            <div className="payment-box">
+            <div>
+              <p style={{color:"#007BFF"}}>Click on PayNow to create a ReferenceId by ProxyPay and Pay through Nearest ATM or Onlinebanking</p>
+            </div>
+            {/* <div className="payment-box">
               <div className="p11">
                 <label>
                   <input
@@ -238,7 +278,7 @@ export default function PaymentMethod() {
                   </div>
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
           <div className="col-12 col-md-5 col-sm-5">
             <div className="cart_top_row">
@@ -335,7 +375,7 @@ export default function PaymentMethod() {
               </div>
               <div className="row">
                 <div className="col-12">
-                  <hr />
+                  {/* <hr />
                   <form>
                     <p>If you have a discount coupon, please enter it below.</p>
                     <div className="form-row align-items-center">
@@ -356,7 +396,7 @@ export default function PaymentMethod() {
                         </button>
                       </div>
                     </div>
-                  </form>
+                  </form> */}
                   <hr />
                   <div className="subtotal row">
                     <div className="col-md-6">
@@ -401,7 +441,7 @@ export default function PaymentMethod() {
                 </div>
               </div>
 
-              <button type="submit" className="order-box-btn">
+              <button type="submit" className="order-box-btn"onClick={()=>getReference()}>
                 Pay Now
               </button>
             </div>

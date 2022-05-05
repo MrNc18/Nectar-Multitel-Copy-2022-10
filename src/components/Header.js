@@ -50,10 +50,15 @@ function Header() {
 
                   <DateTime />
                 </li>
+                <div style={{borderRight: "1px solid",
+                               height: "25px",
+                                opacity: "0.5",marginRight:"10px",marginLeft:"10px"}}>
+                </div>
                 <li>
                   {mobile} <span className="fw-400">Contact Us :</span>{" "}
                   985-236-854-558
                 </li>
+
               </ul>
             </Col>
             <Col lg={7}>
@@ -74,6 +79,10 @@ function Header() {
                     </div>
                   </div>
                 </li>
+                <div style={{borderRight: "1px solid",
+                               height: "25px",
+                                opacity: "0.5",marginRight:"10px",marginLeft:"10px"}}>
+                </div>
                 <li>
                   <div className="multilingual d-flex">
                     {multilingual}
@@ -82,6 +91,10 @@ function Header() {
                     </div>
                   </div>
                 </li>
+                <div style={{borderRight: "1px solid",
+                               height: "25px",
+                                opacity: "0.5",marginRight:"10px",marginLeft:"10px"}}>
+                </div>
                 <li>
                   <div className="multilingual d-flex pt-1 ml-3">
                     <span className="fw-400">City:</span>
@@ -91,6 +104,10 @@ function Header() {
                     </select>
                   </div>
                 </li>
+                <div style={{borderRight: "1px solid",
+                               height: "25px",
+                                opacity: "0.5",marginRight:"10px",marginLeft:"10px"}}>
+                </div>
                 <li>
                   {!isAuthenticated ? (
                     <div
