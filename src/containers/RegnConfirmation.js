@@ -21,12 +21,12 @@ function RegnConfirmation() {
         setBtnLoading(true);
            await EmailVerification(token);
         navigate("/home");
-        showAlert("Email verification successfull.", "success");
-        alert("Email verification successfull.");
+      showAlert("Email verification successfull.", "success");
+        // alert("Email verification successfull.");
     } catch (error) {
-        console.log(error);
+        console.log(error); 
         showAlert(error.data.massage, "error");
-        alert(error)
+        // alert(error)
     } finally {
         setBtnLoading(false);
     }
