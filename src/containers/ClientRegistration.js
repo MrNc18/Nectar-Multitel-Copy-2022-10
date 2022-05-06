@@ -95,11 +95,11 @@ function ClientRegistration() {
         role,
       });
       // showAlert("sign-up successfull.", "success");
-      alert("Sign up successful! Please click on the verification link sent to your mail.")
+      showAlert("Sign up successful! Please click on the verification link sent to your mail.","success")
       navigate("/home");
     } catch (error) {
       // showAlert("Signup Failed! Please try again.", "error");
-      alert(error.data.massage)
+      showAlert(error.data.massage,"error")
       console.log(error.data)
     } finally {
       setBbtnLoading(false);

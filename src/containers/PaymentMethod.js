@@ -17,46 +17,60 @@ export default function PaymentMethod() {
   const [userDet, setUserDet] = useState(state?.data || {});
   const [{ basket }, dispatch] = useStateValue();
   const navigate = useNavigate();
-console.log("basket",basket)
+  console.log("basket", basket);
+  console.log("userdet", userDet);
   useEffect(() => {
     if (!state) {
       navigate("/marketplace");
     }
   }, []);
 
-  const getReference = async () =>{
+  const getReference = async () => {
     // var date = moment(new Date(new Date().setDate(new Date().getDate() + 30)).format("YYYY-MM-DD"))
     const getRandomId = (min = 0, max = 500000) => {
       min = Math.ceil(min);
       max = Math.floor(max);
-      const num =  Math.floor(Math.random() * (max - min + 1)) + min;
-      return num.toString().padStart(7, "0")
+      const num = Math.floor(Math.random() * (max - min + 1)) + min;
+      return num.toString().padStart(7, "0");
     };
-    const productdata = basket.map((item) => { return item ; })
-    console.log("product",productdata)
+
+    const productdata = () => {
+      let products = [];
+      basket.map((data) => {
+        let value = {
+          product_id: data.id,
+          product_name: data.name,
+          product_quantity: data.quantity,
+          product_price: data.price,
+        };
+        products.push(value);
+        console.log("product", products);
+      });
+
+      return products;
+    };
+
+
     const data = {
-      "amount": getBasketTotal(basket),
-      "end_datetime": moment().add(30, 'days').format("YYYY-MM-DD"),
-      "custom_fields": {
-        "invoice":`${"MUL"} ${getRandomId()}`,
-        // "product_id":"2",
-        // "product_name":"hvbhbbj",
-        "product_id":basket.id,
-        "product_name":basket.name,
-        "Product_qunatity":basket.quantity,
-        "product_price":basket.price
-     
-        }
-    }
-    try{
+      amount: getBasketTotal(basket),
+      end_datetime: moment().add(30, "days").format("YYYY-MM-DD"),
+      custom_fields: {
+        invoice: `${"MUL"} ${getRandomId()}`,
+        // "products_id":productdata(),
+        email: `${userDet.email}`,
+        Total_products: `${basket.length}`,
+        Total_Amount: getBasketTotal(basket),
+      },
+    };
+    try {
       const resp = await getcreateRefernceId(data);
-      console.log("rsp",resp.data.data)
-      showAlert("RefernceId created Succesfully","success")
-    }
-    catch (error) {
+      console.log("rsp", resp.data.data);
+      showAlert("RefernceId created Succesfully", "success");
+      navigate("/home");
+    } catch (error) {
       console.log("err", error);
     }
-  }
+  };
 
   return (
     <LandingPage>
@@ -92,13 +106,10 @@ console.log("basket",basket)
                             userDet?.ship_zipcode
                           }`
                         : `${userDet?.address1}, ${
-                          userDet?.address2
-                            ? userDet?.address2 + ", "
-                            : ""
-                        }${userDet?.city}, ${userDet?.country} - ${
-                          userDet?.zipcode
-                        }`
-                        }
+                            userDet?.address2 ? userDet?.address2 + ", " : ""
+                          }${userDet?.city}, ${userDet?.country} - ${
+                            userDet?.zipcode
+                          }`}
                     </td>
                     <td className="td3">
                       <a href="#">Change</a>
@@ -118,7 +129,10 @@ console.log("basket",basket)
               <h2 className="body_heading mt-4">Payment Method</h2>
             </div>
             <div>
-              <p style={{color:"#007BFF"}}>Click on PayNow to create a ReferenceId by ProxyPay and Pay through Nearest ATM or Onlinebanking</p>
+              <p style={{ color: "#007BFF" }}>
+                Click on PayNow to create a ReferenceId by ProxyPay and Pay
+                through Nearest ATM or Onlinebanking
+              </p>
             </div>
             {/* <div className="payment-box">
               <div className="p11">
@@ -403,7 +417,9 @@ console.log("basket",basket)
                       <h2 className="mt-0">Subtotal</h2>
                     </div>
                     <div className="col-md-6 text-right">
-                      <h3 className="mt-0">{formatAmount(getBasketTotal(basket))}</h3>
+                      <h3 className="mt-0">
+                        {formatAmount(getBasketTotal(basket))}
+                      </h3>
                     </div>
                     {/* <div className="col-md-6">
                       <h2 className="mt-3 mb-3">Shipping</h2>
@@ -441,7 +457,11 @@ console.log("basket",basket)
                 </div>
               </div>
 
-              <button type="submit" className="order-box-btn"onClick={()=>getReference()}>
+              <button
+                type="submit"
+                className="order-box-btn"
+                onClick={() => getReference()}
+              >
                 Pay Now
               </button>
             </div>
