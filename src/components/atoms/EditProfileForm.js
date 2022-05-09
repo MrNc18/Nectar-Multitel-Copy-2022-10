@@ -6,6 +6,7 @@ import { getUserDetailsByToken } from "../../services/authentication";
 import { baseurl } from "../../utils/request";
 import {imageUrl} from "../../services/category"
 import moment from "moment";
+import { showAlert } from "../../utils/showAlert";
 
 function EditProfileForm() {
   const [userData, setUserData] = useState({});
@@ -112,7 +113,7 @@ function EditProfileForm() {
       
     try {
        await updateUser(data);
-      alert("Profile Updated Successfully....");
+      showAlert("Profile Updated Successfully....","success");
     } catch (error) {
       console.log("error", error);
       // showAlert('In valide data', "error");

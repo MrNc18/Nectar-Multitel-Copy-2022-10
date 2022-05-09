@@ -35,7 +35,8 @@ export default function Checkout() {
       address2:result?.data.data.adress,
       zipcode:result?.data.data.zipcode,
       phone:result?.data.data.phone,
-      email:result?.data.data.email
+      email:result?.data.data.email,
+      userId:result?.data.data.userId,
       
       }) 
       console.log("userData",result.data.data)
@@ -67,6 +68,7 @@ console.log("firstName",userData.first_name)
     ship_phone: "",
     ship_email: "",
     order_notes: "",
+    userId:'',
   });
 
   const {
@@ -79,6 +81,7 @@ console.log("firstName",userData.first_name)
     zipcode,
     phone,
     email,
+    userId,
 
     ship_first_name,
     ship_last_name,

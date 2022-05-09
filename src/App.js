@@ -56,7 +56,8 @@ import WishList from "./containers/WishList";
 import VendorDetails from "./containers/VendorDetails";
 import Cart from "./containers/Cart";
 import Checkout from "./containers/Checkout";
-import PaymentMethod from "./containers/PaymentMethod";
+import PaymentMethod from "./containers/PaymentMethod"; 
+import Orders from "./components/Admin/orders";
 
 
 function App() {
@@ -109,6 +110,7 @@ function App() {
           <Route path="Service-categories" element={<ServicesCategory />} />
           <Route path="internetServices" element={<AdinternetServices />} />
           <Route path="promotions" element={<AdPromotions />} />
+          <Route path="orders" element={<Orders />} />
         </Route>
 
          <Route path="/promotions" element={<Promotions />} />
