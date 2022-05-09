@@ -17,7 +17,7 @@ export default function PaymentMethod() {
   const [userDet, setUserDet] = useState(state?.data || {});
   const [{ basket }, dispatch] = useStateValue();
   const navigate = useNavigate();
-  console.log("basket", basket);
+  console.log("basket", basket);  
   console.log("userdet", userDet);
   useEffect(() => {
     if (!state) {
@@ -54,13 +54,17 @@ export default function PaymentMethod() {
     const data = {
       amount: getBasketTotal(basket),
       end_datetime: moment().add(30, "days").format("YYYY-MM-DD"),
+      "userId":`${userDet.userId}`,
       custom_fields: {
         invoice: `${"MUL"} ${getRandomId()}`,
-        // "products_id":productdata(),
         email: `${userDet.email}`,
         Total_products: `${basket.length}`,
-        Total_Amount: getBasketTotal(basket),
       },
+      order_detail: [{
+        invoice: `${"MUL"} ${getRandomId()}`,
+        "products":productdata(),
+        email: `${userDet.email}`,
+        }]
     };
     try {
       const resp = await getcreateRefernceId(data);

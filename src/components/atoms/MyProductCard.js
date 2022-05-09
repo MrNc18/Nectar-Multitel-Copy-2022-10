@@ -1,10 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Row, Card, CardGroup } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
+import { getmyorders } from "../../services/category";
+import { AUTH_TOKEN, deleteCookie, getCookie } from "../../utils/cookie";
+import { getUserDetailsByToken } from "../../services/authentication";
+import { Table } from "react-bootstrap";
+import { showAlert } from "../../utils/showAlert";
 
 function MyProductCard() {
+
+
+  // const { state } = useLocation();
+  const isAuthenticated = getCookie(AUTH_TOKEN);
+  const [orderList, setOrderList] = useState("");
+  const [userData, setUserData] = useState("");
+ 
+  const userId = sessionStorage.getItem("userId")
+  console.log("state",userId)
+
+
+
+
+  const handleAllOrders = async () => {
+    console.log("user",userData)
+    const data = {
+      userId: userId
+    };
+    try {
+      const resp = await getmyorders(data);
+      setOrderList(resp && resp.data.data);
+      console.log("resp", resp);
+    } catch (error) {
+      console.log("error", error);
+      showAlert("something went Wrong", "error");
+    }
+  };
+  useEffect(() => {
+    handleAllOrders();
+  }, []);
   return (
     <Container className="mb-4">
-      <Row>
+      {/* <Row>
         <Col md={12}>
           <h5 style={{ color: "#0076B5" }}>Check the products below</h5>
           <h5>Broadband(1)</h5>
@@ -67,7 +103,43 @@ function MyProductCard() {
             </Col>
           </CardGroup>
         </Col>
-      </Row>
+      </Row> */}
+      <div id="layoutSidenavContent">
+        <div className="container-fluid">
+          <div class="row d-flex align-items-center justify-content-between">
+            <div class="col-lg-6 col-md-6 text-left">
+              <h3 className="mt-4 mb-4"> All Orders</h3>
+            </div>
+          </div>
+          <Table striped bordered hover size="md" responsive>
+            <thead style={{ backgroundColor: "#0076B5", color: "white" }}>
+              <tr>
+                <th>Sr.No.</th>
+                <th>Reference Id</th>
+                <th>Terminal type</th>
+                <th>Transaction Id</th>
+                <th>Product Details</th>
+                <th>Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {console.log("oedrs", orderList)}
+              {orderList &&
+                orderList.map((item, i) => (
+                  <tr>
+                    {console.log("hxwjh", orderList)}
+                    <td>{i + 1}</td>
+                    <td>{item ? item.reference_id : ""}</td>
+                    <td>{item ? item.terminal_type : ""}</td>
+                    <td>{item ? item.transaction_id : ""}</td>
+                    <td>{item ? item.order_detail : ""}</td>
+                    <td>{item ? item.amount : ""}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </Table>
+        </div>
+      </div>
     </Container>
   );
 }

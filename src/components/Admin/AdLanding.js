@@ -12,7 +12,9 @@ const Tabs = Object.freeze([
   { label: "Promotions", link: "admin/promotions" },
   { label: "Content Management", link: "admin/staticpages" },
   { label: "Vendor Contacts", link: "admin/Contact" },
+  { label: "AllOrders", link: "admin/orders" },
   { label: "Settings", link: "admin/settings" },
+  
   
 
 ]);
