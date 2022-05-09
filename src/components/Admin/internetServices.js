@@ -129,7 +129,7 @@ function InternetServices() {
       description: item.description,
       category:item.service.name,
       price:item.price,
-      SortDescription:item.service.sort_description
+      // SortDescription:item.sort_description?item.sort_description:''
 
     });
     setShowEditModal(true);
@@ -263,13 +263,13 @@ function InternetServices() {
                         name="description"
                         onChange={handleChange}
                       ></Form.Control>
-                      <Form.Label>Sort Description</Form.Label>
+                      {/* <Form.Label>Sort Description</Form.Label>
                       <Form.Control
                         type="textarea"
                         value={SortDescription}
                         name="SortDescription"
                         onChange={handleChange}
-                      ></Form.Control>
+                      ></Form.Control> */}
                       <Form.Label>Upload Image</Form.Label>{" "}
                       <span style={{color:"red"}}>*</span>
                       <Form.Control
@@ -428,13 +428,13 @@ function InternetServices() {
                     name="description"
                     onChange={handleChange}
                   ></Form.Control>
-                  <Form.Label>Sort Description</Form.Label>
+                  {/* <Form.Label>Sort Description</Form.Label>
                   <Form.Control
                     type="textarea"
                     value={SortDescription}
                     name="SortDescription"
                     onChange={handleChange}
-                  ></Form.Control>
+                  ></Form.Control> */}
                   <Form.Label>Service Category</Form.Label> <br />
                   <Form.Select
                     value={category}

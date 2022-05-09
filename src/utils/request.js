@@ -9,6 +9,11 @@ const header = () => ({
   Authorization: getCookie(AUTH_TOKEN),
 });
 
+const Payheader = () => ({
+  Authorization: "Token q18jo4ecg49n555i0nvapakh1idqeugq",
+  Accept:"application/vnd.proxypay.v2+json"
+});
+
 
 
 export const doGet = async (path) => {
@@ -39,6 +44,20 @@ export const doPut = async (path, data) => {
   return new Promise(async (resolve, reject) => {
     const response = await axios.put(`${baseurl}/${path}`, data, {
       headers: header(),
+    });
+
+    if ([200, 201].includes(response.status)) {
+      return resolve(response);
+    }
+
+    return reject(response);
+  });
+};
+//Payment Method
+export const PayPut = async (path, data) => {
+  return new Promise(async (resolve, reject) => {
+    const response = await axios.put(`${baseurl}/${path}`, data, {
+      headers: Payheader(),
     });
 
     if ([200, 201].includes(response.status)) {

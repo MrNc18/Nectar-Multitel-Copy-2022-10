@@ -117,6 +117,19 @@ export const getAllCategories = async () => {
   export const getAllVendors = async (data) => {
     return await doPost("api/vendor/getVendors",data)
    }
+   
+
+   //orders
+
+   export const getorders = async(data) =>{
+    return await doPost('api/payment/getAdminOrderDetails',data);
+  }
+
+  export const getmyorders = async(data) =>{
+    return await doPost('api/payment/getOrderDetails',data);
+  }
+
+
 
 
 

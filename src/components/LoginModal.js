@@ -20,10 +20,12 @@ function LoginModal({ show, handleClose }) {
     try {
       setBtnLoading(true);
       const response = await loginUser( userName, password);
-      console.log("ressss",response)
+      console.log("ressss",response.data.data)
       // alert("Logged in")
       showAlert("Logged in.", "success");
       setCookie(AUTH_TOKEN,response.data.data.jwtToken);
+      const userId = response.data.data.userId
+      sessionStorage.setItem('userId', userId);
       // console.log("token",response.data.data.jwtToken)
       handleClose()
       navigate("/redirect")
