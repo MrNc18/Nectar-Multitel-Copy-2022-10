@@ -11,36 +11,36 @@ function MyProductCard() {
 
 
   // const { state } = useLocation();
-  const isAuthenticated = getCookie(AUTH_TOKEN);
-  const [orderList, setOrderList] = useState("");
-  const [userData, setUserData] = useState("");
+  // const isAuthenticated = getCookie(AUTH_TOKEN);
+  // const [orderList, setOrderList] = useState("");
+  // const [userData, setUserData] = useState("");
  
-  const userId = sessionStorage.getItem("userId")
-  console.log("state",userId)
+  // const userId = sessionStorage.getItem("userId")
+  // console.log("state",userId)
 
 
 
 
-  const handleAllOrders = async () => {
-    console.log("user",userData)
-    const data = {
-      userId: userId
-    };
-    try {
-      const resp = await getmyorders(data);
-      setOrderList(resp && resp.data.data);
-      console.log("resp", resp);
-    } catch (error) {
-      console.log("error", error);
-      showAlert("something went Wrong", "error");
-    }
-  };
-  useEffect(() => {
-    handleAllOrders();
-  }, []);
+  // const handleAllOrders = async () => {
+  //   console.log("user",userData)
+  //   const data = {
+  //     userId: userId
+  //   };
+  //   try {
+  //     const resp = await getmyorders(data);
+  //     setOrderList(resp && resp.data.data);
+  //     console.log("resp", resp);
+  //   } catch (error) {
+  //     console.log("error", error);
+  //     showAlert("something went Wrong", "error");
+  //   }
+  // };
+  // useEffect(() => {
+  //   handleAllOrders();
+  // }, []);
   return (
     <Container className="mb-4">
-      {/* <Row>
+       <Row>
         <Col md={12}>
           <h5 style={{ color: "#0076B5" }}>Check the products below</h5>
           <h5>Broadband(1)</h5>
@@ -103,8 +103,8 @@ function MyProductCard() {
             </Col>
           </CardGroup>
         </Col>
-      </Row> */}
-      <div id="layoutSidenavContent">
+      </Row> 
+      {/* <div id="layoutSidenavContent">
         <div className="container-fluid">
           <div class="row d-flex align-items-center justify-content-between">
             <div class="col-lg-6 col-md-6 text-left">
@@ -139,7 +139,7 @@ function MyProductCard() {
             </tbody>
           </Table>
         </div>
-      </div>
+      </div> */}
     </Container>
   );
 }
