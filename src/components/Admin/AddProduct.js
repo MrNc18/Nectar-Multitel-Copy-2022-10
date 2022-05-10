@@ -86,7 +86,7 @@ function AddProduct() {
       {
           setErrorMsg("Fill the Mandatory Fields")
       }
-      else if(price !== 0){
+      else if(price <= 0){
            setErrorMsg("Enter the Valid Price")
       }
       else{
