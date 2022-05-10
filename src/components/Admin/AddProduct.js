@@ -86,7 +86,7 @@ function AddProduct() {
       {
           setErrorMsg("Fill the Mandatory Fields")
       }
-      else if(price < 0){
+      else if(price !== 0){
            setErrorMsg("Enter the Valid Price")
       }
       else{
@@ -234,7 +234,7 @@ function AddProduct() {
                 <input
                   className="form-control"
                   type="date"
-                value={date}
+                  value={date}
                   name="date"
                   id="example-input"
                  onChange={handleChange}
@@ -269,7 +269,7 @@ function AddProduct() {
                 <input
                   className="form-control"
                   type="number"
-                  min={0}
+                  min={1}
                   id=""
                   name="price"
                    value={price}
@@ -364,7 +364,7 @@ function AddProduct() {
                   type="file"
                   name="proimage"
                   id="proimage"
-                  accept="image/png, image/jpeg"
+                  accept="image/png, image/gif, image/jpeg"
                   onChange={handleFileChange}
                 />
               </div>

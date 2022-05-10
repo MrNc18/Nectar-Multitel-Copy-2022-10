@@ -275,6 +275,7 @@ function InternetServices() {
                       <Form.Control
                         type="file"
                         id="file"
+                        accept="image/png, image/gif, image/jpeg"
                         onChange={handleFileChange}
                       ></Form.Control>
                       <Form.Label>Service Category</Form.Label>
