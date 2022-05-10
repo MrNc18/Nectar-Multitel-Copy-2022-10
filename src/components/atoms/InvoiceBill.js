@@ -1,30 +1,53 @@
-import React from "react";
-import { Col, Container, Row, Table } from "react-bootstrap";
+import React,{useState,useEffect} from "react";
+import { Col, Container, Row, Table,Button } from "react-bootstrap";
+import moment from "moment";
 
-function InvoiceBill() {
+function InvoiceBill(props) {
+const [InvoiceData,setInvoiceData]=useState('');
+const [InvoiceDetails,setInvoiceDetails] = useState('');
+const Data = props.data 
+const Details = JSON.parse(props.data.order_detail)
+// setInvoiceData(props.data)
+// setInvoiceDetails(Details)
+// console.log("invoice",InvoiceData)
+console.log("details",Details,Data)
+
+const handleBack = () => {
+  props.handleBackButton();
+};
+
+useEffect(() => {
+  window.scrollTo(0, 0)
+}, [])
+
+
   return (
     <Container>
+   <div style={{display:"flex",flexDirection:'row',justifyContent:"space-between"}}>
       <h4 className="mb-3">Invoice</h4>
+      <Button onClick={() => handleBack()}>Back</Button>
+      </div>
       <Row>
-        <Col md={3}>
+        {/* <Col md={3}>
           <h6>Bill To</h6>
           <p>
             31897 Colemen Avenue <br /> California, 92262
           </p>
-        </Col>
-        <Col md={3}>
+        </Col> */}
+        {/* <Col md={3}>
           <h6>Ship To</h6>
           <p>
             4662 White Avenue <br /> Curpose Cristi, 78405
           </p>
-        </Col>
-        <Col md={3}></Col>
-        <Col md={3}>
+        </Col> */}
+        <Col md={12}>
+          <div style={{display:"flex",flexDirection:'row',justifyContent:"space-between"}}>
           <p>
-            Invoice# 003452 <br />
-            Invoice Date 11/04/2022 <br />
-            Due Date 26/4/2022
-          </p>
+            Invoice Number :<b>{Details[0].invoice}</b> </p><br />
+           <p>Invoice Date :<b>{moment(Data.createdAt).format("YYYY-MM-DD")}</b></p> <br />
+           </div>
+            <p>Due Date : <b>{moment(Data.period_end_datetime).format("YYYY-MM-DD")}</b></p>
+
         </Col>
       </Row>
       <Row>
@@ -32,49 +55,25 @@ function InvoiceBill() {
           <Table responsive="sm">
             <thead style={{ backgroundColor: "#0076B5", color: "white" }}>
               <tr>
+                <th>Sr.No</th>
                 <th>Quantity</th>
-                <th>Description</th>
+                <th>Product Name</th>
                 <th>Unit Price</th>
                 <th>Amount</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Item Description Goes here</td>
-                <td>$100.00</td>
-                <td>$100.00</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Item Description Goes here</td>
-                <td>$100.00</td>
-                <td>$100.00</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Item Description Goes here</td>
-                <td>$100.00</td>
-                <td>$100.00</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td>Subtotal</td>
-                <td>$300.00</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td>Tax</td>
-                <td>$5.00</td>
-              </tr>
-              <tr style={{ backgroundColor: "#EFEFEF" }}>
-                <td></td>
-                <td></td>
-                <td>Grand Total</td>
-                <td>$305.00</td>
-              </tr>
+              {Details &&
+                Details[0].products.map((item, i) => (
+                  <tr>
+                    {console.log("hxwjh", item)}
+                    <td>{i + 1}</td>
+                    <td>{item ? item.product_quantity : ""}</td>
+                    <td>{item ? item.product_name:""}</td>
+                    <td>{item ? item.product_price:''}</td>
+                    <td>{item ? item.product_quantity *item.product_price:''}</td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
         </Col>

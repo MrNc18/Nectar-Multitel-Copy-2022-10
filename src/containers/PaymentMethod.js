@@ -15,9 +15,11 @@ export default function PaymentMethod() {
   const { state } = useLocation();
   console.log(state);
   const [userDet, setUserDet] = useState(state?.data || {});
+  const [adress,setAdress] = useState(state?.shipAddress || {});
   const [{ basket }, dispatch] = useStateValue();
   const navigate = useNavigate();
   console.log("basket", basket);  
+  console.log("adress",adress)
   console.log("userdet", userDet);
   useEffect(() => {
     if (!state) {
@@ -42,6 +44,7 @@ export default function PaymentMethod() {
           product_name: data.name,
           product_quantity: data.quantity,
           product_price: data.price,
+          product_image:data.image
         };
         products.push(value);
         console.log("product", products);
@@ -55,6 +58,7 @@ export default function PaymentMethod() {
       amount: getBasketTotal(basket),
       end_datetime: moment().add(30, "days").format("YYYY-MM-DD"),
       "userId":`${userDet.userId}`,
+      "adress":`${state.data.address1}`,
       custom_fields: {
         invoice: `${"MUL"} ${getRandomId()}`,
         email: `${userDet.email}`,
