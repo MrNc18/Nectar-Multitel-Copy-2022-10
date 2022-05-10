@@ -73,7 +73,6 @@ console.log("firstName",userData.first_name)
 
   const {
     country,
-    city,
     address1,
     address2,
     zipcode,
@@ -83,7 +82,6 @@ console.log("firstName",userData.first_name)
 
     
     ship_country,
-    ship_city,
     ship_address1,
     ship_address2,
     ship_zipcode,
@@ -112,6 +110,15 @@ console.log("firstName",userData.first_name)
       setLname(value);
     }
   }
+  const [ship_city, setSCity] = useState('');
+  const onSCityChange = e => {
+    const { value } = e.target;
+ 
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setSCity(value);
+    }
+  }
 
   const [ship_first_name, setSFname] = useState('');
   const onSFnameChange = e => {
@@ -130,6 +137,15 @@ console.log("firstName",userData.first_name)
     const re = /^[A-Za-z]+$/;
     if (value === "" || re.test(value)) {
       setSLname(value);
+    }
+  }
+  const [city, setCity] = useState('');
+  const onCityChange = e => {
+    const { value } = e.target;
+ 
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setCity(value);
     }
   }
 
@@ -285,7 +301,7 @@ console.log("firstName",userData.first_name)
                         className="form-control"
                         value={city}
                         name="city"
-                        onChange={handleChange}
+                        onChange={onCityChange}
                         required
                       />
                     </div>
@@ -464,7 +480,7 @@ console.log("firstName",userData.first_name)
                               className="form-control"
                               value={ship_city}
                               name="ship_city"
-                              onChange={handleChange}
+                              onChange={onSCityChange}
                               required
                             />
                           </div>
