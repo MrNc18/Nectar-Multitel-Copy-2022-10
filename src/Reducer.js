@@ -42,6 +42,14 @@ const reducer = (state, action) => {
         ...state,
         basket: newBasket,
       };
+
+      // case "REMOVE_ALL":
+      //   const NewBask = " "
+      //   localStorage.setItem("basket", JSON.stringify(NewBask));
+      //   return {
+      //     ...state,
+      //     basket: NewBask,
+      //   };
       case "ADD_TO_WISH":
         const newWish = action.item;
         const existWish = state.wish.find((item) => item.id === newWish.id);

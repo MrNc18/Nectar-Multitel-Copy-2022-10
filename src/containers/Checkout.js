@@ -136,6 +136,7 @@ console.log("firstName",userData.first_name)
                   <input
                     type="email"
                     className="form-control"
+                    pattern=".+@beststartupever\.com"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     placeholder="Email Address"
@@ -283,6 +284,8 @@ console.log("firstName",userData.first_name)
                         type="email"
                         className="form-control"
                         value={email}
+                        pattern=".+@beststartupever\.com"
+                        required
                         name="email"
                         onChange={handleChange}
                       />
@@ -453,6 +456,7 @@ console.log("firstName",userData.first_name)
                               type="email"
                               className="form-control"
                               value={ship_email}
+                              pattern=".+@beststartupever\.com"
                               name="ship_email"
                               onChange={handleChange}
                               required

@@ -10,6 +10,7 @@ import { showAlert } from "../utils/showAlert";
 import moment from "moment";
 
 export default function PaymentMethod() {
+
   const [showCards, setShowCards] = useState(false);
   const [showOnline, setShowOnline] = useState(false);
   const { state } = useLocation();
@@ -73,7 +74,10 @@ export default function PaymentMethod() {
     try {
       const resp = await getcreateRefernceId(data);
       console.log("rsp", resp.data.data);
-      showAlert("RefernceId created Succesfully", "success");
+      showAlert("RefernceId created Succesfully", "success")
+        // dispatch({
+        //   type: "REMOVE_ALL",
+        // });
       navigate("/home");
     } catch (error) {
       console.log("err", error);
@@ -468,7 +472,8 @@ export default function PaymentMethod() {
               <button
                 type="submit"
                 className="order-box-btn"
-                onClick={() => getReference()}
+                onClick={() => getReference()
+                  }
               >
                 Pay Now
               </button>
