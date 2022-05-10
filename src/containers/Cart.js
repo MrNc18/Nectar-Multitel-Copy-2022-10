@@ -31,6 +31,10 @@ export default function Cart() {
     
   }, [basket]);
 
+  const disable = 
+   getBasketTotal(basket) != "0" ;
+
+
   const navigate = useNavigate();
   return (
     <LandingPage>
@@ -117,7 +121,7 @@ export default function Cart() {
                       <td>
                         <a
                           onClick={() => {
-                            // deleteRecord(item);
+                             // deleteRecord(item);
                             // setProdId(item.id);
                             // console.log("prodId", prodId);
                             dispatch({
@@ -184,6 +188,7 @@ export default function Cart() {
               </div> */}
               <p className="mt-4 mb-4">Shipping calculated at checkout</p>
               <button
+               disabled={!disable}
                 type="submit"
                 className="btn btn-primary to_checkout w-100"
                 onClick={() => navigate("/checkout")}
