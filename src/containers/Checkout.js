@@ -266,7 +266,7 @@ console.log("firstName",userData.first_name)
                         Phone<em className="red">*</em>
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         className="form-control"
                         value={phone}
                         name="phone"
@@ -407,6 +407,7 @@ console.log("firstName",userData.first_name)
                             </label>
                             <input
                               type="text"
+                              pattern="[A-Za-z]{3}"
                               className="form-control"
                               value={ship_city}
                               name="ship_city"
@@ -435,7 +436,7 @@ console.log("firstName",userData.first_name)
                               Phone<em className="red">*</em>
                             </label>
                             <input
-                              type="text"
+                              type="number"
                               className="form-control"
                               value={ship_phone}
                               name="ship_phone"
@@ -454,6 +455,7 @@ console.log("firstName",userData.first_name)
                               value={ship_email}
                               name="ship_email"
                               onChange={handleChange}
+                              required
                             />
                           </div>
                         </div>
@@ -702,7 +704,7 @@ console.log("firstName",userData.first_name)
                   </h6>
                 </div>
               </div>
-              <div className="agree">
+              {/* <div className="agree">
                 <div className="form-group">
                   <div className="form-check">
                     <input
@@ -718,7 +720,7 @@ console.log("firstName",userData.first_name)
                     </label>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <button
                 type="submit"
                 className="order-box-btn"

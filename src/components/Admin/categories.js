@@ -222,12 +222,14 @@ function Categories() {
                       <Form.Control
                         type="file"
                         id="file"
+                        accept="image/png, image/gif, image/jpeg"
                         onChange={handleFileChange}
                       ></Form.Control>
                       <Form.Label>Upload Banner</Form.Label>{" "}
                       <Form.Control
                         type="file"
                         id="banner"
+                        accept="image/png, image/gif, image/jpeg"
                         onChange={handleBanFileChange}
                       ></Form.Control>
                     </Form.Group>

@@ -209,6 +209,7 @@ function ServiceCategories() {
                         onChange={handleChange}
                       ></Form.Control>
                        <Form.Label>Sub Heading</Form.Label>
+                       <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="text"
                         value={subHeading}
@@ -224,6 +225,7 @@ function ServiceCategories() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Sort Description</Form.Label>
+                      <span style={{color:"red"}}>*</span>
                       <Form.Control
                         type="textarea"
                         value={sortDescription}

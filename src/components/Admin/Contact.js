@@ -104,7 +104,11 @@ function Contacts() {
       category === ""
     ) {
       setErrorMsg("Fill the Mandatory Fields");
-    } else
+    } 
+    else if(Phone !== 0){
+      setErrorMsg("Enter the Phone")
+ }
+    else
       try {
         setButtonDisabled(true)
         await getAddVendor(data);
@@ -228,6 +232,7 @@ function Contacts() {
     label,
     value: label,
   });
+  
 
 
   return (
@@ -320,6 +325,8 @@ function Contacts() {
                       type="number"
                       value={Phone}
                       name="Phone"
+                      min="0"
+                      oninput="validity.valid||(value='');"
                       onChange={handleChange}
                     ></Form.Control>
                     <Form.Label>Category</Form.Label>

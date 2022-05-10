@@ -99,7 +99,7 @@ export default function PaymentMethod() {
                         : userDet?.email}
                     </td>
                     <td className="td3">
-                      <a href="#">Change</a>
+                      <a href="/checkout">Change</a>
                     </td>
                   </tr>
                   <tr className="header_row">
@@ -120,7 +120,7 @@ export default function PaymentMethod() {
                           }`}
                     </td>
                     <td className="td3">
-                      <a href="#">Change</a>
+                      <a href="/checkout">Change</a>
                     </td>
                   </tr>
                   {/* <tr className="header_row">
@@ -449,7 +449,7 @@ export default function PaymentMethod() {
                   </h6>
                 </div>
               </div>
-              <div className="agree">
+              {/* <div className="agree">
                 <div className="form-group">
                   <div className="form-check">
                     <input
@@ -463,7 +463,7 @@ export default function PaymentMethod() {
                     </label>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <button
                 type="submit"

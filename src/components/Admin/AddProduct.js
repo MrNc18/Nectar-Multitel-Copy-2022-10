@@ -86,7 +86,7 @@ function AddProduct() {
       {
           setErrorMsg("Fill the Mandatory Fields")
       }
-      else if(price < 0){
+      else if(price !== 0){
            setErrorMsg("Enter the Valid Price")
       }
       else{
@@ -201,7 +201,7 @@ function AddProduct() {
                   onChange={handleChange}
                 >
                   {console.log("cl",categoryList)}
-                  <option>select the category</option>
+                  <option   value="" disabled="disabled">select the category</option>
                   {categoryList &&
                  categoryList.map((item) => (
                    
@@ -234,7 +234,7 @@ function AddProduct() {
                 <input
                   className="form-control"
                   type="date"
-                value={date}
+                  value={date}
                   name="date"
                   id="example-input"
                  onChange={handleChange}
@@ -243,7 +243,7 @@ function AddProduct() {
             </div>
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
               <div className="form-group">
-                <label htmlFor="exampleInputtext" className="mb-1">
+                <label htmlFor="exampleInputtext" className="mb-1" >
                   Availabilty
                 </label>
                 <span style={{color:"red"}}> * </span>
@@ -254,7 +254,7 @@ function AddProduct() {
                   name="availability"
                      onChange={handleChange}
                 >
-                  <option>Select Option</option>
+                  <option  value="" disabled="disabled">Select Option</option>
                   <option>Available</option>
                   <option>Out Of Stock</option>
                 </select>
@@ -269,7 +269,7 @@ function AddProduct() {
                 <input
                   className="form-control"
                   type="number"
-                  min={0}
+                  min={1}
                   id=""
                   name="price"
                    value={price}
@@ -364,7 +364,7 @@ function AddProduct() {
                   type="file"
                   name="proimage"
                   id="proimage"
-                  accept="image/png, image/jpeg"
+                  accept="image/png, image/gif, image/jpeg"
                   onChange={handleFileChange}
                 />
               </div>

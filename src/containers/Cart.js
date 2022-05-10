@@ -56,7 +56,7 @@ export default function Cart() {
                     <td className="text-center price_col">Price</td>
                     <td className="text-center qty_col">Quantity</td>
                     <td className="text-center">Subtotal</td>
-                    <td></td>
+                    <td>Action</td>
                   </tr>
                   {basket.length ? basket.map((item) => (
                     <tr>
