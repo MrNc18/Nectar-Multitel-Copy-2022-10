@@ -54,11 +54,6 @@ const Orders = () => {
           </thead>
           <tbody>
             {console.log("oedrs", orderList)};
-            {/* {orderList &&
-              orderList.map((item) => {
-                const data = JSON.parse(item.order_detail);
-                console.log("data", data, orderList);
-              })} */}
             {orderList &&
               orderList.map((item, i) => (
                 <tr>
