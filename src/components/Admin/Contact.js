@@ -31,6 +31,7 @@ function Contacts() {
   const [category, setCategory] = useState("");
   const [gender, setGender] = useState("");
   const toggleOpen = () => setDropdown(!dropdown);
+  
 
   //pagination
   const [pageNumber, setPageNumber] = useState(0);
@@ -50,8 +51,29 @@ function Contacts() {
     first_name: "",
     last_name: "",
   });
-  const { id, name, Phone, email, Adress, first_name, last_name, username } =
+  const { id, name, Phone, email, Adress, username } =
     data2;
+
+  // only accept alphabet
+  const [first_name, setFname] = useState('');
+  const onFnameChange = e => {
+    const { value } = e.target;
+ 
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setFname(value);
+    }
+  }
+  
+  const [last_name, setLname] = useState('');
+  const onLnameChange = e => {
+    const { value } = e.target;
+ 
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setLname(value);
+    }
+  }
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
@@ -312,7 +334,7 @@ function Contacts() {
                       type="text"
                       value={first_name}
                       name="first_name"
-                      onChange={handleChange}
+                      onChange={onFnameChange}
                       required
                     ></Form.Control>
                     <Form.Label> Last Name</Form.Label>
@@ -321,7 +343,7 @@ function Contacts() {
                       type="text"
                       value={last_name}
                       name="last_name"
-                      onChange={handleChange}
+                      onChange={onLnameChange}
                       required
                     ></Form.Control>
                     <Form.Label>User Name</Form.Label>
@@ -505,14 +527,14 @@ function Contacts() {
                       type="text"
                       value={first_name}
                       name="first_name"
-                      onChange={handleChange}
+                      onChange={onFnameChange}
                     ></Form.Control>
                     <Form.Label> Last Name</Form.Label>
                     <Form.Control
                       type="text"
                       value={last_name}
                       name="last_name"
-                      onChange={handleChange}
+                      onChange={onLnameChange}
                     ></Form.Control>
                     <Form.Label>User Name</Form.Label>
                     <Form.Control

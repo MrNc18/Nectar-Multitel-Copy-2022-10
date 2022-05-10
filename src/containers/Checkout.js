@@ -72,8 +72,6 @@ console.log("firstName",userData.first_name)
   });
 
   const {
-    first_name,
-    last_name,
     country,
     city,
     address1,
@@ -83,8 +81,7 @@ console.log("firstName",userData.first_name)
     email,
     userId,
 
-    ship_first_name,
-    ship_last_name,
+    
     ship_country,
     ship_city,
     ship_address1,
@@ -95,7 +92,47 @@ console.log("firstName",userData.first_name)
     order_notes,
   } = data2;
   
+  // only accept alphabet
+  const [first_name, setFname] = useState('');
+  const onFnameChange = e => {
+    const { value } = e.target;
+ 
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setFname(value);
+    }
+  }
   
+  const [last_name, setLname] = useState('');
+  const onLnameChange = e => {
+    const { value } = e.target;
+ 
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setLname(value);
+    }
+  }
+
+  const [ship_first_name, setSFname] = useState('');
+  const onSFnameChange = e => {
+    const { value } = e.target;
+ 
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setSFname(value);
+    }
+  }
+  
+  const [ship_last_name, setSLname] = useState('');
+  const onSLnameChange = e => {
+    const { value } = e.target;
+ 
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setSLname(value);
+    }
+  }
+
 
   const btnDisabled = shipAddress ? (
     !first_name || !last_name || !country || !city || !address1 || !zipcode || !phone || !email ||
@@ -163,7 +200,8 @@ console.log("firstName",userData.first_name)
                         id="first_name"
                         name="first_name"
                         value={first_name}
-                        onChange={handleChange}
+                        onChange={onFnameChange}
+                        required
                       />
                     </div>
                   </div>
@@ -178,7 +216,8 @@ console.log("firstName",userData.first_name)
                         id="last_name"
                         name="last_name"
                         value={last_name}
-                        onChange={handleChange}
+                        onChange={onLnameChange}
+                        required
                       />
                     </div>
                   </div>
@@ -193,6 +232,8 @@ console.log("firstName",userData.first_name)
                         value={country}
                         name="country"
                         onChange={handleChange}
+                        onFnameChange
+                        required
                       >
                         <option value="">Select Country</option>
                         {/* {console.log("A;;",allcategories)} */}
@@ -214,6 +255,8 @@ console.log("firstName",userData.first_name)
                         value={address1}
                         name="address1"
                         onChange={handleChange}
+                        required
+                        onFnameChange
                       />
                     </div>
                   </div>
@@ -243,6 +286,7 @@ console.log("firstName",userData.first_name)
                         value={city}
                         name="city"
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -257,6 +301,7 @@ console.log("firstName",userData.first_name)
                         value={zipcode}
                         name="zipcode"
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -272,6 +317,7 @@ console.log("firstName",userData.first_name)
                         value={phone}
                         name="phone"
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -336,7 +382,8 @@ console.log("firstName",userData.first_name)
                               className="form-control"
                               name="ship_first_name"
                               value={ship_first_name}
-                              onChange={handleChange}
+                              onChange={onSFnameChange}
+                              required
                             />
                           </div>
                         </div>
@@ -350,7 +397,8 @@ console.log("firstName",userData.first_name)
                               className="form-control"
                               name="ship_last_name"
                               value={ship_last_name}
-                              onChange={handleChange}
+                              onChange={onSLnameChange}
+                              required
                             />
                           </div>
                         </div>
@@ -364,6 +412,7 @@ console.log("firstName",userData.first_name)
                               value={ship_country}
                               name="ship_country"
                               onChange={handleChange}
+                              required
                             >
                               <option value="">Select Country</option>
                               {/* {console.log("A;;",allcategories)} */}
@@ -385,6 +434,7 @@ console.log("firstName",userData.first_name)
                               value={ship_address1}
                               name="ship_address1"
                               onChange={handleChange}
+                              required
                             />
                           </div>
                         </div>
@@ -415,6 +465,7 @@ console.log("firstName",userData.first_name)
                               value={ship_city}
                               name="ship_city"
                               onChange={handleChange}
+                              required
                             />
                           </div>
                         </div>
@@ -429,6 +480,7 @@ console.log("firstName",userData.first_name)
                               value={ship_zipcode}
                               name="ship_zipcode"
                               onChange={handleChange}
+                              required
                             />
                           </div>
                         </div>
@@ -444,6 +496,7 @@ console.log("firstName",userData.first_name)
                               value={ship_phone}
                               name="ship_phone"
                               onChange={handleChange}
+                              required
                             />
                           </div>
                         </div>
