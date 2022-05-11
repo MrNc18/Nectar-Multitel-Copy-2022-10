@@ -53,7 +53,7 @@ const Orders = () => {
             </tr>
           </thead>
           <tbody>
-            {console.log("oedrs", orderList)};
+            {console.log("oedrs", orderList)}
             {orderList &&
               orderList.map((item, i) => (
                 <tr>

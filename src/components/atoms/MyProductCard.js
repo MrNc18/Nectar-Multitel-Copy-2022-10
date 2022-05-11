@@ -89,36 +89,41 @@ function MyProductCard() {
 
   return (
     <Container className="mb-4">
+      <h4 className="mb-3">My Products</h4>
       <div className="row">
         <div className="col-md-12 table-responsive">
           <table className="book_info_tbl w-100">
             <tr className="header_row">
-              <td>Product</td>
-              <td className="text-center price_col">Price</td>
+              <td><h6>ReferenceId</h6></td>
+              <td><h6>Product</h6></td>
+              <td className="text-center price_col"><h6>Price</h6></td>
               {/* <td className="text-center qty_col">Status</td> */}
-              <td className="text-center">Subtotal</td>
+              <td className="text-center"><h6>Subtotal</h6></td>
             </tr>
             {orderList ? (
               orderList.map((item) => (
                 <tr>
                   {console.log("oder", orderList)}
+                  <td className="cart_price text-center" style={{fontSize:"16px",color:"black"}}>
+                    {item ? item.reference_id : ""}
+                  </td>
                   <td>
                     <div className="d-flex align-items-center">
-                      <img
+                      {/* <img
                         className="cart_book_img"
                         // src={imageUrl(`${image(item.order_detail)}`)}
                         src={item ? image(item.order_detail) : ""}
                         style={{ cursor: "pointer" }}
-                      />
+                      /> */}
                       <span className="cart_book_name">
                         {item ? orderDetails(item.order_detail) : ""}
                       </span>
                     </div>
                   </td>
-                  <td className="cart_price text-center">
+                  <td className="cart_price text-center" style={{fontSize:"16px",color:"black"}}>
                     {item ? price(item.order_detail) : ""}
                   </td>
-                  <td className="cart_price text-center">
+                  <td className="cart_price text-center" style={{fontSize:"16px",color:"black"}}>
                     {formatAmount(item.amount)}
                   </td>
                   {/* {setProdId(item.id)} */}
