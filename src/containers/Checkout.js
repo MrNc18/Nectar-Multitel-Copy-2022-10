@@ -9,6 +9,7 @@ import { imageUrl } from "../services/category";
 import { formatAmount } from "../utils/AmountFormatter";
 import { getBasketTotal } from "../Reducer";
 import { useNavigate } from "react-router-dom";
+import validator from "validator";
 
 export default function Checkout() {
   const [shipAddress, setShipAddress] = useState(false);
@@ -17,6 +18,7 @@ export default function Checkout() {
   const [userEmail, setUserEmail] = useState("");
   const isAuthenticated = getCookie(AUTH_TOKEN);
   const [{ basket }, dispatch] = useStateValue();
+
   const[userData,setUserData] = useState('')
   const [first_name, setFname] = useState('');
   const [last_name, setLname] = useState('');
@@ -47,6 +49,7 @@ export default function Checkout() {
       
       }) 
       console.log("userData",result.data.data)
+
     }
   };
 
@@ -54,9 +57,9 @@ export default function Checkout() {
     getDataByToken();
   }, []);
 
-console.log("firstName",userData.first_name)
+  console.log("firstName", userData.first_name);
   const [data2, setData2] = useState({
-    first_name:"",
+    first_name: "",
     last_name: "",
     country: "",
     city: "",
@@ -64,7 +67,7 @@ console.log("firstName",userData.first_name)
     address2: "",
     zipcode: "",
     phone: "",
-    email:"",
+    email: "",
     ship_first_name: "",
     ship_last_name: "",
     ship_country: "",
@@ -75,7 +78,7 @@ console.log("firstName",userData.first_name)
     ship_phone: "",
     ship_email: "",
     order_notes: "",
-    userId:'',
+    userId: "",
   });
 
   const {
@@ -84,91 +87,133 @@ console.log("firstName",userData.first_name)
     address2,
     zipcode,
     phone,
-    email,
     userId,
 
-    
     ship_country,
     ship_address1,
     ship_address2,
     ship_zipcode,
     ship_phone,
-    ship_email,
     order_notes,
   } = data2;
-  
+
+  // email validator
+  const [emailError, setEmailError] = useState("");
+  const [email, setEmail] = useState("");
+  const validateEmail = (e) => {
+    var uemail = e.target.value;
+
+    if (validator.isEmail(uemail)) {
+      setEmailError("");
+      setEmail(uemail);
+    } else {
+      setEmailError("Enter valid Email!");
+    }
+  };
+
+  const [emailSError, setSEmailError] = useState("");
+  const [ship_email, setSEmail] = useState("");
+  const validateSEmail = (e) => {
+    var uemail = e.target.value;
+
+    if (validator.isEmail(uemail)) {
+      setSEmailError("");
+      setSEmail(uemail);
+    } else {
+      setSEmailError("Enter valid Email!");
+    }
+  };
+  // end
+
   // only accept alphabet
+
   
   const onFnameChange = e => {
     const { value } = e.target;
- 
+
     const re = /^[A-Za-z]+$/;
     if (value === "" || re.test(value)) {
       setFname(value);
     }
-  }
+  };
 
   const onLnameChange = e => {
     const { value } = e.target;
- 
+
     const re = /^[A-Za-z]+$/;
     if (value === "" || re.test(value)) {
       setLname(value);
     }
-  }
+  };
   
   const onSCityChange = e => {
     const { value } = e.target;
- 
+
     const re = /^[A-Za-z]+$/;
     if (value === "" || re.test(value)) {
       setSCity(value);
     }
-  }
+  };
 
-  const [ship_first_name, setSFname] = useState('');
-  const onSFnameChange = e => {
+  const [ship_first_name, setSFname] = useState("");
+  const onSFnameChange = (e) => {
     const { value } = e.target;
- 
+
     const re = /^[A-Za-z]+$/;
     if (value === "" || re.test(value)) {
       setSFname(value);
     }
-  }
-  
-  const [ship_last_name, setSLname] = useState('');
-  const onSLnameChange = e => {
+  };
+
+  const [ship_last_name, setSLname] = useState("");
+  const onSLnameChange = (e) => {
     const { value } = e.target;
- 
+
     const re = /^[A-Za-z]+$/;
     if (value === "" || re.test(value)) {
       setSLname(value);
     }
-  }
+  };
   
   const onCityChange = e => {
     const { value } = e.target;
- 
+
     const re = /^[A-Za-z]+$/;
     if (value === "" || re.test(value)) {
       setCity(value);
     }
-  }
+  };
+  // end
 
-
-  const btnDisabled = shipAddress ? (
-    !first_name || !last_name || !country || !city || !address1 || !zipcode || !phone || !email ||
-    !ship_first_name || !ship_last_name || !ship_country || !ship_city || !ship_address1 || 
-    !ship_zipcode || !ship_phone || !ship_email
-  ) : (
-    !first_name || !last_name || !country || !city || !address1 || !zipcode || !phone || !email
-  )
+  const btnDisabled = shipAddress
+    ? !first_name ||
+      !last_name ||
+      !country ||
+      !city ||
+      !address1 ||
+      !zipcode ||
+      !phone ||
+      !email ||
+      !ship_first_name ||
+      !ship_last_name ||
+      !ship_country ||
+      !ship_city ||
+      !ship_address1 ||
+      !ship_zipcode ||
+      !ship_phone ||
+      !ship_email
+    : !first_name ||
+      !last_name ||
+      !country ||
+      !city ||
+      !address1 ||
+      !zipcode ||
+      !phone ||
+      !email;
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
-  
-
 
   return (
     <LandingPage>
@@ -257,10 +302,12 @@ console.log("firstName",userData.first_name)
                         onFnameChange
                         required
                       >
-                        <option value="">Select Country</option>
+                        <option  value="" disabled="disabled">Select Country</option>
                         {/* {console.log("A;;",allcategories)} */}
-                        {COUNTRY_LIST.map((item,i) => (
-                          <option key={i} value={item}>{item}</option>
+                        {COUNTRY_LIST.map((item, i) => (
+                          <option key={i} value={item}>
+                            {item}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -349,14 +396,20 @@ console.log("firstName",userData.first_name)
                         Email address<em className="red">*</em>
                       </label>
                       <input
-                        type="email"
+                        type="text"
                         className="form-control"
-                        value={email}
-                        pattern=".+@beststartupever\.com"
                         required
                         name="email"
-                        onChange={handleChange}
+                        onChange={(e) => validateEmail(e)}
                       />
+                      <p
+                        style={{
+                          fontWeight: "bold",
+                          color: "red",
+                        }}
+                      >
+                        {emailError}
+                      </p>
                     </div>
                   </div>
                   <div className="col-12">
@@ -436,10 +489,12 @@ console.log("firstName",userData.first_name)
                               onChange={handleChange}
                               required
                             >
-                              <option value="">Select Country</option>
+                              <option  value="" disabled="disabled">Select Country</option>
                               {/* {console.log("A;;",allcategories)} */}
-                              {COUNTRY_LIST.map((item,i) => (
-                                <option key={i} value={item}>{item}</option>
+                              {COUNTRY_LIST.map((item, i) => (
+                                <option key={i} value={item}>
+                                  {item}
+                                </option>
                               ))}
                             </select>
                           </div>
@@ -528,14 +583,20 @@ console.log("firstName",userData.first_name)
                               Email address<em className="red">*</em>
                             </label>
                             <input
-                              type="email"
+                              type="text"
                               className="form-control"
-                              value={ship_email}
-                              pattern=".+@beststartupever\.com"
                               name="ship_email"
-                              onChange={handleChange}
+                              onChange={(e) => validateSEmail(e)}
                               required
                             />
+                            <p
+                              style={{
+                                fontWeight: "bold",
+                                color: "red",
+                              }}
+                            >
+                              {emailSError}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -550,7 +611,7 @@ console.log("firstName",userData.first_name)
                         Order notes (optional)
                       </label>
                       <textarea
-                        className="form-control"                        
+                        className="form-control"
                         rows="3"
                         placeholder="Notes about your order (eg special delivery information)."
                         value={order_notes}
@@ -804,7 +865,11 @@ console.log("firstName",userData.first_name)
                 type="submit"
                 className="order-box-btn"
                 disabled={btnDisabled}
-                onClick={() => navigate("/payment-methods", {state: {data: data2, shipAddress}})}
+                onClick={() =>
+                  navigate("/payment-methods", {
+                    state: { data: data2, shipAddress },
+                  })
+                }
               >
                 Place Order
               </button>

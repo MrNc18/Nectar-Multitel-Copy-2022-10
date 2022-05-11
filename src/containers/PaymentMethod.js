@@ -76,7 +76,7 @@ export default function PaymentMethod() {
       setButtonDisabled(true);
       const resp = await getcreateRefernceId(data);
       console.log("rsp", resp.data.data);
-      showAlert("RefernceId created Succesfully and sent to Email", "success");
+      showAlert("RefernceId created Succesfully and sent to EmailId", "success");
       // dispatch({
       //   type: "REMOVE_ALL",
       // });
