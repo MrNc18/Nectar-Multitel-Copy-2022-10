@@ -3,6 +3,7 @@ import data from "../../Data"
 import { useNavigate } from "react-router-dom";
 import {getAddProduct, getAllCategories} from "../../services/category"
 import { showAlert } from "../../utils/showAlert";
+import moment from "moment"
 
 
 function AddProduct() {
@@ -86,7 +87,8 @@ function AddProduct() {
       {
           setErrorMsg("Fill the Mandatory Fields")
       }
-      else if(price <= 0){
+
+      else if(price < 1  || price % 1 != "0"){
            setErrorMsg("Enter the Valid Price")
       }
       else{
@@ -237,6 +239,7 @@ function AddProduct() {
                   value={date}
                   name="date"
                   id="example-input"
+                  max={moment().format("YYYY-MM-DD")}
                  onChange={handleChange}
                 />
               </div>

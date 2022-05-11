@@ -136,9 +136,10 @@ function Contacts() {
       category === ""
     ) {
       setErrorMsg("Fill the Mandatory Fields");
-    }
-    else if(Phone <= 0){
-      setErrorMsg("Enter Valid Phone Number")
+
+    } 
+    else if(Phone.length != 10 || Phone < 0  ){
+      setErrorMsg("Enter the  Valid Phone")
  }
     else
       try {
