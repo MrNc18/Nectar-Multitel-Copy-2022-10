@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import data from "../../Data";
-import { Button, Modal, Form, Table } from "react-bootstrap";
+import { Button, Modal, Form, Table, Row } from "react-bootstrap";
 import { Navigate, useNavigate } from "react-router-dom";
 import moment from "moment";
+import ReactPaginate from "react-paginate";
 import {
   getAddProduct,
   getDeleteProduct,
@@ -55,6 +56,16 @@ function Products() {
     offers,
     details,
   } = data2;
+
+  //pagination
+  const [pageNumber, setPageNumber] = useState(0);
+  const usersPerPage = 10;
+  const pagesVisited = pageNumber * usersPerPage;
+  const pageCount = Math.ceil(productList.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
@@ -193,7 +204,7 @@ function Products() {
           </thead>
           <tbody>
             {productList &&
-              productList.map((item, i) => (
+              productList.slice(pagesVisited, pagesVisited + usersPerPage).map((item, i) => (
                 <tr>
                   {console.log("hxwjh", productList)}
                   <td>{i + 1}</td>
@@ -233,6 +244,23 @@ function Products() {
               ))}
           </tbody>
         </Table>
+        <Row>
+        <div className="col-md-7"></div>
+        <div className="col-md-5 product_pagination" style={{display:"inherit", marginBottom:"20px", marginTop:"20px"}}>
+        <ReactPaginate 
+              previousLabel={<i class="fa-solid fa-arrow-left fa-lg"></i>}
+              nextLabel={<i class="fa-solid fa-arrow-right fa-lg"></i>}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            />
+        </div>
+        </Row>
+
       </div>
       {/* Delete Modal */}
 
