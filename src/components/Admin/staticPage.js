@@ -291,6 +291,7 @@ function Staticpage() {
                       <Form.Control
                         type="file"
                         id="file"
+                        accept="image/png, image/gif, image/jpeg"
                         onChange={handleFileChange}
                       ></Form.Control>
                     </Form.Group>

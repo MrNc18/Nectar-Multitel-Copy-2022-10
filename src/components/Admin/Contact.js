@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Form, Table, Dropdown } from "react-bootstrap";
+import { Button, Modal, Form, Table, Dropdown, Row } from "react-bootstrap";
 import Select from "react-select";
 import "./contacts.css";
 import {
@@ -11,6 +11,7 @@ import {
 } from "../../services/category";
 import { Link } from "react-router-dom";
 import { showAlert } from "../../utils/showAlert";
+import ReactPaginate from "react-paginate";
 
 function Contacts() {
   const handleClose = () => setShow(false);
@@ -30,6 +31,16 @@ function Contacts() {
   const [category, setCategory] = useState("");
   const [gender, setGender] = useState("");
   const toggleOpen = () => setDropdown(!dropdown);
+  
+
+  //pagination
+  const [pageNumber, setPageNumber] = useState(0);
+  const usersPerPage = 10;
+  const pagesVisited = pageNumber * usersPerPage;
+  const pageCount = Math.ceil(vendorList.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   const [data2, setData2] = useState({
     id: "",
@@ -40,8 +51,29 @@ function Contacts() {
     first_name: "",
     last_name: "",
   });
-  const { id, name, Phone, email, Adress, first_name, last_name, username } =
+  const { id, name, Phone, email, Adress, username } =
     data2;
+
+  // only accept alphabet
+  const [first_name, setFname] = useState('');
+  const onFnameChange = e => {
+    const { value } = e.target;
+ 
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setFname(value);
+    }
+  }
+  
+  const [last_name, setLname] = useState('');
+  const onLnameChange = e => {
+    const { value } = e.target;
+ 
+    const re = /^[A-Za-z]+$/;
+    if (value === "" || re.test(value)) {
+      setLname(value);
+    }
+  }
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
@@ -104,6 +136,7 @@ function Contacts() {
       category === ""
     ) {
       setErrorMsg("Fill the Mandatory Fields");
+
     } 
     else if(Phone.length != 10 || Phone < 0  ){
       setErrorMsg("Enter the  Valid Phone")
@@ -302,7 +335,8 @@ function Contacts() {
                       type="text"
                       value={first_name}
                       name="first_name"
-                      onChange={handleChange}
+                      onChange={onFnameChange}
+                      required
                     ></Form.Control>
                     <Form.Label> Last Name</Form.Label>
                     <span style={{color:"red"}}> * </span>
@@ -310,14 +344,17 @@ function Contacts() {
                       type="text"
                       value={last_name}
                       name="last_name"
-                      onChange={handleChange}
+                      onChange={onLnameChange}
+                      required
                     ></Form.Control>
                     <Form.Label>User Name</Form.Label>
+                    <span style={{color:"red"}}> * </span>
                     <Form.Control
                       type="text"
                       value={username}
                       name="username"
                       onChange={handleChange}
+                      required
                     ></Form.Control>
                     <Form.Label>Phone</Form.Label>
                     <span style={{color:"red"}}> * </span>
@@ -325,9 +362,10 @@ function Contacts() {
                       type="number"
                       value={Phone}
                       name="Phone"
-                      min="0"
-                      oninput="validity.valid||(value='');"
+                      min={1}
+                      step={1}
                       onChange={handleChange}
+                      required
                     ></Form.Control>
                     <Form.Label>Category</Form.Label>
                     <span style={{color:"red"}}> * </span>
@@ -343,6 +381,7 @@ function Contacts() {
                         setCategory(value);
                         console.log(value);
                       }}
+                      required
                     />
                     <Form.Label>Email</Form.Label>
                     <span style={{color:"red"}}> * </span>
@@ -350,7 +389,10 @@ function Contacts() {
                       type="email"
                       value={email}
                       name="email"
+                      placeholder="multitel@vendors.com"
+                      pattern=".+@beststartupever\.com"
                       onChange={handleChange}
+                      required
                     ></Form.Control>
                     <Form.Label>Address</Form.Label>
                     <span style={{color:"red"}}> * </span>
@@ -359,6 +401,7 @@ function Contacts() {
                       value={Adress}
                       name="Adress"
                       onChange={handleChange}
+                      required
                     ></Form.Control>
                   </Form.Group>
                 </div>
@@ -395,7 +438,7 @@ function Contacts() {
           </thead>
           <tbody>
             {vendorList &&
-              vendorList.map((item, i) => (
+              vendorList.slice(pagesVisited, pagesVisited + usersPerPage).map((item, i) => (
                 <tr>
                   {console.log("pc", vendorList)}
 
@@ -428,6 +471,22 @@ function Contacts() {
           </tbody>
         </Table>
       </div>
+      <Row>
+        <div className="col-md-7"></div>
+        <div className="col-md-5 product_pagination" style={{display:"inherit", marginBottom:"20px", marginTop:"20px"}}>
+        <ReactPaginate 
+              previousLabel={<i class="fa-solid fa-arrow-left fa-lg"></i>}
+              nextLabel={<i class="fa-solid fa-arrow-right fa-lg"></i>}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            />
+        </div>
+        </Row>
       {/* Delete Modal */}
 
       <Modal show={DeleteShow} onHide={handlecloseDelete}>
@@ -469,14 +528,14 @@ function Contacts() {
                       type="text"
                       value={first_name}
                       name="first_name"
-                      onChange={handleChange}
+                      onChange={onFnameChange}
                     ></Form.Control>
                     <Form.Label> Last Name</Form.Label>
                     <Form.Control
                       type="text"
                       value={last_name}
                       name="last_name"
-                      onChange={handleChange}
+                      onChange={onLnameChange}
                     ></Form.Control>
                     <Form.Label>User Name</Form.Label>
                     <Form.Control
