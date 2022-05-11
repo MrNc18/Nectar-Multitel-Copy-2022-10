@@ -105,8 +105,8 @@ function Contacts() {
     ) {
       setErrorMsg("Fill the Mandatory Fields");
     } 
-    else if(Phone !== 0){
-      setErrorMsg("Enter the Phone")
+    else if(Phone.length != 10 || Phone < 0  ){
+      setErrorMsg("Enter the  Valid Phone")
  }
     else
       try {
