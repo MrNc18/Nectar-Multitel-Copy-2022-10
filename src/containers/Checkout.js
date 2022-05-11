@@ -251,7 +251,7 @@ console.log("firstName",userData.first_name)
                         onFnameChange
                         required
                       >
-                        <option value="">Select Country</option>
+                        <option  value="" disabled="disabled">Select Country</option>
                         {/* {console.log("A;;",allcategories)} */}
                         {COUNTRY_LIST.map((item,i) => (
                           <option key={i} value={item}>{item}</option>
@@ -430,7 +430,7 @@ console.log("firstName",userData.first_name)
                               onChange={handleChange}
                               required
                             >
-                              <option value="">Select Country</option>
+                              <option  value="" disabled="disabled">Select Country</option>
                               {/* {console.log("A;;",allcategories)} */}
                               {COUNTRY_LIST.map((item,i) => (
                                 <option key={i} value={item}>{item}</option>

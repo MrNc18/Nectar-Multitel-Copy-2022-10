@@ -74,7 +74,7 @@ export default function PaymentMethod() {
     try {
       const resp = await getcreateRefernceId(data);
       console.log("rsp", resp.data.data);
-      showAlert("RefernceId created Succesfully", "success")
+      showAlert("RefernceId created Succesfully And Sent To EmailId", "success")
         // dispatch({
         //   type: "REMOVE_ALL",
         // });
