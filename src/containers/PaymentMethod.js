@@ -10,17 +10,17 @@ import { showAlert } from "../utils/showAlert";
 import moment from "moment";
 
 export default function PaymentMethod() {
-
   const [showCards, setShowCards] = useState(false);
   const [showOnline, setShowOnline] = useState(false);
+  const [buttondisabled, setButtonDisabled] = useState(false);
   const { state } = useLocation();
   console.log(state);
   const [userDet, setUserDet] = useState(state?.data || {});
-  const [adress,setAdress] = useState(state?.shipAddress || {});
+  const [adress, setAdress] = useState(state?.shipAddress || {});
   const [{ basket }, dispatch] = useStateValue();
   const navigate = useNavigate();
-  console.log("basket", basket);  
-  console.log("adress",adress)
+  console.log("basket", basket);
+  console.log("adress", adress);
   console.log("userdet", userDet);
   useEffect(() => {
     if (!state) {
@@ -45,7 +45,7 @@ export default function PaymentMethod() {
           product_name: data.name,
           product_quantity: data.quantity,
           product_price: data.price,
-          product_image:data.image
+          product_image: data.image,
         };
         products.push(value);
         console.log("product", products);
@@ -54,32 +54,37 @@ export default function PaymentMethod() {
       return products;
     };
 
-
     const data = {
       amount: getBasketTotal(basket),
       end_datetime: moment().add(30, "days").format("YYYY-MM-DD"),
-      "userId":`${userDet.userId}`,
-      "adress":`${state.data.address1}`,
+      userId: `${userDet.userId}`,
+      adress: `${state.data.address1}`,
       custom_fields: {
         invoice: `${"MUL"} ${getRandomId()}`,
         email: `${userDet.email}`,
         Total_products: `${basket.length}`,
       },
-      order_detail: [{
-        invoice: `${"MUL"} ${getRandomId()}`,
-        "products":productdata(),
-        email: `${userDet.email}`,
-        }]
+      order_detail: [
+        {
+          invoice: `${"MUL"} ${getRandomId()}`,
+          products: productdata(),
+          email: `${userDet.email}`,
+        },
+      ],
     };
     try {
+      setButtonDisabled(true);
       const resp = await getcreateRefernceId(data);
       console.log("rsp", resp.data.data);
-      showAlert("RefernceId created Succesfully And Sent To EmailId", "success")
-        // dispatch({
-        //   type: "REMOVE_ALL",
-        // });
+      showAlert("RefernceId created Succesfully and sent to EmailId", "success");
+      // dispatch({
+      //   type: "REMOVE_ALL",
+      // });
+      setButtonDisabled(false);
       navigate("/home");
     } catch (error) {
+      setButtonDisabled(false);
+      showAlert("Something Went Wrong", "error");
       console.log("err", error);
     }
   };
@@ -470,10 +475,10 @@ export default function PaymentMethod() {
               </div> */}
 
               <button
+                disabled={buttondisabled}
                 type="submit"
                 className="order-box-btn"
-                onClick={() => getReference()
-                  }
+                onClick={() => getReference()}
               >
                 Pay Now
               </button>

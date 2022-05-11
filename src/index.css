@@ -1510,10 +1510,10 @@ td.td3 a {font-weight: 400;font-size: 12px;}
   top: 20px;
 }
 .counter{
-  color: #fff;
-    background: red;
-    font-size: 12px;
-    border-radius: 50%;
-    padding: 2px 6px;
-    margin-left: 4px;
+    color:#0076b5;
+    font-size: 14px;
+    font-weight:500;
+    /* border-radius: 50%;
+    padding:0px 6px; */
+    margin-left: 20px;
 }

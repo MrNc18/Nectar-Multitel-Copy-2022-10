@@ -14,7 +14,7 @@ function Staticpage() {
   const [show, setShow] = useState(false);
   const [cmsData, setCmsData] = useState("");
   const [DeleteShow, setDeleteShow] = useState(false);
-  const [buttondisabled,setButtonDisabled] = useState(false);
+  const [buttondisabled, setButtonDisabled] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [editImage, setEditImage] = useState("");
@@ -58,7 +58,7 @@ function Staticpage() {
   //     };
   //   };
 
-    // setFile(event.target.files);
+  // setFile(event.target.files);
   //   console.log(file, "file");
   // };
 
@@ -86,12 +86,12 @@ function Staticpage() {
     };
     try {
       await getDeletecms(data);
-      showAlert("Cms Deleted Successfully","success");
+      showAlert("Cms Deleted Successfully", "success");
       setDeleteShow(false);
       handlegetcms();
     } catch (error) {
       console.log("error", error);
-      showAlert("Something Went Wrong","error");
+      showAlert("Something Went Wrong", "error");
     }
   };
 
@@ -124,7 +124,7 @@ function Staticpage() {
     // }
     else
       try {
-        setButtonDisabled(true)
+        setButtonDisabled(true);
         await getAddcms(data);
         setErrorMsg("");
         showAlert("Added  Cms Successfully", "success");
@@ -167,13 +167,13 @@ function Staticpage() {
     data.append("page_slug", page_slug);
     try {
       await getEditcms(data);
-      showAlert("Cms Edited Successfully","success");
+      showAlert("Cms Edited Successfully", "success");
       setData2("");
       setFile(" ");
       setShowEditModal(false);
       handlegetcms();
     } catch (error) {
-      showAlert("Something Went Wrong","error");
+      showAlert("Something Went Wrong", "error");
     }
   };
   const handleEditClose = () => {
@@ -187,7 +187,7 @@ function Staticpage() {
       const resp = await getAllCms();
       setCmsData(resp.data);
     } catch (error) {
-      showAlert("something Went Wrong","error");
+      showAlert("something Went Wrong", "error");
     }
   };
 
@@ -199,9 +199,9 @@ function Staticpage() {
   return (
     <div id="layoutSidenavContent">
       <div className="container-fluid">
-      <div class="row d-flex align-items-center justify-content-between">
-         <div class="col-lg-6 col-md-6 text-left">
-          <h3 className="mt-4 mb-4">Content Management</h3>
+        <div class="row d-flex align-items-center justify-content-between">
+          <div class="col-lg-6 col-md-6 text-left">
+            <h3 className="mt-4 mb-4">Content Management</h3>
           </div>
           <div className="col-lg-6 col-md-6 text-right">
             <div className="header justify-content-end">
@@ -229,7 +229,7 @@ function Staticpage() {
                   <div className="container">
                     <Form.Group>
                       <Form.Label>Title</Form.Label>
-                      <span style={{color:"red"}}> * </span>
+                      <span style={{ color: "red" }}> * </span>
                       <Form.Control
                         type="text"
                         value={Title}
@@ -251,7 +251,7 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Sub-Title</Form.Label>
-                      <span style={{color:"red"}}> * </span>
+                      <span style={{ color: "red" }}> * </span>
                       <Form.Control
                         type="text"
                         value={subheading}
@@ -259,15 +259,29 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Link</Form.Label>
-                      <span style={{color:"red"}}> * </span>
-                      <Form.Control
-                        type="text"
+                      <span style={{ color: "red" }}> * </span>
+                      <select
+                        className="form-control"
+                        id="exampleFormControlSelect1"
                         value={link}
                         name="link"
                         onChange={handleChange}
-                      ></Form.Control>
+                      >
+                        <option value="" disabled="disabled">
+                          Select Option
+                        </option>
+                        <option>/marketplace</option>
+                        <option>/categories/internet-services</option>
+                        <option> /categories/network-equipments</option>
+                        <option>categories/cpe-2</option>
+                        <option> /categories/promotions</option>
+                        <option>categories/other-productsservices-1</option>
+                        <option>/home</option>
+                       
+                       
+                      </select>
                       <Form.Label>Page slug</Form.Label>
-                      <span style={{color:"red"}}> * </span>
+                      <span style={{ color: "red" }}> * </span>
                       <Form.Control
                         type="text"
                         value={page_slug}
@@ -275,7 +289,7 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
-                      <span style={{color:"red"}}> * </span>
+                      <span style={{ color: "red" }}> * </span>
                       <Form.Control
                         type="textarea"
                         value={description}
@@ -283,7 +297,7 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Upload</Form.Label>{" "}
-                      <span style={{color:"red"}}> * </span>
+                      <span style={{ color: "red" }}> * </span>
                       <p style={{ fontSize: "small" }}>
                         <span style={{ color: "red" }}>* </span>Image should be
                         the size of 1920*600px

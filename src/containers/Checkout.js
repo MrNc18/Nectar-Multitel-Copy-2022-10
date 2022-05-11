@@ -18,7 +18,12 @@ export default function Checkout() {
   const [userEmail, setUserEmail] = useState("");
   const isAuthenticated = getCookie(AUTH_TOKEN);
   const [{ basket }, dispatch] = useStateValue();
-  const [userData, setUserData] = useState("");
+
+  const[userData,setUserData] = useState('')
+  const [first_name, setFname] = useState('');
+  const [last_name, setLname] = useState('');
+  const [ship_city, setSCity] = useState('');
+  const [city, setCity] = useState('');
   const navigate = useNavigate();
 
   const getDataByToken = async () => {
@@ -26,20 +31,25 @@ export default function Checkout() {
       const result = await getUserDetailsByToken();
       // console.log(result);
       setUserEmail(result?.data?.data?.email);
-      setUserData(result?.data.data);
+      setUserData(result?.data.data)
+      setLname(result?.data.data.last_name)
+      setFname(result?.data.data.first_name) 
+      setCity(result?.data.data.city)
       setData2({
-        first_name: result?.data.data.first_name,
-        last_name: result?.data.data.last_name,
-        country: result?.data.data.country ? result?.data.data.country : "",
-        city: result?.data.data.city,
-        address1: result?.data.data.adress,
-        address2: result?.data.data.adress,
-        zipcode: result?.data.data.zipcode,
-        phone: result?.data.data.phone,
-        email: result?.data.data.email,
-        userId: result?.data.data.userId,
-      });
-      console.log("userData", result.data.data);
+      // first_name:result?.data.data.first_name,
+      // last_name:result?.data.data.last_name,
+      country:result?.data.data.country?result?.data.data.country:'',
+      // city:result?.data.data.city,
+      address1:result?.data.data.adress,
+      address2:result?.data.data.adress,
+      zipcode:result?.data.data.zipcode,
+      phone:result?.data.data.phone,
+      email:result?.data.data.email,
+      userId:result?.data.data.userId,
+      
+      }) 
+      console.log("userData",result.data.data)
+
     }
   };
 
@@ -116,8 +126,9 @@ export default function Checkout() {
   // end
 
   // only accept alphabet
-  const [first_name, setFname] = useState("");
-  const onFnameChange = (e) => {
+
+  
+  const onFnameChange = e => {
     const { value } = e.target;
 
     const re = /^[A-Za-z]+$/;
@@ -126,8 +137,7 @@ export default function Checkout() {
     }
   };
 
-  const [last_name, setLname] = useState("");
-  const onLnameChange = (e) => {
+  const onLnameChange = e => {
     const { value } = e.target;
 
     const re = /^[A-Za-z]+$/;
@@ -135,8 +145,8 @@ export default function Checkout() {
       setLname(value);
     }
   };
-  const [ship_city, setSCity] = useState("");
-  const onSCityChange = (e) => {
+  
+  const onSCityChange = e => {
     const { value } = e.target;
 
     const re = /^[A-Za-z]+$/;
@@ -164,8 +174,8 @@ export default function Checkout() {
       setSLname(value);
     }
   };
-  const [city, setCity] = useState("");
-  const onCityChange = (e) => {
+  
+  const onCityChange = e => {
     const { value } = e.target;
 
     const re = /^[A-Za-z]+$/;
@@ -800,7 +810,7 @@ export default function Checkout() {
               <div className="row">
                 <div className="col-12">
                   <hr />
-                  <form>
+                  {/* <form>
                     <p>If you have a discount coupon, please enter it below.</p>
                     <div className="form-row align-items-center">
                       <div className="col-auto">
@@ -821,7 +831,7 @@ export default function Checkout() {
                       </div>
                     </div>
                   </form>
-                  <hr />
+                  <hr /> */}
                 </div>
               </div>
               <div className="subtotal row">

@@ -125,7 +125,7 @@ function Header() {
                           className="usericon"
                           src="/assets/images/user.png"
                         />
-                        <span className="username">Hey&nbsp;{username}</span>
+                        <span className="username">Hey&nbsp; {username}</span>
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
@@ -133,6 +133,7 @@ function Header() {
                           Profile
                         </Dropdown.Item>
                         <Dropdown.Item
+                        style={{display:"flex",justifyContent:"space-between"}}
                           onClick={() => {
                             navigate("/wishlist");
                           }}
@@ -145,12 +146,13 @@ function Header() {
                           </span>
                         </Dropdown.Item>
                         <Dropdown.Item
+                        style={{display:"flex",justifyContent:"space-between"}}
                           onClick={() => {
                             navigate("/cart");
                           }}
                         >
-                          Cart{" "}
-                          <span
+                          Cart  {"    "}
+                          <span 
                             className="counter"
                           >
                             {basket.length}
