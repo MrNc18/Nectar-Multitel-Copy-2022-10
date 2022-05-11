@@ -51,7 +51,7 @@ function Contacts() {
     first_name: "",
     last_name: "",
   });
-  const { id, name, Phone, Adress, username } = data2;
+  const { Phone, Adress, username } = data2;
 
   // email validator
   const [emailError, setEmailError] = useState("");
@@ -66,6 +66,7 @@ function Contacts() {
       setEmailError("Enter valid Email!");
     }
   };
+  // end
 
   // only accept alphabet
   const [first_name, setFname] = useState("");
@@ -87,6 +88,8 @@ function Contacts() {
       setLname(value);
     }
   };
+
+  // end
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
@@ -149,9 +152,12 @@ function Contacts() {
       category === ""
     ) {
       setErrorMsg("Fill the Mandatory Fields");
-    } else if (Phone <= 0) {
-      setErrorMsg("Enter Valid Phone Number");
-    } else
+
+    } 
+    else if(Phone.length != 10 || Phone < 0  ){
+      setErrorMsg("Enter the  Valid Phone")
+ }
+    else
       try {
         setButtonDisabled(true);
         await getAddVendor(data);
@@ -414,8 +420,6 @@ function Contacts() {
                     <Form.Control
                       type="text"
                       name="email"
-                      placeholder="multitel@vendors.com"
-                      pattern=".+@beststartupever\.com"
                       onChange={(e) => validateEmail(e)}
                       required
                     ></Form.Control>
