@@ -674,7 +674,7 @@ console.log("firstName",userData.first_name)
               <div className="row">
                 <div className="col-12">
                   <hr />
-                  <form>
+                  {/* <form>
                     <p>If you have a discount coupon, please enter it below.</p>
                     <div className="form-row align-items-center">
                       <div className="col-auto">
@@ -695,7 +695,7 @@ console.log("firstName",userData.first_name)
                       </div>
                     </div>
                   </form>
-                  <hr />
+                  <hr /> */}
                 </div>
               </div>
               <div className="subtotal row">

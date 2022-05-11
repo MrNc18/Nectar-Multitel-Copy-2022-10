@@ -26,6 +26,7 @@ function LoginModal({ show, handleClose }) {
       setCookie(AUTH_TOKEN,response.data.data.jwtToken);
       const userId = response.data.data.userId
       sessionStorage.setItem('userId', userId);
+      localStorage.setItem('userId', userId);
       // console.log("token",response.data.data.jwtToken)
       handleClose()
       navigate("/redirect")
