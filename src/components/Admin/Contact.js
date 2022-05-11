@@ -12,6 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import { showAlert } from "../../utils/showAlert";
 import ReactPaginate from "react-paginate";
+import validator from "validator";
 
 function Contacts() {
   const handleClose = () => setShow(false);
@@ -21,7 +22,7 @@ function Contacts() {
   };
   const [show, setShow] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
-  const [buttondisabled,setButtonDisabled] = useState(false);
+  const [buttondisabled, setButtonDisabled] = useState(false);
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [DeleteShow, setDeleteShow] = useState(false);
   const [file, setFile] = useState("");
@@ -31,7 +32,6 @@ function Contacts() {
   const [category, setCategory] = useState("");
   const [gender, setGender] = useState("");
   const toggleOpen = () => setDropdown(!dropdown);
-  
 
   //pagination
   const [pageNumber, setPageNumber] = useState(0);
@@ -51,29 +51,42 @@ function Contacts() {
     first_name: "",
     last_name: "",
   });
-  const { id, name, Phone, email, Adress, username } =
-    data2;
+  const { id, name, Phone, Adress, username } = data2;
+
+  // email validator
+  const [emailError, setEmailError] = useState("");
+  const [email, setEmail] = useState("");
+  const validateEmail = (e) => {
+    var uemail = e.target.value;
+
+    if (validator.isEmail(uemail)) {
+      setEmailError("");
+      setEmail(uemail);
+    } else {
+      setEmailError("Enter valid Email!");
+    }
+  };
 
   // only accept alphabet
-  const [first_name, setFname] = useState('');
-  const onFnameChange = e => {
+  const [first_name, setFname] = useState("");
+  const onFnameChange = (e) => {
     const { value } = e.target;
- 
+
     const re = /^[A-Za-z]+$/;
     if (value === "" || re.test(value)) {
       setFname(value);
     }
-  }
-  
-  const [last_name, setLname] = useState('');
-  const onLnameChange = e => {
+  };
+
+  const [last_name, setLname] = useState("");
+  const onLnameChange = (e) => {
     const { value } = e.target;
- 
+
     const re = /^[A-Za-z]+$/;
     if (value === "" || re.test(value)) {
       setLname(value);
     }
-  }
+  };
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
@@ -96,13 +109,13 @@ function Contacts() {
       id: deleteRecord.id,
     };
     try {
-       await getDeleteVendor(data);
-      showAlert("Vendor Contact Deleted Successfully","success");
+      await getDeleteVendor(data);
+      showAlert("Vendor Contact Deleted Successfully", "success");
       setDeleteShow(false);
       handleAllContactList();
     } catch (error) {
       console.log("error", error);
-      showAlert("Something Went Wrong","error");
+      showAlert("Something Went Wrong", "error");
     }
   };
   const handleSubmit = async (event) => {
@@ -136,13 +149,11 @@ function Contacts() {
       category === ""
     ) {
       setErrorMsg("Fill the Mandatory Fields");
-    }
-    else if(Phone <= 0){
-      setErrorMsg("Enter Valid Phone Number")
- }
-    else
+    } else if (Phone <= 0) {
+      setErrorMsg("Enter Valid Phone Number");
+    } else
       try {
-        setButtonDisabled(true)
+        setButtonDisabled(true);
         await getAddVendor(data);
         showAlert("Added contact Succesfully.", "success");
         setErrorMsg("");
@@ -159,60 +170,60 @@ function Contacts() {
 
   //  edit API
   const handleEditShow = (item) => {
-    console.log(item,"item")
-    const editdata = item.category.split(',')
-    const EditCategory = editdata.map((item) =>createOption(item))
+    console.log(item, "item");
+    const editdata = item.category.split(",");
+    const EditCategory = editdata.map((item) => createOption(item));
     // console.log("edit",editdata)
     // console.log("editcat",EditCategory)
-    setCategory(EditCategory)
+    setCategory(EditCategory);
     setData2({
-      id:item.id,
-      username:item.user_name,
-      Phone:item.phone,
-      email:item.email,
-      Adress:item.address,
-      first_name:item.first_name,
-      last_name:item.last_name
-    })
+      id: item.id,
+      username: item.user_name,
+      Phone: item.phone,
+      email: item.email,
+      Adress: item.address,
+      first_name: item.first_name,
+      last_name: item.last_name,
+    });
     setShowEditModal(true);
   };
   const handleEditContacts = async () => {
-    console.log("setcat",category)
+    console.log("setcat", category);
     const finalMultiValue =
-    category &&
-    category.map((data) => {
-      return data.value;
-    });
-  console.log("AddMultiValue", finalMultiValue);
-  const data = new FormData();
-  for (var x = 0; x < file.length; x++) {
-    data.append("image", file[x]);
-  }
-  data.append("address", Adress);
-  data.append("first_name", first_name);
-  data.append("last_name", last_name);
-  data.append("email", email);
-  data.append("category", finalMultiValue);
-  data.append("phone", Phone);
-  // data.append("gendar", gender);
-  data.append("user_name", username);
-  // data.append("adress", Adress);
+      category &&
+      category.map((data) => {
+        return data.value;
+      });
+    console.log("AddMultiValue", finalMultiValue);
+    const data = new FormData();
+    for (var x = 0; x < file.length; x++) {
+      data.append("image", file[x]);
+    }
+    data.append("address", Adress);
+    data.append("first_name", first_name);
+    data.append("last_name", last_name);
+    data.append("email", email);
+    data.append("category", finalMultiValue);
+    data.append("phone", Phone);
+    // data.append("gendar", gender);
+    data.append("user_name", username);
+    // data.append("adress", Adress);
 
     try {
-       await getEditVendor(data);
-      showAlert("Contact Edited Successfully","success");
+      await getEditVendor(data);
+      showAlert("Contact Edited Successfully", "success");
       setData2("");
       setFile("");
-      setCategory('');
+      setCategory("");
       setShowEditModal(false);
       handleAllContactList();
     } catch (error) {
-      showAlert("Something Went Wrong","error");
-     }
+      showAlert("Something Went Wrong", "error");
+    }
   };
   const handleEditClose = () => {
     setData2("");
-    setCategory('');
+    setCategory("");
     setShowEditModal(false);
   };
 
@@ -225,7 +236,7 @@ function Contacts() {
       console.log("resp", resp.data.data);
     } catch (error) {
       console.log("error", error);
-      showAlert("something went Wrong","error");
+      showAlert("something went Wrong", "error");
     }
   };
 
@@ -236,18 +247,18 @@ function Contacts() {
   //filter
 
   const handleClick = async (categories) => {
-    console.log("category",categories);
+    console.log("category", categories);
     const data = {
-      category : categories
-    } 
+      category: categories,
+    };
     try {
       const resp = await getAllVendors(data);
       setVendorList(resp && resp.data.data);
       console.log("resp", resp.data.data);
     } catch (error) {
       console.log("error", error);
-      showAlert("something went Wrong","error");
-    } 
+      showAlert("something went Wrong", "error");
+    }
   };
 
   const Categoryoptions = [
@@ -264,8 +275,6 @@ function Contacts() {
     label,
     value: label,
   });
-  
-
 
   return (
     <div id="layoutSidenavContent">
@@ -289,14 +298,32 @@ function Contacts() {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item onClick={() => handleAllContactList()}>All Categories</Dropdown.Item>
-                <Dropdown.Item onClick={() =>handleClick("Informatics & Accessories")}>Informatics & Accessories</Dropdown.Item>
-                <Dropdown.Item onClick={() =>handleClick("Ip Telephony")}>Ip Telephony</Dropdown.Item>
-                <Dropdown.Item onClick={() =>handleClick("Network Equipment")}>Network equipments</Dropdown.Item>
-                <Dropdown.Item onClick={() =>handleClick("Cpe")}>cpe</Dropdown.Item>
-                <Dropdown.Item onClick={() =>handleClick("Telecom")}>Telecom</Dropdown.Item>
-                <Dropdown.Item onClick={() =>handleClick("Promotions")}>Promotions</Dropdown.Item>
-                <Dropdown.Item onClick={() =>handleClick("otherproducts")}>otherproducts</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleAllContactList()}>
+                  All Categories
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => handleClick("Informatics & Accessories")}
+                >
+                  Informatics & Accessories
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleClick("Ip Telephony")}>
+                  Ip Telephony
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleClick("Network Equipment")}>
+                  Network equipments
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleClick("Cpe")}>
+                  cpe
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleClick("Telecom")}>
+                  Telecom
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleClick("Promotions")}>
+                  Promotions
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleClick("otherproducts")}>
+                  otherproducts
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 
@@ -329,7 +356,7 @@ function Contacts() {
                 <div className="container">
                   <Form.Group>
                     <Form.Label> First Name</Form.Label>
-                    <span style={{color:"red"}}> * </span>
+                    <span style={{ color: "red" }}> * </span>
                     <Form.Control
                       type="text"
                       value={first_name}
@@ -338,7 +365,7 @@ function Contacts() {
                       required
                     ></Form.Control>
                     <Form.Label> Last Name</Form.Label>
-                    <span style={{color:"red"}}> * </span>
+                    <span style={{ color: "red" }}> * </span>
                     <Form.Control
                       type="text"
                       value={last_name}
@@ -347,7 +374,7 @@ function Contacts() {
                       required
                     ></Form.Control>
                     <Form.Label>User Name</Form.Label>
-                    <span style={{color:"red"}}> * </span>
+                    <span style={{ color: "red" }}> * </span>
                     <Form.Control
                       type="text"
                       value={username}
@@ -356,7 +383,7 @@ function Contacts() {
                       required
                     ></Form.Control>
                     <Form.Label>Phone</Form.Label>
-                    <span style={{color:"red"}}> * </span>
+                    <span style={{ color: "red" }}> * </span>
                     <Form.Control
                       type="number"
                       value={Phone}
@@ -367,7 +394,7 @@ function Contacts() {
                       required
                     ></Form.Control>
                     <Form.Label>Category</Form.Label>
-                    <span style={{color:"red"}}> * </span>
+                    <span style={{ color: "red" }}> * </span>
                     <Select
                       isMulti
                       name="category"
@@ -383,18 +410,25 @@ function Contacts() {
                       required
                     />
                     <Form.Label>Email</Form.Label>
-                    <span style={{color:"red"}}> * </span>
+                    <span style={{ color: "red" }}> * </span>
                     <Form.Control
-                      type="email"
-                      value={email}
+                      type="text"
                       name="email"
                       placeholder="multitel@vendors.com"
                       pattern=".+@beststartupever\.com"
-                      onChange={handleChange}
+                      onChange={(e) => validateEmail(e)}
                       required
                     ></Form.Control>
+                    <p
+                      style={{
+                        fontWeight: "bold",
+                        color: "red",
+                      }}
+                    >
+                      {emailError}
+                    </p>
                     <Form.Label>Address</Form.Label>
-                    <span style={{color:"red"}}> * </span>
+                    <span style={{ color: "red" }}> * </span>
                     <Form.Control
                       type="textarea"
                       value={Adress}
@@ -437,55 +471,64 @@ function Contacts() {
           </thead>
           <tbody>
             {vendorList &&
-              vendorList.slice(pagesVisited, pagesVisited + usersPerPage).map((item, i) => (
-                <tr>
-                  {console.log("pc", vendorList)}
+              vendorList
+                .slice(pagesVisited, pagesVisited + usersPerPage)
+                .map((item, i) => (
+                  <tr>
+                    {console.log("pc", vendorList)}
 
-                  <td>{i + 1}</td>
-                  <td>{`${item.first_name} ${item.last_name}`}</td>
-                  <td>{item.category}</td>
-                  <td>{item.email}</td>
-                  <td>{item.phone}</td>
-                  <td>
-                    <a
-                      className="nav-link"
-                      onClick={() => {
-                        handleDeleteshow(item);
-                      }}
-                    >
-                      {" "}
-                      <i className="fa fa-trash-o" />
-                    </a>
-                    <a
-                      className="nav-link"
-                      onClick={() => {
-                        handleEditShow(item);
-                      }}
-                    >
-                      <i className="fa fa-edit" />
-                    </a>
-                  </td>
-                </tr>
-              ))}
+                    <td>{i + 1}</td>
+                    <td>{`${item.first_name} ${item.last_name}`}</td>
+                    <td>{item.category}</td>
+                    <td>{item.email}</td>
+                    <td>{item.phone}</td>
+                    <td>
+                      <a
+                        className="nav-link"
+                        onClick={() => {
+                          handleDeleteshow(item);
+                        }}
+                      >
+                        {" "}
+                        <i className="fa fa-trash-o" />
+                      </a>
+                      <a
+                        className="nav-link"
+                        onClick={() => {
+                          handleEditShow(item);
+                        }}
+                      >
+                        <i className="fa fa-edit" />
+                      </a>
+                    </td>
+                  </tr>
+                ))}
           </tbody>
         </Table>
       </div>
       <Row>
         <div className="col-md-7"></div>
-        <div className="col-md-5 product_pagination" style={{display:"inherit", marginBottom:"20px", marginTop:"20px"}}>
-        <ReactPaginate 
-              previousLabel={<i class="fa-solid fa-arrow-left fa-lg"></i>}
-              nextLabel={<i class="fa-solid fa-arrow-right fa-lg"></i>}
-              pageCount={pageCount}
-              onPageChange={changePage}
-              containerClassName={"paginationBttns"}
-              previousLinkClassName={"previousBttn"}
-              nextLinkClassName={"nextBttn"}
-              disabledClassName={"paginationDisabled"}
-              activeClassName={"paginationActive"}
-            />
+        <div
+          className="col-md-5 product_pagination"
+          style={{
+            display: "inherit",
+            marginBottom: "20px",
+            marginTop: "20px",
+          }}
+        >
+          <ReactPaginate
+            previousLabel={<i class="fa-solid fa-arrow-left fa-lg"></i>}
+            nextLabel={<i class="fa-solid fa-arrow-right fa-lg"></i>}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={"paginationBttns"}
+            previousLinkClassName={"previousBttn"}
+            nextLinkClassName={"nextBttn"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"}
+          />
         </div>
-        </Row>
+      </Row>
       {/* Delete Modal */}
 
       <Modal show={DeleteShow} onHide={handlecloseDelete}>
@@ -520,67 +563,67 @@ function Contacts() {
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            <div className="container">
-                  <Form.Group>
-                    <Form.Label> First Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      value={first_name}
-                      name="first_name"
-                      onChange={onFnameChange}
-                    ></Form.Control>
-                    <Form.Label> Last Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      value={last_name}
-                      name="last_name"
-                      onChange={onLnameChange}
-                    ></Form.Control>
-                    <Form.Label>User Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      value={username}
-                      name="username"
-                      onChange={handleChange}
-                    ></Form.Control>
-                    <Form.Label>Phone</Form.Label>
-                    <Form.Control
-                      type="number"
-                      value={Phone}
-                      name="Phone"
-                      onChange={handleChange}
-                    ></Form.Control>
-                    <Form.Label>Category</Form.Label>
-                    <Select
-                      isMulti
-                      name="category"
-                      // defaultValue={edit}
-                      options={Categoryoptions}
-                      // onChange={handleChange}
-                      className="basic-multi-select"
-                      classNamePrefix="select"
-                      value={category}
-                      onChange={(value) => {
-                        setCategory(value);
-                        console.log(value);
-                      }}
-                    />
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="email"
-                      value={email}
-                      name="email"
-                      onChange={handleChange}
-                    ></Form.Control>
-                    <Form.Label>Adress</Form.Label>
-                    <Form.Control
-                      type="textarea"
-                      value={Adress}
-                      name="Adress"
-                      onChange={handleChange}
-                    ></Form.Control>
-                  </Form.Group>
-                </div>
+              <div className="container">
+                <Form.Group>
+                  <Form.Label> First Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={first_name}
+                    name="first_name"
+                    onChange={onFnameChange}
+                  ></Form.Control>
+                  <Form.Label> Last Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={last_name}
+                    name="last_name"
+                    onChange={onLnameChange}
+                  ></Form.Control>
+                  <Form.Label>User Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={username}
+                    name="username"
+                    onChange={handleChange}
+                  ></Form.Control>
+                  <Form.Label>Phone</Form.Label>
+                  <Form.Control
+                    type="number"
+                    value={Phone}
+                    name="Phone"
+                    onChange={handleChange}
+                  ></Form.Control>
+                  <Form.Label>Category</Form.Label>
+                  <Select
+                    isMulti
+                    name="category"
+                    // defaultValue={edit}
+                    options={Categoryoptions}
+                    // onChange={handleChange}
+                    className="basic-multi-select"
+                    classNamePrefix="select"
+                    value={category}
+                    onChange={(value) => {
+                      setCategory(value);
+                      console.log(value);
+                    }}
+                  />
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    value={email}
+                    name="email"
+                    onChange={handleChange}
+                  ></Form.Control>
+                  <Form.Label>Adress</Form.Label>
+                  <Form.Control
+                    type="textarea"
+                    value={Adress}
+                    name="Adress"
+                    onChange={handleChange}
+                  ></Form.Control>
+                </Form.Group>
+              </div>
             </Modal.Body>
             <Modal.Footer>
               <Button
