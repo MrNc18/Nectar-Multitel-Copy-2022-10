@@ -1,7 +1,9 @@
 // here we define all the application level states and define actions to make the changes to the state
 import { showAlert } from "./utils/showAlert";
+let localUserId = localStorage.getItem("userId")
+let sessionUserId = sessionStorage.getItem("userId")
 export const initialState = {
-  basket: localStorage.getItem("basket")
+  basket:localStorage.getItem("basket")
     ? JSON.parse(localStorage.getItem("basket"))
     : [],
     wish: localStorage.getItem("wish")
