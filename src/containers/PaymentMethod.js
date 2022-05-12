@@ -103,7 +103,7 @@ export default function PaymentMethod() {
                         : userDet?.email}
                     </td>
                     <td className="td3">
-                      <a href="/checkout">sChange</a>
+                      <a href="/checkout">Change</a>
                     </td>
                   </tr>
                   <tr className="header_row">
