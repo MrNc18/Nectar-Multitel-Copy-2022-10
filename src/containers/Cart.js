@@ -2,13 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LandingPage from "../components/LandingPage";
 import { useStateValue } from "../StateProvider";
-import { imageUrl } from "../services/category";
+import { delCartData, getCartData, imageUrl } from "../services/category";
 import { formatAmount } from "../utils/AmountFormatter";
 import { getBasketTotal } from "../Reducer";
+import { AUTH_TOKEN, getCookie } from "../utils/cookie";
+import { getUserDetailsByToken } from "../services/authentication";
+import { showAlert } from "../utils/showAlert";
 
 export default function Cart() {
   const [prodId, setProdId] = useState("");
   const [total, setTotal] = useState("");
+  const [cartDet, setCartDet] = useState([]);
+  const [iniText, setIniText] = useState("Loading...");
+  const isAuthenticated = getCookie(AUTH_TOKEN);
+
   const deleteRecord = (item) => {
     setProdId(item.id);
     removeFromBasket();
@@ -22,18 +29,73 @@ export default function Cart() {
     });
   };
 
-
+  const getCartDetails = async () => {
+    if (isAuthenticated) {
+      const result = await getUserDetailsByToken();
+      const resp = await getCartData({
+        userId: result?.data.data.userId,
+      });
+      console.log("getcartdata", resp?.data?.data);
+      resp?.data?.data
+        ? setCartDet(resp?.data?.data)
+        : setIniText("Error loading cart data.");
+      !resp?.data?.data?.length && setIniText("No products added to cart.");
+    }
+  };
 
   React.useEffect(() => {
-    // console.log("prodId",prodId)
-   
-      console.log(basket, "basket");
-    
+    console.log(basket, "basket");
   }, [basket]);
 
-  const disable = 
-   getBasketTotal(basket) != "0" ;
+  React.useEffect(() => {
+    getCartDetails();
+  }, []);
 
+  const disable = getBasketTotal(basket) != "0";
+
+  const removeFromCart = async (productId, userId) => {
+    try {
+      await delCartData({ userId, id: productId });
+      showAlert("Product removed from cart.", "success");
+      setCartDet(cartDet.filter(e => e.productId != productId))
+    } catch (error) {
+      showAlert("Something went wrong.", "error");
+    } finally {
+    }
+  };
+
+  const decCount = (item) => {
+    let cartDet2 = cartDet.map((a) => {
+      return { ...a };
+    });
+
+    const prdt = cartDet2.find((e) => e.id == item.id);
+    if (prdt.quantity > 1) {
+      prdt.quantity -= 1;
+      setCartDet(cartDet2);
+    }
+  };
+
+  const incCount = (item) => {
+    let cartDet2 = cartDet.map((a) => {
+      return { ...a };
+    });
+
+    const prdt = cartDet2.find((e) => e.id == item.id);
+    if (prdt.quantity < 25) {
+      prdt.quantity += 1;
+      setCartDet(cartDet2);
+    } else {
+      showAlert("Quantity Limit Exceeded", "error");
+    }
+  };
+
+  const getTotal = () => {
+    return cartDet?.reduce(
+      (amount, item) => amount + item.quantity * Number(item.product.price),
+      0
+    );
+  };
 
   const navigate = useNavigate();
   return (
@@ -62,80 +124,143 @@ export default function Cart() {
                     <td className="text-center">Subtotal</td>
                     <td>Action</td>
                   </tr>
-                  {basket.length ? basket.map((item) => (
-                    <tr>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          <img
-                            className="cart_book_img"
-                            src={imageUrl(item.image)}
-                          />
-                          <span className="cart_book_name">{item.name}</span>
-                        </div>
-                      </td>
-                      <td className="cart_price text-center">
-                        {formatAmount(item.price)}
-                      </td>
-                      <td className="cart_price text-center">
-                        {/* {item.quantity} */}
-                        <div className="qty_counter d-flex">
-                          <input
-                            type="button"
-                            value="-"
-                            min="0"
-                            className="minus"
+                  {isAuthenticated ? (
+                    cartDet?.length ? (
+                      cartDet.map((item) => (
+                        <tr key={item.id}>
+                          <td>
+                            <div className="d-flex align-items-center">
+                              <img
+                                className="cart_book_img"
+                                src={imageUrl(item.product.cover_img)}
+                              />
+                              <span className="cart_book_name">
+                                {item.product.name}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="cart_price text-center">
+                            {formatAmount(item.product.price)}
+                          </td>
+                          <td className="cart_price text-center">
+                            <div className="qty_counter d-flex">
+                              <input
+                                type="button"
+                                value="-"
+                                min="0"
+                                className="minus"
+                                onClick={() => decCount(item)}
+                              />
+                              <input
+                                type="text"
+                                name="qty"
+                                value={item.quantity}
+                                className="text-center input-qty w-100"
+                              />
+                              <input
+                                type="button"
+                                value="+"
+                                max="20"
+                                className="plus"
+                                onClick={() => incCount(item)}
+                              />
+                            </div>
+                          </td>
+                          <td className="cart_price text-center">
+                            {formatAmount(
+                              item?.product?.price * item?.quantity
+                            )}
+                          </td>
+                          <td>
+                            <a
+                              onClick={() =>
+                                removeFromCart(item?.productId, item?.userId)
+                              }
+                              className="remove_from_cart"
+                            >
+                              Remove
+                            </a>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colspan="5">{iniText}</td>
+                      </tr>
+                    )
+                  ) : basket.length ? (
+                    basket.map((item) => (
+                      <tr key={item.id}>
+                        <td>
+                          <div className="d-flex align-items-center">
+                            <img
+                              className="cart_book_img"
+                              src={imageUrl(item.image)}
+                            />
+                            <span className="cart_book_name">{item.name}</span>
+                          </div>
+                        </td>
+                        <td className="cart_price text-center">
+                          {formatAmount(item.price)}
+                        </td>
+                        <td className="cart_price text-center">
+                          <div className="qty_counter d-flex">
+                            <input
+                              type="button"
+                              value="-"
+                              min="0"
+                              className="minus"
+                              onClick={() => {
+                                dispatch({
+                                  type: "CHANGE_QTY",
+                                  id: item.id,
+                                  payload: "decrement",
+                                });
+                              }}
+                            />
+                            <input
+                              type="text"
+                              name="qty"
+                              value={item.quantity}
+                              className="text-center input-qty w-100"
+                            />
+                            <input
+                              type="button"
+                              value="+"
+                              max="20"
+                              className="plus"
+                              onClick={() => {
+                                dispatch({
+                                  type: "CHANGE_QTY",
+                                  id: item.id,
+                                  payload: "increment",
+                                });
+                              }}
+                            />
+                          </div>
+                        </td>
+                        <td className="cart_price text-center">
+                          {formatAmount(item.price * item.quantity)}
+                        </td>
+                        <td>
+                          <a
                             onClick={() => {
+                              // deleteRecord(item);
+                              // setProdId(item.id);
+                              // console.log("prodId", prodId);
                               dispatch({
-                                type: "CHANGE_QTY",
+                                type: "REMOVE_FROM_BASKET",
                                 id: item.id,
-                                payload: "decrement"
                               });
                             }}
-                          />
-                          <input
-                            type="text"
-                            name="qty"
-                            value={item.quantity}
-                            className="text-center input-qty w-100"
-                          />
-                          <input
-                            type="button"
-                            value="+"
-                            max='20'
-                            className="plus"
-                            onClick={() => {
-                              dispatch({
-                                type: "CHANGE_QTY",
-                                id: item.id,
-                                payload: "increment"
-                              });
-                            }}
-                          />
-                        </div>
-                      </td>
-                      <td className="cart_price text-center">
-                        {formatAmount(item.price * item.quantity)}
-                      </td>
-                      {/* {setProdId(item.id)} */}
-                      {/* <td><a onClick={()=>removeFromBasket(item)} className="remove_from_cart">Remove</a></td> */}
-                      <td>
-                        <a
-                          onClick={() => {
-                             // deleteRecord(item);
-                            // setProdId(item.id);
-                            // console.log("prodId", prodId);
-                            dispatch({
-                              type: "REMOVE_FROM_BASKET",
-                              id: item.id,
-                            });
-                          }}
-                          className="remove_from_cart"
-                        >
-                          Remove
-                        </a>
-                      </td>
-                    </tr>
-                  )) : (
+                            className="remove_from_cart"
+                          >
+                            Remove
+                          </a>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
                     <tr>
                       <td colspan="5">No items added to cart.</td>
                     </tr>
@@ -143,36 +268,6 @@ export default function Cart() {
                 </table>
               </div>
             </div>
-
-            {/* <div className="row coupon_row mt-4">
-              <div className="col-md-12">
-                <div className="bg-light d-flex justify-content-between coupon_inner_row">
-                   <div>
-                    <form className="form-inline">
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control mr-2"
-                          id="coupon_code"
-                          name="coupon_code"
-                          placeholder="Coupon code"
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        className="btn btn-primary apply_coupon"
-                      >
-                        Apply coupon
-                      </button>
-                    </form>
-                  </div> 
-
-                  <button type="submit" className="btn btn-primary update_cart">
-                    Update cart
-                  </button>
-                </div>
-              </div>
-            </div> */}
           </div>
 
           <div className="col-md-4">
@@ -180,7 +275,11 @@ export default function Cart() {
               <h3 className="mb-4">Cart Total</h3>
               <div className="d-flex justify-content-between subtotal_row">
                 <span>Subtotal</span>
-                <span>{formatAmount(getBasketTotal(basket))}</span>
+                <span>
+                  {isAuthenticated
+                    ? formatAmount(getTotal())
+                    : formatAmount(getBasketTotal(basket))}
+                </span>
               </div>
               {/* <div className="d-flex justify-content-between total_row">
                 <span>Total</span>
@@ -188,7 +287,7 @@ export default function Cart() {
               </div> */}
               <p className="mt-4 mb-4">Shipping calculated at checkout</p>
               <button
-               disabled={!disable}
+                disabled={!disable}
                 type="submit"
                 className="btn btn-primary to_checkout w-100"
                 onClick={() => navigate("/checkout")}

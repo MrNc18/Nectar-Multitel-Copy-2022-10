@@ -17,21 +17,28 @@ import { getUserDetailsByToken } from "../services/authentication";
 import { Dropdown } from "react-bootstrap";
 import { useStateValue } from "../StateProvider";
 import { showAlert } from "../utils/showAlert";
+import { getCartData } from "../services/category";
 
 function Header() {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [username, setUsername] = useState("");
+  const [cartLength, setCartLength] = useState(0)
   const isAuthenticated = getCookie(AUTH_TOKEN);
-  // console.log(isAuthenticated);
 
   const [{ wish,basket }, dispatch] = useStateValue();
 
   const getDataByToken = async () => {
     if (isAuthenticated) {
       const result = await getUserDetailsByToken();
-      // console.log(result);
       setUsername(result?.data?.data?.first_name);
+
+      const resp = await getCartData({
+        userId: result?.data.data.userId,
+      });
+      console.log("getcartdata", resp?.data?.data);
+      resp?.data?.data
+        && setCartLength(resp?.data?.data.length)
     }
   };
 
@@ -155,7 +162,7 @@ function Header() {
                           <span 
                             className="counter"
                           >
-                            {basket.length}
+                            {isAuthenticated ? cartLength : basket.length}
                           </span>
                         </Dropdown.Item>
                         <Dropdown.Item

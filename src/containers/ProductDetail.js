@@ -6,9 +6,11 @@ import CommonSection from "../components/CommonSection";
 import LandingPage from "../components/LandingPage";
 import { formatAmount } from "../utils/AmountFormatter";
 import { baseurl } from "../utils/request";
-import { getProductBySlug } from "../services/category";
+import { getProductBySlug, addCartData, addToWishlist } from "../services/category";
+import { getUserDetailsByToken } from "../services/authentication";
 import {useStateValue} from "../StateProvider"
 import { showAlert } from "../utils/showAlert";
+import { AUTH_TOKEN, getCookie } from "../utils/cookie";
 
 
 
@@ -121,24 +123,42 @@ const Reviews = () => (
 
 function ProductDetail() {
   const [state, dispatch] = useStateValue();
+  const [userId, setUserId] = useState('')
+  const isAuthenticated = getCookie(AUTH_TOKEN)
 
-  const addToBasket = () => {
+  const addToBasket = async () => {
+    if (userId) {
+      const resp = await addCartData({
+          userId,
+          quantity:qty,
+          id:product.id,
+      })
+      console.log("addCart", resp)
+    } else {
       dispatch({
-          type: "ADD_TO_BASKET",
-          item: {
-              id: product.id,
-              image: product?.cover_img,
-              name:product.name,
-              price: product.price,
-              quantity:qty,
-              // rating: rating,
-              // subtotal:subtotal
-          },
-      });
+        type: "ADD_TO_BASKET",
+        item: {
+            id: product.id,
+            image: product?.cover_img,
+            name:product.name,
+            price: product.price,
+            quantity:qty,
+            // rating: rating,
+            // subtotal:subtotal
+        },
+    });
+    }
   };
 
-  const addTowish = () => {
-    dispatch({
+  const addTowish = async () => {
+    if (userId) {
+      const resp = await addToWishlist({
+          userId,
+          id:product.id,
+      })
+      console.log("wishlistadd", resp)
+    } else {
+      dispatch({
         type: "ADD_TO_WISH",
         item: {
             id: product.id,
@@ -151,6 +171,7 @@ function ProductDetail() {
             // subtotal:subtotal
         },
     });
+    }
 };
 
 
@@ -176,6 +197,16 @@ function ProductDetail() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
+    async function getUserData() {
+      if (isAuthenticated) {
+        const result = await getUserDetailsByToken()
+        setUserId(result?.data.data.userId)
+      }
+    }
+    getUserData()
   }, [])
   
 

@@ -129,6 +129,28 @@ export const getAllCategories = async () => {
     return await doPost('api/payment/getOrderDetails',data);
   }
 
+   //cart
+
+   export const addCartData = async(data) =>{
+    return await doPost('api/cart/addcartdata',data);
+  }
+
+  export const delCartData = async(data) =>{
+    return await doDelete('api/cart/cartDataDelete',data);
+  }
+  export const getCartData = async(data) =>{
+    return await doPost('api/cart/getCartData',data);
+  }
+
+  // wishlist
+  export const addToWishlist = async(data) =>{
+    return await doPost('api/cart/addFavCart',data);
+  }
+
+  // export const delCartData = async(data) =>{
+  //   return await doPost('api/cart/cartDataDelete',data);
+  
+
 
 
 
