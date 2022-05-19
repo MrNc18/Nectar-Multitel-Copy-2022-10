@@ -5,7 +5,7 @@ import { CITY_LIST, COUNTRY_LIST } from "../constants/authconstant";
 import { getUserDetailsByToken } from "../services/authentication";
 import { AUTH_TOKEN, getCookie } from "../utils/cookie";
 import { useStateValue } from "../StateProvider";
-import { imageUrl } from "../services/category";
+import { getCartData, imageUrl } from "../services/category";
 import { formatAmount } from "../utils/AmountFormatter";
 import { getBasketTotal } from "../Reducer";
 import { useNavigate } from "react-router-dom";
@@ -15,15 +15,16 @@ export default function Checkout() {
   const [shipAddress, setShipAddress] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [iniText, setIniText] = useState("Loading...");
   const [userEmail, setUserEmail] = useState("");
   const isAuthenticated = getCookie(AUTH_TOKEN);
   const [{ basket }, dispatch] = useStateValue();
 
-  const[userData,setUserData] = useState('')
-  const [first_name, setFname] = useState('');
-  const [last_name, setLname] = useState('');
-  const [ship_city, setSCity] = useState('');
-  const [city, setCity] = useState('');
+  const [userData, setUserData] = useState("");
+  const [first_name, setFname] = useState("");
+  const [last_name, setLname] = useState("");
+  const [ship_city, setSCity] = useState("");
+  const [city, setCity] = useState("");
   const navigate = useNavigate();
 
   const getDataByToken = async () => {
@@ -31,25 +32,23 @@ export default function Checkout() {
       const result = await getUserDetailsByToken();
       // console.log(result);
       setUserEmail(result?.data?.data?.email);
-      setUserData(result?.data.data)
-      setLname(result?.data.data.last_name)
-      setFname(result?.data.data.first_name) 
-      setCity(result?.data.data.city)
+      setUserData(result?.data.data);
+      setLname(result?.data.data.last_name);
+      setFname(result?.data.data.first_name);
+      setCity(result?.data.data.city);
       setData2({
-      // first_name:result?.data.data.first_name,
-      // last_name:result?.data.data.last_name,
-      country:result?.data.data.country?result?.data.data.country:'',
-      // city:result?.data.data.city,
-      address1:result?.data.data.adress,
-      address2:result?.data.data.adress,
-      zipcode:result?.data.data.zipcode,
-      phone:result?.data.data.phone,
-      email:result?.data.data.email,
-      userId:result?.data.data.userId,
-      
-      }) 
-      console.log("userData",result.data.data)
-
+        // first_name:result?.data.data.first_name,
+        // last_name:result?.data.data.last_name,
+        country: result?.data.data.country ? result?.data.data.country : "",
+        // city:result?.data.data.city,
+        address1: result?.data.data.adress,
+        address2: result?.data.data.adress,
+        zipcode: result?.data.data.zipcode,
+        phone: result?.data.data.phone,
+        email: result?.data.data.email,
+        userId: result?.data.data.userId,
+      });
+      console.log("userData", result.data.data);
     }
   };
 
@@ -58,6 +57,7 @@ export default function Checkout() {
   }, []);
 
   console.log("firstName", userData.first_name);
+  const [cartDet, setCartDet] = useState([]);
   const [data2, setData2] = useState({
     first_name: "",
     last_name: "",
@@ -97,6 +97,19 @@ export default function Checkout() {
     order_notes,
   } = data2;
 
+  React.useEffect(() => {
+    (async () => {
+      if (userId) {
+        const resp = await getCartData({ userId });
+        console.log("getcartdata", resp?.data?.data);
+        resp?.data?.data
+          ? setCartDet(resp?.data?.data)
+          : setIniText("Error loading cart data.");
+        !resp?.data?.data?.length && setIniText("No products added to cart.");
+      }
+    })();
+  }, [userId]);
+
   // email validator
   const [emailError, setEmailError] = useState("");
   const [email, setEmail] = useState("");
@@ -127,8 +140,7 @@ export default function Checkout() {
 
   // only accept alphabet
 
-  
-  const onFnameChange = e => {
+  const onFnameChange = (e) => {
     const { value } = e.target;
 
     const re = /^[A-Za-z]+$/;
@@ -137,7 +149,7 @@ export default function Checkout() {
     }
   };
 
-  const onLnameChange = e => {
+  const onLnameChange = (e) => {
     const { value } = e.target;
 
     const re = /^[A-Za-z]+$/;
@@ -145,8 +157,8 @@ export default function Checkout() {
       setLname(value);
     }
   };
-  
-  const onSCityChange = e => {
+
+  const onSCityChange = (e) => {
     const { value } = e.target;
 
     const re = /^[A-Za-z]+$/;
@@ -174,8 +186,8 @@ export default function Checkout() {
       setSLname(value);
     }
   };
-  
-  const onCityChange = e => {
+
+  const onCityChange = (e) => {
     const { value } = e.target;
 
     const re = /^[A-Za-z]+$/;
@@ -213,6 +225,13 @@ export default function Checkout() {
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
+  };
+
+  const getTotal = () => {
+    return cartDet?.reduce(
+      (amount, item) => amount + item.quantity * Number(item.product.price),
+      0
+    );
   };
 
   return (
@@ -302,7 +321,9 @@ export default function Checkout() {
                         onFnameChange
                         required
                       >
-                        <option  value="" disabled="disabled">Select Country</option>
+                        <option value="" disabled="disabled">
+                          Select Country
+                        </option>
                         {/* {console.log("A;;",allcategories)} */}
                         {COUNTRY_LIST.map((item, i) => (
                           <option key={i} value={item}>
@@ -489,7 +510,9 @@ export default function Checkout() {
                               onChange={handleChange}
                               required
                             >
-                              <option  value="" disabled="disabled">Select Country</option>
+                              <option value="" disabled="disabled">
+                                Select Country
+                              </option>
                               {/* {console.log("A;;",allcategories)} */}
                               {COUNTRY_LIST.map((item, i) => (
                                 <option key={i} value={item}>
@@ -628,32 +651,6 @@ export default function Checkout() {
             <div className="cart_top_row">
               <h2 className="body_heading mt-5">Your Order</h2>
             </div>
-            {/* <div className="radio-box">
-              <div className="form-check form-check-inline">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions"
-                  id="inlineRadio1"
-                  value="option1"
-                />
-                <label className="form-check-label" htmlFor="inlineRadio1">
-                  Home Delivery
-                </label>
-              </div>
-              <div className="form-check form-check-inline">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="inlineRadioOptions"
-                  id="inlineRadio2"
-                  value="option2"
-                />
-                <label className="form-check-label" htmlFor="inlineRadio2">
-                  Pick-up from Acacias Store
-                </label>
-              </div>
-            </div> */}
             <div className="order-box">
               <div className="row">
                 <div className="col-md-12 table-responsive">
@@ -662,176 +659,61 @@ export default function Checkout() {
                       <td>Product</td>
                       <td className="text-center">Subtotal</td>
                     </tr>
-                    {basket.map((item) => (
+                    {isAuthenticated ? (
+                      cartDet.length ? (
+                        cartDet.map((item) => (
+                          <tr key={item.id}>
+                            <td>
+                              <div className="d-flex align-items-center">
+                                <img
+                                  className="cart_book_img"
+                                  src={imageUrl(item.product.cover_img)}
+                                />
+                                <span className="cart_book_name">
+                                  {item.product.name}
+                                </span>
+                              </div>
+                            </td>
+                            <td className="cart_price text-center">
+                              {formatAmount(item.product.price * item.quantity)}
+                            </td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colspan="2">{iniText}</td>
+                        </tr>
+                      )
+                    ) : basket?.length ? (
+                      basket.map((item) => (
+                        <tr>
+                          <td>
+                            <div className="d-flex align-items-center">
+                              <img
+                                className="cart_book_img"
+                                src={imageUrl(item.image)}
+                              />
+                              <span className="cart_book_name">
+                                {item.name}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="cart_price text-center">
+                            {formatAmount(item.price * item.quantity)}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
                       <tr>
-                        <td>
-                          <div className="d-flex align-items-center">
-                            <img
-                              className="cart_book_img"
-                              src={imageUrl(item.image)}
-                            />
-                            <span className="cart_book_name">{item.name}</span>
-                          </div>
-                        </td>
-                        <td className="cart_price text-center">
-                          {formatAmount(item.price)}
-                        </td>
+                        <td colspan="2">No items added to cart.</td>
                       </tr>
-                    ))}
+                    )}
                   </table>
                 </div>
-                {/* <div className="subtotal row">
-                  <div className="col-md-6">
-                    <h2>Subtotal</h2>
-                  </div>
-                  <div className="col-md-6 text-right">
-                    <h3>{formatAmount(getBasketTotal(basket))}</h3>
-                  </div>
-                  <div className="col-md-6">
-                    <h2>Shipping</h2>
-                  </div>
-                  <div className="col-md-6 text-right">
-                    <a
-                      data-toggle="collapse"
-                      href="#collapseExample"
-                      role="button"
-                      aria-expanded="false"
-                      aria-controls="collapseExample"
-                    >
-                      <b>Calculated at next step</b>
-                    </a>
-                  </div>
-                  <div className="collapse w-100" id="collapseExample">
-                    <form className="calculated">
-                      <div className="form-group col-12">
-                        <label htmlFor="inputState">
-                          Select a Country/Region
-                        </label>
-                        <select id="inputState" className="form-control">
-                          <option selected>Country</option>
-                          <option>...</option>
-                        </select>
-                      </div>
-                      <div className="form-group col-12">
-                        <label htmlFor="inputState">Select a State</label>
-                        <select id="inputState" className="form-control">
-                          <option selected>State</option>
-                          <option>...</option>
-                        </select>
-                      </div>
-                      <div className="form-group col-12">
-                        <label htmlFor="inputState">Select a State</label>
-                        <input
-                          type="text"
-                          name=""
-                          className="form-control"
-                          placeholder="Zip/Postal Code"
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="btn btn-primary contact_btn cal_rate_btn"
-                        href="#"
-                      >
-                        Calculate Rates
-                      </button>
-                    </form>
-                  </div>
-                  <div className="shipping">
-                    <h1>
-                      There are 4 shipping rates available for 91326,
-                      California, United States, starting at 10.45 Kz.
-                    </h1>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="exampleRadios"
-                        id="exampleRadios1"
-                        value="option1"
-                        checked
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="exampleRadios1"
-                      >
-                        Small Packet USA Air at 10.45 Kz
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="exampleRadios"
-                        id="exampleRadios2"
-                        value="option2"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="exampleRadios2"
-                      >
-                        Tracked Packet USA at 13.75 Kz
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="exampleRadios"
-                        id="exampleRadios3"
-                        value="option3"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="exampleRadios3"
-                      >
-                        Expedited Parcel USA at 19.22 Kz
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="exampleRadios"
-                        id="exampleRadios4"
-                        value="option4"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="exampleRadios4"
-                      >
-                        Xpresspost USA at 31.66 Kz
-                      </label>
-                    </div>
-                  </div>
-                </div> */}
               </div>
               <div className="row">
                 <div className="col-12">
                   <hr />
-                  {/* <form>
-                    <p>If you have a discount coupon, please enter it below.</p>
-                    <div className="form-row align-items-center">
-                      <div className="col-auto">
-                        <label className="sr-only" htmlFor="inlineFormInput">
-                          Name
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control mb-2"
-                          id="inlineFormInput"
-                          placeholder="Coupon code"
-                        />
-                      </div>
-                      <div className="col-auto">
-                        <button type="submit" className="btn btn-primary mb-2">
-                          Apply coupon
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                  <hr /> */}
                 </div>
               </div>
               <div className="subtotal row">
@@ -840,34 +722,21 @@ export default function Checkout() {
                 </div>
                 <div className="col-md-6 text-right">
                   <h6>
-                    <strong>{formatAmount(getBasketTotal(basket))}</strong>
+                    <strong>
+                      {isAuthenticated
+                        ? formatAmount(getTotal())
+                        : formatAmount(getBasketTotal(basket))}
+                    </strong>
                   </h6>
                 </div>
               </div>
-              {/* <div className="agree">
-                <div className="form-group">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      id="gridCheck"
-                      checked={agreed}
-                      onChange={(e) => setAgreed(e.target.checked)}
-                    />
-                    <label className="form-check-label" htmlFor="gridCheck">
-                      I have read and agree to the website{" "}
-                      <a href="#">terms and conditions</a>
-                    </label>
-                  </div>
-                </div>
-              </div> */}
               <button
                 type="submit"
                 className="order-box-btn"
                 disabled={btnDisabled}
                 onClick={() =>
                   navigate("/payment-methods", {
-                    state: { data: data2, shipAddress },
+                    state: { data: data2, shipAddress, city, cartDet, email, ship_email },
                   })
                 }
               >
