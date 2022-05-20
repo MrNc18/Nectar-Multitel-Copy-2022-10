@@ -2,21 +2,50 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LandingPage from "../components/LandingPage";
 import { useStateValue } from "../StateProvider";
-import { imageUrl } from "../services/category";
+import { delFromWishlist, getWishlistData, imageUrl } from "../services/category";
 import { formatAmount } from "../utils/AmountFormatter";
+import { AUTH_TOKEN, getCookie } from "../utils/cookie";
+import { getUserDetailsByToken } from "../services/authentication";
+import { showAlert } from "../utils/showAlert";
 
 export default function WishList() {
-  
- 
-
   const [{ wish }, dispatch] = useStateValue();
+  const [wishlistDet, setWishlistDet] = useState([]);
+  const [iniText, setIniText] = useState("Loading...");
+  const isAuthenticated = getCookie(AUTH_TOKEN);
 
   React.useEffect(() => {
-    // console.log("prodId",prodId)
-   
-      console.log(wish, "basket");
-    
+    console.log(wish, "basket");  
   }, [wish]);
+
+  const getWishlistDetails = async () => {
+    if (isAuthenticated) {
+      const result = await getUserDetailsByToken();
+      const resp = await getWishlistData({
+        userId: result?.data.data.userId,
+      });
+      console.log("getWLdata", resp?.data?.data);
+      resp?.data?.data
+        ? setWishlistDet(resp?.data?.data)
+        : setIniText("Error loading wishlist data.");
+      !resp?.data?.data?.length && setIniText("No products in wishlist.");
+    }
+  };
+
+  const removeFromWL = async (productId, userId) => {
+    try {
+      await delFromWishlist({ userId, id: productId });
+      showAlert("Product removed from wishlist.", "success");
+      getWishlistDetails();
+    } catch (error) {
+      showAlert("Something went wrong.", "error");
+    } finally {
+    }
+  };
+
+  React.useEffect(() => {
+    getWishlistDetails();
+  }, []);
 
   const navigate = useNavigate();
   return (
@@ -44,43 +73,78 @@ export default function WishList() {
                     <td className="text-center qty_col">Option</td>
                     {/* <td className="text-center">Subtotal</td> */}
                   </tr>
-                  {wish.length ? wish.map((item) => (
-                    <tr>
-                      <td>
-                        <div className="d-flex align-items-center">
-                          <img
-                            className="cart_book_img"
-                            src={imageUrl(item.image)}
-                            onClick={() =>navigate(`/products/${item.slug}`)}
-                            style={{cursor:'pointer'}}
-                          />
-                          <span className="cart_book_name">{item.name}</span>
-                        </div>
-                      </td>
-                      <td className="cart_price text-center">
-                        {formatAmount(item.price)}
-                      </td>
-                      {/* {setProdId(item.id)} */}
-                      {/* <td><a onClick={()=>removeFromBasket(item)} className="remove_from_cart">Remove</a></td> */}
-                      <td>
-                        <a
-                          onClick={() => {
-                            dispatch({
-                              type: "REMOVE_FROM_WISH",
-                              id: item.id,
-                            });
-                          }}
-                          className="remove_from_cart"
-                        >
-                          Remove
-                        </a>
-                      </td>
-                    </tr>
-                  )) : (
-                    <tr>
-                      <td colspan="5">No items added to cart.</td>
-                    </tr>
-                  )}
+                  {
+                    isAuthenticated ? (
+                      wishlistDet?.length ? (
+                        wishlistDet.map((item) => (
+                          <tr>
+                            <td>
+                              <div className="d-flex align-items-center">
+                                <img
+                                  className="cart_book_img"
+                                  src={imageUrl(item.product.cover_img)}
+                                  onClick={() =>navigate(`/products/${item.product.slug}`)}
+                                  style={{cursor:'pointer'}}
+                                />
+                                <span className="cart_book_name">{item.product.name}</span>
+                              </div>
+                            </td>
+                            <td className="cart_price text-center">
+                              {formatAmount(item.product.price)}
+                            </td>
+                            <td>
+                              <a
+                                onClick={() => removeFromWL(item.productId, item.userId)}
+                                className="remove_from_cart"
+                              >
+                                Remove
+                              </a>
+                            </td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colspan="3">{iniText}</td>
+                        </tr>
+                      )
+                    ) : (
+                      wish.length ? wish.map((item) => (
+                        <tr>
+                          <td>
+                            <div className="d-flex align-items-center">
+                              <img
+                                className="cart_book_img"
+                                src={imageUrl(item.image)}
+                                onClick={() =>navigate(`/products/${item.slug}`)}
+                                style={{cursor:'pointer'}}
+                              />
+                              <span className="cart_book_name">{item.name}</span>
+                            </div>
+                          </td>
+                          <td className="cart_price text-center">
+                            {formatAmount(item.price)}
+                          </td>
+                          <td>
+                            <a
+                              onClick={() => {
+                                dispatch({
+                                  type: "REMOVE_FROM_WISH",
+                                  id: item.id,
+                                });
+                              }}
+                              className="remove_from_cart"
+                            >
+                              Remove
+                            </a>
+                          </td>
+                        </tr>
+                      )) : (
+                        <tr>
+                          <td colspan="5">No items added to wishlist.</td>
+                        </tr>
+                      )
+                    )
+                  }
                 </table>
               </div>
             </div>

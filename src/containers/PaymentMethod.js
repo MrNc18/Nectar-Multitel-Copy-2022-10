@@ -22,6 +22,7 @@ export default function PaymentMethod() {
 
   const [userDet, setUserDet] = useState(state?.data || {});
   const [userCity, setUserCity] = useState(state?.city || "");
+  const [userShipCity, setUserShipCity] = useState(state?.ship_city || "");
   const [adress, setAdress] = useState(state?.shipAddress || {});
   const [{ basket }, dispatch] = useStateValue();
   const navigate = useNavigate();
@@ -135,7 +136,7 @@ export default function PaymentMethod() {
                             userDet?.ship_address2
                               ? userDet?.ship_address2 + ", "
                               : ""
-                          }${userDet?.ship_city}, ${userDet?.ship_country} - ${
+                          }${userShipCity}, ${userDet?.ship_country} - ${
                             userDet?.ship_zipcode
                           }`
                         : `${userDet?.address1}, ${

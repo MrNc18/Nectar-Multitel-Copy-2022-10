@@ -736,7 +736,7 @@ export default function Checkout() {
                 disabled={btnDisabled}
                 onClick={() =>
                   navigate("/payment-methods", {
-                    state: { data: data2, shipAddress, city, cartDet, email, ship_email },
+                    state: { data: data2, shipAddress, city, cartDet, email, ship_email, ship_city },
                   })
                 }
               >
