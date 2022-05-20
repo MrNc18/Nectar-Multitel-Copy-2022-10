@@ -6,7 +6,7 @@ import CommonSection from "../components/CommonSection";
 import LandingPage from "../components/LandingPage";
 import { formatAmount } from "../utils/AmountFormatter";
 import { baseurl } from "../utils/request";
-import { getProductBySlug, addCartData, addToWishlist } from "../services/category";
+import { getProductBySlug, addCartData, addToWishlist, getWishlistData } from "../services/category";
 import { getUserDetailsByToken } from "../services/authentication";
 import {useStateValue} from "../StateProvider"
 import { showAlert } from "../utils/showAlert";
@@ -183,15 +183,15 @@ function ProductDetail() {
   const [product, setProduct] = useState({});
   const [step, setStep] = useState("additional");
   const [qty, setQty] = useState(1);
+  const [inWishlist, setInWishlist] = useState(false)
   const params = useParams();
   console.log(params?.name);
 
   useEffect(() => {
     (async () => {
       const response = await getProductBySlug({ slug: params?.name });
-      console.log(response,"res");
+      console.log("Product data", response?.data?.data);
       setProduct(response?.data?.data);
-      // !response?.data?.length && setInitial("No promotions found");
     })();
   }, [params?.name]);
 
@@ -208,6 +208,16 @@ function ProductDetail() {
     }
     getUserData()
   }, [])
+
+  useEffect(() => {
+    (async () => {
+      if(userId) {
+        const resp = await getWishlistData({ userId });
+        console.log("WLdata", resp?.data?.data);
+        setInWishlist(resp?.data?.data?.find((e) => e?.productId == product?.id))
+      }
+    })();
+  }, [userId, product])
   
 
   const TabList = Object.freeze([
@@ -308,20 +318,22 @@ function ProductDetail() {
                   Add to Cart
                 </a>
               </div>
-              <div className="col-4 add_wishlist">
+              {!inWishlist && (
+                <div className="col-4 add_wishlist">
                 <button
                   className="btn btn-primary"
                   style={{ border: "1px solid var(--secondary)" }}
                   onClick={() => {
                     addTowish()
                     showAlert("Item Added to WishList.","success")
-                    // navigate("/cart")
+                    setInWishlist(true)
                   }}
                 >
                   <img src="/assets/images/green-heart-icon.png" />
                   <span>Add to wishlist</span>
                 </button>
               </div>
+              )}
             </div>
 
             <div className="product_desc mt-3">
