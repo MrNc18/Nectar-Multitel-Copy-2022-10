@@ -56,6 +56,7 @@ export default function Cart() {
       await delCartData({ userId, id: productId });
       showAlert("Product removed from cart.", "success");
       setCartDet(cartDet.filter(e => e.productId != productId))
+      cartDet.length === 1 && setIniText("No products added to cart.")
     } catch (error) {
       showAlert("Something went wrong.", "error");
     } finally {
