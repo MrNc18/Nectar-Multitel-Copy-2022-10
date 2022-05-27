@@ -17,21 +17,34 @@ import { getUserDetailsByToken } from "../services/authentication";
 import { Dropdown } from "react-bootstrap";
 import { useStateValue } from "../StateProvider";
 import { showAlert } from "../utils/showAlert";
+import { getCartData, getWishlistData } from "../services/category";
 
 function Header() {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [username, setUsername] = useState("");
+  const [cartLength, setCartLength] = useState('')
+  const [wishlistLength, setWishlistLength] = useState('')
   const isAuthenticated = getCookie(AUTH_TOKEN);
-  // console.log(isAuthenticated);
 
   const [{ wish,basket }, dispatch] = useStateValue();
 
   const getDataByToken = async () => {
     if (isAuthenticated) {
       const result = await getUserDetailsByToken();
-      // console.log(result);
       setUsername(result?.data?.data?.first_name);
+
+      const resp = await getCartData({
+        userId: result?.data.data.userId,
+      });
+      resp?.data?.data
+        && setCartLength(resp?.data?.data.length)
+      
+      const resp2 = await getWishlistData({
+        userId: result?.data.data.userId,
+      });
+      resp2?.data?.data
+        && setWishlistLength(resp2?.data?.data.length)
     }
   };
 
@@ -125,7 +138,7 @@ function Header() {
                           className="usericon"
                           src="/assets/images/user.png"
                         />
-                        <span className="username">Hey&nbsp; {username}</span>
+                        <span className="username">{`Hey ${username}`}</span>
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
@@ -142,7 +155,7 @@ function Header() {
                           <span
                             className="counter"
                           >
-                            {wish.length}
+                            {isAuthenticated ? wishlistLength : wish.length}
                           </span>
                         </Dropdown.Item>
                         <Dropdown.Item
@@ -155,7 +168,7 @@ function Header() {
                           <span 
                             className="counter"
                           >
-                            {basket.length}
+                            {isAuthenticated ? cartLength : basket.length}
                           </span>
                         </Dropdown.Item>
                         <Dropdown.Item
