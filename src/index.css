@@ -1517,3 +1517,65 @@ td.td3 a {font-weight: 400;font-size: 12px;}
     padding:0px 6px; */
     margin-left: 20px;
 }
+
+/* CSS for accordions */
+
+.accordion {
+  max-width: 100%;
+  margin: 0.5rem auto;
+}
+
+.accordion-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: #DFDFDF;
+}
+
+.accordion-title:hover {
+  background-color: #DFDFDF;
+}
+
+.accordion-title,
+.accordion-content {
+  padding: 1rem;
+}
+
+.accordion-content {
+  background-color: #EEEEEE;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    font-size: 18px;
+  }
+
+  .accordion {
+    width: 100%;
+  }
+}
+
+/* CSS for Breadcrumb seperators */
+.breadcrumb-item + .breadcrumb-item::before {
+  display: inline-block;
+  padding-right: 0.5rem;
+  color: black !important;
+  content: ">" !important;
+}
+
+.bredcrumb a {
+  color: black;
+}
+
+.sidenav a{
+  color: #1D3557;
+}
+
+/* image accordion css */
+
+.imgcontent {
+  float: left;
+  width: 16.66%;
+  padding: 5px;
+}
