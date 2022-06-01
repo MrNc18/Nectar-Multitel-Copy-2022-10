@@ -61,6 +61,7 @@ import Orders from "./components/Admin/orders";
 import Sustainability from "./containers/Sustainability";
 import MultitelPride from "./containers/MultitelPride";
 import PrivateNetwork from "./containers/PrivateNetwork";
+import News from "./containers/News";
 
 
 function App() {
@@ -165,6 +166,7 @@ function App() {
         <Route path="/sustainability" element={<Sustainability />} />
         <Route path="/multitelpride" element={<MultitelPride />} />
         <Route path="/privatenetwork" element={<PrivateNetwork />} />
+        <Route path="/news" element={<News />} />
       </Routes>
     </BrowserRouter>
     </>

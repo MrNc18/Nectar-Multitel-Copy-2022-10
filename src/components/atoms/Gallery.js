@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-const ImgAccordion = ({ title, content }) => {
+const Gallery = ({ title, content, desc }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -15,7 +15,8 @@ const ImgAccordion = ({ title, content }) => {
         </div>
       </div>
       {isActive && (
-        <div className="accordion-content">
+        <div className="accordion-content1">
+          <p style={{ color: "#1D3557"}}>{desc}</p>
           <Container>
             <Row>
               <div className="imgcontent">
@@ -56,4 +57,4 @@ const ImgAccordion = ({ title, content }) => {
   );
 };
 
-export default ImgAccordion;
+export default Gallery;

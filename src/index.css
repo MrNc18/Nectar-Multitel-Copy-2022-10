@@ -1543,7 +1543,19 @@ td.td3 a {font-weight: 400;font-size: 12px;}
 }
 
 .accordion-content {
-  background-color: #EEEEEE;
+  background-color: white;
+  border: 1px solid #DFDFDF;
+}
+
+.accordion-content1 {
+  padding: 1rem;
+}
+
+.accordion-content1 {
+  /* background-color: #EEEEEE; */
+  background-color: white;
+  border: 1px solid #DFDFDF;
+  border-left: 3px solid green;
 }
 
 @media screen and (max-width: 700px) {
@@ -1570,6 +1582,16 @@ td.td3 a {font-weight: 400;font-size: 12px;}
 
 .sidenav a{
   color: #1D3557;
+}
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: white !important;
+  border-radius: 0.25rem
+rem
+;
 }
 
 /* image accordion css */
