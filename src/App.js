@@ -58,11 +58,10 @@ import Cart from "./containers/Cart";
 import Checkout from "./containers/Checkout";
 import PaymentMethod from "./containers/PaymentMethod"; 
 import Orders from "./components/Admin/orders";
-import MessageFromManag from "./containers/MessageFromManag";
-import MissionAndValue from "./containers/MissionAndValue";
-import CorporateBodies from "./containers/CorporateBodies";
-import Networkinfra from "./containers/Networkinfra";
-import DataCenter from "./containers/DataCenter";
+import Sustainability from "./containers/Sustainability";
+import MultitelPride from "./containers/MultitelPride";
+import PrivateNetwork from "./containers/PrivateNetwork";
+import News from "./containers/News";
 
 
 function App() {
@@ -160,7 +159,6 @@ function App() {
 {/* Contact Routes */}
         <Route path="contacts/:cat" element={<VendorDetails />} />
 
-
 {/* admin Routes */}
         {/* <Route path="/admin" element={<AdLanding />}>
           <Route path="" element={<Dashboard />} />
@@ -170,6 +168,11 @@ function App() {
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
         </Route> */}
+
+        <Route path="/sustainability" element={<Sustainability />} />
+        <Route path="/multitelpride" element={<MultitelPride />} />
+        <Route path="/privatenetwork" element={<PrivateNetwork />} />
+        <Route path="/news" element={<News />} />
       </Routes>
     </BrowserRouter>
     </>
