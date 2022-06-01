@@ -58,6 +58,11 @@ import Cart from "./containers/Cart";
 import Checkout from "./containers/Checkout";
 import PaymentMethod from "./containers/PaymentMethod"; 
 import Orders from "./components/Admin/orders";
+import MessageFromManag from "./containers/MessageFromManag";
+import MissionAndValue from "./containers/MissionAndValue";
+import CorporateBodies from "./containers/CorporateBodies";
+import Networkinfra from "./containers/Networkinfra";
+import DataCenter from "./containers/DataCenter";
 
 
 function App() {
@@ -112,6 +117,12 @@ function App() {
           <Route path="promotions" element={<AdPromotions />} />
           <Route path="orders" element={<Orders />} />
         </Route>
+        <Route  path="/messagefrommanger" element={ <MessageFromManag />} />
+        <Route path="/missionandvalue" element={ <MissionAndValue /> } />
+        <Route path="/corporatebodies" element={ <CorporateBodies />} />
+        <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
+        <Route path="/datacenterandcloud" element={ <DataCenter /> } />
+         
 
          <Route path="/promotions" element={<Promotions />} />
          <Route path="/otherproducts" element={<OtherProducts />} />
