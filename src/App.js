@@ -62,6 +62,10 @@ import Sustainability from "./containers/Sustainability";
 import MultitelPride from "./containers/MultitelPride";
 import PrivateNetwork from "./containers/PrivateNetwork";
 import News from "./containers/News";
+import NewsFirst from "./components/atoms/NewsFirst";
+import NewsSecond from "./components/atoms/NewsSecond";
+import Recruitment from "./containers/Recruitment";
+import RecruitmentForm from "./components/atoms/RecruitmentForm";
 
 
 function App() {
@@ -167,6 +171,10 @@ function App() {
         <Route path="/multitelpride" element={<MultitelPride />} />
         <Route path="/privatenetwork" element={<PrivateNetwork />} />
         <Route path="/news" element={<News />} />
+        <Route path="/newsfirst" element={<NewsFirst />} />
+        <Route path="/newssecond" element={<NewsSecond />} />
+        <Route path="/recruitment" element={<Recruitment />} />
+        <Route path="/recruitmentform" element={<RecruitmentForm />} />
       </Routes>
     </BrowserRouter>
     </>
