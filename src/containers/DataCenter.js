@@ -16,7 +16,7 @@ const DataCenter = () => {
         <div>
           <h6 style={{ color: "#1D3557" }}>{data.heading2}</h6>
         </div>
-        <div>
+        <div className="dotcol">
        <ul>
        <li>{data.tag}</li>
           <li>{data.tag1}</li>

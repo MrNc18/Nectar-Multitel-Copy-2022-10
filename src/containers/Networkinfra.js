@@ -16,7 +16,7 @@ const Networkinfra = () => {
         <div>
           <h6 style={{ color: "#3190C3" }}>{data.heading2}</h6>
         </div>
-        <div>
+        <div className="dotcol">
 <ul>
 <li>{data.list}</li>
           <li>{data.list1}</li>

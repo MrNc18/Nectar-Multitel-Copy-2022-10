@@ -78,6 +78,10 @@ import NewsFirst from "./components/atoms/NewsFirst";
 import NewsSecond from "./components/atoms/NewsSecond";
 import Recruitment from "./containers/Recruitment";
 import RecruitmentForm from "./components/atoms/RecruitmentForm";
+import VIdeoConference from "./containers/VideoConference";
+import VideoConference from "./containers/VideoConference";
+import Cpes from "./containers/Cpes";
+import WhoWeAre from "./containers/WhoWeAre";
 
 
 function App() {
@@ -146,6 +150,11 @@ function App() {
          <Route  path="/automationelectric"    element={<AutomationElectric />}  />
          <Route path="/software" element={<Software/> } />
          <Route path="/VSAT" element={<VSAT />} />
+         <Route path="/videoconference" element={<VideoConference   />} />
+         <Route path="/cpes" element={<Cpes/>} />
+         <Route path="/whoweare" element={<WhoWeAre/>} />
+
+ 
 
 
 

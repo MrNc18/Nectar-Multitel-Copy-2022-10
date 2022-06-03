@@ -15,7 +15,7 @@ const VSAT = () => {
         <div>
           <h6 className="pt-4">{data.heading2}</h6>
         </div>
-        <div className="pl-3">
+        <div className="pl-3 dotcol">
             <ul>
             <li>{data.tag1}</li>
           <li>{data.tag2}</li>
@@ -28,7 +28,7 @@ const VSAT = () => {
         <div>
           <h6 className="pt-4">{data.heading3}</h6>
         </div>
-        <div  className="pl-3">
+        <div  className="pl-3 dotcol">
            <ul>
            <li>{data.stag1}</li>
             <li>{data.stag2}</li>
