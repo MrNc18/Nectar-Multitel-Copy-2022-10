@@ -74,6 +74,10 @@ import Webservices from "./containers/Webservices";
 import AutomationElectric from "./containers/AutomationElectric";
 import Software from "./containers/Software";
 import VSAT from "./containers/VSAT";
+import NewsFirst from "./components/atoms/NewsFirst";
+import NewsSecond from "./components/atoms/NewsSecond";
+import Recruitment from "./containers/Recruitment";
+import RecruitmentForm from "./components/atoms/RecruitmentForm";
 
 
 function App() {
@@ -196,6 +200,10 @@ function App() {
         <Route path="/multitelpride" element={<MultitelPride />} />
         <Route path="/privatenetwork" element={<PrivateNetwork />} />
         <Route path="/news" element={<News />} />
+        <Route path="/newsfirst" element={<NewsFirst />} />
+        <Route path="/newssecond" element={<NewsSecond />} />
+        <Route path="/recruitment" element={<Recruitment />} />
+        <Route path="/recruitmentform" element={<RecruitmentForm />} />
       </Routes>
     </BrowserRouter>
     </>

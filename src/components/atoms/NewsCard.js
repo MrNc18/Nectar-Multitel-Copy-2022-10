@@ -1,7 +1,8 @@
 import React from "react";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-function NewsCard() {
+function NewsCard({forwardlink="/newssecond", forwardlink1="/newsfirst"}) {
   return (
     <>
       <Container>
@@ -21,7 +22,7 @@ function NewsCard() {
                 <Card.Title>4th April 2022</Card.Title>
                 <Card.Text>Partnership Aggrement</Card.Text>
                 <hr />
-                <Button
+                <Link to={forwardlink1}><Button
                   variant="primary"
                   size="sm"
                   style={{
@@ -30,7 +31,7 @@ function NewsCard() {
                   }}
                 >
                   View More
-                </Button>
+                </Button></Link>
               </Card.Body>
             </Card>
           </Col>
@@ -44,16 +45,16 @@ function NewsCard() {
                 <Card.Title>4 January 2022</Card.Title>
                 <Card.Text>Welcome to new year 2022!</Card.Text>
                 <hr />
-                <Button
+                <Link to={forwardlink}><Button
                   variant="primary"
                   size="sm"
                   style={{
                     backgroundColor: "#0076B5",
-                    border:"2px solid #0076B5"
+                    border:"2px solid #0076B5",
                   }}
                 >
                   View More
-                </Button>
+                </Button></Link>
               </Card.Body>
             </Card>
           </Col>
