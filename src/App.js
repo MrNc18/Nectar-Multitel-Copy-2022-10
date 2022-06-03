@@ -62,6 +62,18 @@ import Sustainability from "./containers/Sustainability";
 import MultitelPride from "./containers/MultitelPride";
 import PrivateNetwork from "./containers/PrivateNetwork";
 import News from "./containers/News";
+import MissionAndValue from "./containers/MissionAndValue";
+import MessageFromManag from "./containers/MessageFromManag";
+import CorporateBodies from "./containers/CorporateBodies";
+import Networkinfra from "./containers/Networkinfra";
+import DataCenter from "./containers/DataCenter";
+import ConsultingTraining from "./containers/ConsultingTraining";
+import IPvoice from "./containers/IPvoice";
+import CyberSecurity from "./containers/CyberSecurity";
+import Webservices from "./containers/Webservices";
+import AutomationElectric from "./containers/AutomationElectric";
+import Software from "./containers/Software";
+import VSAT from "./containers/VSAT";
 
 
 function App() {
@@ -116,12 +128,23 @@ function App() {
           <Route path="promotions" element={<AdPromotions />} />
           <Route path="orders" element={<Orders />} />
         </Route>
+
+
         <Route  path="/messagefrommanger" element={ <MessageFromManag />} />
         <Route path="/missionandvalue" element={ <MissionAndValue /> } />
         <Route path="/corporatebodies" element={ <CorporateBodies />} />
         <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
         <Route path="/datacenterandcloud" element={ <DataCenter /> } />
-         
+         <Route path="/consultingtraining" element={ <ConsultingTraining/>} />
+         <Route path="/ipvoice"  element ={ < IPvoice />}/>
+         <Route path="/cybersecurity" element={<CyberSecurity/>} />
+         <Route path="/webservice" element={ <Webservices/>} />
+         <Route  path="/automationelectric"    element={<AutomationElectric />}  />
+         <Route path="/software" element={<Software/> } />
+         <Route path="/VSAT" element={<VSAT />} />
+
+
+
 
          <Route path="/promotions" element={<Promotions />} />
          <Route path="/otherproducts" element={<OtherProducts />} />

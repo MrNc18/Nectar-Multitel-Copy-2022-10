@@ -78,12 +78,12 @@ const MissionAndValue = () => {
         <ServiceBanner title="Mission And Value" />
         <div className="container">
           <div className="row"  >
-          <div className="col-12 col-6 col-4">
+          <div className="col-12 col-6 col-4 bredcrumb">
           <Breadcrumb>
               <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
 
               <Breadcrumb.Item href=" ">Who We Are</Breadcrumb.Item>
-              <Breadcrumb.Item active> Mission And Value</Breadcrumb.Item>
+              <Breadcrumb.Item active style={{color:"#0C7CB8"}}> Mission And Value</Breadcrumb.Item>
             </Breadcrumb>
           </div>
           </div>
