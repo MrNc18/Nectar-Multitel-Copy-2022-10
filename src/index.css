@@ -1583,16 +1583,16 @@ td.td3 a {font-weight: 400;font-size: 12px;}
 .sidenav a{
   color: #1D3557;
 }
-.breadcrumb {
+ .breadcrumb {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1rem;
   list-style: none;
   background-color: white !important;
   border-radius: 0.25rem
-rem
+
 ;
-}
+} 
 
 /* image accordion css */
 
@@ -1601,3 +1601,42 @@ rem
   width: 16.66%;
   padding: 5px;
 }
+.bredcrumb nav {
+  float: left;
+}
+.bredcrumb a#basic-nav-dropdown {
+  float: right;
+  border: 1px solid rgb(12, 124, 184);
+  margin-top: 10px;
+  width: 20%;
+}
+  .bredcrumb .dropdown-menu.show { 
+  border: 1px solid rgb(12, 124, 184);
+  width: 20%;
+}  
+
+.dropdown1 li::marker{ 
+  color: #0076b5; ;
+}
+
+
+/* .CustomizedSolutions
+  position: absolute;
+  top: 115px;
+}
+ .tau{ 
+  position: absolute;
+  top: -5px;
+  left: -350px;
+}
+.taus{
+  position: absolute;
+  top: -25px;
+  left: -350px;
+  
+*/
+/* @media (max-width: 575.98px)
+#inner_banner {
+    min-height: 202px !important;
+    position: relative;
+} */

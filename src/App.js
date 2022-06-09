@@ -78,6 +78,18 @@ import NewsFirst from "./components/atoms/NewsFirst";
 import NewsSecond from "./components/atoms/NewsSecond";
 import Recruitment from "./containers/Recruitment";
 import RecruitmentForm from "./components/atoms/RecruitmentForm";
+import Cpes from "./containers/Cpes";
+import Whoweare from './containers/Whoweare'
+import Internet from "./containers/Internet";
+import MarketingandCommunicationTechnique from './components/atoms/MarketingandCommunicationTechnique'
+import OtherServices from "./containers/OtherServices";
+import SpecialServices from "./containers/SpecialServices"
+import CustomizedSolutions from "./containers/CustomizedSolutions"
+import OutSourcing from "./containers/OutSourcing"
+import OMG from "./containers/OMG"
+import Digital from "./containers/Digital"
+
+
 
 
 function App() {
@@ -96,6 +108,8 @@ function App() {
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/products/:name" element={<ProductDetail />} />
         <Route path="/categories/:slug" element={<Category />} />
+  
+
         {/* <Route path="/network-equipments" element={<NetworkEquipments />} /> */}
         {/* <Route path="/internet-services" element={<InternetServices />} />    */}
         <Route
@@ -131,6 +145,8 @@ function App() {
           <Route path="internetServices" element={<AdinternetServices />} />
           <Route path="promotions" element={<AdPromotions />} />
           <Route path="orders" element={<Orders />} />
+     
+        
         </Route>
 
 
@@ -146,8 +162,19 @@ function App() {
          <Route  path="/automationelectric"    element={<AutomationElectric />}  />
          <Route path="/software" element={<Software/> } />
          <Route path="/VSAT" element={<VSAT />} />
-
-
+         <Route path="/cpes" element={<Cpes/>}/>
+         <Route path="/whoweare" element={<Whoweare/>}/>
+         <Route path="/internet" element={<Internet/>}/>
+         <Route path="/marketingandcommunicationtechnique" element={<MarketingandCommunicationTechnique />}/>
+         <Route path="/otherservices" element={<OtherServices/>}/>
+         <Route path="/specialservices" element={<SpecialServices/>}/>
+         <Route path="/customizedsolutions" element={<CustomizedSolutions/>}/>
+         <Route path="/outsourcing" element={<OutSourcing/>} />
+         <Route path="/omg" element={<OMG/>}/>
+         <Route path="/digital" element={<Digital/>} />
+ 
+    
+         
 
 
          <Route path="/promotions" element={<Promotions />} />
