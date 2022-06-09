@@ -79,7 +79,7 @@ import NewsSecond from "./components/atoms/NewsSecond";
 import Recruitment from "./containers/Recruitment";
 import RecruitmentForm from "./components/atoms/RecruitmentForm";
 import Cpes from "./containers/Cpes";
-import Whoweare from './containers/Whoweare'
+
 import Internet from "./containers/Internet";
 import MarketingandCommunicationTechnique from './components/atoms/MarketingandCommunicationTechnique'
 import OtherServices from "./containers/OtherServices";
@@ -88,6 +88,17 @@ import CustomizedSolutions from "./containers/CustomizedSolutions"
 import OutSourcing from "./containers/OutSourcing"
 import OMG from "./containers/OMG"
 import Digital from "./containers/Digital"
+
+
+import VIdeoConference from "./containers/VideoConference";
+import VideoConference from "./containers/VideoConference";
+
+import WhoWeAre from "./containers/WhoWeAre";
+import Commercial from "./components/atoms/Commercial";
+import GraphicDesigner from "./components/atoms/GraphicDesigner";
+import OtherService from "./containers/OtherService";
+import SpecialService from "./components/atoms/SpecialService";
+import CustomizedService from "./components/atoms/CustomizedService";
 
 
 
@@ -163,7 +174,7 @@ function App() {
          <Route path="/software" element={<Software/> } />
          <Route path="/VSAT" element={<VSAT />} />
          <Route path="/cpes" element={<Cpes/>}/>
-         <Route path="/whoweare" element={<Whoweare/>}/>
+         <Route path="/whoweare" element={<WhoWeAre/>}/>
          <Route path="/internet" element={<Internet/>}/>
          <Route path="/marketingandcommunicationtechnique" element={<MarketingandCommunicationTechnique />}/>
          <Route path="/otherservices" element={<OtherServices/>}/>
@@ -175,6 +186,19 @@ function App() {
  
     
          
+         <Route path="/videoconference" element={<VideoConference   />} />
+         <Route path="/cpes" element={<Cpes/>} />
+         <Route path="/whoweare" element={<WhoWeAre/>} />
+         <Route path="otherservice" element={<OtherService />} />
+         <Route path="/specialservice" element={<SpecialService />} />
+         <Route path="/customizedservice"  element={<CustomizedService />} />
+         <Route path="/outsourcing" element={<OutSourcing />} />
+         <Route path="/omg"  element={<OMG />} />
+
+
+ 
+
+
 
 
          <Route path="/promotions" element={<Promotions />} />
@@ -231,6 +255,7 @@ function App() {
         <Route path="/newssecond" element={<NewsSecond />} />
         <Route path="/recruitment" element={<Recruitment />} />
         <Route path="/recruitmentform" element={<RecruitmentForm />} />
+        
       </Routes>
     </BrowserRouter>
     </>

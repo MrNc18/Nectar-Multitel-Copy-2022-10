@@ -1,15 +1,12 @@
-import React from 'react'
-import ServiceBanner from '../components/atoms/ServiceBanner'
-import LandingPage from '../components/LandingPage'
+import React from "react";
+import ServiceBanner from "../components/atoms/ServiceBanner";
+import LandingPage from "../components/LandingPage";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 const Software = () => {
-
-
-    function Software({data}){
-
-        return(
-            <>
-                    <div>
+  function Software({ data }) {
+    return (
+      <>
+        <div>
           <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
         </div>
         <div>
@@ -18,44 +15,43 @@ const Software = () => {
         <div>
           <h6 style={{ color: "#1D3557" }}>{data.heading2}</h6>
         </div>
-        <div>
-       <ul>
-       <li>{data.tag}</li>
-          <li>{data.tag1}</li>
-          <li>{data.tag2}</li>
-       </ul>
+        <div className="dotcol">
+          <ul>
+            <li>{data.tag}</li>
+            <li>{data.tag1}</li>
+            <li>{data.tag2}</li>
+          </ul>
         </div>
-            </>
-        )
-    }
+      </>
+    );
+  }
 
-
-    const obj ={
-
-        heading1:"Software",
-        description:"cnjdfgejhgsjdghdghcghfhchd hg whgbysvtcystwyu chgbysubuey",
-        heading2:"Custom software goals",
-        tag: "structures cabling",
-        tag1: "sdjkshdjsh",
-        tag2: "nddjjd",
-    }
+  const obj = {
+    heading1: "Software",
+    description: "cnjdfgejhgsjdghdghcghfhchd hg whgbysvtcystwyu chgbysubuey",
+    heading2: "Custom software goals",
+    tag: "structures cabling",
+    tag1: "sdjkshdjsh",
+    tag2: "nddjjd",
+  };
   return (
     <>
-    <LandingPage >
-
+      <LandingPage>
         <ServiceBanner title="Software" />
         <div className="container">
-        <div className="row">
-      <div className="col-12 col-6 col-4 bredcrumb">
-            <Breadcrumb>
-              <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
+          <div className="row">
+            <div className="col-12 col-6 col-4 bredcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
 
-              <Breadcrumb.Item href=" ">Digital</Breadcrumb.Item>
-              <Breadcrumb.Item active style={{color:"#0C7CB8"}}>Software</Breadcrumb.Item>
-            </Breadcrumb>
+                <Breadcrumb.Item href=" ">Digital</Breadcrumb.Item>
+                <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
+                  Software
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
           </div>
-      </div>
-      <div className="row">
+          <div className="row">
             <div style={{ display: "flex" }} className="pt-5  col-12 col-md-4">
               <img
                 className="img-fluid"
@@ -69,12 +65,12 @@ const Software = () => {
             </div>
             <div className=" pt-5 col-md-8">
               <Software data={obj} />
-            </div>
+            </div> 
           </div>
         </div>
-    </LandingPage>
+      </LandingPage>
     </>
-  )
-}
+  );
+};
 
-export default Software
+export default Software;
