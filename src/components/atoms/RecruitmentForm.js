@@ -130,17 +130,33 @@ function RecruitmentForm() {
                 />
               </div>
             </div>
+            {/*  */}
             <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-              <button
-                className="btn btn-primary w-100 mt-4 ml-0"
-                name="submit"
-                type="submit"
-                data-toggle="modal"
-                data-target="#exampleModalCenter"
-              >
-                Submit
-              </button>
+              <div className="form-group"></div>
             </div>
+            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+              <div className="form-group">
+                <button
+                  className="btn btn-primary btn-lg  pull-right"
+                  name="submit"
+                  type="submit"
+                  data-toggle="modal"
+                  data-target="#exampleModalCenter"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+
+            {/*  */}
+
+            <label
+              style={{
+                color: "red",
+                justifyContent: "center",
+                paddingTop: "30px",
+              }}
+            ></label>
           </div>
         </div>
       </div>
