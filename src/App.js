@@ -82,6 +82,13 @@ import VIdeoConference from "./containers/VideoConference";
 import VideoConference from "./containers/VideoConference";
 import Cpes from "./containers/Cpes";
 import WhoWeAre from "./containers/WhoWeAre";
+import Commercial from "./components/atoms/Commercial";
+import GraphicDesigner from "./components/atoms/GraphicDesigner";
+import OtherService from "./containers/OtherService";
+import SpecialService from "./components/atoms/SpecialService";
+import CustomizedService from "./components/atoms/CustomizedService";
+import OutSourcing from "./components/atoms/OutSourcing";
+import OMG from "./components/atoms/OMG";
 
 
 function App() {
@@ -153,6 +160,12 @@ function App() {
          <Route path="/videoconference" element={<VideoConference   />} />
          <Route path="/cpes" element={<Cpes/>} />
          <Route path="/whoweare" element={<WhoWeAre/>} />
+         <Route path="otherservice" element={<OtherService />} />
+         <Route path="/specialservice" element={<SpecialService />} />
+         <Route path="/customizedservice"  element={<CustomizedService />} />
+         <Route path="/outsourcing" element={<OutSourcing />} />
+         <Route path="/omg"  element={<OMG />} />
+
 
  
 
@@ -213,6 +226,7 @@ function App() {
         <Route path="/newssecond" element={<NewsSecond />} />
         <Route path="/recruitment" element={<Recruitment />} />
         <Route path="/recruitmentform" element={<RecruitmentForm />} />
+        
       </Routes>
     </BrowserRouter>
     </>

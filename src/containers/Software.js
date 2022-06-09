@@ -65,7 +65,7 @@ const Software = () => {
             </div>
             <div className=" pt-5 col-md-8">
               <Software data={obj} />
-            </div>
+            </div> 
           </div>
         </div>
       </LandingPage>

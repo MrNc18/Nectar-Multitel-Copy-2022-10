@@ -14,7 +14,7 @@ const Cpes = () => {
               {data.heading1}
             </h2>
           </div>
-          <div>
+          <div  >
             <p className="pt-4">{data.description1}</p>
           </div>
           <div>

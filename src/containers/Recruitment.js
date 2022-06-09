@@ -1,9 +1,12 @@
 import React from "react";
 import { Col, Container, Row, Nav, Breadcrumb, Tab } from "react-bootstrap";
 import Commercial from "../components/atoms/Commercial";
+import GraphicDesigner from "../components/atoms/GraphicDesigner";
+ 
 import RecruitmentContent from "../components/atoms/RecruitmentContent";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
+import MarketingandCommunicationTechnique from "../components/atoms/MarketingandCommunicationTechnique";
 
 function Recruitment() {
   return (
@@ -64,10 +67,10 @@ function Recruitment() {
                       <Commercial />
                     </Tab.Pane>
                     <Tab.Pane eventKey="graphicdesigner">
-                      
+                      <GraphicDesigner />
                     </Tab.Pane>
                     <Tab.Pane eventKey="eventgallery">
-                      
+                      <MarketingandCommunicationTechnique />
                     </Tab.Pane>
                   </Tab.Content>
                 </Col>

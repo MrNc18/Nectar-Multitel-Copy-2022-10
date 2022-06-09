@@ -773,3 +773,11 @@
     content: "\2022";
     color: #0C7CB8;
   }
+
+  .pull-right{
+    float:right;
+    min-width: 200px;
+  }
+ 
+   
+  
