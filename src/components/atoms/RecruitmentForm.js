@@ -126,6 +126,7 @@ function RecruitmentForm() {
                   name="message"
                   value={message}
                   required
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -140,13 +141,6 @@ function RecruitmentForm() {
                 Submit
               </button>
             </div>
-            <label
-              style={{
-                color: "red",
-                justifyContent: "center",
-                paddingTop: "30px",
-              }}
-            ></label>
           </div>
         </div>
       </div>
