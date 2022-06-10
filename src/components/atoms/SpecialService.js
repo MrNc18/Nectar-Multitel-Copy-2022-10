@@ -12,7 +12,7 @@ const SpecialService = () => {
         return(
             <>
             
-         <div className="mt-5 pt-5">
+         <div className=" pt-4">
          <div>
                 <h2 style={{color:"#1D3557"}}>
                     {data.heading1}

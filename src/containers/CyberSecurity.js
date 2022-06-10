@@ -1,15 +1,14 @@
-import React from 'react'
-import ServiceBanner from '../components/atoms/ServiceBanner'
-import LandingPage from '../components/LandingPage'
+import React from "react";
+import ServiceBanner from "../components/atoms/ServiceBanner";
+import LandingPage from "../components/LandingPage";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 
 const CyberSecurity = () => {
-
-
-    function Cybersecurity({data}){
-        return(
-            <>
-                         <div>
+  function Cybersecurity({ data }) {
+    return (
+      <>
+  <div className="pt-4">
+  <div>
           <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
         </div>
         <div>
@@ -18,43 +17,45 @@ const CyberSecurity = () => {
         <div>
           <h6 style={{ color: "#1D3557" }}>{data.heading2}</h6>
         </div>
-        <div className='dotcol'>
-         <ul>
-         <li>{data.tag}</li>
-          <li>{data.tag1}</li>
-          <li>{data.tag2}</li>
-         </ul>
+        <div className="dotcol">
+          <ul>
+            <li>{data.tag1}</li>
+            <li>{data.tag2}</li>
+            <li>{data.tag3}</li>
+          </ul>
         </div>
-            </>
-        )
-    }
+  </div>
+      </>
+    );
+  }
 
-
-    const obj={
-        heading1:"Cyber Security",
-        description:"fsjfhjfhdfjhdhfjyhrgh",
-        heading2:"Benefits",
-        tag: "structures cabling",
-        tag1: "sdjkshdjsh",
-        tag2: "nddjjd",
-    }
+  const obj = {
+    heading1: "Cyber Security",
+    description:
+      "The internet has increasingly become the biggest threat and gateway for viruses and malware in  companies, negatively impacting the business, forcing them to adopt policies and security mechanismsthat eciently control and filter all incoming and outgoing trac. companies, ensuring greater security of information and systems. We oer Cisco, Checkpoint and Fortinet based solutions with the following features  ",
+    heading2: "Benefits",
+    tag1: "Trac Control and Sanitation",
+    tag2: "Advanced Malware Protection",
+    tag3: "IPS/IDS (Intrusion Prevention/Detection System",
+  };
   return (
-   
     <>
-    <LandingPage>
+      <LandingPage>
         <ServiceBanner title="Cyber Security" />
         <div className="container">
-        <div className="row">
-      <div className="col-12 col-6 col-4 bredcrumb">
-            <Breadcrumb>
-              <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
+          <div className="row">
+            <div className="col-12 col-6 col-4 bredcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
 
-              <Breadcrumb.Item href=" ">Digital</Breadcrumb.Item>
-              <Breadcrumb.Item active style={{color:"#0C7CB8"}}>Cyber Security</Breadcrumb.Item>
-            </Breadcrumb>
+                <Breadcrumb.Item href=" ">Digital</Breadcrumb.Item>
+                <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
+                  Cyber Security
+                </Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
           </div>
-      </div>
-      <div className="row">
+          <div className="row">
             <div style={{ display: "flex" }} className="pt-5  col-12 col-md-4">
               <img
                 className="img-fluid"
@@ -71,9 +72,9 @@ const CyberSecurity = () => {
             </div>
           </div>
         </div>
-    </LandingPage>
+      </LandingPage>
     </>
-  )
-}
+  );
+};
 
-export default CyberSecurity
+export default CyberSecurity;

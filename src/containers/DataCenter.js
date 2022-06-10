@@ -7,6 +7,7 @@ const DataCenter = () => {
   function Datacenter({ data }) {
     return (
       <>
+        <div className="pt-4">
         <div>
           <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
         </div>
@@ -18,10 +19,13 @@ const DataCenter = () => {
         </div>
         <div className="dotcol">
        <ul>
-       <li>{data.tag}</li>
+       
           <li>{data.tag1}</li>
           <li>{data.tag2}</li>
+          <li>{data.tag3}</li>
+          <li>{data.tag4}</li>
        </ul>
+        </div>
         </div>
       </>
     );
@@ -29,11 +33,12 @@ const DataCenter = () => {
 
   const obj = {
     heading1: "Data Center And Cloud ",
-    description: "dfdfjdjh dbfdf h",
+    description: "Housing (PaaS), Hosting services and the entire set of Cloud-based solutions (IaaS and SaaS), such as Email, Backup and Storage, have a robust and modern security level based on the checkpoint solution. Weoer all the support you need in the migration and implementation process, which includes choosing the best solution based on your needs",
     heading2: "Benefits",
-    tag: "structures cabling",
-    tag1: "sdjkshdjsh",
-    tag2: "nddjjd",
+    tag1: "High Availability",
+    tag2: "Scalability (scalable features)",
+    tag3: "Support in setting the environment and migration",
+    tag4:"Lower implementation and maintenance cost",
   };
   return (
     <>

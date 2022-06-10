@@ -40,7 +40,7 @@ function RecruitmentContent() {
 
    const obj ={
      heading:"Recruitment",
-     description:"hdjfdjdfhbjhdfbjh dffbnbrfb vffrfddfrfsd sdfsfsfw"
+     description:"Multitel bets on and values national human capital. We oer continuous development for your career. If you wish to be part of Multitel's sta,send your application by writing in the subject the position for which you are applying."
    }
 
 
