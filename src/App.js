@@ -193,7 +193,7 @@ function App() {
          <Route path="/specialservice" element={<SpecialService />} />
          <Route path="/customizedservice"  element={<CustomizedService />} />
          <Route path="/outsourcing" element={<OutSourcing />} />
-         <Route path="/omg"  element={<OMG />} />
+{/* <Route path="/omg"  element={<OMG />} /> */}
 
 
  
