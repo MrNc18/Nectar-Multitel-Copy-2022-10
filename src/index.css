@@ -1620,23 +1620,12 @@ td.td3 a {font-weight: 400;font-size: 12px;}
 }
 
 
-/* .CustomizedSolutions
-  position: absolute;
-  top: 115px;
+
+ @media (max-width: 768px) {
+  .bredcrumb a#basic-nav-dropdown {
+    width: auto;
 }
- .tau{ 
-  position: absolute;
-  top: -5px;
-  left: -350px;
+.bredcrumb .dropdown-menu.show {
+   width: auto; 
 }
-.taus{
-  position: absolute;
-  top: -25px;
-  left: -350px;
-  
-*/
-/* @media (max-width: 575.98px)
-#inner_banner {
-    min-height: 202px !important;
-    position: relative;
-} */
+ }

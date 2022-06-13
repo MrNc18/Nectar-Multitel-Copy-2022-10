@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Container, Row, Nav, Breadcrumb, Tab } from "react-bootstrap";
 import Commercial from "../components/atoms/Commercial";
 import GraphicDesigner from "../components/atoms/GraphicDesigner";
- 
+
 import RecruitmentContent from "../components/atoms/RecruitmentContent";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
@@ -14,15 +14,20 @@ function Recruitment() {
       <LandingPage>
         <ServiceBanner title="Recruitment" />
         <Container>
-          <div className="bredcrumb">
-            <Breadcrumb>
-              <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
-              <Breadcrumb.Item href="#">Who We Are</Breadcrumb.Item>
-              <Breadcrumb.Item active style={{ color: "#0076B5" }}>
-                Recruitment
-              </Breadcrumb.Item>
-            </Breadcrumb>
-          </div>
+          <Row>
+            <Col md={12}>
+              <div className="bredcrumb">
+                <Breadcrumb>
+                  <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
+                  <Breadcrumb.Item href="#">Who We Are</Breadcrumb.Item>
+                  <Breadcrumb.Item active style={{ color: "#0076B5" }}>
+                    Recruitment
+                  </Breadcrumb.Item>
+                </Breadcrumb>
+              </div>
+            </Col>
+          </Row>
+
           <div style={{ backgroundColor: "#f6f6f6" }}>
             <Tab.Container id="left-tabs-example" defaultActiveKey="recuitment">
               <Row>
@@ -53,7 +58,9 @@ function Recruitment() {
                     <Nav.Item>
                       <Nav.Link eventKey="eventgallery">
                         <i class="fa-solid fa-palette"></i>&nbsp;&nbsp; Event
-                        Marketing and &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Communication Technique
+                        Marketing and
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Communication
+                        Technique
                       </Nav.Link>
                     </Nav.Item>
                   </Nav>
