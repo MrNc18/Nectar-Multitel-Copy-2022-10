@@ -126,6 +126,7 @@ function RecruitmentForm() {
                   name="message"
                   value={message}
                   required
+                  onChange={handleChange}
                 />
               </div>
             </div>
