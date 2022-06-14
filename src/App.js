@@ -89,6 +89,7 @@ import SpecialService from "./components/atoms/SpecialService";
 import CustomizedService from "./components/atoms/CustomizedService";
 import OutSourcing from "./components/atoms/OutSourcing";
 import OMG from "./components/atoms/OMG";
+import WhoWeAreSlug from "./containers/WhoWeAreSlug";
 
 
 function App() {
@@ -144,8 +145,8 @@ function App() {
           <Route path="orders" element={<Orders />} />
         </Route>
 
-
-        <Route  path="/messagefrommanger" element={ <MessageFromManag />} />
+        {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
+        <Route path="/messgaefrommanager" element={ <MessageFromManag />} />
         <Route path="/missionandvalue" element={ <MissionAndValue /> } />
         <Route path="/corporatebodies" element={ <CorporateBodies />} />
         <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
@@ -160,6 +161,7 @@ function App() {
          <Route path="/videoconference" element={<VideoConference   />} />
          <Route path="/cpes" element={<Cpes/>} />
          <Route path="/whoweare" element={<WhoWeAre/>} />
+         <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} />
          <Route path="otherservice" element={<OtherService />} />
          <Route path="/specialservice" element={<SpecialService />} />
          <Route path="/customizedservice"  element={<CustomizedService />} />
