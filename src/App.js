@@ -58,6 +58,13 @@ import Cart from "./containers/Cart";
 import Checkout from "./containers/Checkout";
 import PaymentMethod from "./containers/PaymentMethod"; 
 import Orders from "./components/Admin/orders";
+import { MenuPhase_2 } from "./components/Admin/MenuPhase_2";
+import WhoWeR from "./components/Admin/WhoWeR/WhoWeR";
+import AdRecruitment from "./components/Admin/WhoWeR/Recruitment";
+import AdSustainabilty from "./components/Admin/WhoWeR/Sustainabilty";
+import AdNews from "./components/Admin/WhoWeR/New";
+import Multipride from "./components/Admin/WhoWeR/Multipride";
+import CoorparateBody from "./components/Admin/WhoWeR/CoorparateBody";
 import Sustainability from "./containers/Sustainability";
 import MultitelPride from "./containers/MultitelPride";
 import PrivateNetwork from "./containers/PrivateNetwork";
@@ -143,6 +150,16 @@ function App() {
           <Route path="internetServices" element={<AdinternetServices />} />
           <Route path="promotions" element={<AdPromotions />} />
           <Route path="orders" element={<Orders />} />
+          <Route path="menu" element={<MenuPhase_2 />} />
+          <Route path="who_we_are" element={<WhoWeR />} />
+          <Route path="who_we_are/recruitment" element={<AdRecruitment />} />
+          <Route path="who_we_are/sustainability" element={<AdSustainabilty />} />
+          <Route path="who_we_are/news" element={<AdNews />} />
+          <Route path="who_we_are/multipride" element={<Multipride />} />
+          <Route path="who_we_are/corporate" element={<CoorparateBody />} />
+        
+
+
         </Route>
 
         {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
