@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Col, Container, Row, Nav, Breadcrumb, Tab } from "react-bootstrap";
 import Commercial from "../components/atoms/Commercial";
 import GraphicDesigner from "../components/atoms/GraphicDesigner";
@@ -7,8 +7,21 @@ import RecruitmentContent from "../components/atoms/RecruitmentContent";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import MarketingandCommunicationTechnique from "../components/atoms/MarketingandCommunicationTechnique";
+import { getAllRecruitmentCategory } from "../services/WhoWeAreFront";
 
 function Recruitment() {
+
+  const [recruitment, setRecruitment] = useState({});
+  
+
+  useEffect(() => {
+    (async () => {
+      const response = await getAllRecruitmentCategory();
+      console.log("Recruitment data", response);
+      setRecruitment(response?.data);
+    })();
+  }, []);
+
   return (
     <>
       <LandingPage>
