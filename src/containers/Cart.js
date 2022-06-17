@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LandingPage from "../components/LandingPage";
 import { useStateValue } from "../StateProvider";
-import { delCartData, getCartData, imageUrl } from "../services/category";
+import { delCartData, getCartData, imageUrl, updateCartData } from "../services/category";
 import { formatAmount } from "../utils/AmountFormatter";
 import { getBasketTotal } from "../Reducer";
 import { AUTH_TOKEN, getCookie } from "../utils/cookie";
@@ -51,13 +51,12 @@ export default function Cart() {
     getCartDetails();
   }, []);
 
-  const disable = getBasketTotal(basket) != "0";
-
   const removeFromCart = async (productId, userId) => {
     try {
       await delCartData({ userId, id: productId });
       showAlert("Product removed from cart.", "success");
       setCartDet(cartDet.filter(e => e.productId != productId))
+      cartDet.length === 1 && setIniText("No products added to cart.")
     } catch (error) {
       showAlert("Something went wrong.", "error");
     } finally {
@@ -97,7 +96,27 @@ export default function Cart() {
     );
   };
 
+  const disable = isAuthenticated ? getTotal() == "0" : getBasketTotal(basket) == "0";
+
   const navigate = useNavigate();
+
+  const saveCartDetails = async () => {
+    const data = cartDet.map((item) => {
+      return {
+        id: item.id,
+        quantity: item.quantity
+      }
+    })
+    console.log(data)
+    try {
+      await updateCartData(data);
+      navigate("/checkout")
+    } catch (error) {
+      showAlert("Something went wrong.", "error");
+    } finally {
+    }
+  } 
+
   return (
     <LandingPage>
       <section className="container cart_details">
@@ -245,9 +264,6 @@ export default function Cart() {
                         <td>
                           <a
                             onClick={() => {
-                              // deleteRecord(item);
-                              // setProdId(item.id);
-                              // console.log("prodId", prodId);
                               dispatch({
                                 type: "REMOVE_FROM_BASKET",
                                 id: item.id,
@@ -281,16 +297,12 @@ export default function Cart() {
                     : formatAmount(getBasketTotal(basket))}
                 </span>
               </div>
-              {/* <div className="d-flex justify-content-between total_row">
-                <span>Total</span>
-                <span>4800.00 Kz</span>
-              </div> */}
               <p className="mt-4 mb-4">Shipping calculated at checkout</p>
               <button
-                disabled={!disable}
+                disabled={disable}
                 type="submit"
                 className="btn btn-primary to_checkout w-100"
-                onClick={() => navigate("/checkout")}
+                onClick={saveCartDetails}
               >
                 Proceed to checkout
               </button>

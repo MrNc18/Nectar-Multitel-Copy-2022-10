@@ -66,6 +66,37 @@ import News from "./components/Admin/WhoWeR/New";
 import Multipride from "./components/Admin/WhoWeR/Multipride";
 import CoorparateBody from "./components/Admin/WhoWeR/CoorparateBody";
 import Events from "./components/Admin/WhoWeR/Events";
+import Sustainability from "./containers/Sustainability";
+import MultitelPride from "./containers/MultitelPride";
+import PrivateNetwork from "./containers/PrivateNetwork";
+import News from "./containers/News";
+import MissionAndValue from "./containers/MissionAndValue";
+import MessageFromManag from "./containers/MessageFromManag";
+import CorporateBodies from "./containers/CorporateBodies";
+import Networkinfra from "./containers/Networkinfra";
+import DataCenter from "./containers/DataCenter";
+import ConsultingTraining from "./containers/ConsultingTraining";
+import IPvoice from "./containers/IPvoice";
+import CyberSecurity from "./containers/CyberSecurity";
+import Webservices from "./containers/Webservices";
+import AutomationElectric from "./containers/AutomationElectric";
+import Software from "./containers/Software";
+import VSAT from "./containers/VSAT";
+import NewsFirst from "./components/atoms/NewsFirst";
+import NewsSecond from "./components/atoms/NewsSecond";
+import Recruitment from "./containers/Recruitment";
+import RecruitmentForm from "./components/atoms/RecruitmentForm";
+import VIdeoConference from "./containers/VideoConference";
+import VideoConference from "./containers/VideoConference";
+import Cpes from "./containers/Cpes";
+import WhoWeAre from "./containers/WhoWeAre";
+import Commercial from "./components/atoms/Commercial";
+import GraphicDesigner from "./components/atoms/GraphicDesigner";
+import OtherService from "./containers/OtherService";
+import SpecialService from "./components/atoms/SpecialService";
+import CustomizedService from "./components/atoms/CustomizedService";
+import OutSourcing from "./components/atoms/OutSourcing";
+import OMG from "./components/atoms/OMG";
 
 
 function App() {
@@ -131,6 +162,34 @@ function App() {
 
         </Route>
 
+
+        <Route  path="/messagefrommanger" element={ <MessageFromManag />} />
+        <Route path="/missionandvalue" element={ <MissionAndValue /> } />
+        <Route path="/corporatebodies" element={ <CorporateBodies />} />
+        <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
+        <Route path="/datacenterandcloud" element={ <DataCenter /> } />
+         <Route path="/consultingtraining" element={ <ConsultingTraining/>} />
+         <Route path="/ipvoice"  element ={ < IPvoice />}/>
+         <Route path="/cybersecurity" element={<CyberSecurity/>} />
+         <Route path="/webservice" element={ <Webservices/>} />
+         <Route  path="/automationelectric"    element={<AutomationElectric />}  />
+         <Route path="/software" element={<Software/> } />
+         <Route path="/VSAT" element={<VSAT />} />
+         <Route path="/videoconference" element={<VideoConference   />} />
+         <Route path="/cpes" element={<Cpes/>} />
+         <Route path="/whoweare" element={<WhoWeAre/>} />
+         <Route path="otherservice" element={<OtherService />} />
+         <Route path="/specialservice" element={<SpecialService />} />
+         <Route path="/customizedservice"  element={<CustomizedService />} />
+         <Route path="/outsourcing" element={<OutSourcing />} />
+         <Route path="/omg"  element={<OMG />} />
+
+
+ 
+
+
+
+
          <Route path="/promotions" element={<Promotions />} />
          <Route path="/otherproducts" element={<OtherProducts />} />
           {/* <Route path="/admin" element={<AdLanding/>}> */}
@@ -167,7 +226,6 @@ function App() {
 {/* Contact Routes */}
         <Route path="contacts/:cat" element={<VendorDetails />} />
 
-
 {/* admin Routes */}
         {/* <Route path="/admin" element={<AdLanding />}>
           <Route path="" element={<Dashboard />} />
@@ -177,6 +235,16 @@ function App() {
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
         </Route> */}
+
+        <Route path="/sustainability" element={<Sustainability />} />
+        <Route path="/multitelpride" element={<MultitelPride />} />
+        <Route path="/privatenetwork" element={<PrivateNetwork />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/newsfirst" element={<NewsFirst />} />
+        <Route path="/newssecond" element={<NewsSecond />} />
+        <Route path="/recruitment" element={<Recruitment />} />
+        <Route path="/recruitmentform" element={<RecruitmentForm />} />
+        
       </Routes>
     </BrowserRouter>
     </>

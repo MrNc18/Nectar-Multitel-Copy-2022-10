@@ -141,14 +141,20 @@ export const getAllCategories = async () => {
   export const getCartData = async(data) =>{
     return await doPost('api/cart/getCartData',data);
   }
+  export const updateCartData = async(data) =>{
+    return await doPut('api/cart/updateCartData',data);
+  }
 
   // wishlist
   export const addToWishlist = async(data) =>{
     return await doPost('api/cart/addFavCart',data);
   }
-
-  // export const delCartData = async(data) =>{
-  //   return await doPost('api/cart/cartDataDelete',data);
+  export const delFromWishlist = async(data) =>{
+    return await doDelete('api/cart/favCartDataDelete',data);
+  }
+  export const getWishlistData = async(data) =>{
+    return await doPost('api/cart/getFavCartData',data);
+  }
   
 
 
