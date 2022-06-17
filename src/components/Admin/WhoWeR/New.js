@@ -4,7 +4,7 @@ import Tab from 'react-bootstrap/Tab';
 import {NewsCat} from "./NewsCat";
 import NewsData from "./NewsData";
 
-const  News = () => {
+const  AdNews = () => {
 
   return (
     <div id="layoutSidenavContent">
@@ -41,4 +41,4 @@ const  News = () => {
   );
 }
 
-export default News;
+export default AdNews;

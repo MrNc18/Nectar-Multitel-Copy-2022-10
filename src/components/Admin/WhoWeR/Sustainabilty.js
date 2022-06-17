@@ -3,7 +3,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import {SusMenu} from "./SusMenu";
 import {SusMenuMan} from "./SusMenuMan"
-const  Sustainabilty = () => {
+const  AdSustainabilty = () => {
 
 
 
@@ -42,4 +42,4 @@ const  Sustainabilty = () => {
   );
 }
 
-export default Sustainabilty;
+export default AdSustainabilty;
