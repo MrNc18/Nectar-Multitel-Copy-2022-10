@@ -4,7 +4,7 @@ import Tab from 'react-bootstrap/Tab';
 import {RecruitmentCat} from "./RecruitmentCat";
 import {RecruitmentData} from "./RecruitmentData";
  
-const  Recruitment = () => {
+const  AdRecruitment = () => {
 
   return (
     <div id="layoutSidenavContent">
@@ -41,4 +41,4 @@ const  Recruitment = () => {
   );
 }
 
-export default Recruitment;
+export default AdRecruitment;
