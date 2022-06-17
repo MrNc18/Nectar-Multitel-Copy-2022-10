@@ -71,7 +71,7 @@ function Products() {
   };
   const handleFileChange = (event) => {
     setFile(event.target.files);
-    console.log(file);
+    console.log("file",file);
   };
 
   // Edit Api
