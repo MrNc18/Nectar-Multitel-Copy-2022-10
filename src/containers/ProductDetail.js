@@ -332,7 +332,7 @@ function ProductDetail() {
             <div className="author-social pt-2 pb-2">
               <h5 className="book_social">Share on social media</h5>
               <div className="author_links">
-                <a href="#">
+                <a href="www.facebook.com/login">
                   <i className="fab fa-facebook-f"></i>
                 </a>
                 <a href="#">
