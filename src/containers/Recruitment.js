@@ -8,18 +8,26 @@ import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import MarketingandCommunicationTechnique from "../components/atoms/MarketingandCommunicationTechnique";
 import { getAllRecruitmentCategory } from "../services/WhoWeAreFront";
+import { showAlert } from "../utils/showAlert";
 
 function Recruitment() {
 
-  const [recruitment, setRecruitment] = useState({});
+  const [recruitment, setRecruitment] = useState('');
   
+  const handleAllReqCategory = async () =>{
+    try{
+      const resp = await getAllRecruitmentCategory();
+      console.log(resp)
+      setRecruitment(resp && resp.data);
+      console.log("catreq",resp)
+    }
+    catch(error){
+      showAlert("Something went wrong","error")
+    }
+  }
 
   useEffect(() => {
-    (async () => {
-      const response = await getAllRecruitmentCategory();
-      console.log("Recruitment data", response);
-      setRecruitment(response?.data);
-    })();
+    handleAllReqCategory();
   }, []);
 
   return (
