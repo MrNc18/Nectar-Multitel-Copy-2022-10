@@ -8,7 +8,7 @@ function WhoWeAreSlug() {
   const params = useParams();
   console.log(params?.slug);
   const { state } = useLocation();
-
+ 
   const renderDetails = () => {
     switch (params?.slug) {
       case "management-message":

@@ -100,6 +100,7 @@ import Telecommunication from "./containers/Telecommunication";
 import ContactUs from "./containers/ContactUs";
 import ContactUsForm from "./components/atoms/ContactUsForm"
 import Digitotal from "./containers/Digitotal"
+import WhoWeAreSlug from "./containers/WhoWeAreSlug";
 
 
 function App() {
@@ -181,6 +182,7 @@ function App() {
          <Route path="/videoconference" element={<VideoConference   />} />
          <Route path="/cpes" element={<Cpes/>} />
          <Route path="/whoweare" element={<WhoWeAre/>} />
+         <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} />
          <Route path="otherservice" element={<OtherService />} />
          <Route path="/specialservice" element={<SpecialService />} />
          <Route path="/customizedservice"  element={<CustomizedService />} />

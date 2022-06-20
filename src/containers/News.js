@@ -6,8 +6,24 @@ import NewsCard from "../components/atoms/NewsCard";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import EventGallery from "./EventGallery";
+import { getMsgMissionSusBySlug } from "../services/WhoWeAreFront";
+
 
 function News() {
+
+
+  const [messageFromManager, setMessageFromManager] = useState({});
+  const params = useParams();
+  console.log(params);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getMsgMissionSusBySlug({ slug: params?.slug });
+      console.log("messageFromManager data", response);
+      setMessageFromManager(response?.data?.data);
+    })();
+  }, [params?.slug]);
+
   return (
     <>
       <LandingPage>

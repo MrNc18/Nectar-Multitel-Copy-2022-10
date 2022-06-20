@@ -5,8 +5,7 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { useParams } from "react-router-dom";
 import { getMsgMissionSusBySlug } from "../services/WhoWeAreFront";
 
-import Message from "../components/atoms/Message";
-
+ 
 const MessageFromManag = () => {
   const [messageFromManager, setMessageFromManager] = useState({});
   const params = useParams();

@@ -7,3 +7,8 @@ export const imageUrl = (imagePath) => {
 export const getMsgMissionSusBySlug = async (data) => {
   return await doPost("api/msgMissionSus/getMsgMissionSusBySlug", data);
 };
+
+
+export const getCorporate = async () => {
+  return await doGet("api/corporate/getCorporate");
+};
