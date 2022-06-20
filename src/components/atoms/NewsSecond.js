@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Container, Row, Breadcrumb, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import LandingPage from "../LandingPage";
 import ServiceBanner from "./ServiceBanner";
+import { getAllNews } from "../../services/WhoWeAreFront";
 
 const obj = {
   heading: "Welcome to the New Year 2022!",
@@ -11,34 +12,51 @@ const obj = {
   pic: `https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg`,
 };
 
-function NS({ data, backlink="/news" }) {
+function NS({ data, backlink = "/news" }) {
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getAllNews();
+      console.log(response);
+      setNews(response?.data);
+    })();
+  }, []);
+
   return (
     <>
-      <Container>
-        <h4 className="mt-5" style={{ color: "#1D3557" }}>
-          {data.heading}
-        </h4>
-        <Row>
-          <Col lg={6}>
-            <img src={data.pic} alt="" style={{ width: "100%" }} />
-          </Col>
-          <Col lg={6}>
-            <p>{data.description}</p>
-          </Col>
-        </Row>
-        <div className="text-center mt-5 mb-5">
-          <Link to={backlink}><Button
-            variant="primary"
-            size="sm"
-            style={{
-              backgroundColor: "#0076B5",
-              border: "2px solid #0076B5",
-            }}
-          >
-            Return
-          </Button></Link>
-        </div>
-      </Container>
+      {news &&
+        news.map((items) => {
+          return (
+            <Container>
+              <h4 className="mt-5" style={{ color: "#1D3557" }}>
+              {items?.title}
+              </h4>
+              <Row>
+                <Col lg={6}>
+                  <img src={data.pic} alt="" style={{ width: "100%" }} />
+                </Col>
+                <Col lg={6}>
+                  <p>{items?.description}</p>
+                </Col>
+              </Row>
+              <div className="text-center mt-5 mb-5">
+                <Link to={backlink}>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    style={{
+                      backgroundColor: "#0076B5",
+                      border: "2px solid #0076B5",
+                    }}
+                  >
+                    Return
+                  </Button>
+                </Link>
+              </div>
+            </Container>
+          );
+        })}
     </>
   );
 }
