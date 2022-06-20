@@ -180,11 +180,6 @@ function Promotions() {
     try {
       await getEditPromotion(data);
       showAlert("Promotion Edited Sucessfully","success");
-      // setData2({
-      //   id: "",
-      //   name: "",
-      //   description: "",
-      // });
       setData2(' ')
       setFile("");
       setTagValue('')
