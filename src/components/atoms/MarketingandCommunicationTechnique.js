@@ -1,42 +1,46 @@
-import { data } from "jquery";
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 import RecruitmentForm from "./RecruitmentForm";
+import { getAllRecruitment } from "../../services/WhoWeAreFront";
+import { showAlert } from "../../utils/showAlert";
+
 
 function MarketingandCommunicationTechnique() {
+
+  const [marketing, setMarketing] = useState([]);
+
+  const handleAllRequirement = async () => {
+    try {
+      const resp = await getAllRecruitment();
+      console.log(resp);
+      setMarketing(resp && resp.data);
+      console.log("catreq", resp);
+    } catch (error) {
+      showAlert("Something went wrong", "error");
+    }
+  };
+
+  useEffect(() => {
+    handleAllRequirement();
+  }, []);
+
+
   function MarketingTechnique({ data }) {
     return (
       <>
         <div className="container pt-5" style={{ backgroundColor: "#F6F6F6" }}>
-          <div>
-            <h2 style={{ color: "#1D3557" }}>{data.heading}</h2>
+        <div>
+            {marketing &&
+              marketing.map((item) => (
+                <>
+                  <h2 className="pt-4" style={{ color: "#1D3557" }}>
+                    {item.recruitment_heading}
+                  </h2>
+                  <h6 className="pt-2">{item.description_heading}</h6>
+                  <h6 className="pt-4">{item.description}</h6>
+                  <p className="pt-2">{item.sub_description}</p>
+                </>
+              ))}
           </div>
-          <div>
-            <p>{data.description1}</p>
-          </div>
-          <div>
-            <p style={{ fontWeight: "600" }}> {data.description2}</p>
-          </div>
-          <div>
-            <p>{data.list1}</p>
-            <p>{data.list2}</p>
-            <p>{data.list3}</p>
-            <p>{data.list4}</p>
-            <p>{data.list5}</p>
-            
-          </div>
-
-          <div>
-            <p style={{ fontWeight: "600" }}>{data.description3}</p>
-          </div>
-          <div>
-          <p>{data.list6}</p>
-            <p>{data.list7}</p>
-            <p>{data.list8}</p>
-            </div>
-            <div>
-                <p>{data.description4}</p>
-            </div>
           <div>
             <RecruitmentForm />
           </div>

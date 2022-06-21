@@ -12,7 +12,7 @@ import { showAlert } from "../utils/showAlert";
 
 function Recruitment() {
 
-  const [recruitment, setRecruitment] = useState('');
+  const [recruitment, setRecruitment] = useState([]);
   
   const handleAllReqCategory = async () =>{
     try{
@@ -53,6 +53,7 @@ function Recruitment() {
                   style={{ backgroundColor: "#E2E2E2" }}
                 >
                   <Nav variant="pills" className="flex-column">
+                    {}
                     <Nav.Item>
                       <Nav.Link eventKey="recuitment">
                         <i class="fa-solid fa-newspaper"></i>
