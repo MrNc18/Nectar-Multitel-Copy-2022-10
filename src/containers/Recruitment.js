@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Col, Container, Row, Nav, Breadcrumb, Tab } from "react-bootstrap";
 import Commercial from "../components/atoms/Commercial";
 import GraphicDesigner from "../components/atoms/GraphicDesigner";
@@ -7,8 +7,29 @@ import RecruitmentContent from "../components/atoms/RecruitmentContent";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import MarketingandCommunicationTechnique from "../components/atoms/MarketingandCommunicationTechnique";
+import { getAllRecruitmentCategory } from "../services/WhoWeAreFront";
+import { showAlert } from "../utils/showAlert";
 
 function Recruitment() {
+
+  const [recruitment, setRecruitment] = useState([]);
+  
+  const handleAllReqCategory = async () =>{
+    try{
+      const resp = await getAllRecruitmentCategory();
+      console.log(resp)
+      setRecruitment(resp && resp.data);
+      console.log("catreq",resp)
+    }
+    catch(error){
+      showAlert("Something went wrong","error")
+    }
+  }
+
+  useEffect(() => {
+    handleAllReqCategory();
+  }, []);
+
   return (
     <>
       <LandingPage>
@@ -32,6 +53,7 @@ function Recruitment() {
                   style={{ backgroundColor: "#E2E2E2" }}
                 >
                   <Nav variant="pills" className="flex-column">
+                    {}
                     <Nav.Item>
                       <Nav.Link eventKey="recuitment">
                         <i class="fa-solid fa-newspaper"></i>

@@ -10,9 +10,10 @@ function EventGallery() {
         <Row>
           <Col md={12}>
             <div className="accordion">
-              {accordionImgData.map(({ title, content, desc }) => (
+              {/* {accordionImgData.map(({ title, content, desc }) => (
                 <Gallery title={title} content={content} desc={desc} />
-              ))}
+              ))} */}
+              <Gallery />
             </div>
           </Col>
         </Row>

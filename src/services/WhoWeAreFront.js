@@ -14,6 +14,23 @@ export const getCorporate = async () => {
 };
 
 
+
 export const getAllNews = async () => {
-  return await doGet("api/news/getAllNews");
-};
+  return await doGet("api/news/getAllNews")
+ }
+
+export const getAllNewsCategory = async () => {
+  return await doGet("api/news/getAllNewsCategory")
+ }
+
+ export const getAllRecruitmentCategory = async () => {
+  return await doGet("api/recruitment/getAllRecruitmentCategory")
+ }
+
+ export const getRecruitmentBySlug = async () => {
+  return await doPost("api/recruitment/getAllRecruitmentCategory")
+ }
+
+ export const getAllRecruitment = async () => {
+  return await doGet("api/recruitment/getAllRecruitment")
+ }

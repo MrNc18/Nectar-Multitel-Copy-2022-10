@@ -1,64 +1,60 @@
-import { data } from "jquery";
-import React from "react";
- 
+import React, { useState, useEffect } from "react";
 import RecruitmentForm from "./RecruitmentForm";
+import { getAllRecruitment } from "../../services/WhoWeAreFront";
+import { showAlert } from "../../utils/showAlert";
 
 function Commercial() {
-  function Commerce({ data }) {
+  const [commercial, setCommercial] = useState([]);
+
+  const handleAllRequirement = async () => {
+    try {
+      const resp = await getAllRecruitment();
+      console.log(resp);
+      setCommercial(resp && resp.data);
+      console.log("catreq", resp);
+    } catch (error) {
+      showAlert("Something went wrong", "error");
+    }
+  };
+
+  useEffect(() => {
+    handleAllRequirement();
+  }, []);
+
+  function Commerce() {
     return (
       <>
-        <div className="container pt-5"  style={{ backgroundColor: "#F6F6F6" }}>
+        <div className="container" style={{ backgroundColor: "#F6F6F6" }}>
           <div>
-            <h2 style={{ color:"#1D3557" }} >{data.heading}</h2>
+            {commercial &&
+              commercial.map((item) => (
+                <>
+                  <h2 className="pt-4" style={{ color: "#1D3557" }}>
+                    {item.recruitment_heading}
+                  </h2>
+                  <p>{item.description_heading}</p>
+                  <p>{item.description}</p>
+                  <p>{item.sub_description}</p>
+                </>
+              ))}
           </div>
           <div>
-            <p>{data.description1}</p>
+            <RecruitmentForm />
           </div>
-          <div >
-           <p> {data.description2}</p>
-          </div>
-          <div>
-            <p>
-            {data.description3}
-            </p>
-          </div>
-          <div>
-            <p>
-            {data.description4}
-            </p>
-          </div>
-         <div >
-         <RecruitmentForm   />
-         </div>
         </div>
       </>
     );
   }
 
-  const obj = {
-    heading: "Our Team",
-    description1: "Multitel is the competent, attentive and available partner that assumes with your company a commitment of total transparency and objectivity.",
-    description2:" By choosing Multitel, you are not only enjoying a quality service, you are also receiving the support of a team of professionals with extensive experience in the market, who will be abl to advise you on the definition that best suits your needs, support you with post -sales and guarantee low response times to installation and intervention requests.",
-    
-    description3:"Multitel has been preparing its organizational structure and providing itself with the necessary competitive conditions to guarantee an  ",
-    description4:"We have a technical team made up of professionals that include analysts, engineers and consultants with higher education in Web/IT and Telecommunications, in addition to specific training in the technologies, platforms and equipment that make up our infrastructures and complementary specializations, in addition to know-how, vast experience and support  capacity provided by our partners."
-  
-  };
-
   return (
     <>
-    
-        
-        <div className="container">
-          <div className="row">
-          
-          </div>
+      <div className="container">
+        <div className="row"></div>
 
-         <div>
-         <Commerce data={obj} />
-         </div>
+        <div>
+          <Commerce />
         </div>
-       
+      </div>
     </>
   );
 }

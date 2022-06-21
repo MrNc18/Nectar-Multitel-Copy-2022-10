@@ -1,9 +1,10 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import BulletineCard from "./BulletineCard";
-import BulletineData from "./BulletineData";
+
 
 function Bulletine() {
+
   return (
     <>
       <Container>
@@ -13,9 +14,7 @@ function Bulletine() {
           Bulletine
         </h4>
         <Row>
-          {BulletineData.map(({ title, src, content }) => (
-            <BulletineCard title={title} src={src} content={content} />
-          ))}
+          <BulletineCard />
         </Row>
       </Container>
     </>

@@ -244,7 +244,6 @@ function App() {
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
         </Route> */}
-
         <Route path="/sustainability" element={<Sustainability />} />
         <Route path="/multitelpride" element={<MultitelPride />} />
         <Route path="/privatenetwork" element={<PrivateNetwork />} />

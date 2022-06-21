@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { imageUrl } from "../../services/category";
+import { getAllNews } from "../../services/WhoWeAreFront";
 
-function NewsCard({forwardlink="/newssecond", forwardlink1="/newsfirst"}) {
+function NewsCard({
+  forwardlink = "/newssecond",
+  forwardlink1 = "/newsfirst",
+}) {
+  const [news, setNews] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getAllNews();
+      console.log(response);
+      setNews(response?.data);
+    })();
+  }, []);
+
   return (
     <>
       <Container>
@@ -11,52 +26,40 @@ function NewsCard({forwardlink="/newssecond", forwardlink1="/newsfirst"}) {
         >
           News
         </h4>
-        <Row>
-          <Col lg={5}>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src="https://media.istockphoto.com/photos/hot-air-balloons-flying-over-the-botan-canyon-in-turkey-picture-id1297349747?b=1&k=20&m=1297349747&s=170667a&w=0&h=oH31fJty_4xWl_JQ4OIQWZKP8C6ji9Mz7L4XmEnbqRU="
-              />
-              <Card.Body className="text-center">
-                <Card.Title>4th April 2022</Card.Title>
-                <Card.Text>Partnership Aggrement</Card.Text>
-                <hr />
-                <Link to={forwardlink1}><Button
-                  variant="primary"
-                  size="sm"
-                  style={{
-                    backgroundColor: "#0076B5",
-                    border:"2px solid #0076B5",
-                  }}
-                >
-                  View More
-                </Button></Link>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col lg={5}>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src="https://media.istockphoto.com/photos/hot-air-balloons-flying-over-the-botan-canyon-in-turkey-picture-id1297349747?b=1&k=20&m=1297349747&s=170667a&w=0&h=oH31fJty_4xWl_JQ4OIQWZKP8C6ji9Mz7L4XmEnbqRU="
-              />
-              <Card.Body className="text-center">
-                <Card.Title>4 January 2022</Card.Title>
-                <Card.Text>Welcome to new year 2022!</Card.Text>
-                <hr />
-                <Link to={forwardlink}><Button
-                  variant="primary"
-                  size="sm"
-                  style={{
-                    backgroundColor: "#0076B5",
-                    border:"2px solid #0076B5",
-                  }}
-                >
-                  View More
-                </Button></Link>
-              </Card.Body>
-            </Card>
+        <Row
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <Col lg={6}>
+            {news &&
+              news.map((items) => {
+                return (
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={imageUrl(items.image)} />
+
+                    <Card.Body className="text-center">
+                      <Card.Title>{items?.news_date}</Card.Title>
+                      <Card.Text>{items?.title}</Card.Text>
+                      <hr />
+                      <Link to={forwardlink1}>
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          style={{
+                            backgroundColor: "#0076B5",
+                            border: "2px solid #0076B5",
+                          }}
+                        >
+                          View More
+                        </Button>
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                );
+              })}
           </Col>
         </Row>
       </Container>
