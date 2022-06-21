@@ -7,19 +7,17 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCorporate } from "../services/WhoWeAreFront";
 const CorporateBodies = () => {
-  const [AllCorporateCategory, setAllCorporateCategory] = useState({});
-  // const [corporate_category , setcorporate_category] = useState({});
-  const params = useParams();
+  const [GetCorporate, setGetCorporate] = useState({});
+ const params = useParams();
   console.log(params);
-
   useEffect(() => {
     (async () => {
       const response = await getCorporate({ slug: params?.slug });
       console.log("CorporateBySlug", response);
-      setAllCorporateCategory(response?.data);
+      setGetCorporate(response?.data);
     })();
   }, [params?.slug]);
-  console.log("All corp cat", AllCorporateCategory);
+  console.log("All corp cat", GetCorporate);
 
   // function CorporateBody({ data }) {
   //   return (
@@ -159,33 +157,31 @@ const CorporateBodies = () => {
               </h2>
               {/* <CorporateBody data={obj} /> */}
               <div>
-                {AllCorporateCategory.length &&
-                  AllCorporateCategory.map((persons) => {
+                {GetCorporate.length &&
+                  GetCorporate.map((persons) => {
                     return (
                       <>
-                           
-                          <div className="row pt-4">
-                            <div className="col-12  col-md-4 ">
-                              <h6 style={{ fontSize: "13px" }}>{persons?.Name}</h6>
-                            </div>
-                            <div className="col-12  col-md-3 ">
+                        <div>
+                          <div>
+                            <h5 style={{ color: "#3190C3" }} className="pt-5">
+                              {persons?.corporate_category?.name}
+                            </h5>
+                          </div>
+                          <div className="row  pt-4">
+                            <div className="col-12  col-md-4">
                               <h6 style={{ fontSize: "13px" }}>
-                              {persons?.description}
+                                {" "}
+                                {persons?.Name}
+                              </h6>
+                            </div>
+                            <div className="col-12  col-md-4  ">
+                              <h6 style={{ fontSize: "13px" }}>
+                                {" "}
+                                {persons?.description}
                               </h6>
                             </div>
                           </div>
-                          <div>
-                        {/* <h1>
-                        {corporate_category &&  corporate_category.map( (nameperson) => (
-                          console.log(nameperson.name)
-                           
-                        )) }
-                        </h1> */}
-                          </div>
-
-                        
-                        
-  
+                        </div>
                       </>
                     );
                   })}
