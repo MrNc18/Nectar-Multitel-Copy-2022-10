@@ -6,6 +6,9 @@ import { Button, Modal, Form, Table } from "react-bootstrap";
 import { getAddNewsCategories,getEditNewsCategories,getAllNewsCategories,getDeleteNewsCategories, } from "../../../services/Phase_2/WhoWeR";
 
 export const NewsCat = () => {
+
+
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [buttondisabled, setButtonDisabled] = useState(false);

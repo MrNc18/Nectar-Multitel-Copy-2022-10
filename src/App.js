@@ -92,8 +92,8 @@ import MarketingandCommunicationTechnique from './components/atoms/MarketingandC
 import OtherServices from "./containers/OtherServices";
 import SpecialServices from "./containers/SpecialServices"
 import CustomizedSolutions from "./containers/CustomizedSolutions"
-import OutSourcing from "./containers/OutSourcing"
-import OMG from "./containers/OMG"
+// import OutSourcing from "./containers/OutSourcing"
+// import OMG from "./containers/OMG"
 import Digital from "./containers/Digital"
 
 
@@ -179,7 +179,7 @@ function App() {
         {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
         <Route path="/messgaefrommanager" element={ <MessageFromManag />} />
         <Route path="/missionandvalue" element={ <MissionAndValue /> } />
-        <Route path="/corporatebodies" element={ <CorporateBodies />} />
+        <Route path="/corporbodiesate" element={ <CorporateBodies />} />
         <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
         <Route path="/datacenterandcloud" element={ <DataCenter /> } />
          <Route path="/consultingtraining" element={ <ConsultingTraining/>} />
@@ -205,7 +205,7 @@ function App() {
          <Route path="/videoconference" element={<VideoConference   />} />
          <Route path="/cpes" element={<Cpes/>} />
          <Route path="/whoweare" element={<WhoWeAre/>} />
-         <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} />
+         <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} />F
          <Route path="otherservice" element={<OtherService />} />
          <Route path="/specialservice" element={<SpecialService />} />
          <Route path="/customizedservice"  element={<CustomizedService />} />
