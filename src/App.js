@@ -58,6 +58,13 @@ import Cart from "./containers/Cart";
 import Checkout from "./containers/Checkout";
 import PaymentMethod from "./containers/PaymentMethod"; 
 import Orders from "./components/Admin/orders";
+import { MenuPhase_2 } from "./components/Admin/MenuPhase_2";
+import WhoWeR from "./components/Admin/WhoWeR/WhoWeR";
+import AdRecruitment from "./components/Admin/WhoWeR/Recruitment";
+import AdSustainabilty from "./components/Admin/WhoWeR/Sustainabilty";
+import AdNews from "./components/Admin/WhoWeR/New";
+import Multipride from "./components/Admin/WhoWeR/Multipride";
+import CoorparateBody from "./components/Admin/WhoWeR/CoorparateBody";
 import Sustainability from "./containers/Sustainability";
 import MultitelPride from "./containers/MultitelPride";
 import PrivateNetwork from "./containers/PrivateNetwork";
@@ -99,8 +106,9 @@ import GraphicDesigner from "./components/atoms/GraphicDesigner";
 import OtherService from "./containers/OtherService";
 import SpecialService from "./components/atoms/SpecialService";
 import CustomizedService from "./components/atoms/CustomizedService";
-
-
+import OutSourcing from "./components/atoms/OutSourcing";
+import OMG from "./components/atoms/OMG";
+import WhoWeAreSlug from "./containers/WhoWeAreSlug";
 
 
 function App() {
@@ -156,12 +164,20 @@ function App() {
           <Route path="internetServices" element={<AdinternetServices />} />
           <Route path="promotions" element={<AdPromotions />} />
           <Route path="orders" element={<Orders />} />
-     
+          <Route path="menu" element={<MenuPhase_2 />} />
+          <Route path="who_we_are" element={<WhoWeR />} />
+          <Route path="who_we_are/recruitment" element={<AdRecruitment />} />
+          <Route path="who_we_are/sustainability" element={<AdSustainabilty />} />
+          <Route path="who_we_are/news" element={<AdNews />} />
+          <Route path="who_we_are/multipride" element={<Multipride />} />
+          <Route path="who_we_are/corporate" element={<CoorparateBody />} />
         
+
+
         </Route>
 
-
-        <Route  path="/messagefrommanger" element={ <MessageFromManag />} />
+        {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
+        <Route path="/messgaefrommanager" element={ <MessageFromManag />} />
         <Route path="/missionandvalue" element={ <MissionAndValue /> } />
         <Route path="/corporatebodies" element={ <CorporateBodies />} />
         <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
@@ -188,7 +204,8 @@ function App() {
          
          <Route path="/videoconference" element={<VideoConference   />} />
          <Route path="/cpes" element={<Cpes/>} />
-         {/* <Route path="/whoweare" element={<WhoweAre/>} /> */}
+         <Route path="/whoweare" element={<WhoWeAre/>} />
+         <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} />
          <Route path="otherservice" element={<OtherService />} />
          <Route path="/specialservice" element={<SpecialService />} />
          <Route path="/customizedservice"  element={<CustomizedService />} />
@@ -246,7 +263,6 @@ function App() {
           <Route path="staticpages" element={<StaticPage />} />
           <Route path="settings" element={<Settings />} />
         </Route> */}
-
         <Route path="/sustainability" element={<Sustainability />} />
         <Route path="/multitelpride" element={<MultitelPride />} />
         <Route path="/privatenetwork" element={<PrivateNetwork />} />
