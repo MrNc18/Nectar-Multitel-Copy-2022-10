@@ -659,6 +659,7 @@ export default function Checkout() {
                       <td>Product</td>
                       <td className="text-center">Subtotal</td>
                     </tr>
+                    {console.log("checking cart", isAuthenticated, cartDet)}
                     {isAuthenticated ? (
                       cartDet.length ? (
                         cartDet.map((item) => (
@@ -723,8 +724,16 @@ export default function Checkout() {
                 <div className="col-md-6 text-right">
                   <h6>
                     <strong>
+                      {/* { formatAmount(getTotal())} */}
                       {isAuthenticated
-                        ? formatAmount(getTotal())
+                        ? formatAmount(
+                            cartDet?.reduce(
+                              (amount, item) =>
+                                amount +
+                                item.quantity * Number(item.product.price),
+                              0
+                            )
+                          )
                         : formatAmount(getBasketTotal(basket))}
                     </strong>
                   </h6>
@@ -736,7 +745,15 @@ export default function Checkout() {
                 disabled={btnDisabled}
                 onClick={() =>
                   navigate("/payment-methods", {
-                    state: { data: data2, shipAddress, city, cartDet, email, ship_email, ship_city },
+                    state: {
+                      data: data2,
+                      shipAddress,
+                      city,
+                      cartDet,
+                      email,
+                      ship_email,
+                      ship_city,
+                    },
                   })
                 }
               >

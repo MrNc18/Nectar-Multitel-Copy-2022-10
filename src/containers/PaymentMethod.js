@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import LandingPage from "../components/LandingPage";
 import { getBasketTotal } from "../Reducer";
-import { imageUrl } from "../services/category";
+import { getAllProducts, imageUrl } from "../services/category";
 import { useStateValue } from "../StateProvider";
 import { formatAmount } from "../utils/AmountFormatter";
 import { getcreateRefernceId } from "../services/Payment";
@@ -11,30 +11,80 @@ import moment from "moment";
 import { AUTH_TOKEN, getCookie } from "../utils/cookie";
 
 export default function PaymentMethod() {
-
   const [showCards, setShowCards] = useState(false);
   const [showOnline, setShowOnline] = useState(false);
   const [buttondisabled, setButtonDisabled] = useState(false);
-
   const isAuthenticated = getCookie(AUTH_TOKEN);
   const { state } = useLocation();
-  console.log("state", state);
-
+  const [cartDetails, setCartDetails] = useState(state?.cartDet || {});
+  // setCartDetails(state.cartDet);
+  // const cartDetails = state?.cartDet;
 
   const [userDet, setUserDet] = useState(state?.data || {});
   const [userCity, setUserCity] = useState(state?.city || "");
   const [userShipCity, setUserShipCity] = useState(state?.ship_city || "");
   const [adress, setAdress] = useState(state?.shipAddress || {});
+  const [productsCart, setProductsCart] = useState("");
+  const [productsBasket, setProductsBasket] = useState("");
   const [{ basket }, dispatch] = useStateValue();
   const navigate = useNavigate();
-  console.log("basket", basket);  
-  console.log("adress",adress)
+  console.log("basket", basket);
+  console.log("adress", adress);
   console.log("userdet", userDet);
+  console.log("state", state, cartDetails);
+
+  const productdataBYCart = () => {
+    let products = [];
+    console.log("cardDetails", cartDetails);
+    cartDetails?.map((data) => {
+      let value = {
+        product_id: data.product.id,
+        product_name: data.product.name,
+        product_quantity: data.quantity,
+        product_price: data.product.price,
+        product_image: data.product.cover_img,
+      };
+      products.push(value);
+      console.log("product", products);
+      setProductsCart(products);
+    });
+
+    return products;
+  };
+
+  const productdataByBasket = () => {
+    let products = [];
+    basket?.map((data) => {
+      let value = {
+        product_id: data.id,
+        product_name: data.name,
+        product_quantity: data.quantity,
+        product_price: data.price,
+        product_image: data.cover_img,
+      };
+      products.push(value);
+      console.log("basketproduct", products);
+      setProductsBasket(products);
+    });
+
+    return products;
+  };
+
   useEffect(() => {
     if (!state) {
       navigate("/marketplace");
-    } 
+    }
   }, []);
+
+  
+  useEffect(() => {
+    console.log("isAut",isAuthenticated)
+    if (!isAuthenticated) {
+      productdataByBasket();
+    } else if (isAuthenticated) {
+      productdataBYCart();
+    }
+  }, [isAuthenticated]);
 
   const getReference = async () => {
     // var date = moment(new Date(new Date().setDate(new Date().getDate() + 30)).format("YYYY-MM-DD"))
@@ -45,39 +95,46 @@ export default function PaymentMethod() {
       return num.toString().padStart(7, "0");
     };
 
-    const productdata = () => {
-      let products = [];
-      basket.map((data) => {
-        let value = {
-          product_id: data.id,
-          product_name: data.name,
-          product_quantity: data.quantity,
-          product_price: data.price,
-          product_image:data.image
-        };
-        products.push(value);
-        console.log("product", products);
-      });
+    const getTotal = () => {
+      return cartDetails?.reduce(
+        (amount, item) => amount + item.quantity * Number(item.product.price)
+      );
+    };
 
-      return products;
+  
+
+    const amount = () => {
+      {
+        // isAuthenticated
+        formatAmount(getTotal());
+        // : formatAmount(getBasketTotal(basket));
+      }
     };
 
 
+    // const getAllProducts = () =>{
+    //  !isAuthenticated ? basket.length : cartDetails.length
+    // };
+
     const data = {
-      amount: getBasketTotal(basket),
+      // amount: amount(),
+      amount: "200",
       end_datetime: moment().add(30, "days").format("YYYY-MM-DD"),
-      "userId":`${userDet.userId}`,
-      "adress":`${state.data.address1}`,
+      userId: `${userDet.userId}`,
+      adress: `${state.data.address1}`,
       custom_fields: {
         invoice: `${"MUL"} ${getRandomId()}`,
         email: `${userDet.email}`,
-        Total_products: `${basket.length}`,
+      //  Total_products:!isAuthenticated ? basket.length : cartDetails.length,
+        Total_products: "10",
       },
-      order_detail: [{
-        invoice: `${"MUL"} ${getRandomId()}`,
-        "products":productdata(),
-        email: `${userDet.email}`,
-        }]
+      order_detail: [
+        {
+          invoice: `${"MUL"} ${getRandomId()}`,
+          products: isAuthenticated ? productsCart : productsBasket,
+          email: `${userDet.email}`,
+        },
+      ],
     };
     try {
       const resp = await getcreateRefernceId(data);
@@ -97,11 +154,11 @@ export default function PaymentMethod() {
   };
 
   const getTotal = () => {
-    return state?.cartDet?.reduce(
-      (amount, item) => amount + item.quantity * Number(item.product.price),
-      0
+    return cartDetails?.reduce(
+      (amount, item) => amount + item.quantity * Number(item.product.price)
     );
   };
+
 
   return (
     <LandingPage>
@@ -117,9 +174,7 @@ export default function PaymentMethod() {
                   <tr className="header_row">
                     <td className="td1">Contact</td>
                     <td className="td2">
-                      {state?.ship_email
-                        ? state?.ship_email
-                        : state?.email}
+                      {state?.ship_email ? state?.ship_email : state?.email}
                     </td>
                     <td className="td3">
                       <a href="/checkout">Change</a>
@@ -233,7 +288,14 @@ export default function PaymentMethod() {
                     <div className="col-md-6 text-right">
                       <h3 className="mt-0">
                         {isAuthenticated
-                          ? formatAmount(getTotal())
+                          ? formatAmount(
+                              cartDetails?.reduce(
+                                (amount, item) =>
+                                  amount +
+                                  item.quantity * Number(item.product.price),
+                                0
+                              )
+                            )
                           : formatAmount(getBasketTotal(basket))}
                       </h3>
                     </div>
@@ -249,7 +311,14 @@ export default function PaymentMethod() {
                   <h6>
                     <strong>
                       {isAuthenticated
-                        ? formatAmount(getTotal())
+                        ? formatAmount(
+                            cartDetails?.reduce(
+                              (amount, item) =>
+                                amount +
+                                item.quantity * Number(item.product.price),
+                              0
+                            )
+                          )
                         : formatAmount(getBasketTotal(basket))}
                     </strong>
                   </h6>
@@ -259,8 +328,7 @@ export default function PaymentMethod() {
               <button
                 type="submit"
                 className="order-box-btn"
-                onClick={() => getReference()
-                  }
+                onClick={() => getReference()}
               >
                 Pay Now
               </button>
