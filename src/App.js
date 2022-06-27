@@ -109,6 +109,7 @@ import CustomizedService from "./components/atoms/CustomizedService";
 import OutSourcing from "./components/atoms/OutSourcing";
 import OMG from "./components/atoms/OMG";
 import WhoWeAreSlug from "./containers/WhoWeAreSlug";
+import NewsSlug from './containers/NewsSlug'
 
 
 function App() {
@@ -205,7 +206,8 @@ function App() {
          <Route path="/videoconference" element={<VideoConference   />} />
          <Route path="/cpes" element={<Cpes/>} />
          <Route path="/whoweare" element={<WhoWeAre/>} />
-         <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} />F
+         <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} />
+         <Route path="News/:slug" element={<NewsSlug/>} />
          <Route path="otherservice" element={<OtherService />} />
          <Route path="/specialservice" element={<SpecialService />} />
          <Route path="/customizedservice"  element={<CustomizedService />} />
