@@ -97,6 +97,7 @@ import CustomizedService from "./components/atoms/CustomizedService";
 import OutSourcing from "./components/atoms/OutSourcing";
 import OMG from "./components/atoms/OMG";
 import WhoWeAreSlug from "./containers/WhoWeAreSlug";
+import RecruitmentSlug from "./containers/RecruitmentSlug";
 
 
 function App() {
@@ -243,6 +244,7 @@ function App() {
         <Route path="/newsfirst" element={<NewsFirst />} />
         <Route path="/newssecond" element={<NewsSecond />} />
         <Route path="/recruitment" element={<Recruitment />} />
+        {/* <Route path="/recruitment/:slug" element={<RecruitmentSlug />} /> */}
         <Route path="/recruitmentform" element={<RecruitmentForm />} />
         
       </Routes>
