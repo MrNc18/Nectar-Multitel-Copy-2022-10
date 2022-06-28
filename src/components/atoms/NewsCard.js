@@ -33,10 +33,11 @@ function NewsCard({
             justifyContent: "space-between",
           }}
         >
-          <Col lg={6}>
-            {news &&
+          {news &&
               news.map((items) => {
                 return (
+          <Col lg={6}>
+            
                   <Card style={{ width: "18rem" }}>
                     {/* <Card.Img variant="top" src={imageUrl(items.image)}/> */}
                     <img src={imageUrl(items.image)} alt="No Image"  style={{ width: "60px" }} />
@@ -60,9 +61,10 @@ function NewsCard({
                       </Link>
                     </Card.Body>
                   </Card>
-                );
-              })}
+                
           </Col>
+          );
+        })}
         </Row>
       </Container>
     </>

@@ -26,6 +26,9 @@ export const getAllNewsCategory = async () => {
  export const getAllRecruitmentCategory = async () => {
   return await doGet("api/recruitment/getAllRecruitmentCategory")
  }
+ export const getRecruitmentByCategory = async (data) => {
+  return await doPost("api/recruitment/getRecruitmentByCategory", data)
+ }
 
  export const getRecruitmentBySlug = async () => {
   return await doPost("api/recruitment/getAllRecruitmentCategory")

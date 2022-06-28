@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row } from "react-bootstrap";
-import BulletineCard from "./BulletineCard";
+import HighlightCard from './HighlightCard';
 
 function Highlights() {
   return (
@@ -12,7 +12,7 @@ function Highlights() {
           Highlight
         </h4>
         <Row>
-          <BulletineCard />
+          <HighlightCard />
         </Row>
       </Container>
     </>
