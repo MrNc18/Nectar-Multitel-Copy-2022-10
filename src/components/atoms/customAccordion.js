@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CustomAccordion = ({ title, content }) => {
+const CustomAccordion = ({ title, shortdesc, content }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -9,7 +9,7 @@ const CustomAccordion = ({ title, content }) => {
         <div><h6>{title}</h6></div>
         <div><h5>{isActive ? '-' : '+'}</h5></div>
       </div>
-      {isActive && <div className="accordion-content">{content}</div>}
+      {isActive && <div className="accordion-content">{shortdesc}<br />{content}</div>}
     </div>
   );
 };
