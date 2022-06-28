@@ -29,7 +29,7 @@ function Commercial() {
           <div>
             {console.log(commercial, "resp")}
             {commercial &&
-              commercial.recruitments.map((item) => (
+              commercial?.recruitments?.map((item) => (
                 <>
                   <h2 className="pt-4" style={{ color: "#1D3557" }}>
                     {item.recruitment_heading}

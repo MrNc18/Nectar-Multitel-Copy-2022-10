@@ -4,11 +4,11 @@ import { showAlert } from "../../utils/showAlert";
 import { getNewsByCategory } from "../../services/WhoWeAreFront";
 import { imageUrl } from "../../services/category";
 
-function BulletineCard() {
+function HighlightCard() {
   const [bulletines, setBulletines] = useState([]);
 
   const handleAllRequirement = async () => {
-    const data = { slug: "bulle" };
+    const data = { slug: "highlights" };
     try {
       const resp = await getNewsByCategory(data);
       console.log(resp);
@@ -47,4 +47,4 @@ function BulletineCard() {
   );
 }
 
-export default BulletineCard;
+export default HighlightCard;
