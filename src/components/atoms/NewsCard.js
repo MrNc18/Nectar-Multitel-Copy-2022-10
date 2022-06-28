@@ -38,11 +38,13 @@ function NewsCard({
               news.map((items) => {
                 return (
                   <Card style={{ width: "18rem" }}>
-                    <Card.Img variant="top" src={imageUrl(items.image)} />
-
+                    {/* <Card.Img variant="top" src={imageUrl(items.image)}/> */}
+                    <img src={imageUrl(items.image)} alt="No Image"  style={{ width: "60px" }} />
+                    
                     <Card.Body className="text-center">
                       <Card.Title>{items?.news_date}</Card.Title>
-                      <Card.Text>{items?.title}</Card.Text>
+                      <Card.Title>{items?.title}</Card.Title>
+                      {/* <img src={imageUrl(items.image)} alt="" />  */}
                       <hr />
                       <Link to={forwardlink1}>
                         <Button

@@ -34,3 +34,8 @@ export const getAllNewsCategory = async () => {
  export const getAllRecruitment = async () => {
   return await doGet("api/recruitment/getAllRecruitment")
  }
+
+
+ export const getNewsByCategory = async (data) => {
+  return await doPost("api/news/getNewsByCategory", data)
+ }

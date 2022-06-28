@@ -28,6 +28,7 @@ const Gallery = ({ title, content, desc }) => {
     {gallery &&
       gallery.map((item) => (
     <div className="accordion-item">
+      
       <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
         <div>
           <h5 style={{ color: "#1D3557"}}>{item.title}</h5>
