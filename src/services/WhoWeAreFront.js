@@ -8,12 +8,9 @@ export const getMsgMissionSusBySlug = async (data) => {
   return await doPost("api/msgMissionSus/getMsgMissionSusBySlug", data);
 };
 
-
-export const getCorporate = async () => {
-  return await doGet("api/corporate/getCorporate");
+export const getSustainabilityByCategory = async (data) => {
+  return await doPost("api/sustainability/getSustainabilityByCategory", data);
 };
-
-
 
 export const getAllNews = async () => {
   return await doGet("api/news/getAllNews")
@@ -44,10 +41,11 @@ export const getAllNewsCategory = async () => {
  }
  
 
+ 
 
- export const getSustainabilityByCategory = async (data) => {
-  return await doPost("api/sustainability/getSustainabilityByCategory", data)
+
+
+ export const getCorporate = async (data) => {
+  return await doPost("api/corporate/getCorporate", data)
  }
-
-
-
+ 

@@ -30,10 +30,10 @@ function BulletineCard() {
         {console.log(bulletines, "resp")}
         
             <Card style={{ width: "10rem" }}>
-              {item?.image?.map((img) => {
+              {/* {item?.image?.map((img) => {
                 <Card.Img variant="top" src={imageUrl(img)} />
-              })}
-              {/* <Card.Img variant="top" src={imageUrl(item.image)} /> */}
+              })} */}
+              <Card.Img variant="top" src={imageUrl(item.image)} />
               <Card.Body className="text-center">
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>{item.name}</Card.Text>
