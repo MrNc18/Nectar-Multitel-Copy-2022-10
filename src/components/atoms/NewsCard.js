@@ -39,8 +39,8 @@ function NewsCard({
           <Col lg={6}>
             
                   <Card style={{ width: "18rem" }}>
-                    {/* <Card.Img variant="top" src={imageUrl(items.image)}/> */}
-                    <img src={imageUrl(items.image)} alt="No Image"  style={{ width: "60px" }} />
+                    <Card.Img variant="top" src={imageUrl(items.image)}    />
+                    {/* <img src={imageUrl(items.image)} alt="No Image"  style={{ width: "60px" }} /> */}
                     
                     <Card.Body className="text-center">
                       <Card.Title>{items?.news_date}</Card.Title>

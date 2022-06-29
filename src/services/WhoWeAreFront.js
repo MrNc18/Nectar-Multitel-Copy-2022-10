@@ -42,3 +42,12 @@ export const getAllNewsCategory = async () => {
  export const getNewsByCategory = async (data) => {
   return await doPost("api/news/getNewsByCategory", data)
  }
+ 
+
+
+ export const getSustainabilityByCategory = async (data) => {
+  return await doPost("api/sustainability/getSustainabilityByCategory", data)
+ }
+
+
+
