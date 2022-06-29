@@ -1601,3 +1601,12 @@ rem
   width: 16.66%;
   padding: 5px;
 }
+
+.whowearebanner{
+  background: url(https://c.stocksy.com/a/NZE700/z9/1724305.jpg);
+  height: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 180px 0;
+  background-position: center center;
+}

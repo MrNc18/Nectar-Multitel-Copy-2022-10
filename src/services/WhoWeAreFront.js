@@ -16,6 +16,10 @@ export const getSustainabilityByCategory = async (data) => {
   return await doPost("api/sustainability/getSustainabilityByCategory", data);
 };
 
+export const getCorporate = async () => {
+  return await doGet("api/corporate/getCorporate")
+ }
+
 export const getAllNews = async () => {
   return await doGet("api/news/getAllNews")
  }
@@ -30,6 +34,9 @@ export const getAllNewsCategory = async () => {
  export const getRecruitmentByCategory = async (data) => {
   return await doPost("api/recruitment/getRecruitmentByCategory", data)
  }
+ export const getNewsByCategory = async (data) => {
+  return await doPost("api/news/getNewsByCategory", data)
+ }
 
  export const getRecruitmentBySlug = async () => {
   return await doPost("api/recruitment/getAllRecruitmentCategory")
@@ -39,17 +46,6 @@ export const getAllNewsCategory = async () => {
   return await doGet("api/recruitment/getAllRecruitment")
  }
 
-
- export const getNewsByCategory = async (data) => {
-  return await doPost("api/news/getNewsByCategory", data)
+ export const getAllMultitelPride = async () => {
+  return await doGet("api/multitelPride/getAllMultitelPride")
  }
- 
-
- 
-
-
-
- export const getCorporate = async (data) => {
-  return await doGet("api/corporate/getCorporate", data)
- }
- 
