@@ -28,7 +28,9 @@ const WhoWeAre = () => {
   return (
     <>
       <LandingPage>
-        <ServiceBanner title="Who We Are" />
+        <section className="whowearebanner">
+          <h1 className='white-color text-center'>Who We Are</h1>
+        </section>
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-12 col-lg-12 bredcrumb">

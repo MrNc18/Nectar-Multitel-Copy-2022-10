@@ -1601,31 +1601,12 @@ td.td3 a {font-weight: 400;font-size: 12px;}
   width: 16.66%;
   padding: 5px;
 }
-.bredcrumb nav {
-  float: left;
-}
-.bredcrumb a#basic-nav-dropdown {
-  float: right;
-  border: 1px solid rgb(12, 124, 184);
-  margin-top: 10px;
-  width: 20%;
-}
-  .bredcrumb .dropdown-menu.show { 
-  border: 1px solid rgb(12, 124, 184);
-  width: 20%;
-}  
 
-.dropdown1 li::marker{ 
-  color: #0076b5; ;
+.whowearebanner{
+  background: url(https://c.stocksy.com/a/NZE700/z9/1724305.jpg);
+  height: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 180px 0;
+  background-position: center center;
 }
-
-
-
- @media (max-width: 768px) {
-  .bredcrumb a#basic-nav-dropdown {
-    width: auto;
-}
-.bredcrumb .dropdown-menu.show {
-   width: auto; 
-}
- }

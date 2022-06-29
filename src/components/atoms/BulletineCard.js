@@ -34,7 +34,7 @@ function BulletineCard() {
               <Card.Img variant="top" src={imageUrl(item.image)} style={{height:"150px"}} />
               <Card.Body className="text-center">
                 <Card.Title>{item.news_date.slice(0, 10)}</Card.Title>
-                <Card.Text>{item.title}</Card.Text>
+                <Card.Text>{item.news_number}</Card.Text>
               </Card.Body>
             </Card>
           
