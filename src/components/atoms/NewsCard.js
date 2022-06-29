@@ -39,7 +39,7 @@ function NewsCard({
           <Col lg={6}>
             
                   <Card style={{ width: "18rem" }}>
-                    <Card.Img variant="top" src={imageUrl(items.image)} />
+                    <Card.Img variant="top" src={imageUrl(items.image)} style={{height:"150px"}}/>
 
                     <Card.Body className="text-center">
                       <Card.Title>{items?.news_date}</Card.Title>

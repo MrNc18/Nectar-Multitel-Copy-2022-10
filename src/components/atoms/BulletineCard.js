@@ -31,10 +31,7 @@ function BulletineCard() {
         {console.log(bulletines, "resp")}
         
             <Card style={{ width: "10rem" }}>
-              {/* {item?.image?.map((img) => {
-                <Card.Img variant="top" src={imageUrl(img)} />
-              })} */}
-              <Card.Img variant="top" src={imageUrl(item.image)} />
+              <Card.Img variant="top" src={imageUrl(item.image)} style={{height:"150px"}} />
               <Card.Body className="text-center">
                 <Card.Title>{item.news_date}</Card.Title>
                 <Card.Text>{item.title}</Card.Text>
