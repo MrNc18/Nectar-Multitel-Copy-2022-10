@@ -39,3 +39,7 @@ export const getAllNewsCategory = async () => {
  export const getAllRecruitment = async () => {
   return await doGet("api/recruitment/getAllRecruitment")
  }
+
+ export const getAllMultitelPride = async () => {
+  return await doGet("api/multitelPride/getAllMultitelPride")
+ }
