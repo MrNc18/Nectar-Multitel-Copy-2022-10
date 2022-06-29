@@ -830,3 +830,8 @@
   .contactbtn:hover{
     color: #fff ;
   }
+  .imgmulti{
+    display: flex;
+  }
+
+ 

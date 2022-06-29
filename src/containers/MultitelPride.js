@@ -56,16 +56,22 @@ function MultitelPride() {
                               item?.image &&
                               item?.image.map((img) => (
                                 <>
-                                  <img
-                                    src={imageUrl(img)}
-                                    style={{ height:"80px", marginBottom:"10px", display:"inline-block" }}
-                                  />
-                                  <h6>{item?.description}</h6>
-                                  <p>{item?.sort_description}</p>
+                                  {
+                                    <>
+                                      <img
+                                        src={imageUrl(img)}
+                                        style={{ height: "80px" }}
+                                      />
+                                      <span className="text-center">{item?.description}</span> &nbsp;
+                                      <span className="text-center">{item?.sort_description}</span>
+                                    </>
+                                  }
                                 </>
                               ))
                             }
+                          
                           />
+                          
                         </>
                       </div>
                     </Col>
