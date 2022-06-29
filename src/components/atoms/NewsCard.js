@@ -42,7 +42,7 @@ function NewsCard({
                     <Card.Img variant="top" src={imageUrl(items.image)} style={{height:"150px"}}/>
 
                     <Card.Body className="text-center">
-                      <Card.Title>{items?.news_date}</Card.Title>
+                      <Card.Title>{items?.news_date.slice(0, 10)}</Card.Title>
                       <Card.Text>{items?.title}</Card.Text>
                       <hr />
                       <Link to={forwardlink1}>

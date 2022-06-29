@@ -30,10 +30,10 @@ function BulletineCard() {
       <Col md={6} lg={3} className="mb-4">
         {console.log(bulletines, "resp")}
         
-            <Card style={{ width: "10rem" }}>
+            <Card style={{ width: "11rem" }}>
               <Card.Img variant="top" src={imageUrl(item.image)} style={{height:"150px"}} />
               <Card.Body className="text-center">
-                <Card.Title>{item.news_date}</Card.Title>
+                <Card.Title>{item.news_date.slice(0, 10)}</Card.Title>
                 <Card.Text>{item.title}</Card.Text>
               </Card.Body>
             </Card>
