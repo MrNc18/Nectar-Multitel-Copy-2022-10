@@ -167,8 +167,8 @@ function App() {
 
         </Route>
 
-
-        <Route  path="/messagefrommanger" element={ <MessageFromManag />} />
+        {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
+        <Route path="/messagefrommanager" element={ <MessageFromManag />} />
         <Route path="/missionandvalue" element={ <MissionAndValue /> } />
         <Route path="/corporatebodies" element={ <CorporateBodies />} />
         <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
@@ -183,7 +183,7 @@ function App() {
          <Route path="/videoconference" element={<VideoConference   />} />
          <Route path="/cpes" element={<Cpes/>} />
          <Route path="/whoweare" element={<WhoWeAre/>} />
-         <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} />
+         {/* <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} /> */}
          <Route path="otherservice" element={<OtherService />} />
          <Route path="/specialservice" element={<SpecialService />} />
          <Route path="/customizedservice"  element={<CustomizedService />} />

@@ -29,14 +29,11 @@ function BulletineCard() {
       <Col md={6} lg={3} className="mb-4">
         {console.log(bulletines, "resp")}
         
-            <Card style={{ width: "10rem" }}>
-              {/* {item?.image?.map((img) => {
-                <Card.Img variant="top" src={imageUrl(img)} />
-              })} */}
-              <Card.Img variant="top" src={imageUrl(item.image)} />
+            <Card style={{ width: "11rem" }}>
+              <Card.Img variant="top" src={imageUrl(item.image)} style={{height:"150px"}} />
               <Card.Body className="text-center">
-                <Card.Title>{item.name}</Card.Title>
-                <Card.Text>{item.name}</Card.Text>
+                <Card.Title>{item.news_date.slice(0, 10)}</Card.Title>
+                <Card.Text>{item.title}</Card.Text>
               </Card.Body>
             </Card>
           

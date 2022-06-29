@@ -1,18 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
-import { getSustainabilityByCategory } from "../../services/WhoWeAreFront";
+import { getMsgMissionSusBySlug } from "../../services/WhoWeAreFront";
 import { baseurl } from "../../utils/request";
 import { showAlert } from "../../utils/showAlert";
+import { imageUrl } from "../../services/category";
 
 function SustainabilityTab() {
-
-  const [sustainability, setSustainability] = useState([]);
+  const [sustainability, setSustainability] = useState({});
 
   const handleAllSustainability = async () => {
-    const data = { slug: "key-indicatores-3" };
+    const data = { slug: "sustainability-1" };
     try {
-      const resp = await getSustainabilityByCategory(data);
+      const resp = await getMsgMissionSusBySlug(data);
       console.log(resp);
       setSustainability(resp && resp.data.data);
       // console.log("newsreq", resp);
@@ -27,45 +27,31 @@ function SustainabilityTab() {
   }, []);
 
   return (
-    
     <Container>
-      {sustainability &&
-      sustainability?.sustainabilities?.map((item) => (
       <Row>
         <Col md={8}>
           <h2 className="mt-5" style={{ color: "#1D3557" }}>
-          {item.title}
+            {sustainability?.name}
           </h2>
         </Col>
         <Col md={4}>
           <img
-            src={
-              item?.cover_img
-                ? `${baseurl}/images/${sustainability?.cover_img}`
-                : "https://www.expatica.com/app/uploads/sites/2/2015/07/education-in-spain-1920x1080.jpg"
-            }
+            src={imageUrl(sustainability?.image)}
             alt=""
             style={{ height: "120px" }}
           />
         </Col>
         <Col md={12}>
-          <h5 style={{ color: "#3190C3" }}>
-          {item?.sort_description}
-          </h5>
-          <p>
-          {item?.description}
-          </p>
+          <h5 style={{ color: "#3190C3" }}>{sustainability?.name}</h5>
+          <p>{sustainability?.description}</p>
         </Col>
         <Col md={12}>
           <h5 className="mt-3" style={{ color: "#3190C3" }}>
-          {item?.sort_description}
+            {sustainability?.sub_heading}
           </h5>
-          <p>
-          {item?.description}
-          </p>
+          <p>{sustainability?.description_2}</p>
         </Col>
       </Row>
-      ))}
     </Container>
   );
 }

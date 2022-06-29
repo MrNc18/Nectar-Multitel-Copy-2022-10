@@ -2,22 +2,28 @@ import React, { useState, useEffect } from "react";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import { useParams } from "react-router-dom";
 import { getMsgMissionSusBySlug } from "../services/WhoWeAreFront";
+import { showAlert } from "../utils/showAlert";
 
- 
 const MessageFromManag = () => {
   const [messageFromManager, setMessageFromManager] = useState({});
-  const params = useParams();
-  console.log(params);
+
+  const handleAllMessage = async () => {
+    const data = { slug: "management-message" };
+    try {
+      const resp = await getMsgMissionSusBySlug(data);
+      console.log(resp);
+      setMessageFromManager(resp && resp.data.data);
+      // console.log("newsreq", resp);
+    } catch (error) {
+      showAlert("Something went wrong", "error");
+    }
+  };
 
   useEffect(() => {
-    (async () => {
-      const response = await getMsgMissionSusBySlug({ slug: params?.slug });
-      console.log("messageFromManager data", response);
-      setMessageFromManager(response?.data?.data);
-    })();
-  }, [params?.slug]);
+    handleAllMessage();
+  }, []);
+
 
   return (
     <>
