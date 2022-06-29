@@ -99,8 +99,8 @@ import Digital from "./containers/Digital"
 
 import VIdeoConference from "./containers/VideoConference";
 import VideoConference from "./containers/VideoConference";
-import WhoWeAre from './containers/Whoweare'
-// import WhoWeAre from "./containers/WhoWeAre";
+//import WhoWeAre from './containers/Whoweare'
+ import WhoWeAre from "./containers/WhoWeAre";
 import Commercial from "./components/atoms/Commercial";
 import GraphicDesigner from "./components/atoms/GraphicDesigner";
 import OtherService from "./containers/OtherService";
@@ -206,12 +206,7 @@ function App() {
          <Route path="/videoconference" element={<VideoConference   />} />
          <Route path="/cpes" element={<Cpes/>} />
          <Route path="/whoweare" element={<WhoWeAre/>} />
-<<<<<<< HEAD
-         <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} />
-
-=======
          {/* <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} /> */}
->>>>>>> d39e41920ff665a5735531f3cdd653cf9f117952
          <Route path="otherservice" element={<OtherService />} />
          <Route path="/specialservice" element={<SpecialService />} />
          <Route path="/customizedservice"  element={<CustomizedService />} />
