@@ -46,6 +46,6 @@ export const getAllNewsCategory = async () => {
 
 
  export const getCorporate = async (data) => {
-  return await doPost("api/corporate/getCorporate", data)
+  return await doGet("api/corporate/getCorporate", data)
  }
  
