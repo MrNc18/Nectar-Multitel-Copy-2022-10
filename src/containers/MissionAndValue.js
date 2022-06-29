@@ -2,21 +2,27 @@ import React, { useState, useEffect } from "react";
 import LandingPage from "../components/LandingPage";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import { useParams } from "react-router-dom";
 import { getMsgMissionSusBySlug } from "../services/WhoWeAreFront";
+import { showAlert } from "../utils/showAlert";
 
 const MissionAndValue = () => {
   const [missionValues, setMissionValues] = useState({});
-  const params = useParams();
-  console.log(params);
+ 
+  const handleAllMessage = async () => {
+    const data = { slug: "sustainability" };
+    try {
+      const resp = await getMsgMissionSusBySlug(data);
+      console.log(resp);
+      setMissionValues(resp && resp.data.data);
+      // console.log("newsreq", resp);
+    } catch (error) {
+      showAlert("Something went wrong", "error");
+    }
+  };
 
   useEffect(() => {
-    (async () => {
-      const response = await getMsgMissionSusBySlug({ slug: params?.slug });
-      console.log("missionValues data", response);
-      setMissionValues(response?.data?.data);
-    })();
-  }, [params?.slug]);
+    handleAllMessage();
+  }, []);
 
   return (
     <>
@@ -55,7 +61,7 @@ const MissionAndValue = () => {
               <div>
                 <div>
                   <h5 style={{ color: "#3190C3" }} className="pt-4">
-                    {missionValues?.sub_heading2}
+                    {missionValues?.sub_heading_2}
                   </h5>
 
                   <p className="pt-4">{missionValues?.description_2}</p>
@@ -63,7 +69,7 @@ const MissionAndValue = () => {
               </div>
               <div>
                 <h5 style={{ color: "#3190C3" }} className="pt-4">
-                  {missionValues?.sub_heading2}
+                  {missionValues?.sub_heading_3}
                 </h5>
 
                 <p className="pt-4">{missionValues?.description_3}</p>

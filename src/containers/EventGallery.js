@@ -29,15 +29,19 @@ function EventGallery() {
     <>
       <Container>
         <Row>
+        {console.log(gallery, "gallery")}
           {gallery &&
             gallery?.news?.map((item) => (
               <Col md={12}>
                 <div className="accordion">
                   <>
+                  {/* {console.log(item, "items")} */}
                     <Gallery
                       title={item?.title}
                       desc={item?.description}
-                      content={imageUrl(item.image)}
+                      content={item?.image && item?.image.map((img) => (
+                        <img src={imageUrl(img)} style={{ height:"60px"}} />
+                      ))}
                     />
                   </>
                 </div>
