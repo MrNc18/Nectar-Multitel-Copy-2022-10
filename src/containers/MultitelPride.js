@@ -52,6 +52,7 @@ function MultitelPride() {
                           <ImgAccordion
                             title={item?.title}
                             desc={item?.description}
+                            sortdesc={item?.sort_description}
                             content={
                               item?.image &&
                               item?.image.map((img) => (
@@ -62,8 +63,8 @@ function MultitelPride() {
                                         src={imageUrl(img)}
                                         style={{ height: "80px" }}
                                       />
-                                      <span className="text-center">{item?.description}</span> &nbsp;
-                                      <span className="text-center">{item?.sort_description}</span>
+                                      {/* <h5 className="text-center">{item?.description}</h5> &nbsp;
+                                      <p className="text-center">{item?.sort_description}</p> */}
                                     </>
                                   }
                                 </>
