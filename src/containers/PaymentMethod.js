@@ -17,9 +17,9 @@ export default function PaymentMethod() {
   const isAuthenticated = getCookie(AUTH_TOKEN);
   const { state } = useLocation();
   const [cartDetails, setCartDetails] = useState(state?.cartDet || {});
-  // setCartDetails(state.cartDet);
-  // const cartDetails = state?.cartDet;
-
+  const [basketLength, setBasketLength] = useState("");
+  const [cartDetailsLen, setcartDetailsLen] = useState("");
+  const [Amount, setAmount] = useState("");
   const [userDet, setUserDet] = useState(state?.data || {});
   const [userCity, setUserCity] = useState(state?.city || "");
   const [userShipCity, setUserShipCity] = useState(state?.ship_city || "");
@@ -36,6 +36,7 @@ export default function PaymentMethod() {
   const productdataBYCart = () => {
     let products = [];
     console.log("cardDetails", cartDetails);
+    setcartDetailsLen(cartDetails?.length);
     cartDetails?.map((data) => {
       let value = {
         product_id: data.product.id,
@@ -54,6 +55,7 @@ export default function PaymentMethod() {
 
   const productdataByBasket = () => {
     let products = [];
+    setBasketLength(basket?.length);
     basket?.map((data) => {
       let value = {
         product_id: data.id,
@@ -70,19 +72,35 @@ export default function PaymentMethod() {
     return products;
   };
 
+  const getTotal = () => {
+    const amount = cartDetails.reduce(
+      (total, item) => total + item.product.price * item.quantity,
+      0
+    );
+    console.log("amount", amount);
+    setAmount(amount);
+  };
+
+  const TotalBas = () => {
+    const amount = getBasketTotal(basket);
+    console.log("basAmount", amount);
+    setAmount(amount);
+  };
+
   useEffect(() => {
     if (!state) {
       navigate("/marketplace");
     }
   }, []);
 
-  
   useEffect(() => {
-    console.log("isAut",isAuthenticated)
+    console.log("isAut", isAuthenticated);
     if (!isAuthenticated) {
       productdataByBasket();
+      TotalBas();
     } else if (isAuthenticated) {
       productdataBYCart();
+      getTotal();
     }
   }, [isAuthenticated]);
 
@@ -95,38 +113,17 @@ export default function PaymentMethod() {
       return num.toString().padStart(7, "0");
     };
 
-    const getTotal = () => {
-      return cartDetails?.reduce(
-        (amount, item) => amount + item.quantity * Number(item.product.price)
-      );
-    };
-
-  
-
-    const amount = () => {
-      {
-        // isAuthenticated
-        formatAmount(getTotal());
-        // : formatAmount(getBasketTotal(basket));
-      }
-    };
-
-
-    // const getAllProducts = () =>{
-    //  !isAuthenticated ? basket.length : cartDetails.length
-    // };
-
     const data = {
-      // amount: amount(),
-      amount: "200",
+      amount: Amount,
       end_datetime: moment().add(30, "days").format("YYYY-MM-DD"),
       userId: `${userDet.userId}`,
       adress: `${state.data.address1}`,
       custom_fields: {
         invoice: `${"MUL"} ${getRandomId()}`,
         email: `${userDet.email}`,
-      //  Total_products:!isAuthenticated ? basket.length : cartDetails.length,
-        Total_products: "10",
+        Total_products: !isAuthenticated
+          ? `${basket.length}`
+          : `${cartDetails.length}`,
       },
       order_detail: [
         {
@@ -152,13 +149,6 @@ export default function PaymentMethod() {
       console.log("err", error);
     }
   };
-
-  const getTotal = () => {
-    return cartDetails?.reduce(
-      (amount, item) => amount + item.quantity * Number(item.product.price)
-    );
-  };
-
 
   return (
     <LandingPage>

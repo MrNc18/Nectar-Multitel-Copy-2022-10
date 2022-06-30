@@ -199,6 +199,7 @@ export default function Checkout() {
 
   const btnDisabled = shipAddress
     ? !first_name ||
+      !isAuthenticated ||
       !last_name ||
       !country ||
       !city ||
@@ -248,9 +249,7 @@ export default function Checkout() {
                 {!isAuthenticated && (
                   <span className="s2 float-right mb-2">
                     Already have an account?{" "}
-                    <a onClick={() => setShowLoginModal(true)}>
-                      <b>Log in</b>
-                    </a>
+                    <a onClick={() => setShowLoginModal(true)}>Log in</a>
                   </span>
                 )}
               </div>
@@ -759,6 +758,11 @@ export default function Checkout() {
               >
                 Place Order
               </button>
+              {!isAuthenticated ?
+              <center>
+              <p style={{color:"red"}}>Please Log in to Place the Order</p>
+              </center>
+              : "" }
             </div>
           </div>
         </div>

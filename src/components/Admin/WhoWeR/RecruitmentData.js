@@ -39,8 +39,10 @@ export const RecruitmentData = () => {
     category: "",
     Req_heading: "",
     Job_desc_heading: "",
+    email:"",
+   finalDate:"",
   });
-  const { id, Name, descrption, category, Req_heading, Job_desc_heading } =
+  const { id, Name, descrption, category, Req_heading, Job_desc_heading,finalDate,email } =
     data2;
 
   const handleChange = (e) => {
@@ -355,7 +357,7 @@ export const RecruitmentData = () => {
                   </Modal.Title>
                   <div className="container">
                     <Form.Group>
-                      <Form.Label>Descrption</Form.Label>
+                      <Form.Label>Job code</Form.Label>
                       <span style={{ color: "red" }}>*</span>
                       <Form.Control
                         type="text"
@@ -424,6 +426,22 @@ export const RecruitmentData = () => {
                         menuIsOpen={false}
                         value={jobValue}
                       />
+                      <Form.Label>Company's Email</Form.Label>
+                      <span style={{ color: "red" }}>*</span>
+                      <Form.Control
+                        type="email"
+                        value={email}
+                        name="email"
+                        onChange={handleChange}
+                      ></Form.Control>
+                      <Form.Label>Last Date</Form.Label>
+                      <span style={{ color: "red" }}>*</span>
+                      <Form.Control
+                        type="date"
+                        value={finalDate}
+                        name="finalDate"
+                        onChange={handleChange}
+                      ></Form.Control>
                     </Form.Group>
                   </div>
                 </Modal.Body>
@@ -537,7 +555,7 @@ export const RecruitmentData = () => {
                 <Modal.Body>
                   <div className="container">
                     <Form.Group>
-                      <Form.Label>Descrption</Form.Label>
+                      <Form.Label>Job code</Form.Label>
                       <Form.Control
                         type="textarea"
                         value={descrption}
@@ -606,6 +624,22 @@ export const RecruitmentData = () => {
                         menuIsOpen={false}
                         value={jobValue}
                       />
+                       <Form.Label>Company's Email</Form.Label>
+                      <span style={{ color: "red" }}>*</span>
+                      <Form.Control
+                        type="email"
+                        value={email}
+                        name="email"
+                        onChange={handleChange}
+                      ></Form.Control>
+                      <Form.Label>Last Date</Form.Label>
+                      <span style={{ color: "red" }}>*</span>
+                      <Form.Control
+                        type="date"
+                        value={finalDate}
+                        name="finalDate"
+                        onChange={handleChange}
+                      ></Form.Control>
                     </Form.Group>
                   </div>
                 </Modal.Body>
