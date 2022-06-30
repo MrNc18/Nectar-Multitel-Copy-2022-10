@@ -88,7 +88,8 @@ import RecruitmentForm from "./components/atoms/RecruitmentForm";
  
 import VideoConference from "./containers/VideoConference";
 import Cpes from "./containers/Cpes";
-import WhoWeAre from "./containers/WhoWeAre";
+import WhoWeAre from "./containers/Whoweare";
+// import WhoWeAre from "./containers/WhoWeAre";
 // import Commercial from "./components/atoms/Commercial";
 // import GraphicDesigner from "./components/atoms/GraphicDesigner";
 import OtherService from "./containers/OtherService";
@@ -103,6 +104,13 @@ import Digitotal from "./containers/Digitotal"
 import WhoWeAreSlug from "./containers/WhoWeAreSlug";
 import RecruitmentSlug from "./containers/RecruitmentSlug";
 import NewsCard from "./components/atoms/NewsCard";
+import MarketingandCommunicationTechnique from "./components/atoms/MarketingandCommunicationTechnique";
+import OtherServices from "./components/OtherServices";
+import CustomizedSolutions from "./containers/CustomizedSolutions";
+import Internet from "./containers/Internet";
+import Digital from "./containers/Digital";
+import SpecialServices from "./containers/SpecialServices"
+
 
 
 function App() {
