@@ -11,14 +11,14 @@ function News() {
   return (
     <>
       <LandingPage woproducts>
-        <ServiceBanner title="News" />
+        <ServiceBanner title="News" regnPage />
         <Container>
           <div className="bredcrumb">
             <Breadcrumb>
               <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
               <Breadcrumb.Item href="#">Who We Are</Breadcrumb.Item>
               <Breadcrumb.Item active style={{ color: "#0076B5" }}>
-                Web Services
+                News
               </Breadcrumb.Item>
             </Breadcrumb>
           </div>

@@ -44,7 +44,7 @@ function NewsCard({
                   <Card style={{ width: "18rem" }}>
                     <Card.Img
                       variant="top"
-                      src={imageUrl(items.image)}
+                      src={imageUrl(items?.image?.[0])}
                       style={{ height: "150px" }}
                     />
 

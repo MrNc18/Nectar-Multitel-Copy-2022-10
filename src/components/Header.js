@@ -223,7 +223,7 @@ function Header() {
               >
                 <NavDropdown.Item
                   onClick={() =>
-                    navigate("/messgaefrommanager")
+                    navigate("/messagefrommanager")
                     }
                 >
                   Management Message
