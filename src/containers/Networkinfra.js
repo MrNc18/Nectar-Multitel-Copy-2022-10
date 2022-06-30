@@ -4,24 +4,28 @@ import LandingPage from "../components/LandingPage";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 
 const Networkinfra = () => {
-  function Networkinfrasturcture({ data }) {
+  function Networkinfrastructure({ data }) {
     return (
       <>
-        <div>
-          <h2 style={{ color: "#3190C3" }}>{data.heading1}</h2>
-        </div>
-        <div>
-          <p>{data.description}</p>
-        </div>
-        <div>
-          <h6 style={{ color: "#3190C3" }}>{data.heading2}</h6>
-        </div>
-        <div className="dotcol">
-<ul>
-<li>{data.list}</li>
-          <li>{data.list1}</li>
-          <li>{data.list2}</li>
-</ul>
+        <div className="pt-4">
+          <div>
+            <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
+          </div>
+          <div>
+            <p>{data.description}</p>
+          </div>
+          <div>
+            <h6 style={{ color: "#1D3557" }}>{data.heading2}</h6>
+          </div>
+          <div className="dotcol">
+            <ul>
+              <li>{data.tag1}</li>
+              <li>{data.tag2}</li>
+              <li>{data.tag3}</li>
+              <li>{data.tag4}</li>
+              <li>{data.tag5}</li>
+            </ul>
+          </div>
         </div>
       </>
     );
@@ -29,11 +33,14 @@ const Networkinfra = () => {
 
   const obj = {
     heading1: "Network Infrastructure",
-    description: "dfdfjdjh dbfdf h",
+    description:
+      "In view of the challenges and complexity in the implementation and maintenance of companies' network infrastructure, Multitel's Network Infrastructure service adapts perfectly to their needs, with solutions ranging from basic installations of network points to complex projects. of IT infrastructure.",
     heading2: "Services",
-    list: "structures cabling",
-    list1: "sdjkshdjsh",
-    list2: "nddjjd",
+    tag1: "structures cabling",
+    tag2: "Rack Reorganization",
+    tag3: "Identification and Certification of network points",
+    tag4: "Installation and maintenance of fiber optic networks",
+    tag5: "WIFI networks (Access Points and Repeaters)",
   };
 
   return (
@@ -47,14 +54,13 @@ const Networkinfra = () => {
                 <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
 
                 <Breadcrumb.Item href=" ">Digital</Breadcrumb.Item>
-                <Breadcrumb.Item active  style={{color:"#0C7CB8"}}>
-                  Network Infrastructure 
+                <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
+                  Network Infrastructure
                 </Breadcrumb.Item>
               </Breadcrumb>
             </div>
           </div>
 
-          
           <div className="row">
             <div style={{ display: "flex" }} className="pt-5  col-12 col-md-4">
               <img
@@ -66,13 +72,12 @@ const Networkinfra = () => {
                 alt="image here"
                 srcset=""
               />
-              </div>
-
-              <div className=" pt-5  col-md-8 ">
-                <Networkinfrasturcture data={obj} />
-              </div>
             </div>
-           
+
+            <div className=" pt-5  col-md-8 ">
+              <Networkinfrastructure data={obj} />
+            </div>
+          </div>
         </div>
       </LandingPage>
     </>

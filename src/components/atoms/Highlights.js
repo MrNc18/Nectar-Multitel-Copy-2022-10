@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Row } from "react-bootstrap";
-import BulletineCard from "./BulletineCard";
-import BulletineData from "./BulletineData";
+import HighlightCard from './HighlightCard';
 
 function Highlights() {
   return (
@@ -13,9 +12,7 @@ function Highlights() {
           Highlight
         </h4>
         <Row>
-          {BulletineData.map(({ title, src, content }) => (
-            <BulletineCard title={title} src={src} content={content} />
-          ))}
+          <HighlightCard />
         </Row>
       </Container>
     </>

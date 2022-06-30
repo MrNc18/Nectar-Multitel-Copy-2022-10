@@ -11,19 +11,19 @@ const OtherService = () => {
         return(
             <>
             
-         <div className="mt-5">
+         <div className="pt-4">
          <div>
-                <h2>
+                <h2 style={{ color: "#1D3557" }}>
                     {data.heading1}
                 </h2>
             </div>
             <div>
-                <p className="pt-2">
+                <p  className="pt-2">
                     {data.description}
                 </p>
             </div>
             <div>
-                <h6>
+                <h6 style={{ color: "#1D3557" }}>
                     {data.heading2}
                 </h6>
             </div>

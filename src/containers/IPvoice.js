@@ -8,7 +8,8 @@ const IPvoice = () => {
   function Ipvoice ({data}){
         return(
             <>
-             <div>
+    <div className="pt-4">
+    <div>
           <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
         </div>
         <div>
@@ -19,11 +20,14 @@ const IPvoice = () => {
         </div>
         <div className='dotcol'>
          <ul>
-         <li>{data.tag}</li>
+       
           <li>{data.tag1}</li>
           <li>{data.tag2}</li>
+          <li>{data.tag3}</li>
+          <li>{data.tag4}</li>
          </ul>
         </div>
+    </div>
             </>
         )
     }
@@ -31,11 +35,12 @@ const IPvoice = () => {
 
     const obj ={
         heading1:"IP voice",
-        description:"fsjfhjfhdfjhdhfjyhrgh",
+        description:"Our voice solutions are based on VoIP technology (IP/SIP Telephone Lines and SIP Trunks) and help to optimize and flexibilize the communication of companies, being able to be integrated to the existingsolution or to replace it (modernize) it completely. We also support the supply, installation and  configuration of IP voice equipment such as: Telephone exchanges, IP Phones and GSM Gateways",
         heading2:"Benefits",
-        tag: "structures cabling",
-        tag1: "sdjkshdjsh",
-        tag2: "nddjjd",
+        tag1: "Cost reduction",
+        tag2: "Flexibility",
+        tag3: "Better quality and management of communications",
+        tag4:"Free calls on the same network.",
 
     }
   return (

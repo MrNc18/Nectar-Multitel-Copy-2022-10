@@ -3,58 +3,51 @@ import { Col, Container, Row, Breadcrumb, Button } from "react-bootstrap";
 import LandingPage from "../LandingPage";
 import ServiceBanner from "./ServiceBanner";
 import { Link } from "react-router-dom";
-import { getAllNews } from "../../services/WhoWeAreFront";
+import { getNewsBySlug } from "../../services/WhoWeAreFront";
 import { imageUrl } from "../../services/WhoWeAreFront";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { showAlert } from "../../utils/showAlert";
 
-// const obj = {
-//   heading:
-//     "Partnership Aggrement between the Launda Provicial Swimming Association and Multitel",
-//   description:
-//     "The service offer is available in across covered by the Optical Fiber instruction, and installation requests are subject to confirmation or feasiblity analysis. The service offer is available in across covered by the Optical Fiber instruction, and installation requests are subject to confirmation or feasiblity analysis.",
-//   pic: `https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg`,
-// };
 
 function NF() {
-  const [news, setNews] = useState([]);
+  const [newsFirst, setNewsFirst] = useState({});
+
+  const params = useParams();
+  console.log(params?.name);
+
 
   useEffect(() => {
     (async () => {
-      const response = await getAllNews();
-      console.log(response);
-      setNews(response?.data);
+      const response = await getNewsBySlug({ slug: params?.name });
+      console.log("Product data", response?.data?.data);
+      setNewsFirst(response?.data?.data);
     })();
-  }, []);
+  }, [params?.name]);
+
 
   return (
     <>
-      {news &&
-        news.map((items) => {
-          return (
             <Container>
               <h4 className="mt-5" style={{ color: "#1D3557" }}>
-                {items?.title}
+                {newsFirst?.title}
               </h4>
-              <p className="mt-3">{items?.description}</p>
+              <p className="mt-3">{newsFirst?.description}</p>
               <Row>
-                <Col lg={6}>
-                  {items.news_images &&
-                    items.news_images.map((image, id) => (
+                  {newsFirst.image &&
+                    newsFirst?.image?.map((img) => (
                       <img
                         variant="top"
-                        src={imageUrl(image.image)}
+                        src={imageUrl(img)}
                         style={{ width: "100%" }}
                       />
                     ))}
-                </Col>
               </Row>
             </Container>
-          );
-        })}
     </>
   );
 }
 
-function NewsFirst({ data, backlink = "/news" }) {
+function NewsFirst({ backlink = "/news" }) {
   return (
     <>
       <LandingPage>

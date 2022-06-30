@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { useDispatch, useSelector } from "react-redux";
+ 
 import "./App.css";
 import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
@@ -15,9 +15,9 @@ import AddProduct from "./components/Admin/AddProduct";
 import Dashboard from "./components/Admin/Dashboard";
 import Settings from "./components/Admin/settings";
 import StaticPage from "./components/Admin/staticPage";
-import InternetServices from "./containers/InternetServices";
+// import InternetServices from "./containers/InternetServices";
 import Marketplace from "./containers/Marketplace";
-import NetworkEquipments from "./containers/NetworkEquipments";
+// import NetworkEquipments from "./containers/NetworkEquipments";
 import Promotions from "./containers/Promotions";
 import OtherProducts from "./containers/OtherProducts";
 import ClientRegistration from "./containers/ClientRegistration";
@@ -85,18 +85,24 @@ import NewsFirst from "./components/atoms/NewsFirst";
 import NewsSecond from "./components/atoms/NewsSecond";
 import Recruitment from "./containers/Recruitment";
 import RecruitmentForm from "./components/atoms/RecruitmentForm";
-import VIdeoConference from "./containers/VideoConference";
+ 
 import VideoConference from "./containers/VideoConference";
 import Cpes from "./containers/Cpes";
 import WhoWeAre from "./containers/WhoWeAre";
-import Commercial from "./components/atoms/Commercial";
-import GraphicDesigner from "./components/atoms/GraphicDesigner";
+// import Commercial from "./components/atoms/Commercial";
+// import GraphicDesigner from "./components/atoms/GraphicDesigner";
 import OtherService from "./containers/OtherService";
 import SpecialService from "./components/atoms/SpecialService";
 import CustomizedService from "./components/atoms/CustomizedService";
 import OutSourcing from "./components/atoms/OutSourcing";
 import OMG from "./components/atoms/OMG";
+import Telecommunication from "./containers/Telecommunication";
+import ContactUs from "./containers/ContactUs";
+import ContactUsForm from "./components/atoms/ContactUsForm"
+import Digitotal from "./containers/Digitotal"
 import WhoWeAreSlug from "./containers/WhoWeAreSlug";
+import RecruitmentSlug from "./containers/RecruitmentSlug";
+import NewsCard from "./components/atoms/NewsCard";
 
 
 function App() {
@@ -163,7 +169,7 @@ function App() {
         </Route>
 
         {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
-        <Route path="/messgaefrommanager" element={ <MessageFromManag />} />
+        <Route path="/messagefrommanager" element={ <MessageFromManag />} />
         <Route path="/missionandvalue" element={ <MissionAndValue /> } />
         <Route path="/corporatebodies" element={ <CorporateBodies />} />
         <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
@@ -172,18 +178,22 @@ function App() {
          <Route path="/ipvoice"  element ={ < IPvoice />}/>
          <Route path="/cybersecurity" element={<CyberSecurity/>} />
          <Route path="/webservice" element={ <Webservices/>} />
-         <Route  path="/automationelectric"    element={<AutomationElectric />}  />
+         <Route  path="/automationelectronic"    element={<AutomationElectric />}  />
          <Route path="/software" element={<Software/> } />
          <Route path="/VSAT" element={<VSAT />} />
          <Route path="/videoconference" element={<VideoConference   />} />
          <Route path="/cpes" element={<Cpes/>} />
          <Route path="/whoweare" element={<WhoWeAre/>} />
-         <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} />
+         {/* <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} /> */}
          <Route path="otherservice" element={<OtherService />} />
          <Route path="/specialservice" element={<SpecialService />} />
          <Route path="/customizedservice"  element={<CustomizedService />} />
          <Route path="/outsourcing" element={<OutSourcing />} />
          <Route path="/omg"  element={<OMG />} />
+         <Route path="telecommunication"  element={<Telecommunication />} />
+         <Route path="/contactus"  element={<ContactUs />} />
+         <Route path="contactusform" element={<ContactUsForm />} />
+         <Route path="digitotal" element={<Digitotal />} />
 
 
  
@@ -240,9 +250,11 @@ function App() {
         <Route path="/multitelpride" element={<MultitelPride />} />
         <Route path="/privatenetwork" element={<PrivateNetwork />} />
         <Route path="/news" element={<News />} />
+        <Route path="/newscard/:name" element={<NewsFirst />} />
         <Route path="/newsfirst" element={<NewsFirst />} />
         <Route path="/newssecond" element={<NewsSecond />} />
         <Route path="/recruitment" element={<Recruitment />} />
+        {/* <Route path="/recruitment/:slug" element={<RecruitmentSlug />} /> */}
         <Route path="/recruitmentform" element={<RecruitmentForm />} />
         
       </Routes>

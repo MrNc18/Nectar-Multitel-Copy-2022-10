@@ -780,4 +780,58 @@
   }
  
    
-  
+  .dpdn {
+    border: 1px solid #3191C3;
+   
+   
+  }
+  .dpdn1 {
+    border: 1px solid #3191C3;
+    
+    margin: -10px 0;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+   
+  }
+
+  #imgbnr{
+    height: 300px;
+    width: 100%;
+    background-image: url("http://www.allaccesstelecom.com/wp-content/uploads/2019/12/Telecom-Networks-small-848x300.jpg");
+    position: relative;
+  }
+
+
+
+  #head_bannner{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+    color: #FFF;
+  }
+  .web_service{
+    padding-left: 20px;
+
+  }
+  /* li::first-letter{
+    font-size: 200%;
+    color: #8A2BE2;
+  } */
+  .box_shadow{
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.034), 0 15px 12px rgba(0, 0, 0, 0.034);
+    border-radius: 5px;
+  }
+  .contactbtn{
+    background-color: #0C7CB8;
+    color: #fff;
+    height: 45px;
+  }
+  .contactbtn:hover{
+    color: #fff ;
+  }
+  .imgmulti{
+    display: flex;
+  }
+
+ 

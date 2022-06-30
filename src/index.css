@@ -1638,3 +1638,11 @@ td.td3 a {font-weight: 400;font-size: 12px;}
   border: none;
 }
 /* FAQ page end */
+.whowearebanner{
+  background: url(https://c.stocksy.com/a/NZE700/z9/1724305.jpg);
+  height: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 180px 0;
+  background-position: center center;
+}

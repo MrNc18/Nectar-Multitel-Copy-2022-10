@@ -57,7 +57,7 @@ const VideoConference = () => {
           <div style={{ color: "#278BC0" }} className="pt-4">
             <h2>{data.heading5}</h2>
           </div>
-          <div>
+          <div className="pt-2" >
             <p>{data.description5}</p>
           </div>
           <div>
