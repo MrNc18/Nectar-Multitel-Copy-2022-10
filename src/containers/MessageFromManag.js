@@ -27,7 +27,7 @@ const MessageFromManag = () => {
 
   return (
     <>
-      <LandingPage>
+      <LandingPage woproducts>
         <ServiceBanner title=" Message from  Management" />
         <div className="container">
           <div className="row">

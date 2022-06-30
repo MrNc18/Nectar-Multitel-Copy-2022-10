@@ -1,46 +1,46 @@
 import React, { useState, useEffect } from "react";
 import RecruitmentForm from "./RecruitmentForm";
-import { getAllRecruitment } from "../../services/WhoWeAreFront";
-import { showAlert } from "../../utils/showAlert";
+import moment from "moment";
 
-const GraphicDesigner = () => {
-  const [graphicDesgn, setGraphicDesgn] = useState([]);
-
-  const handleAllRequirement = async () => {
-    try {
-      const resp = await getAllRecruitment();
-      console.log(resp);
-      setGraphicDesgn(resp && resp.data);
-      console.log("catreq", resp);
-    } catch (error) {
-      showAlert("Something went wrong", "error");
-    }
-  };
-
-  useEffect(() => {
-    handleAllRequirement();
-  }, []);
-
-  function Graphicdesign() {
+const GraphicDesigner = ({ role }) => {
+  function Graphicdesign({ data }) {
+    console.log("data", data);
     return (
       <>
         <div className="container " style={{ backgroundColor: "#F6F6F6" }}>
           <div>
-            {graphicDesgn &&
-              graphicDesgn.map((item) => (
-                <>
-                  <h2 className="pt-4" style={{ color: "#1D3557" }}>
-                    {item.recruitment_heading}
-                  </h2>
-                  <h6 className="pt-2">{item.description_heading}</h6>
-                  <h6 className="pt-4">{item.description}</h6>
-                  <p className="pt-2">{item.sub_description}</p>
-                </>
-              ))}
+            {/* <h2 style={{ color: "#1D3557" }} className="pt-4">
+              {data?.recruitment_category?.name}
+            </h2> */}
           </div>
           <div>
-            <RecruitmentForm />
+            <h6 className="pt-2">{data?.description}</h6>
           </div>
+          <div>
+            <h6 className="pt-4">{data?.recruitment_heading}</h6>
+          </div>
+          {data?.recruitment_requirement_tags?.map((item) => (
+            <div>
+              <p>{"- " + item?.name}</p>
+            </div>
+          ))}
+
+          <div>
+            <h6 className="pt-4">{data?.description_heading}</h6>
+          </div>
+          {data?.recruitment_description_tags?.map((item) => (
+            <div>
+              <p>{"- " + item?.name}</p>
+            </div>
+          ))}
+          <p className="pb-3">
+            Interested parties must send their CV and the reference of their
+            vacancy in which they are applying to the email
+            {data?.email ? " " + data?.email : " candidacy@multitel.co.ao"}
+            {data?.date
+              ? " until " + moment(data?.date).format("MMMM DD, YYYY") + "."
+              : "."}
+          </p>
         </div>
       </>
     );
@@ -48,10 +48,7 @@ const GraphicDesigner = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="row"></div>
-        <Graphicdesign />
-      </div>
+      <Graphicdesign data={role} />
     </>
   );
 };

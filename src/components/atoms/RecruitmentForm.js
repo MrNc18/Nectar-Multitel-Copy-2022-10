@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function RecruitmentForm() {
-  const [file, setFile] = useState([]);
+  const [file, setFile] = useState('');
 
   const [data2, setData2] = useState({
     name: "",

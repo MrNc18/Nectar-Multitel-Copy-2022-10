@@ -1589,9 +1589,7 @@ td.td3 a {font-weight: 400;font-size: 12px;}
   margin-bottom: 1rem;
   list-style: none;
   background-color: white !important;
-  border-radius: 0.25rem
-rem
-;
+  border-radius: 0.25rem;
 }
 
 /* image accordion css */
@@ -1602,6 +1600,44 @@ rem
   padding: 5px;
 }
 
+/* FAQ page start */
+.accordion .card-header:after {
+  font-family: "FontAwesome";
+  content: "\f068";
+  float: right;
+}
+.accordion .card-header.collapsed:after {
+  /* symbol for "collapsed" panels */
+  content: "\f067";
+}
+.accordion .card-title {
+  color: #1d3557 !important;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+}
+#accordion .card-body p {
+  color: #1d3557 !important;
+  font-size: 15px;
+  line-height: 28px;
+}
+#accordion .card {
+  background: transparent;
+  border: none;
+}
+.accordion_box {
+  margin-top: 25px;
+  box-shadow: 0px 3px 20px #0000000d;
+  border-left: 5px solid #e2e2e2;
+}
+#accordion .card-body {
+  background: #fff;
+}
+#accordion .card-header {
+  background-color: #fff;
+  border: none;
+}
+/* FAQ page end */
 .whowearebanner{
   background: url(https://c.stocksy.com/a/NZE700/z9/1724305.jpg);
   height: auto;
