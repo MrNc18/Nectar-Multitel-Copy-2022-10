@@ -109,12 +109,8 @@ import CustomizedService from "./components/atoms/CustomizedService";
 import OutSourcing from "./components/atoms/OutSourcing";
 import OMG from "./components/atoms/OMG";
 import WhoWeAreSlug from "./containers/WhoWeAreSlug";
-<<<<<<< HEAD
-
-=======
 import RecruitmentSlug from "./containers/RecruitmentSlug";
 import NewsCard from "./components/atoms/NewsCard";
->>>>>>> 7d7950a65ee0a397dc64954b4d7cc511900ebee2
 
 
 function App() {
