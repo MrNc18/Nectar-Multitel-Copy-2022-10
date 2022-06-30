@@ -118,7 +118,7 @@ const Multipride = () => {
 
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
-      data.append("multitel_pride_images", file[x]);
+      data.append("image", file[x]);
     }
     // [...file].forEach(image => {
     //   data.append("multitel_pride_images",image)
@@ -184,7 +184,7 @@ const Multipride = () => {
                 }}
                 onClick={handleShow}
               >
-                <i className="fas fa-plus-circle"></i> Add New content
+                <i className="fas fa-plus-circle"></i> Add New Acheivement
               </button>
               <Modal show={show} onHide={handleClose} className="add_cat_modal">
                 {/* <Modal.Header closeButton>
@@ -204,7 +204,7 @@ const Multipride = () => {
                     <span className="sr-only">Close</span>
                   </button>
                   <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                    Add New content
+                    Add New Acheivement
                   </Modal.Title>
                   <div className="container">
                     <Form.Group>
@@ -269,8 +269,8 @@ const Multipride = () => {
               <tr>
                 <th>Sr.No.</th>
                 <th>Id</th>
-                <th>Title</th>
-                <th>image</th>
+                <th>Acheivement</th>
+                {/* <th>image</th> */}
                 {/* <th>Tags</th> */}
                 {/* <th>Description</th> */}
                 <th>Action</th>
@@ -284,21 +284,7 @@ const Multipride = () => {
                     <td>{item.id}</td>
                     <td>{item.title}</td>
                     {/* <td>{item.category}</td> */}
-                    <td>
-                      {item.multitel_pride_images &&
-                        item.multitel_pride_images.map(
-                          (image) => (
-                            console.log(image.image, "img"),
-                            (
-                              <img
-                                src={imageUrl(image.image)}
-                                alt="No Image"
-                                style={{ width: "60px" }}
-                              />
-                            )
-                          )
-                        )}
-                    </td>
+          
 
                     {/* <td>{item.message_tags && Tabletag(item)}</td> */}
 
@@ -332,12 +318,12 @@ const Multipride = () => {
           <Modal show={DeleteShow} onHide={handlecloseDelete}>
             <Modal.Header closeButton>
               <Modal.Title style={{ color: "#0076B5" }}>
-                Delete Product
+                Delete Acheivement
               </Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-              <p>Are you sure want to delete this Category ?</p>
+              <p>Are you sure want to delete this Acheivement ?</p>
             </Modal.Body>
 
             <Modal.Footer>
@@ -358,7 +344,7 @@ const Multipride = () => {
               <Modal show={ShowEditModal} onHide={handleEditClose} size="md">
                 <Modal.Header closeButton>
                   <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                    Edit Content data
+                    Edit Acheivement data
                   </Modal.Title>
                   <button
                     type="button"
@@ -369,7 +355,7 @@ const Multipride = () => {
                 <Modal.Body>
                   <div className="container">
                     <Form.Group>
-                      <Form.Label>Title</Form.Label>
+                      <Form.Label>Acheivement Title</Form.Label>
                       <Form.Control
                         type="text"
                         value={Title}

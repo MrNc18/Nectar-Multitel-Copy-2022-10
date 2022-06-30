@@ -229,7 +229,7 @@ const NewsData = () => {
                 }}
                 onClick={handleShow}
               >
-                <i className="fas fa-plus-circle"></i> Add New content
+                <i className="fas fa-plus-circle"></i> Add News
               </button>
               <Modal show={show} onHide={handleClose} className="add_cat_modal">
                 <Modal.Body>
@@ -243,7 +243,7 @@ const NewsData = () => {
                     <span className="sr-only">Close</span>
                   </button>
                   <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                    Add New content
+                    Add News
                   </Modal.Title>
                   <div className="container">
                     <Form.Group>
@@ -334,7 +334,7 @@ const NewsData = () => {
                 <th>Sr.No.</th>
                 <th>Id</th>
                 <th>Title</th>
-                <th>Category</th>
+                <th>News Category</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -377,12 +377,12 @@ const NewsData = () => {
           <Modal show={DeleteShow} onHide={handlecloseDelete}>
             <Modal.Header closeButton>
               <Modal.Title style={{ color: "#0076B5" }}>
-                Delete Product
+                Delete News
               </Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-              <p>Are you sure want to delete this Category ?</p>
+              <p>Are you sure want to delete this News ?</p>
             </Modal.Body>
 
             <Modal.Footer>
@@ -403,7 +403,7 @@ const NewsData = () => {
               <Modal show={ShowEditModal} onHide={handleEditClose} size="md">
                 <Modal.Header closeButton>
                   <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                    Edit Content data
+                    Edit News data
                   </Modal.Title>
                   <button
                     type="button"
