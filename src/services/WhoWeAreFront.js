@@ -27,10 +27,6 @@ export const getAllNews = async () => {
 export const getAllNewsCategory = async () => {
   return await doGet("api/news/getAllNewsCategory")
  }
-
- export const getAllRecruitmentCategory = async () => {
-  return await doGet("api/recruitment/getAllRecruitmentCategory")
- }
  export const getRecruitmentByCategory = async (data) => {
   return await doPost("api/recruitment/getRecruitmentByCategory", data)
  }
@@ -38,8 +34,12 @@ export const getAllNewsCategory = async () => {
   return await doPost("api/news/getNewsByCategory", data)
  }
 
- export const getRecruitmentBySlug = async () => {
-  return await doPost("api/recruitment/getAllRecruitmentCategory")
+ export const getNewsBySlug = async (data) => {
+  return await doPost("api/news/getNewsBySlug", data)
+ }
+
+ export const getAllRecruitmentCategory = async () => {
+  return await doGet("api/recruitment/getAllRecruitmentCategory")
  }
 
  export const getAllRecruitment = async () => {

@@ -3,53 +3,46 @@ import { Col, Container, Row, Breadcrumb, Button } from "react-bootstrap";
 import LandingPage from "../LandingPage";
 import ServiceBanner from "./ServiceBanner";
 import { Link } from "react-router-dom";
-import { getNewsByCategory } from "../../services/WhoWeAreFront";
+import { getNewsBySlug } from "../../services/WhoWeAreFront";
 import { imageUrl } from "../../services/WhoWeAreFront";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { showAlert } from "../../utils/showAlert";
 
 
 function NF() {
-  const [newsFirst, setNewsFirst] = useState([]);
+  const [newsFirst, setNewsFirst] = useState({});
 
-  const handleAllRequirement = async () => {
-    const data = { slug: "bulle" };
-    try {
-      const resp = await getNewsByCategory(data);
-      console.log(resp);
-      setNewsFirst(resp && resp.data.data);
-      // console.log("newsreq", resp);
-    } catch (error) {
-      showAlert("Something went wrong", "error");
-    }
-  };
+  const params = useParams();
+  console.log(params?.name);
+
 
   useEffect(() => {
-    handleAllRequirement();
-  }, []);
+    (async () => {
+      const response = await getNewsBySlug({ slug: params?.name });
+      console.log("Product data", response?.data?.data);
+      setNewsFirst(response?.data?.data);
+    })();
+  }, [params?.name]);
+
 
   return (
     <>
-      {newsFirst &&
-          newsFirst?.news?.map((item) => (
             <Container>
               <h4 className="mt-5" style={{ color: "#1D3557" }}>
-                {item?.title}
+                {newsFirst?.title}
               </h4>
-              <p className="mt-3">{item?.description}</p>
+              <p className="mt-3">{newsFirst?.description}</p>
               <Row>
-                <Col lg={6}>
-                  {item.image &&
-                    item?.image?.map((img) => (
+                  {newsFirst.image &&
+                    newsFirst?.image?.map((img) => (
                       <img
                         variant="top"
                         src={imageUrl(img)}
                         style={{ width: "100%" }}
                       />
                     ))}
-                </Col>
               </Row>
             </Container>
-          ))}
     </>
   );
 }

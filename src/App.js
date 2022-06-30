@@ -102,6 +102,7 @@ import ContactUsForm from "./components/atoms/ContactUsForm"
 import Digitotal from "./containers/Digitotal"
 import WhoWeAreSlug from "./containers/WhoWeAreSlug";
 import RecruitmentSlug from "./containers/RecruitmentSlug";
+import NewsCard from "./components/atoms/NewsCard";
 
 
 function App() {
@@ -249,8 +250,7 @@ function App() {
         <Route path="/multitelpride" element={<MultitelPride />} />
         <Route path="/privatenetwork" element={<PrivateNetwork />} />
         <Route path="/news" element={<News />} />
-
-      
+        <Route path="/newscard/:name" element={<NewsFirst />} />
         <Route path="/newsfirst" element={<NewsFirst />} />
         <Route path="/newssecond" element={<NewsSecond />} />
         <Route path="/recruitment" element={<Recruitment />} />
