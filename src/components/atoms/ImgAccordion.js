@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-const ImgAccordion = ({ title, content }) => {
+const ImgAccordion = ({ title, desc, content }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -16,40 +16,7 @@ const ImgAccordion = ({ title, content }) => {
       </div>
       {isActive && (
         <div className="accordion-content">
-          <Container>
-            <Row>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-            </Row>
-          </Container>
+          {content}
         </div>
       )}
     </div>

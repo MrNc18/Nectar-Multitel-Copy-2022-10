@@ -97,6 +97,8 @@ import CustomizedService from "./components/atoms/CustomizedService";
 import OutSourcing from "./components/atoms/OutSourcing";
 import OMG from "./components/atoms/OMG";
 import WhoWeAreSlug from "./containers/WhoWeAreSlug";
+import RecruitmentSlug from "./containers/RecruitmentSlug";
+import NewsCard from "./components/atoms/NewsCard";
 
 
 function App() {
@@ -163,7 +165,7 @@ function App() {
         </Route>
 
         {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
-        <Route path="/messgaefrommanager" element={ <MessageFromManag />} />
+        <Route path="/messagefrommanager" element={ <MessageFromManag />} />
         <Route path="/missionandvalue" element={ <MissionAndValue /> } />
         <Route path="/corporatebodies" element={ <CorporateBodies />} />
         <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
@@ -178,7 +180,7 @@ function App() {
          <Route path="/videoconference" element={<VideoConference   />} />
          <Route path="/cpes" element={<Cpes/>} />
          <Route path="/whoweare" element={<WhoWeAre/>} />
-         <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} />
+         {/* <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} /> */}
          <Route path="otherservice" element={<OtherService />} />
          <Route path="/specialservice" element={<SpecialService />} />
          <Route path="/customizedservice"  element={<CustomizedService />} />
@@ -240,9 +242,11 @@ function App() {
         <Route path="/multitelpride" element={<MultitelPride />} />
         <Route path="/privatenetwork" element={<PrivateNetwork />} />
         <Route path="/news" element={<News />} />
+        <Route path="/newscard/:name" element={<NewsFirst />} />
         <Route path="/newsfirst" element={<NewsFirst />} />
         <Route path="/newssecond" element={<NewsSecond />} />
         <Route path="/recruitment" element={<Recruitment />} />
+        {/* <Route path="/recruitment/:slug" element={<RecruitmentSlug />} /> */}
         <Route path="/recruitmentform" element={<RecruitmentForm />} />
         
       </Routes>

@@ -2,21 +2,27 @@ import React, { useState, useEffect } from "react";
 import LandingPage from "../components/LandingPage";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import { useParams } from "react-router-dom";
 import { getMsgMissionSusBySlug } from "../services/WhoWeAreFront";
+import { showAlert } from "../utils/showAlert";
 
 const MissionAndValue = () => {
   const [missionValues, setMissionValues] = useState({});
-  const params = useParams();
-  console.log(params);
+ 
+  const handleAllMessage = async () => {
+    const data = { slug: "sustainability" };
+    try {
+      const resp = await getMsgMissionSusBySlug(data);
+      console.log(resp);
+      setMissionValues(resp && resp.data.data);
+      // console.log("newsreq", resp);
+    } catch (error) {
+      showAlert("Something went wrong", "error");
+    }
+  };
 
   useEffect(() => {
-    (async () => {
-      const response = await getMsgMissionSusBySlug({ slug: params?.slug });
-      console.log("missionValues data", response);
-      setMissionValues(response?.data?.data);
-    })();
-  }, [params?.slug]);
+    handleAllMessage();
+  }, []);
 
   return (
     <>
@@ -39,34 +45,36 @@ const MissionAndValue = () => {
           <div className="row">
             <div className="col-12  col-6 col-4  ">
               <div>
-                <h2 style={{ color: "#1D3557" }} className="pt-5">
+                <h2 style={{ color: "#1D3557" }} className="pt-3">
                   {missionValues?.name}
                 </h2>
 
-                <p className="pt-5">{missionValues?.description}</p>
+                <p className="pt-3">{missionValues?.description}</p>
               </div>
 
               <div>
-                <h5 style={{ color: "#3190C3" }} className="pt-4">
+                <h5 style={{ color: "#3190C3" }} className="pt-3">
                   {missionValues?.sub_heading}
                 </h5>
-                <li>{missionValues?.description_2}</li>
+                {missionValues && missionValues?.message_tags?.map((item) => (
+                  <li>{item?.name}</li>
+                ))}
               </div>
               <div>
                 <div>
-                  <h5 style={{ color: "#3190C3" }} className="pt-4">
-                    {missionValues?.sub_heading2}
+                  <h5 style={{ color: "#3190C3" }} className="pt-3">
+                    {missionValues?.sub_heading_2}
                   </h5>
 
-                  <p className="pt-4">{missionValues?.description_2}</p>
+                  <p className="pt-3">{missionValues?.description_2}</p>
                 </div>
               </div>
               <div>
-                <h5 style={{ color: "#3190C3" }} className="pt-4">
-                  {missionValues?.sub_heading2}
+                <h5 style={{ color: "#3190C3" }} className="pt-3">
+                  {missionValues?.sub_heading_3}
                 </h5>
 
-                <p className="pt-4">{missionValues?.description_3}</p>
+                <p className="pt-3">{missionValues?.description_3}</p>
               </div>
             </div>
           </div>

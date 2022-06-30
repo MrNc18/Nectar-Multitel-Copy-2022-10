@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 
 const Gallery = ({ title, content, desc }) => {
   const [isActive, setIsActive] = useState(false);
@@ -8,49 +7,17 @@ const Gallery = ({ title, content, desc }) => {
     <div className="accordion-item">
       <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
         <div>
-          <h5 style={{ color: "#1D3557"}}>{title}</h5>
+          <h6>{title}</h6>
         </div>
         <div>
           <h5>{isActive ? "-" : "+"}</h5>
         </div>
       </div>
       {isActive && (
-        <div className="accordion-content1">
-          <p style={{ color: "#1D3557"}}>{desc}</p>
-          <Container>
-            <Row>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-              <div className="imgcontent">
-                <img src={content} alt="" style={{ width: "100%" }} />
-                <h6 style={{ textAlign: "center" }}>Hey</h6>
-                <p style={{ textAlign: "center" }}>Akash</p>
-              </div>
-            </Row>
-          </Container>
+        <div className="accordion-content">
+          <h6>{title}</h6>
+          <p>{desc}</p>
+          {content}
         </div>
       )}
     </div>
