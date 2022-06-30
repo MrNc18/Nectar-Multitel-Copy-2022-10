@@ -1,40 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
+import { getMsgMissionSusBySlug } from "../../services/WhoWeAreFront";
+import { baseurl } from "../../utils/request";
+import { showAlert } from "../../utils/showAlert";
+import { imageUrl } from "../../services/category";
 
 function SustainabilityTab() {
+  const [sustainability, setSustainability] = useState({});
+
+  const handleAllSustainability = async () => {
+    const data = { slug: "sustainability-1" };
+    try {
+      const resp = await getMsgMissionSusBySlug(data);
+      console.log(resp);
+      setSustainability(resp && resp.data.data);
+      // console.log("newsreq", resp);
+    } catch (error) {
+      showAlert("Something went wrong", "error");
+    }
+  };
+ 
+
+  useEffect(() => {
+    handleAllSustainability();
+  }, []);
+
   return (
     <Container>
       <Row>
         <Col md={8}>
           <h2 className="mt-5" style={{ color: "#1D3557" }}>
-            Sustainability
+            {sustainability?.name}
           </h2>
         </Col>
         <Col md={4}>
           <img
-            src="https://image.shutterstock.com/image-photo/teacher-asking-her-students-question-260nw-309239105.jpg"
+            src={imageUrl(sustainability?.image)}
             alt=""
             style={{ height: "120px" }}
           />
         </Col>
         <Col md={12}>
-          <h5 style={{ color: "#3190C3" }}>
-            Sustainability
-          </h5>
-          <p>
-            Learn What we have done to ensure the continuous evolution of
-            Multitel's sustainability insertion.
-          </p>
+          <h5 style={{ color: "#3190C3" }}>{sustainability?.name}</h5>
+          <p>{sustainability?.description}</p>
         </Col>
         <Col md={12}>
           <h5 className="mt-3" style={{ color: "#3190C3" }}>
-            Participate in complaints or offensive practices
+            {sustainability?.sub_heading}
           </h5>
-          <p>
-            We have email available to request services, suggestion, complaints
-            and any offenses of Multitel's employees or damages caused by the
-            company. <br /> Help us get better, Contact us!
-          </p>
+          <p>{sustainability?.description_2}</p>
         </Col>
       </Row>
     </Container>

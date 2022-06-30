@@ -7,7 +7,8 @@ const AutomationElectric = () => {
   function AutomationElectronics({ data }) {
     return (
       <>
-        <div>
+      <div className="pt-4">
+      <div >
           <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
         </div>
         <div>
@@ -18,10 +19,13 @@ const AutomationElectric = () => {
         </div>
         <div className="dotcol" >
          <ul>
-         <li>{data.tag}</li>
-          <li>{data.tag1}</li>
+         <li>{data.tag1}</li>
+          <li>{data.tag2}</li>
+          <li>{data.tag3}</li>
+          <li>{data.tag4}</li>
          </ul>
         </div>
+      </div>
       </>
     );
   }
@@ -29,10 +33,12 @@ const AutomationElectric = () => {
   const obj = {
     heading1: "Automation and Electronic Security",
     description:
-      "We present a set of web solution that aim to improve the visibility of  companies and their  bussiness ofthe internet. ",
+      "The automation of access control and attendance processes, as well as the use of modern control and electronic security equipment are today an indispensable need for the good functioning and ecient management of organizations, with a view to eciency, flexibility and convenience that is gained.  ",
     heading2: " Solutions  ",
-    tag: "Websites",
-    tag1: " Web Marketting",
+    tag1: "Queue management ",
+    tag2: " CCTV ",
+    tag3:"Attendance control    ",
+    tag4:"Access control and electronic locks",
   };
   return (
     <>

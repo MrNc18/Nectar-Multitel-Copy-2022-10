@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function RecruitmentForm() {
-  const [file, setFile] = useState('');
+  const [file, setFile] = useState([]);
 
   const [data2, setData2] = useState({
     name: "",
@@ -30,7 +30,7 @@ function RecruitmentForm() {
             <div className="col-12 col-sm-6 col-md-6 col-lg-6">
               <div className="form-group">
                 <label htmlFor="exampleInputtext" className="mb-1">
-                  Name
+                  Full Name
                 </label>
                 <span style={{ color: "red" }}> * </span>
                 <input
@@ -47,7 +47,7 @@ function RecruitmentForm() {
             <div className="col-12 col-sm-6 col-md-6 col-lg-6">
               <div className="form-group">
                 <label htmlFor="exampleInputtext" className="mb-1">
-                  Email
+                  Email Address
                 </label>
                 <span style={{ color: "red" }}> * </span>
                 <input
@@ -61,56 +61,51 @@ function RecruitmentForm() {
                 />
               </div>
             </div>
+
+              <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                <div className="form-group">
+                  <label htmlFor="exampleInputtext" className="mb-1">
+                    Country/city
+                  </label>
+                  <span style={{ color: "red" }}> * </span>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id=""
+                    name="email"
+                    value={email}
+                    required
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              
+              <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                <div className="form-group">
+                <label htmlFor="exampleInputtext" className="mb-1">
+                    Subject
+                  </label>
+                  <span style={{ color: "red" }}> * </span>
+                  <select id="inputState" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                  </select>
+                </div>
+              </div>
+       
+
             <div className="col-12 col-sm-6 col-md-6 col-lg-6">
               <div className="form-group">
-                <label htmlFor="exampleInputtext" className="mb-1">
-                  Telephone
-                </label>
-                <span style={{ color: "red" }}> * </span>
-                <input
-                  className="form-control"
-                  type="number"
-                  min={1}
-                  id=""
-                  name="telephone"
-                  value={telephone}
-                  required
-                  onChange={handleChange}
-                />
+               
+               
+                
               </div>
-            </div>
-            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-              <div className="form-group">
-                <label htmlFor="exampleInputtext" className="mb-1">
-                  Household
-                </label>
-                <span style={{ color: "red" }}> * </span>
-                <input
-                  className="form-control"
-                  type="text"
-                  id=""
-                  name="household"
-                  value={household}
-                  required
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-              <div className="form-group">
-                <label htmlFor="exampleInputtext" className="mb-1">
-                  Choose File
-                </label>
-                <span style={{ color: "red" }}> * </span>
-                <input
-                  type="file"
-                  accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                  className="form-control"
-                  required
-                  id=""
-                  name="resume"
-                  onChange={handleFileChange}
-                />
+
+              <div class="dropdown mb-1">
+               
+               
               </div>
             </div>
             <div className="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -126,26 +121,26 @@ function RecruitmentForm() {
                   name="message"
                   value={message}
                   required
-                  onChange={handleChange}
                 />
               </div>
             </div>
             {/*  */}
             <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-              <div className="form-group"></div>
-            </div>
-            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
               <div className="form-group">
+                {" "}
                 <button
-                  className="btn btn-primary btn-lg  pull-right"
+                  className="btn  contactbtn btn-lg  pull-left"
                   name="submit"
                   type="submit"
                   data-toggle="modal"
                   data-target="#exampleModalCenter"
                 >
-                  Submit
+                  Send Message
                 </button>
               </div>
+            </div>
+            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+              <div className="form-group"></div>
             </div>
 
             {/*  */}

@@ -7,6 +7,7 @@ import {
   getEditRec,
   getAllRec,
   getAllRecCategories,
+  getDeleteRec,
 } from "../../../services/Phase_2/WhoWeR";
 import { showAlert } from "../../../utils/showAlert";
 import Creatable from "react-select/creatable";
@@ -241,8 +242,8 @@ export const RecruitmentData = () => {
       id: deleteRecord.id,
     };
     try {
-      await getDeleteCor(data);
-      showAlert("Corporate Bodies Data Deleted Successfully", "success");
+      await getDeleteRec(data);
+      showAlert("Job position successfully deleted.", "success");
       setDeleteShow(false);
       handleAllRecData();
     } catch (error) {

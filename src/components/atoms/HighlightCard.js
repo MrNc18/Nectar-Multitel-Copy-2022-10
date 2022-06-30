@@ -4,11 +4,11 @@ import { showAlert } from "../../utils/showAlert";
 import { getNewsByCategory } from "../../services/WhoWeAreFront";
 import { imageUrl } from "../../services/category";
 
-function BulletineCard() {
+function HighlightCard() {
   const [bulletines, setBulletines] = useState([]);
 
   const handleAllRequirement = async () => {
-    const data = { slug: "bulle" };
+    const data = { slug: "highlights" };
     try {
       const resp = await getNewsByCategory(data);
       console.log(resp);
@@ -22,6 +22,7 @@ function BulletineCard() {
   useEffect(() => {
     handleAllRequirement();
   }, []);
+
   return (
     <>
     {bulletines &&
@@ -30,10 +31,10 @@ function BulletineCard() {
         {console.log(bulletines, "resp")}
         
             <Card style={{ width: "11rem" }}>
-              <Card.Img variant="top" src={imageUrl(item.image)} style={{height:"150px"}} />
+              <Card.Img variant="top" src={imageUrl(item.image)} style={{height:"150px"}}/>
               <Card.Body className="text-center">
                 <Card.Title>{item.news_date.slice(0, 10)}</Card.Title>
-                <Card.Text>{item.news_number}</Card.Text>
+                <Card.Text>{item.title}</Card.Text>
               </Card.Body>
             </Card>
           
@@ -43,4 +44,4 @@ function BulletineCard() {
   );
 }
 
-export default BulletineCard;
+export default HighlightCard;

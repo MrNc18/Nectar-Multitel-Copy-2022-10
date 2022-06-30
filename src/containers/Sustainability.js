@@ -8,7 +8,7 @@ import LandingPage from "../components/LandingPage";
 function Sustainability() {
   return (
     <>
-      <LandingPage>
+      <LandingPage woproducts>
         <ServiceBanner title="Sustainability" />
         <Container>
             <Col md={12}>
@@ -45,11 +45,11 @@ function Sustainability() {
                       &nbsp;&nbsp;Social and Cultural <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Investment
                     </Nav.Link>
                   </Nav.Item>
-                  <Nav.Item>
+                  {/* <Nav.Item>
                     <Nav.Link eventKey="indicator">
                       <i class="fa-solid fa-key"></i>&nbsp;&nbsp;Key Indicators
                     </Nav.Link>
-                  </Nav.Item>
+                  </Nav.Item> */}
                 </Nav>
               </Col>
               <Col sm={9}>
@@ -60,9 +60,9 @@ function Sustainability() {
                   <Tab.Pane eventKey="investment">
                     <InvestmentTab />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="indicator">
+                  {/* <Tab.Pane eventKey="indicator">
                     <SustainabilityTab />
-                  </Tab.Pane>
+                  </Tab.Pane> */}
                 </Tab.Content>
               </Col>
             </Row>
