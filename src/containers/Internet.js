@@ -33,7 +33,7 @@ const Internet = () => {
                   <Nav variant="pills" className="flex-column">
                     <Nav.Item>
                       <Nav.Link eventKey="privatenetwork">
-                        <i class="fa-solid fa-newspaper"></i>
+                      <i class="fa-solid fa-id-badge"></i>
                         &nbsp;&nbsp; Private Networks
                       </Nav.Link>
                     </Nav.Item>
@@ -45,18 +45,18 @@ const Internet = () => {
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link eventKey="netpro">
-                        <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp; Net
+                      <i class="fa-solid fa-headphones"></i>&nbsp;&nbsp; Net
                         Pro
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link eventKey="netset">
-                        <i class="fa-solid fa-palette"></i>&nbsp;&nbsp; Net Set
+                      <i class="fa-solid fa-chart-line"></i>&nbsp;&nbsp; Net Set
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link eventKey="webservices">
-                        <i class="fa-solid fa-palette"></i>&nbsp;&nbsp; Web
+                      <i class="fa-solid fa-sd-card"></i>&nbsp;&nbsp; Web
                         Services
                       </Nav.Link>
                     </Nav.Item>
