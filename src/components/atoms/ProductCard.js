@@ -89,11 +89,11 @@ function ProductCard({ product }) {
             </Col>
             <Col xs={12} md={6}>
             <Button
-              className="pull-right"
               variant="primary"
               size="sm"
               style={{
                 backgroundColor: "#0076B5",
+                border:"1px solid #0076B5"
               }}
               onClick={() =>
                 navigate(`/products/${product.slug}`, {state: {product}})
