@@ -8,7 +8,7 @@ import LandingPage from "../components/LandingPage";
 function Sustainability() {
   return (
     <>
-      <LandingPage>
+      <LandingPage woproducts>
         <ServiceBanner title="Sustainability" />
         <Container>
             <Col md={12}>

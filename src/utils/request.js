@@ -69,16 +69,21 @@ export const PayPut = async (path, data) => {
 };
 
 export const doDelete = async (path, data) => {
-  return new Promise(async (resolve, reject) => {
-    const response = await axios.delete(`${baseurl}/${path}`, {
-      headers: header(),
-      data,
-    });
-
-    if ([200, 201].includes(response.status)) {
-      return resolve(response);
+  return new Promise(async (resolve, reject) => { 
+    try {
+      const response = await axios.delete(`${baseurl}/${path}`, {
+        headers: header(),
+        data,
+      });
+  
+      if ([200, 201].includes(response.status)) {
+        return resolve(response);
+      }
+  
+      return reject(response);
+    } catch(error) {
+      return reject()
     }
-
-    return reject(response);
+    
   });
 };

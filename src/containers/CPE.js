@@ -39,7 +39,7 @@ function CPE() {
   useEffect(() => {
     window.scrollTo(0, 0);
     (async () => {
-      const response = await getProductsByCategory({ slug: "cpe" });
+      const response = await getProductsByCategory({ slug: "cpe-2" });
       console.log(response?.data?.data?.products);
       setProductList(response?.data?.data?.products);
     })();
@@ -57,7 +57,7 @@ function CPE() {
             </Col>
           </Row>
           <Row>
-            {productList.map((cpe) => (
+            {productList?.map((cpe) => (
               <Col key={cpe.id} md={6}>
                 <div className="cpe_card text-center mb-5">
                   <img

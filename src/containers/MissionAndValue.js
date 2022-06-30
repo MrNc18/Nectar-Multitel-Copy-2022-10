@@ -20,7 +20,7 @@ const MissionAndValue = () => {
 
   return (
     <>
-      <LandingPage>
+      <LandingPage woproducts>
         <ServiceBanner title="Mission And Value" />
         <div className="container">
           <div className="row">

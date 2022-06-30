@@ -10,7 +10,7 @@ import EventGallery from "./EventGallery";
 function News() {
   return (
     <>
-      <LandingPage>
+      <LandingPage woproducts>
         <ServiceBanner title="News" />
         <Container>
           <div className="bredcrumb">
