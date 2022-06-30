@@ -14,7 +14,7 @@ const Cpes = () => {
               {data.heading1}
             </h2>
           </div>
-          <div  >
+          <div>
             <p className="pt-4">{data.description1}</p>
           </div>
           <div>
@@ -28,8 +28,9 @@ const Cpes = () => {
   const obj = {
     heading1: "CPEs",
     description1:
-      "AS a complement to Multitel's offerce of services,we provide CPE's (Router,Switches and other equipment)",
-    description2: "WE Can extend the scope of our intervention",
+      "As a complement to Multitel's oer of services, we provide CPE's (Routers, Switches and other equipment) on a sale or rental basis and we are responsible for their installation and configuration.",
+    description2:
+      "We can extend the scope of our intervention, as an OMG - Operation, Maintenance and Management service , adapted to the Client's needs. Thus, companies or organizations that do not have aqualified technical team or specific know-how to carry out these activities can focus exclusively on their business.",
   };
   return (
     <>

@@ -20,6 +20,7 @@ function SustainabilityTab() {
       showAlert("Something went wrong", "error");
     }
   };
+ 
 
   useEffect(() => {
     handleAllSustainability();

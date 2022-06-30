@@ -41,6 +41,7 @@ function EventGallery() {
                       desc={item?.description}
                       content={item?.image && item?.image.map((img) => (
                         <img src={imageUrl(img)} style={{ height:"100px"}} />
+                    
                       ))}
                     />
                   </>

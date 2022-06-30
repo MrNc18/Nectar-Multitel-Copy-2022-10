@@ -9,7 +9,8 @@ const ConsultingTraining = () => {
     function Consultingtraining ({data}){
         return(
             <>
-            <div>
+     <div className='pt-4'>
+     <div>
           <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
         </div>
         <div>
@@ -20,11 +21,12 @@ const ConsultingTraining = () => {
         </div>
         <div className='dotcol'>
          <ul>
-         <li>{data.tag}</li>
-          <li>{data.tag1}</li>
+         <li>{data.tag1}</li>
           <li>{data.tag2}</li>
+          <li>{data.tag3}</li>
          </ul>
         </div>
+     </div>
             </>
         )
     }
@@ -32,11 +34,12 @@ const ConsultingTraining = () => {
 
     const obj={
         heading1: " On-Job Consulting and Training ",
-        description: "dfdfjdjh dbfdf h",
+        description: "The On-job Consultancy and Training service strengthens the close relationship and partnership thatexists with our customers in problem solving, support, design and implementation of tailor-madesolutions, as well as training our customers’ teams in the following areas",
+
         heading2 :"Areas",
-        tag: "structures cabling",
-        tag1: "sdjkshdjsh",
-        tag2: "nddjjd",
+        tag1: "Networks (WAN, LAN, WLAN, Telecommunications and Equipment)",
+        tag2: "Information security (Definition of policies and firewalls) ",
+        tag3: "Information systems (Servers, Virtualization, NMS, Storage and Backup)",
     }
   return (
     <>

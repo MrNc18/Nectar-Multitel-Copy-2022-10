@@ -22,7 +22,6 @@ function BulletineCard() {
   useEffect(() => {
     handleAllRequirement();
   }, []);
-
   return (
     <>
     {bulletines &&

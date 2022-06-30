@@ -7,7 +7,8 @@ const Webservices = () => {
   function Webservice({ data }) {
     return (
       <>
-        <div>
+  <div className="pt-4">
+  <div>
           <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
         </div>
         <div>
@@ -18,11 +19,24 @@ const Webservices = () => {
         </div>
         <div className='dotcol'>
           <ul>
-            <li>{data.tag}</li>
             <li>{data.tag1}</li>
           </ul>
-
         </div>
+
+        <div className='dotcol'>
+          <ul>
+           <b> <li>{data.tag2}</li></b>
+          </ul>
+          <div className='web_service dotcol'>
+          <ul>
+            <li>{data.tag3}</li>
+            <li>{data.tag4}</li>  
+            <li>{data.tag5}</li>  
+            <li>{data.tag6}</li>
+          </ul>
+        </div>
+        </div>
+  </div>
 
       </>
     )
@@ -32,12 +46,14 @@ const Webservices = () => {
   const obj = {
 
     heading1: "Web Services",
-    description: "We present a set of web solution that aim to improve the visibility of  companies and their  bussiness ofthe internet. ",
+    description: "We present a set of web solutions that aim to improve the visibility of companies and their businesses onthe internet. These solutions bring immediate results with minimal costs and greater visibility rate for the  target audience ",
     heading2: "Web Solution offerd by Multitel: ",
-    tag: "Websites(institutioanl sites ,Portals and online stores)",
-    tag1: " Web Marketting",
-
-
+    tag1: "Websites(institutioanl sites ,Portals and online stores)",
+    tag2: " Web Marketting",
+    tag3:"Definition of the Communication Strategy",
+    tag4:"Social network management",
+    tag5:"Publications/Sponsored Publications",
+    tag6:"SEO optimization"
   }
   return (
     <>
