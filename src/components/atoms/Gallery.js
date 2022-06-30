@@ -5,6 +5,7 @@ const Gallery = ({ title, content, desc }) => {
 
   return (
     <div className="accordion-item">
+      
       <div className="accordion-title" onClick={() => setIsActive(!isActive)}>
         <div>
           <h6>{title}</h6>

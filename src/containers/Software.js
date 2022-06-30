@@ -6,21 +6,23 @@ const Software = () => {
   function Software({ data }) {
     return (
       <>
-        <div>
-          <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
-        </div>
-        <div>
-          <p>{data.description}</p>
-        </div>
-        <div>
-          <h6 style={{ color: "#1D3557" }}>{data.heading2}</h6>
-        </div>
-        <div className="dotcol">
-          <ul>
-            <li>{data.tag}</li>
-            <li>{data.tag1}</li>
-            <li>{data.tag2}</li>
-          </ul>
+        <div className="pt-4">
+          <div>
+            <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
+          </div>
+          <div>
+            <p>{data.description}</p>
+          </div>
+          <div>
+            <h6 style={{ color: "#1D3557" }}>{data.heading2}</h6>
+          </div>
+          <div className="dotcol">
+            <ul>
+              <li>{data.tag1}</li>
+              <li>{data.tag2}</li>
+              <li>{data.tag3}</li>
+            </ul>
+          </div>
         </div>
       </>
     );
@@ -28,11 +30,12 @@ const Software = () => {
 
   const obj = {
     heading1: "Software",
-    description: "cnjdfgejhgsjdghdghcghfhchd hg whgbysvtcystwyu chgbysubuey",
+    description:
+      "In view of the high competitiveness and dynamism of the market, companies need to be equipped withinformation systems that allow them to better respond to market needs (ERPs, CRMs and others). Inaddition to the dierent pre-conceived business management systems, Multitel also oers customized software development that guarantee the simplification and automation of specific processes, whether internal or external.",
     heading2: "Custom software goals",
-    tag: "structures cabling",
-    tag1: "sdjkshdjsh",
-    tag2: "nddjjd",
+    tag1: "Reduction of production costs and errors",
+    tag2: "Systems adapted to the company's realit",
+    tag3: "Flexible and user-friendly systems",
   };
   return (
     <>
@@ -65,7 +68,7 @@ const Software = () => {
             </div>
             <div className=" pt-5 col-md-8">
               <Software data={obj} />
-            </div> 
+            </div>
           </div>
         </div>
       </LandingPage>

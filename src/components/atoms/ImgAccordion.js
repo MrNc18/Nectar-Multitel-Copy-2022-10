@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-const ImgAccordion = ({ title, desc, content }) => {
+const ImgAccordion = ({ title, desc, content , sortdesc}) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -16,6 +16,9 @@ const ImgAccordion = ({ title, desc, content }) => {
       </div>
       {isActive && (
         <div className="accordion-content">
+           {/* <h6>{title}</h6> */}
+          <h6>{ sortdesc}</h6>
+          <p>{desc}</p>
           {content}
         </div>
       )}

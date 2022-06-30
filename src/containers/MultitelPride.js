@@ -52,20 +52,27 @@ function MultitelPride() {
                           <ImgAccordion
                             title={item?.title}
                             desc={item?.description}
+                            sortdesc={item?.sort_description}
                             content={
                               item?.image &&
                               item?.image.map((img) => (
                                 <>
-                                  <img
-                                    src={imageUrl(img)}
-                                    style={{ height:"80px", marginBottom:"10px", display:"inline-block" }}
-                                  />
-                                  <h6>{item?.description}</h6>
-                                  <p>{item?.sort_description}</p>
+                                  {
+                                    <>
+                                      <img
+                                        src={imageUrl(img)}
+                                        style={{ height: "80px" }}
+                                      />
+                                      {/* <h5 className="text-center">{item?.description}</h5> &nbsp;
+                                      <p className="text-center">{item?.sort_description}</p> */}
+                                    </>
+                                  }
                                 </>
                               ))
                             }
+                          
                           />
+                          
                         </>
                       </div>
                     </Col>

@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { useDispatch, useSelector } from "react-redux";
+ 
 import "./App.css";
 import Corporate from "./containers/Corporate";
 import Home from "./containers/Home";
@@ -15,9 +15,9 @@ import AddProduct from "./components/Admin/AddProduct";
 import Dashboard from "./components/Admin/Dashboard";
 import Settings from "./components/Admin/settings";
 import StaticPage from "./components/Admin/staticPage";
-import InternetServices from "./containers/InternetServices";
+// import InternetServices from "./containers/InternetServices";
 import Marketplace from "./containers/Marketplace";
-import NetworkEquipments from "./containers/NetworkEquipments";
+// import NetworkEquipments from "./containers/NetworkEquipments";
 import Promotions from "./containers/Promotions";
 import OtherProducts from "./containers/OtherProducts";
 import ClientRegistration from "./containers/ClientRegistration";
@@ -85,29 +85,21 @@ import NewsFirst from "./components/atoms/NewsFirst";
 import NewsSecond from "./components/atoms/NewsSecond";
 import Recruitment from "./containers/Recruitment";
 import RecruitmentForm from "./components/atoms/RecruitmentForm";
-import Cpes from "./containers/Cpes";
-
-import Internet from "./containers/Internet";
-import MarketingandCommunicationTechnique from './components/atoms/MarketingandCommunicationTechnique'
-import OtherServices from "./containers/OtherServices";
-import SpecialServices from "./containers/SpecialServices"
-import CustomizedSolutions from "./containers/CustomizedSolutions"
-// import OutSourcing from "./containers/OutSourcing"
-// import OMG from "./containers/OMG"
-import Digital from "./containers/Digital"
-
-
-import VIdeoConference from "./containers/VideoConference";
+ 
 import VideoConference from "./containers/VideoConference";
-//import WhoWeAre from './containers/Whoweare'
- import WhoWeAre from "./containers/WhoWeAre";
-import Commercial from "./components/atoms/Commercial";
-import GraphicDesigner from "./components/atoms/GraphicDesigner";
+import Cpes from "./containers/Cpes";
+import WhoWeAre from "./containers/WhoWeAre";
+// import Commercial from "./components/atoms/Commercial";
+// import GraphicDesigner from "./components/atoms/GraphicDesigner";
 import OtherService from "./containers/OtherService";
 import SpecialService from "./components/atoms/SpecialService";
 import CustomizedService from "./components/atoms/CustomizedService";
 import OutSourcing from "./components/atoms/OutSourcing";
 import OMG from "./components/atoms/OMG";
+import Telecommunication from "./containers/Telecommunication";
+import ContactUs from "./containers/ContactUs";
+import ContactUsForm from "./components/atoms/ContactUsForm"
+import Digitotal from "./containers/Digitotal"
 import WhoWeAreSlug from "./containers/WhoWeAreSlug";
 import RecruitmentSlug from "./containers/RecruitmentSlug";
 import NewsCard from "./components/atoms/NewsCard";
@@ -188,7 +180,7 @@ function App() {
          <Route path="/ipvoice"  element ={ < IPvoice />}/>
          <Route path="/cybersecurity" element={<CyberSecurity/>} />
          <Route path="/webservice" element={ <Webservices/>} />
-         <Route  path="/automationelectric"    element={<AutomationElectric />}  />
+         <Route  path="/automationelectronic"    element={<AutomationElectric />}  />
          <Route path="/software" element={<Software/> } />
          <Route path="/VSAT" element={<VSAT />} />
          <Route path="/cpes" element={<Cpes/>}/>
@@ -212,7 +204,11 @@ function App() {
          <Route path="/specialservice" element={<SpecialService />} />
          <Route path="/customizedservice"  element={<CustomizedService />} />
          <Route path="/outsourcing" element={<OutSourcing />} />
-{/* <Route path="/omg"  element={<OMG />} /> */}
+         <Route path="/omg"  element={<OMG />} />
+         <Route path="telecommunication"  element={<Telecommunication />} />
+         <Route path="/contactus"  element={<ContactUs />} />
+         <Route path="contactusform" element={<ContactUsForm />} />
+         <Route path="digitotal" element={<Digitotal />} />
 
 
  
