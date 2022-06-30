@@ -114,6 +114,9 @@ export const getAllMsgMissionSus = async () => {
    export const getDeleteRec = async(data) =>{
      return await doDelete('api/recruitment/deleteRecruitment',data);
    }
+   export const jobApply = async(data) =>{
+    return await doPost('api/recruitment/fillRecruitmentForm',data);
+  }
 
     //News Categories
 

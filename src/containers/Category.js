@@ -14,7 +14,7 @@ function Category() {
 
     const renderDetails = () => {
       switch(params?.slug) {
-        case "cpe":
+        case "cpe-2":
           return <CPE />
         case "network-equipments":
           return <NetworkEquipments />

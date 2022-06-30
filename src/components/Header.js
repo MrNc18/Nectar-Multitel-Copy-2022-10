@@ -215,6 +215,49 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
+
+            <NavDropdown
+                title="Who We Are"
+                id="basic-nav-dropdown"
+                // onClick={() => navigate("/home")}
+              >
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/messgaefrommanager")
+                    }
+                >
+                  Management Message
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/missionandvalue")
+                  }
+                >
+                  Mission and Values
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/news")
+                  }
+                >
+                  News
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/recruitment")
+                  }
+                >
+                  Recruitment
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/sustainability")
+                  }
+                >
+                  Sustainability
+                </NavDropdown.Item>
+              </NavDropdown>
+
               <Nav.Link onClick={() => navigate("/home")}>
                 Multitel Home
               </Nav.Link>
