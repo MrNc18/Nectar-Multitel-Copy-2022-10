@@ -64,7 +64,7 @@ useEffect(() => {
             </thead>
             <tbody>
               {Details &&
-                Details[0].products.map((item, i) => (
+                Details[0]?.products?.map((item, i) => (
                   <tr>
                     {console.log("hxwjh", item)}
                     <td>{i + 1}</td>

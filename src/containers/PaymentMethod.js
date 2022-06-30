@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import LandingPage from "../components/LandingPage";
 import { getBasketTotal } from "../Reducer";
-import { getAllProducts, imageUrl } from "../services/category";
+import { getAllProducts, imageUrl, delAllCartData } from "../services/category";
 import { useStateValue } from "../StateProvider";
 import { formatAmount } from "../utils/AmountFormatter";
 import { getcreateRefernceId } from "../services/Payment";
@@ -12,7 +12,7 @@ import { AUTH_TOKEN, getCookie } from "../utils/cookie";
 
 export default function PaymentMethod() {
   const [showCards, setShowCards] = useState(false);
-  const [showOnline, setShowOnline] = useState(false);
+  const [invoice, setInvoice] = useState("");
   const [buttondisabled, setButtonDisabled] = useState(false);
   const isAuthenticated = getCookie(AUTH_TOKEN);
   const { state } = useLocation();
@@ -87,6 +87,13 @@ export default function PaymentMethod() {
     setAmount(amount);
   };
 
+  const getRandomId = (min = 0, max = 500000) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    const num = Math.floor(Math.random() * (max - min + 1)) + min;
+    setInvoice(num.toString().padStart(7, "0"));
+  };
+
   useEffect(() => {
     if (!state) {
       navigate("/marketplace");
@@ -98,20 +105,27 @@ export default function PaymentMethod() {
     if (!isAuthenticated) {
       productdataByBasket();
       TotalBas();
+      getRandomId();
     } else if (isAuthenticated) {
       productdataBYCart();
       getTotal();
+      getRandomId();
     }
   }, [isAuthenticated]);
 
+  //Delete All cart after CReate the order
+
+  const deleteCart = async () => {
+    const data = { userId: state.data.userId };
+    try {
+      const resp = await delAllCartData(data);
+    } catch (error) {
+      console.log("err", error);
+    }
+  };
+
   const getReference = async () => {
     // var date = moment(new Date(new Date().setDate(new Date().getDate() + 30)).format("YYYY-MM-DD"))
-    const getRandomId = (min = 0, max = 500000) => {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      const num = Math.floor(Math.random() * (max - min + 1)) + min;
-      return num.toString().padStart(7, "0");
-    };
 
     const data = {
       amount: Amount,
@@ -119,7 +133,7 @@ export default function PaymentMethod() {
       userId: `${userDet.userId}`,
       adress: `${state.data.address1}`,
       custom_fields: {
-        invoice: `${"MUL"} ${getRandomId()}`,
+        invoice: `${"MUL"} ${invoice}`,
         email: `${userDet.email}`,
         Total_products: !isAuthenticated
           ? `${basket.length}`
@@ -127,13 +141,14 @@ export default function PaymentMethod() {
       },
       order_detail: [
         {
-          invoice: `${"MUL"} ${getRandomId()}`,
+          invoice: `${"MUL"} ${invoice}`,
           products: isAuthenticated ? productsCart : productsBasket,
           email: `${userDet.email}`,
         },
       ],
     };
     try {
+      console.log(invoice);
       const resp = await getcreateRefernceId(data);
       console.log("rsp", resp.data.data);
       showAlert(
@@ -144,6 +159,7 @@ export default function PaymentMethod() {
       //   type: "REMOVE_ALL",
       // });
       setButtonDisabled(false);
+      deleteCart();
       navigate("/home");
     } catch (error) {
       console.log("err", error);
