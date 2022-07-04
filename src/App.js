@@ -85,12 +85,13 @@ import NewsFirst from "./components/atoms/NewsFirst";
 import NewsSecond from "./components/atoms/NewsSecond";
 import Recruitment from "./containers/Recruitment";
 import RecruitmentForm from "./components/atoms/RecruitmentForm";
+
  
 import VideoConference from "./containers/VideoConference";
 import Cpes from "./containers/Cpes";
 import WhoWeAre from "./containers/Whoweare";
 // import WhoWeAre from "./containers/WhoWeAre";
-// import Commercial from "./components/atoms/Commercial";
+ import Commercial from "./components/atoms/Commercial";
 // import GraphicDesigner from "./components/atoms/GraphicDesigner";
 import OtherService from "./containers/OtherService";
 import SpecialService from "./components/atoms/SpecialService";
@@ -173,6 +174,7 @@ function App() {
           <Route path="who_we_are/news" element={<AdNews />} />
           <Route path="who_we_are/multipride" element={<Multipride />} />
           <Route path="who_we_are/corporate" element={<CoorparateBody />} />
+          {/* <Route path="/commercial" element={<Commercial/>}/> */}
         
 
 
