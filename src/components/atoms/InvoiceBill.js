@@ -6,7 +6,7 @@ function InvoiceBill(props) {
 const [InvoiceData,setInvoiceData]=useState('');
 const [InvoiceDetails,setInvoiceDetails] = useState('');
 const Data = props.data 
-const Details = JSON.parse(props.data.order_detail)
+const Details = JSON.parse(props?.data?.order_detail)
 // setInvoiceData(props.data)
 // setInvoiceDetails(Details)
 // console.log("invoice",InvoiceData)
@@ -43,10 +43,10 @@ useEffect(() => {
         <Col md={12}>
           <div style={{display:"flex",flexDirection:'row',justifyContent:"space-between"}}>
           <p>
-            Invoice Number :<b>{Details[0].invoice}</b> </p><br />
-           <p>Invoice Date :<b>{moment(Data.createdAt).format("YYYY-MM-DD")}</b></p> <br />
+            Invoice Number :<b>{Details[0]?.invoice}</b> </p><br />
+           <p>Invoice Date :<b>{moment(Data?.createdAt).format("YYYY-MM-DD")}</b></p> <br />
            </div>
-            <p>Due Date : <b>{moment(Data.period_end_datetime).format("YYYY-MM-DD")}</b></p>
+            <p>Due Date : <b>{moment(Data?.period_end_datetime).format("YYYY-MM-DD")}</b></p>
 
         </Col>
       </Row>
@@ -64,7 +64,7 @@ useEffect(() => {
             </thead>
             <tbody>
               {Details &&
-                Details[0].products.map((item, i) => (
+                Details[0]?.products?.map((item, i) => (
                   <tr>
                     {console.log("hxwjh", item)}
                     <td>{i + 1}</td>

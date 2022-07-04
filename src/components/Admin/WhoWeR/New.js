@@ -11,8 +11,8 @@ const  AdNews = () => {
       <div className="container-fluid">
         <div class="row d-flex align-items-center justify-content-between">
           <div class="col-lg-12 col-md-12 text-left">
-            <h2 className="mt-4 mb-4">News</h2>
-            <Tabs defaultActiveKey="first" size="Large">
+            {/* <h2 className="mt-4 mb-4">News</h2> */}
+            {/* <Tabs defaultActiveKey="first" size="Large">
             <Tab eventKey="first" title="News Category">
                 <div className="Categories">
                   <div
@@ -28,12 +28,12 @@ const  AdNews = () => {
                   <div
                     className="DataTable"
                     style={{ justifyContent: "center" }}
-                  >
+                  > */}
                   <NewsData/>
-                  </div> 
+                  {/* </div> 
                 </div>
               </Tab>
-            </Tabs>
+            </Tabs> */}
           </div>
         </div>
       </div>
