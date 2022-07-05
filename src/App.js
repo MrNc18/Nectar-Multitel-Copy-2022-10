@@ -98,12 +98,6 @@ import SpecialService from "./components/atoms/SpecialService";
 import CustomizedService from "./components/atoms/CustomizedService";
 import OutSourcing from "./components/atoms/OutSourcing";
 import OMG from "./components/atoms/OMG";
-import ADPrivateNetwork from "./components/Admin/Telecommunications/PrivateNetwork";
-import Internet from "./components/Admin/Telecommunications/Internet";
-import Vsat from "./components/Admin/Telecommunications/Vsat";
-import Video from "./components/Admin/Telecommunications/Video";
-import Cpe_Admin from "./components/Admin/Telecommunications/Cpes";
-import Tele from "./components/Admin/Telecommunications/Tele";
 import Telecommunication from "./containers/Telecommunication";
 import ContactUs from "./containers/ContactUs";
 import ContactUsForm from "./components/atoms/ContactUsForm"
@@ -180,13 +174,7 @@ function App() {
           <Route path="who_we_are/news" element={<AdNews />} />
           <Route path="who_we_are/multipride" element={<Multipride />} />
           <Route path="who_we_are/corporate" element={<CoorparateBody />} />
-          <Route path="telecommunications" element={<Tele/>}/>
-          <Route path="telecommunications/internet" element={<Internet/>}/>
-          <Route path="telecommunications/vsat" element={<Vsat/>}/>
-          <Route path="telecommunications/Cpe" element={<Cpe_Admin/>}/>
-          <Route path="telecommunications/video" element={<Video/>}/>
-          <Route path="telecommunications/privatenetwork" element={<ADPrivateNetwork/>}/>
-          
+        
         
 
 
