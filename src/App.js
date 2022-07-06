@@ -181,7 +181,7 @@ function App() {
         </Route>
 
         {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
-        <Route path="/messagefrommanager" element={ <MessageFromManag />} />
+        <Route path="/messagefrommanager/messagefrommanager" element={ <MessageFromManag />} />
         <Route path="/missionandvalue" element={ <MissionAndValue /> } />
         <Route path="/corporbodiesate" element={ <CorporateBodies />} />
         <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
