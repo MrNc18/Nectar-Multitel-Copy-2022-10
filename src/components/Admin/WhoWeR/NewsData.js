@@ -68,7 +68,7 @@ const NewsData = () => {
       console.log("data", data);
       await getDeleteNews(data);
 
-      showAlert(`${deleteRecord.news_category?.name}  delete successfully`)
+      showAlert(`${deleteRecord.news_category?.name}  delete successfully`, "success")
 
       setDeleteShow(false);
       handleAllNews();
