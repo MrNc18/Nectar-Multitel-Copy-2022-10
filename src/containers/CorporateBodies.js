@@ -77,7 +77,8 @@ const CorporateBodies = () => {
             </div>
           </div>
         </div>
-      </LandingPage>
+      
+    </LandingPage>
     </>
   );
 };

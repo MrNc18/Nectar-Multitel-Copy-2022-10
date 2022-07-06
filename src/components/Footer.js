@@ -16,7 +16,7 @@ function Footer() {
 
   return (
     <div id="footer">
-      <FooterProducts />
+       <FooterProducts /> 
       <FooterTop />
       <FooterMiddle />
       <FooterBottom />

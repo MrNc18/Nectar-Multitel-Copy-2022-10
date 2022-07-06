@@ -13,6 +13,8 @@ function News() {
       <LandingPage woproducts>
         <ServiceBanner title="News" regnPage />
         <Container>
+          <Row>
+            <Col md={12}>
           <div className="bredcrumb">
             <Breadcrumb>
               <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
@@ -22,6 +24,8 @@ function News() {
               </Breadcrumb.Item>
             </Breadcrumb>
           </div>
+          </Col>
+          </Row>
           <div style={{ backgroundColor: "#f6f6f6" }}>
             <Tab.Container id="left-tabs-example" defaultActiveKey="news">
               <Row>
