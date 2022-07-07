@@ -8,7 +8,7 @@ function BulletineCard() {
   const [bulletines, setBulletines] = useState([]);
 
   const handleAllRequirement = async () => {
-    const data = { slug: "bulle" };
+    const data = { slug: "bulle-1" };
     try {
       const resp = await getNewsByCategory(data);
       console.log(resp);
