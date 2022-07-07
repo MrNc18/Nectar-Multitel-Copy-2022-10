@@ -387,8 +387,9 @@ const NewsData = () => {
 
             <Modal.Body>
 
-              <p>Are you sure want to delete this {deleteRecord.news_category?.name} ?</p>
-              {/* { `are bhfg h hghfhghj${Multi?.news_catyegory?.title }`} */}
+
+
+              {`Are you sure want to delete this ${deleteRecord.news_category?.name}`}
 
 
             </Modal.Body>
