@@ -67,7 +67,8 @@ const NewsData = () => {
     try {
       console.log("data", data);
       await getDeleteNews(data);
-      showAlert("News Data Deleted Successfully", "success");
+      // showAlert("News Data Deleted Successfully", "success");
+      showAlert(`${deleteRecord.news_category?.name}  deleted successfully`, "success");
       setDeleteShow(false);
       handleAllNews();
     } catch (error) {
@@ -382,7 +383,7 @@ const NewsData = () => {
             </Modal.Header>
 
             <Modal.Body>
-              <p>Are you sure want to delete this News ?</p>
+            {`Are you sure want to delete this ${deleteRecord.news_category?.name} ?`}
             </Modal.Body>
 
             <Modal.Footer>
