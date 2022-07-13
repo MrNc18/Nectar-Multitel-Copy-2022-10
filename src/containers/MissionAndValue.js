@@ -7,7 +7,7 @@ import { showAlert } from "../utils/showAlert";
 
 const MissionAndValue = () => {
   const [missionValues, setMissionValues] = useState({});
- 
+
   const handleAllMessage = async () => {
     const data = { slug: "sustainability" };
     try {
