@@ -144,6 +144,9 @@ export const getAllCategories = async () => {
   export const updateCartData = async(data) =>{
     return await doPut('api/cart/updateCartData',data);
   }
+  export const delAllCartData = async(data) =>{
+    return await doDelete('api/cart/AllCartDataDelete',data);
+  }
 
   // wishlist
   export const addToWishlist = async(data) =>{

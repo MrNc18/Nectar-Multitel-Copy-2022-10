@@ -96,6 +96,12 @@ import SpecialService from "./components/atoms/SpecialService";
 import CustomizedService from "./components/atoms/CustomizedService";
 import OutSourcing from "./components/atoms/OutSourcing";
 import OMG from "./components/atoms/OMG";
+import ADPrivateNetwork from "./components/Admin/Telecommunications/PrivateNetwork";
+import Internet from "./components/Admin/Telecommunications/Internet";
+import Vsat from "./components/Admin/Telecommunications/Vsat";
+import Video from "./components/Admin/Telecommunications/Video";
+import Cpe_Admin from "./components/Admin/Telecommunications/Cpes";
+import Tele from "./components/Admin/Telecommunications/Tele";
 import Telecommunication from "./containers/Telecommunication";
 import ContactUs from "./containers/ContactUs";
 import ContactUsForm from "./components/atoms/ContactUsForm"
@@ -103,7 +109,8 @@ import Digitotal from "./containers/Digitotal"
 import WhoWeAreSlug from "./containers/WhoWeAreSlug";
 import RecruitmentSlug from "./containers/RecruitmentSlug";
 import NewsCard from "./components/atoms/NewsCard";
-import Internet from "./containers/Internet";
+// import Internet from "./containers/Internet";
+import InternetUser from "./containers/Internet";
 
 
 function App() {
@@ -164,6 +171,13 @@ function App() {
           <Route path="who_we_are/news" element={<AdNews />} />
           <Route path="who_we_are/multipride" element={<Multipride />} />
           <Route path="who_we_are/corporate" element={<CoorparateBody />} />
+          <Route path="telecommunications" element={<Tele/>}/>
+          <Route path="telecommunications/internet" element={<Internet/>}/>
+          <Route path="telecommunications/vsat" element={<Vsat/>}/>
+          <Route path="telecommunications/Cpe" element={<Cpe_Admin/>}/>
+          <Route path="telecommunications/video" element={<Video/>}/>
+          <Route path="telecommunications/privatenetwork" element={<ADPrivateNetwork/>}/>
+          
         
 
 
@@ -191,11 +205,11 @@ function App() {
          <Route path="/customizedservice"  element={<CustomizedService />} />
          <Route path="/outsourcing" element={<OutSourcing />} />
          <Route path="/omg"  element={<OMG />} />
-         <Route path="telecommunication"  element={<Telecommunication />} />
-         <Route path="/internet" element={<Internet />} />
+         <Route path="/telecommunication"  element={<Telecommunication />} />
+         <Route path="/internet" element={<InternetUser />} />
          <Route path="/contactus"  element={<ContactUs />} />
-         <Route path="contactusform" element={<ContactUsForm />} />
-         <Route path="digitotal" element={<Digitotal />} />
+         <Route path="/contactusform" element={<ContactUsForm />} />
+         <Route path="/digitotal" element={<Digitotal />} />
 
 
  
