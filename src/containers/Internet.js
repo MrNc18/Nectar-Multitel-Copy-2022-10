@@ -23,7 +23,7 @@ const InternetUser = () => {
             </Breadcrumb>
           </div>
           <div style={{ backgroundColor: "#f6f6f6" }}>
-            <Tab.Container id="left-tabs-example" defaultActiveKey="news">
+            <Tab.Container id="left-tabs-example" defaultActiveKey="privatenetwork">
               <Row>
                 <Col
                   md={3}
@@ -33,13 +33,13 @@ const InternetUser = () => {
                   <Nav variant="pills" className="flex-column">
                     <Nav.Item>
                       <Nav.Link eventKey="privatenetwork">
-                      <i class="fa-solid fa-id-badge"></i>
-                        &nbsp;&nbsp; Private Networks
+                      <i class="fa-solid fa-user-large"></i>
+                        &nbsp;&nbsp; Internet
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link eventKey="netprime">
-                        <i class="fa-solid fa-indent"></i>
+                      <i class="fa-solid fa-box"></i>
                         &nbsp;&nbsp; Net Prime
                       </Nav.Link>
                     </Nav.Item>
@@ -51,7 +51,7 @@ const InternetUser = () => {
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link eventKey="netset">
-                      <i class="fa-solid fa-chart-line"></i>&nbsp;&nbsp; Net Set
+                      <i class="fa-solid fa-chart-line"></i>&nbsp;&nbsp; Net Sat
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>

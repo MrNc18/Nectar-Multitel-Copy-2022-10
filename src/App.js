@@ -212,10 +212,6 @@ function App() {
          <Route path="/digitotal" element={<Digitotal />} />
 
 
- 
-
-
-
 
          <Route path="/promotions" element={<Promotions />} />
          <Route path="/otherproducts" element={<OtherProducts />} />
