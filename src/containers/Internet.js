@@ -7,7 +7,7 @@ import NetPrime from "../components/atoms/NetPrime";
 import NetPro from "../components/atoms/NetPro";
 import NetSet from "../components/atoms/NetSet";
 import WebServices from "../components/atoms/WebServices";
-const Internet = () => {
+const InternetUser = () => {
   return (
     <>
       <LandingPage>
@@ -91,4 +91,4 @@ const Internet = () => {
   );
 };
 
-export default Internet;
+export default InternetUser;

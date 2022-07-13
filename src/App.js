@@ -110,6 +110,7 @@ import WhoWeAreSlug from "./containers/WhoWeAreSlug";
 import RecruitmentSlug from "./containers/RecruitmentSlug";
 import NewsCard from "./components/atoms/NewsCard";
 // import Internet from "./containers/Internet";
+import InternetUser from "./containers/Internet";
 
 
 function App() {
@@ -205,14 +206,10 @@ function App() {
          <Route path="/outsourcing" element={<OutSourcing />} />
          <Route path="/omg"  element={<OMG />} />
          <Route path="/telecommunication"  element={<Telecommunication />} />
-         <Route path="/internet" element={<Internet />} />
+         <Route path="/internet" element={<InternetUser />} />
          <Route path="/contactus"  element={<ContactUs />} />
          <Route path="/contactusform" element={<ContactUsForm />} />
          <Route path="/digitotal" element={<Digitotal />} />
-
-
- 
-
 
 
 
