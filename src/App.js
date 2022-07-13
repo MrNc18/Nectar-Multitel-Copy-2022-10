@@ -192,7 +192,7 @@ function App() {
          <Route path="/outsourcing" element={<OutSourcing />} />
          <Route path="/omg"  element={<OMG />} />
          <Route path="telecommunication"  element={<Telecommunication />} />
-         <Route path="internet" element={<Internet />} />
+         <Route path="/internet" element={<Internet />} />
          <Route path="/contactus"  element={<ContactUs />} />
          <Route path="contactusform" element={<ContactUsForm />} />
          <Route path="digitotal" element={<Digitotal />} />
