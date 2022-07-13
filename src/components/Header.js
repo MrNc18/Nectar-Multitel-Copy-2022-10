@@ -285,7 +285,7 @@ function Header() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   onClick={() =>
-                    navigate("/missionandvalue")
+                    navigate("/internet")
                   }
                 >
                   Internet
