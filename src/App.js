@@ -85,8 +85,8 @@ import NewsFirst from "./components/atoms/NewsFirst";
 import NewsSecond from "./components/atoms/NewsSecond";
 import Recruitment from "./containers/Recruitment";
 import RecruitmentForm from "./components/atoms/RecruitmentForm";
-
- 
+import ADPrivateNetwork from "./components/Admin/Telecommunications/PrivateNetwork";
+ import Tele from "./components/Admin/Telecommunications/Tele";
 import VideoConference from "./containers/VideoConference";
 import Cpes from "./containers/Cpes";
 import WhoWeAre from "./containers/Whoweare";
@@ -174,6 +174,13 @@ function App() {
           <Route path="who_we_are/news" element={<AdNews />} />
           <Route path="who_we_are/multipride" element={<Multipride />} />
           <Route path="who_we_are/corporate" element={<CoorparateBody />} />
+          <Route path="telecommunications" element={<Tele/>}/>
+          {/* <Route path="telecommunications/internet" element={<Internet/>}/>
+          <Route path="telecommunications/vsat" element={<Vsat/>}/>
+          <Route path="telecommunications/Cpe" element={<Cpe_Admin/>}/>
+          <Route path="telecommunications/video" element={<Video/>}/> */}
+          <Route path="telecommunications/privatenetwork" element={<ADPrivateNetwork/>}/>
+          
         
         
 
