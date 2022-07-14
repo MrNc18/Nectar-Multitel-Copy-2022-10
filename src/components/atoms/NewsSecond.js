@@ -30,7 +30,7 @@ function NS({ data, backlink = "/news" }) {
           return (
             <Container>
               <h4 className="mt-5" style={{ color: "#1D3557" }}>
-              {items?.title}
+                {items?.title}
               </h4>
               <Row>
                 <Col lg={6}>

@@ -3,6 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import BulletineCard from "./BulletineCard";
 
 
+
 function Bulletine() {
 
   return (
