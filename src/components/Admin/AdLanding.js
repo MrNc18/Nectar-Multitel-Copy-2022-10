@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import {ArrowUp,ArrowDown} from "react-bootstrap-icons"
+import {ArrowUp,ArrowDown} from 'react-bootstrap-icons'
 import AppHeader from "../AppHeader";
 import "./admin.css";
 
