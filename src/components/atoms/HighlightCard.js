@@ -5,14 +5,14 @@ import { getNewsByCategory } from "../../services/WhoWeAreFront";
 import { imageUrl } from "../../services/category";
 
 function HighlightCard() {
-  const [bulletines, setBulletines] = useState([]);
+  const [highlight,setHighlight] = useState([]);
 
   const handleAllRequirement = async () => {
     const data = { slug: "highlights" };
     try {
       const resp = await getNewsByCategory(data);
       console.log(resp);
-      setBulletines(resp && resp.data.data);
+      setHighlight(resp && resp.data.data);
       // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
@@ -25,10 +25,10 @@ function HighlightCard() {
 
   return (
     <>
-    {bulletines &&
-          bulletines?.news?.map((item) => (
+    {highlight &&
+         highlight?.news?.map((item) => (
       <Col md={6} lg={3} className="mb-4">
-        {console.log(bulletines, "resp")}
+        {console.log(highlight, "resp")}
         
             <Card style={{ width: "11rem" }}>
               <Card.Img variant="top" src={imageUrl(item.image)} style={{height:"150px"}}/>

@@ -67,8 +67,9 @@ const NewsData = () => {
     try {
       console.log("data", data);
       await getDeleteNews(data);
-      // showAlert("News Data Deleted Successfully", "success");
-      showAlert(`${deleteRecord.news_category?.name}  deleted successfully`, "success");
+
+      showAlert(`${deleteRecord.news_category?.name}  delete successfully`, "success")
+
       setDeleteShow(false);
       handleAllNews();
     } catch (error) {
@@ -93,7 +94,7 @@ const NewsData = () => {
       sort_description: item.sort_description,
       news_Date: moment(item.news_date).format("YYYY-MM-DD"),
       news_num: item.news_number,
-      category:item.news_category.name
+      category: item.news_category.name
     });
     setShowEditModal(true);
     console.log("item", item);
@@ -115,7 +116,7 @@ const NewsData = () => {
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
     }
-    data.append("id",id)
+    data.append("id", id)
     data.append("description", description);
     data.append("title", Title);
     data.append("news_date", Date);
@@ -340,13 +341,15 @@ const NewsData = () => {
               </tr>
             </thead>
             <tbody>
+              {console.log(Multi)}
               {Multi &&
                 Multi.map((item, i) => (
+
                   <tr>
                     <td>{i + 1}</td>
-                    <td>{item.id?item.id:""}</td>
-                    <td>{item.title?item.title:''}</td>
-                    <td>{item.news_category?item.news_category.name:''}</td>
+                    <td>{item.id ? item.id : ""}</td>
+                    <td>{item.title ? item.title : ''}</td>
+                    <td>{item.news_category ? item.news_category.name : ''}</td>
 
                     <td>
                       <a
@@ -375,7 +378,7 @@ const NewsData = () => {
             </tbody>
           </Table>
           {/* Delete Modal */}
-          <Modal show={DeleteShow} onHide={handlecloseDelete}>
+          <Modal show={DeleteShow} onHide={handlecloseDelete} >
             <Modal.Header closeButton>
               <Modal.Title style={{ color: "#0076B5" }}>
                 Delete News
@@ -383,7 +386,11 @@ const NewsData = () => {
             </Modal.Header>
 
             <Modal.Body>
-            {`Are you sure want to delete this ${deleteRecord.news_category?.name} ?`}
+
+              <p>Are you sure want to delete this {deleteRecord.news_category?.name} ?</p>
+              {/* { `are bhfg h hghfhghj${Multi?.news_catyegory?.title }`} */}
+
+
             </Modal.Body>
 
             <Modal.Footer>

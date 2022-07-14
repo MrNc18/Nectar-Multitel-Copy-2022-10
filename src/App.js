@@ -85,23 +85,19 @@ import NewsFirst from "./components/atoms/NewsFirst";
 import NewsSecond from "./components/atoms/NewsSecond";
 import Recruitment from "./containers/Recruitment";
 import RecruitmentForm from "./components/atoms/RecruitmentForm";
- 
+import ADPrivateNetwork from "./components/Admin/Telecommunications/PrivateNetwork";
+ import Tele from "./components/Admin/Telecommunications/Tele";
 import VideoConference from "./containers/VideoConference";
 import Cpes from "./containers/Cpes";
-import WhoWeAre from "./containers/WhoWeAre";
-// import Commercial from "./components/atoms/Commercial";
+import WhoWeAre from "./containers/Whoweare";
+// import WhoWeAre from "./containers/WhoWeAre";
+ import Commercial from "./components/atoms/Commercial";
 // import GraphicDesigner from "./components/atoms/GraphicDesigner";
 import OtherService from "./containers/OtherService";
 import SpecialService from "./components/atoms/SpecialService";
 import CustomizedService from "./components/atoms/CustomizedService";
 import OutSourcing from "./components/atoms/OutSourcing";
 import OMG from "./components/atoms/OMG";
-import ADPrivateNetwork from "./components/Admin/Telecommunications/PrivateNetwork";
-import Internet from "./components/Admin/Telecommunications/Internet";
-import Vsat from "./components/Admin/Telecommunications/Vsat";
-import Video from "./components/Admin/Telecommunications/Video";
-import Cpe_Admin from "./components/Admin/Telecommunications/Cpes";
-import Tele from "./components/Admin/Telecommunications/Tele";
 import Telecommunication from "./containers/Telecommunication";
 import ContactUs from "./containers/ContactUs";
 import ContactUsForm from "./components/atoms/ContactUsForm"
@@ -109,8 +105,14 @@ import Digitotal from "./containers/Digitotal"
 import WhoWeAreSlug from "./containers/WhoWeAreSlug";
 import RecruitmentSlug from "./containers/RecruitmentSlug";
 import NewsCard from "./components/atoms/NewsCard";
-// import Internet from "./containers/Internet";
+import MarketingandCommunicationTechnique from "./components/atoms/MarketingandCommunicationTechnique";
+import OtherServices from "./components/OtherServices";
+import CustomizedSolutions from "./containers/CustomizedSolutions";
+import Internet from "./containers/Internet";
+import Digital from "./containers/Digital";
+import SpecialServices from "./containers/SpecialServices"
 import InternetUser from "./containers/Internet";
+
 
 
 function App() {
@@ -129,6 +131,8 @@ function App() {
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/products/:name" element={<ProductDetail />} />
         <Route path="/categories/:slug" element={<Category />} />
+  
+
         {/* <Route path="/network-equipments" element={<NetworkEquipments />} /> */}
         {/* <Route path="/internet-services" element={<InternetServices />} />    */}
         <Route
@@ -172,21 +176,22 @@ function App() {
           <Route path="who_we_are/multipride" element={<Multipride />} />
           <Route path="who_we_are/corporate" element={<CoorparateBody />} />
           <Route path="telecommunications" element={<Tele/>}/>
-          <Route path="telecommunications/internet" element={<Internet/>}/>
+          {/* <Route path="telecommunications/internet" element={<Internet/>}/>
           <Route path="telecommunications/vsat" element={<Vsat/>}/>
           <Route path="telecommunications/Cpe" element={<Cpe_Admin/>}/>
-          <Route path="telecommunications/video" element={<Video/>}/>
+          <Route path="telecommunications/video" element={<Video/>}/> */}
           <Route path="telecommunications/privatenetwork" element={<ADPrivateNetwork/>}/>
           
+        
         
 
 
         </Route>
 
         {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
-        <Route path="/messagefrommanager" element={ <MessageFromManag />} />
+        <Route path="/messagefrommanager/messagefrommanager" element={ <MessageFromManag />} />
         <Route path="/missionandvalue" element={ <MissionAndValue /> } />
-        <Route path="/corporatebodies" element={ <CorporateBodies />} />
+        <Route path="/corporbodiesate" element={ <CorporateBodies />} />
         <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
         <Route path="/datacenterandcloud" element={ <DataCenter /> } />
          <Route path="/consultingtraining" element={ <ConsultingTraining/>} />
@@ -196,6 +201,19 @@ function App() {
          <Route  path="/automationelectronic"    element={<AutomationElectric />}  />
          <Route path="/software" element={<Software/> } />
          <Route path="/VSAT" element={<VSAT />} />
+         <Route path="/cpes" element={<Cpes/>}/>
+         <Route path="/whoweare" element={<WhoWeAre/>}/>
+         <Route path="/internet" element={<Internet/>}/>
+         <Route path="/marketingandcommunicationtechnique" element={<MarketingandCommunicationTechnique />}/>
+         <Route path="/otherservices" element={<OtherServices/>}/>
+         <Route path="/specialservices" element={<SpecialServices/>}/>
+         <Route path="/customizedsolutions" element={<CustomizedSolutions/>}/>
+         <Route path="/outsourcing" element={<OutSourcing/>} />
+         <Route path="/omg" element={<OMG/>}/>
+         <Route path="/digital" element={<Digital/>} />
+ 
+    
+         
          <Route path="/videoconference" element={<VideoConference   />} />
          <Route path="/cpes" element={<Cpes/>} />
          <Route path="/whoweare" element={<WhoWeAre/>} />
