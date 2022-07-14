@@ -170,10 +170,10 @@ function App() {
           <Route path="who_we_are/multipride" element={<Multipride />} />
           <Route path="who_we_are/corporate" element={<CoorparateBody />} />
           <Route path="telecommunications" element={<Tele/>}/>
-          <Route path="telecommunications/internet" element={<Internet/>}/>
+          {/* <Route path="telecommunications/internet" element={<Internet/>}/>
           <Route path="telecommunications/vsat" element={<Vsat/>}/>
           <Route path="telecommunications/Cpe" element={<Cpe_Admin/>}/>
-          <Route path="telecommunications/video" element={<Video/>}/>
+          <Route path="telecommunications/video" element={<Video/>}/> */}
           <Route path="telecommunications/privatenetwork" element={<ADPrivateNetwork/>}/>
           
         

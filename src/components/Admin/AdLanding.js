@@ -15,7 +15,7 @@ const Tabs = Object.freeze([
   { label: "Vendor Contacts", link: "admin/Contact" },
   { label: "AllOrders", link: "admin/orders" },
   { label: "Settings", link: "admin/settings" },
-  { label: "Menu", link: "admin/menu" },
+  { label: "Menu Management", link: "admin/menu" },
   { label: "Who We Are", link: "admin/who_we_are" },
   {label:"TeleCommunication",link:"admin/telecommunications"}
   
@@ -25,6 +25,7 @@ export default function AdLanding() {
   let navigate = useNavigate();
   const [toggle, setToggle] = useState("");
   const[Active,setIsActive] = useState('')
+  const [teleActive,setTeleActive]= useState('')
   const location = useLocation();
   const handleClick = (value) => {
     setToggle(value);
@@ -33,6 +34,11 @@ export default function AdLanding() {
     setIsActive(!Active);
     navigate(`/${link}`);
   };
+const handleTeleLink = (link) =>{
+  setTeleActive(!teleActive);
+  navigate(`/${link}`);
+}
+
   return (
     <div
       className={
@@ -53,6 +59,7 @@ export default function AdLanding() {
                 {Tabs.map(({ label, link }) => {
                   // console.log("naga sai fasdkjfaskjfkjasbfkasd");
                   const isActive = location.pathname.split("/")[1] === link;
+                  
                   if (label === "Who We Are") {
                     return (
                       <div style={{ flexDirection: "row" }}>
@@ -123,6 +130,81 @@ export default function AdLanding() {
                               {console.log("dk", link)}
                               <p style={{ color: "white" }}>Corporate Bodies</p>
                             </a>
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  }
+                  else if (label === "TeleCommunication") {
+                    return (
+                      <div style={{ flexDirection: "row" }}>
+                        <a
+                          className={`nav-link ${isActive ? "active" : ""}`}
+                          key={link}
+                          onClick={() => handleTeleLink(link)}
+                        >
+                          {label}
+                          <label style={{ marginLeft: "10px" }}>
+                            {teleActive ? (
+                              <ArrowUp />
+                            ) : (
+                              <ArrowDown />
+                            )}
+                          </label>
+                        </a>
+                        {teleActive ? (
+                          <div style={{ backgroundColor: "#898989" }}>
+                            <a
+                              className={`nav-link ${isActive ? "active" : ""}`}
+                              key={link}
+                              onClick={() =>
+                                navigate(`/admin/telecommunications/privatenetwork`)
+                              }
+                            >
+                              {console.log("dk", link)}
+                              <p style={{ color: "white" }}>TeleCommunication Management</p>
+                             </a>
+                            {/* <a
+                              className={`nav-link ${isActive ? "active" : ""}`}
+                              key={link}
+                              onClick={() =>
+                                navigate(`/admin/telecommunications/internet`)
+                              }
+                            >
+                              {console.log("lk", link)}
+                              <p style={{ color: "white" }}>Internet</p>
+                            </a>
+                  
+                            <a
+                              className={`nav-link ${isActive ? "active" : ""}`}
+                              key={link}
+                              onClick={() =>
+                                navigate(`/admin/telecommunications/vsat`)
+                              }
+                            >
+                              {console.log("dk", link)}
+                              <p style={{ color: "white" }}>Vsat</p>
+                            </a>
+                            <a
+                              className={`nav-link ${isActive ? "active" : ""}`}
+                              key={link}
+                              onClick={() =>
+                                navigate(`/admin/telecommunications/video`)
+                              }
+                            >
+                              {console.log("dk", link)}
+                              <p style={{ color: "white" }}>VideoConference</p>
+                            </a>
+                            <a
+                              className={`nav-link ${isActive ? "active" : ""}`}
+                              key={link}
+                              onClick={() =>
+                                navigate(`/admin/telecommunications/Cpe`)
+                              }
+                            >
+                              {console.log("dk", link)}
+                              <p style={{ color: "white" }}>Cpes</p>
+                            </a>  */}
                           </div>
                         ) : null}
                       </div>
