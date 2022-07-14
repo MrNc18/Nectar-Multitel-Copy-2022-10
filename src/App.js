@@ -85,8 +85,8 @@ import NewsFirst from "./components/atoms/NewsFirst";
 import NewsSecond from "./components/atoms/NewsSecond";
 import Recruitment from "./containers/Recruitment";
 import RecruitmentForm from "./components/atoms/RecruitmentForm";
-
- 
+import ADPrivateNetwork from "./components/Admin/Telecommunications/PrivateNetwork";
+ import Tele from "./components/Admin/Telecommunications/Tele";
 import VideoConference from "./containers/VideoConference";
 import Cpes from "./containers/Cpes";
 import WhoWeAre from "./containers/Whoweare";

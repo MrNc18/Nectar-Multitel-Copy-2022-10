@@ -4,7 +4,7 @@ import { Button, Modal, Form, Table } from "react-bootstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const WhoWeR = () => {
+const Tele = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [data, setData] = useState("");
@@ -225,4 +225,4 @@ const WhoWeR = () => {
   );
 };
 
-export default WhoWeR;
+export default Tele;
