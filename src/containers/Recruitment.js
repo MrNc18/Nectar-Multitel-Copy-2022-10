@@ -43,7 +43,7 @@ function Recruitment() {
   return (
     <>
       <LandingPage woproducts>
-        <ServiceBanner title="Recruitment" />
+        <ServiceBanner title="Recruitment" regnPage />
         <Container>
           <div className="bredcrumb">
             <Breadcrumb>

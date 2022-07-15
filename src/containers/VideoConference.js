@@ -128,7 +128,7 @@ const VideoConference = () => {
   return (
     <>
       <LandingPage>
-        <ServiceBanner title="  Video Conference" />
+        <ServiceBanner title="  Video Conference" regnPage />
         <div className="container">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">

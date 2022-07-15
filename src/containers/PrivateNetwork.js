@@ -14,7 +14,7 @@ function PrivateNetwork() {
   return (
     <>
       <LandingPage>
-        <ServiceBanner title="Private Networks" />
+        <ServiceBanner title="Private Networks" regnPage />
         <Container>
           <Row>
             <Col md={12}>

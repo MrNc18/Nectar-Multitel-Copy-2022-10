@@ -242,6 +242,31 @@ function App() {
 
           <Route path="/contactusform" element={<ContactUsForm />} />
 
+        {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
+        <Route path="/messagefrommanager" element={ <MessageFromManag />} />
+        <Route path="/missionandvalue" element={ <MissionAndValue /> } />
+        <Route path="/corporatebodies" element={ <CorporateBodies />} />
+        <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
+        <Route path="/datacenterandcloud" element={ <DataCenter /> } />
+         <Route path="/consultingtraining" element={ <ConsultingTraining/>} />
+         <Route path="/ipvoice"  element ={ < IPvoice />}/>
+         <Route path="/cybersecurity" element={<CyberSecurity/>} />
+         <Route path="/webservice" element={ <Webservices/>} />
+         <Route  path="/automationelectronic"    element={<AutomationElectric />}  />
+         <Route path="/software" element={<Software/> } />
+         <Route path="/VSAT" element={<VSAT />} />
+         <Route path="/cpes" element={<Cpes/>}/>
+         <Route path="/whoweare" element={<WhoWeAre/>}/>
+         <Route path="/internet" element={<Internet/>}/>
+         <Route path="/marketingandcommunicationtechnique" element={<MarketingandCommunicationTechnique />}/>
+         <Route path="/otherservices" element={<OtherServices/>}/>
+         <Route path="/specialservices" element={<SpecialServices/>}/>
+         <Route path="/customizedsolutions" element={<CustomizedSolutions/>}/>
+         <Route path="/outsourcing" element={<OutSourcing/>} />
+         <Route path="/omg" element={<OMG/>}/>
+         <Route path="/digital" element={<Digital/>} />
+ 
+    
          
          
          

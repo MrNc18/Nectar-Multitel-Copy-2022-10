@@ -23,7 +23,7 @@ const CorporateBodies = () => {
   return (
     <>
       <LandingPage>
-        <ServiceBanner title="Corporate Bodies And  Corporate Composition" />
+        <ServiceBanner title="Corporate Bodies And  Corporate Composition" regnPage />
         <div className="container">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
