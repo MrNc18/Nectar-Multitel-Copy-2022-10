@@ -56,7 +56,7 @@ const Cpes = () => {
   return (
     <>
       <LandingPage>
-        <ServiceBanner title="CPEs" />
+        <ServiceBanner title="CPEs" regnPage />
         <div className="container">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">

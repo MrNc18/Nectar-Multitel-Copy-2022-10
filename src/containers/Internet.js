@@ -11,7 +11,7 @@ const InternetUser = () => {
   return (
     <>
       <LandingPage>
-        <ServiceBanner title="Internet" />
+        <ServiceBanner title="Internet" regnPage />
         <Container>
           <div className="bredcrumb">
             <Breadcrumb>
