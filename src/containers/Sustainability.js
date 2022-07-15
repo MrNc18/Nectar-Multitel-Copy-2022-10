@@ -9,7 +9,7 @@ function Sustainability() {
   return (
     <>
       <LandingPage woproducts>
-        <ServiceBanner title="Sustainability" />
+        <ServiceBanner title="Sustainability" regnPage />
         <Container>
 
           <Row>

@@ -111,6 +111,7 @@ import CustomizedSolutions from "./containers/CustomizedSolutions";
 import Internet from "./containers/Internet";
 import Digital from "./containers/Digital";
 import SpecialServices from "./containers/SpecialServices"
+import InternetUser from "./containers/Internet";
 
 
 
@@ -188,9 +189,9 @@ function App() {
         </Route>
 
         {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
-        <Route path="/messagefrommanager/messagefrommanager" element={ <MessageFromManag />} />
+        <Route path="/messagefrommanager" element={ <MessageFromManag />} />
         <Route path="/missionandvalue" element={ <MissionAndValue /> } />
-        <Route path="/corporbodiesate" element={ <CorporateBodies />} />
+        <Route path="/corporatebodies" element={ <CorporateBodies />} />
         <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
         <Route path="/datacenterandcloud" element={ <DataCenter /> } />
          <Route path="/consultingtraining" element={ <ConsultingTraining/>} />
@@ -222,14 +223,11 @@ function App() {
          <Route path="/customizedservice"  element={<CustomizedService />} />
          <Route path="/outsourcing" element={<OutSourcing />} />
          <Route path="/omg"  element={<OMG />} />
-         <Route path="telecommunication"  element={<Telecommunication />} />
+         <Route path="/telecommunication"  element={<Telecommunication />} />
+         <Route path="/internet" element={<InternetUser />} />
          <Route path="/contactus"  element={<ContactUs />} />
-         <Route path="contactusform" element={<ContactUsForm />} />
-         <Route path="digitotal" element={<Digitotal />} />
-
-
- 
-
+         <Route path="/contactusform" element={<ContactUsForm />} />
+         <Route path="/digitotal" element={<Digitotal />} />
 
 
 

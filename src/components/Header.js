@@ -251,10 +251,65 @@ function Header() {
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   onClick={() =>
+                    navigate("/corporatebodies")
+                  }
+                >
+                  Corporate Bodies
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
                     navigate("/sustainability")
                   }
                 >
                   Sustainability
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/multitelpride")
+                  }
+                >
+                  Multitel Pride
+                </NavDropdown.Item>
+              </NavDropdown>
+              <NavDropdown
+                title="Telecommunication"
+                id="basic-nav-dropdown"
+                // onClick={() => navigate("/home")}
+              >
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/privatenetwork")
+                    }
+                >
+                  Private Networks
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/internet")
+                  }
+                >
+                  Internet
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/VSAT")
+                  }
+                >
+                  VSAT
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/videoconference")
+                  }
+                >
+                  Video Conferencing
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/cpes")
+                  }
+                >
+                  CPEs
                 </NavDropdown.Item>
               </NavDropdown>
 
@@ -266,7 +321,10 @@ function Header() {
                 Marketplace
               </Nav.Link>
               {/* <button onClick={console.log(()=>getCookie(AUTH_TOKEN))}>GEt</button> */}
-              <Nav.Link href="#link">Client Portal</Nav.Link>
+
+              {/* Commenting this nav item for now for better view we'll uncomment it later */}
+
+              {/* <Nav.Link href="#link">Client Portal</Nav.Link> */}
               <NavDropdown
                 title="Contacts"
                 id="basic-nav-dropdown"

@@ -29,7 +29,7 @@ function MultitelPride() {
   return (
     <>
       <LandingPage>
-        <ServiceBanner title="Sustainability" />
+        <ServiceBanner title="Multitel Pride" regnPage />
         <Container>
           <Row>
             <Col md={12}>
