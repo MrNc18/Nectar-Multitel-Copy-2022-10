@@ -17,7 +17,7 @@ const Tabs = Object.freeze([
   { label: "Settings", link: "admin/settings" },
   { label: "Menu Management", link: "admin/menu" },
   { label: "Who We Are", link: "admin/who_we_are" },
-  // {label:"TeleCommunication",link:"admin/telecommunications"}
+  {label:"TeleCommunication",link:"admin/telecommunications"}
   
 ]);
 
