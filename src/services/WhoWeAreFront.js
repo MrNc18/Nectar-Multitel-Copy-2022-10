@@ -57,7 +57,7 @@ export const getAllNewsCategory = async () => {
  }
 
  
- export const getTelecommunicationByCategory = async (data) => {
-  return await doPost("api/telecommunication/getTelecommunicationByCategory",data)
+ export const getTelecommunicationBySlug = async (data) => {
+  return await doPost("api/telecommunication/getTelecommunicationBySlug",data)
  }
 

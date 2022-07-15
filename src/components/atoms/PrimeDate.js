@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { getTelecommunicationByCategory } from "../../services/WhoWeAreFront";
+import {getTelecommunicationBySlug } from "../../services/WhoWeAreFront";
 import { showAlert } from "../../utils/showAlert";
 
 
@@ -30,7 +30,7 @@ function PrimeDate() {
   const handlePrivateNetwork = async () => {
     const data = { slug: "prime-date-heading" };
     try {
-      const resp = await getTelecommunicationByCategory(data);
+      const resp = await getTelecommunicationBySlug(data);
       console.log(resp);
       setPrimeDate(resp && resp.data.data);
       // console.log("newsreq", resp);
