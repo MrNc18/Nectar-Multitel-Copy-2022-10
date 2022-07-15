@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { showAlert } from "../../utils/showAlert";
 import { getTelecommunicationBySlug } from "../../services/TelecommunicationFront";
-
+import { imageUrl } from "../../services/category";
 
 function NetPro() {
 
@@ -32,6 +32,7 @@ function NetPro() {
           <h4 className="mt-5 mb-4" style={{ color: "#1D3557" }}>
             {NetPro?.name}
           </h4>
+          <img src={imageUrl(NetPro?.image)} alt="" height={40}  />
           <div dangerouslySetInnerHTML={{ __html: NetPro?.description }} />
         </Col>
       </Row>
