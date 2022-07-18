@@ -98,9 +98,9 @@ const VSAT = () => {
 
   return (
     <>
-      <LandingPage>
+      <LandingPage woproducts>
         <ServiceBanner title="VSAT" regnPage />
-        <div className="container">
+        <div className="container mb-5">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
