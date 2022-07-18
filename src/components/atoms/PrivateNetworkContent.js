@@ -20,7 +20,7 @@ const PrivateNetwork = () => {
   const [privateNetwork, setPrivateNetwork] = useState({});
 
   const handlePrivateNetwork = async () => {
-    const data = { slug: "Internet" };
+    const data = { slug: "private-network" };
     try {
       const resp = await getTelecommunicationBySlug(data);
       console.log(resp);
