@@ -28,10 +28,10 @@ function MultitelPride() {
 
   return (
     <>
-      <LandingPage>
+      <LandingPage woproducts>
         <ServiceBanner title="Multitel Pride" regnPage />
         <Container>
-          <Row>
+          <Row className="mb-5">
             <Col md={12}>
               <div className="bredcrumb">
                 <Breadcrumb style={{ marginTop: "10px" }}>

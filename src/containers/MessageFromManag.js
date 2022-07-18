@@ -29,7 +29,7 @@ const MessageFromManag = () => {
     <>
       <LandingPage woproducts>
         <ServiceBanner title=" Message from  Management" regnPage />
-        <div className="container">
+        <div className="container mb-5">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
