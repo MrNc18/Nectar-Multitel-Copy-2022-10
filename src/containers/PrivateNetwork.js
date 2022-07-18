@@ -13,9 +13,9 @@ import LandingPage from "../components/LandingPage";
 function PrivateNetwork() {
   return (
     <>
-      <LandingPage>
+      <LandingPage woproducts>
         <ServiceBanner title="Private Networks" regnPage />
-        <Container>
+        <Container className="mb-5">
           <Row>
             <Col md={12}>
               <div className="bredcrumb">

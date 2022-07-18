@@ -10,9 +10,9 @@ import WebServices from "../components/atoms/WebServices";
 const InternetUser = () => {
   return (
     <>
-      <LandingPage>
+      <LandingPage woproducts>
         <ServiceBanner title="Internet" regnPage />
-        <Container>
+        <Container className="mb-5">
           <div className="bredcrumb">
             <Breadcrumb>
               <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
