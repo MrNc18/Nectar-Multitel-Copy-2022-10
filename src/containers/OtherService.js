@@ -53,9 +53,9 @@ const OtherService = () => {
 
   return (
     <>
-      <LandingPage>
-        <ServiceBanner title="Other Services" />
-        <div className="container mt-4">
+      <LandingPage woproducts>
+        <ServiceBanner title="Other Services" regnPage />
+        <div className="container mt-4 mb-5">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
@@ -70,8 +70,9 @@ const OtherService = () => {
   
             </div>
           </div>
-          <div className="row">
-            <div style={{ display: "flex" }} className="pt-5  col-12 col-md-4">
+        <div className="container">
+        <div className="row">
+            <div style={{ display: "flex" }} className="pt-5  col-12 col-lg-4">
               <img
                 className="img-fluid"
                 height={250}
@@ -82,10 +83,11 @@ const OtherService = () => {
                 srcset=""
               />
             </div>
-            <div className=" pt-5 col-md-8">
+            <div className=" pt-5 col-lg-8">
               <Otherservice data={obj} />
             </div>
           </div>
+        </div>
         </div>
       </LandingPage>
     </>

@@ -39,9 +39,9 @@ const Software = () => {
   };
   return (
     <>
-      <LandingPage>
-        <ServiceBanner title="Software" />
-        <div className="container">
+      <LandingPage woproducts>
+        <ServiceBanner title="Software" regnPage />
+        <div className="container mb-5">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
@@ -54,8 +54,9 @@ const Software = () => {
               </Breadcrumb>
             </div>
           </div>
-          <div className="row">
-            <div style={{ display: "flex" }} className="pt-5  col-12 col-md-4">
+       <div className="container">
+       <div className="row">
+            <div style={{ display: "flex" }} className="pt-5  col-12 col-lg-4">
               <img
                 className="img-fluid"
                 height={250}
@@ -66,10 +67,11 @@ const Software = () => {
                 srcset=""
               />
             </div>
-            <div className=" pt-5 col-md-8">
+            <div className=" pt-5 col-lg-8">
               <Software data={obj} />
             </div>
           </div>
+       </div>
         </div>
       </LandingPage>
     </>

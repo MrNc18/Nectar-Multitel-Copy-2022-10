@@ -234,7 +234,7 @@ function App() {
 
           <Route path="/whoweare" element={<WhoWeAre />} />
           {/* <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} /> */}
-          <Route path="otherservice" element={<OtherService />} />
+          <Route path="/otherservice" element={<OtherService />} />
 
           <Route path="/omg" element={<OMG />} />
 

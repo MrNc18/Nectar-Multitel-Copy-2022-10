@@ -8,7 +8,7 @@ const ContactUs = () => {
   function Contact({ data }) {
     return (
       <>
-        <div className="mt-5  ">
+        <div className="mt-5">
           <div className="p-5">
             <div>
               <h5 style={{ color: "#1D3557" }}>{data.heading1}</h5>
@@ -44,8 +44,8 @@ const ContactUs = () => {
   };
   return (
     <>
-      <LandingPage>
-        <ServiceBanner title="Contact Us" />
+      <LandingPage woproducts>
+        <ServiceBanner title="Contact Us" regnPage />
         <div className="container">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
