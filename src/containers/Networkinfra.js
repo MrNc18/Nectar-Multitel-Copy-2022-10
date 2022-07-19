@@ -45,7 +45,7 @@ const Networkinfra = () => {
 
   return (
     <>
-      <LandingPage>
+      <LandingPage  woproducts>
         <ServiceBanner title="Network Infrastructure" />
         <div className="container">
           <div className="row">
@@ -62,7 +62,7 @@ const Networkinfra = () => {
           </div>
 
           <div className="row">
-            <div style={{ display: "flex" }} className="pt-5  col-12 col-md-4">
+            <div style={{ display: "flex" }} className="pt-5  col-12 col-lg-4">
               <img
                 className="img-fluid"
                 height={250}

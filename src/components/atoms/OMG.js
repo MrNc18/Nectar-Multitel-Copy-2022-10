@@ -75,7 +75,7 @@ const OMG = () => {
               </ul>
             </div>
             </div>
-               <div style={{ display: "flex" }} className=" col-12 col-md-4">
+               <div style={{ display: "flex" }} className=" col-12 col-lg-4">
               <img
                 className="img-fluid"
                 height={250}
@@ -124,7 +124,7 @@ const OMG = () => {
 };
   return (
     <>
-      <LandingPage>
+      <LandingPage woproducts>
         <ServiceBanner title="OMG" />
         <div className="container">
           <div className="row">

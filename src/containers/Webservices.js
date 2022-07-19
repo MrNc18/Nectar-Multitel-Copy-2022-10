@@ -58,7 +58,7 @@ const Webservices = () => {
   return (
     <>
 
-      <LandingPage>
+      <LandingPage woproducts>
         <ServiceBanner title="Web Services" />
 
         <div className="container">
@@ -73,7 +73,7 @@ const Webservices = () => {
             </div>
           </div>
           <div className="row">
-            <div style={{ display: "flex" }} className="pt-5  col-12 col-md-4">
+            <div style={{ display: "flex" }} className="pt-5  col-12 col-lg-4">
               <img
                 className="img-fluid"
                 height={250}
