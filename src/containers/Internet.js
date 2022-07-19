@@ -22,7 +22,7 @@ const InternetUser = () => {
               </Breadcrumb.Item>
             </Breadcrumb>
           </div>
-          <div style={{ backgroundColor: "#f6f6f6" }}>
+          <div style={{ backgroundColor: "#f6f6f6" }} className="container">
             <Tab.Container id="left-tabs-example" defaultActiveKey="privatenetwork">
               <Row>
                 <Col

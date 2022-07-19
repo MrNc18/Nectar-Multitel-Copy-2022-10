@@ -25,33 +25,7 @@ const Cpes = () => {
     handleAllCPEs();
   }, []);
 
-  // function Cpes({ data }) {
-  //   return (
-  //     <>
-  //       <div className="container ">
-  //         <div>
-  //           <h2 style={{ color: "#1D3557" }} className="pt-4">
-  //             {data.heading1}
-  //           </h2>
-  //         </div>
-  //         <div>
-  //           <p className="pt-4">{data.description1}</p>
-  //         </div>
-  //         <div>
-  //           <p>{data.description2}</p>
-  //         </div>
-  //       </div>
-  //     </>
-  //   );
-  // }
-
-  // const obj = {
-  //   heading1: "CPEs",
-  //   description1:
-  //     "As a complement to Multitel's oer of services, we provide CPE's (Routers, Switches and other equipment) on a sale or rental basis and we are responsible for their installation and configuration.",
-  //   description2:
-  //     "We can extend the scope of our intervention, as an OMG - Operation, Maintenance and Management service , adapted to the Client's needs. Thus, companies or organizations that do not have aqualified technical team or specific know-how to carry out these activities can focus exclusively on their business.",
-  // };
+  
   
   return (
     <>
@@ -71,10 +45,12 @@ const Cpes = () => {
             </div>
           </div>
           {/* <Cpes data={obj} /> */}
-          <h4 className="mt-3 mb-4" style={{ color: "#1D3557" }}>
+         <div className="container">
+         <h4 className="mt-3 mb-4" style={{ color: "#1D3557" }}>
             {CPEs?.name}
           </h4>
           <div className="mb-5 mt-3" dangerouslySetInnerHTML={{ __html: CPEs?.description }} />
+         </div>
         </div>
       </LandingPage>
     </>

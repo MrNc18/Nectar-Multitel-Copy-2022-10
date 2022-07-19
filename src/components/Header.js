@@ -313,10 +313,80 @@ function Header() {
                 </NavDropdown.Item>
               </NavDropdown>
 
+              <NavDropdown
+                title="Digitotal"
+                id="basic-nav-dropdown"
+                // onClick={() => navigate("/home")}
+              >
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/networkinfrastructure")
+                    }
+                >
+                  Network Infrastructure
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/datacenterandcloud")
+                  }
+                >
+                  Data Center and Cloud
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/consultingtraining")
+                  }
+                >
+                  Consulting and Training on Job
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/ipvoice")
+                  }
+                >
+                  IP Voices
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/cybersecurity")
+                  }
+                >
+                  Cyber Security
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/webservice")
+                  }
+                >
+                  WEB Services
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/automationelectronic")
+                  }
+                >
+                  Automation and Electronic Security
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/software")
+                  }
+                >
+                  Software
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    navigate("/otherservice")
+                  }
+                >
+                  Other Services
+                </NavDropdown.Item>
+              </NavDropdown>
+
               <Nav.Link onClick={() => navigate("/home")}>
                 Multitel Home
               </Nav.Link>
-              <Nav.Link href="#link">Multitel Mobile</Nav.Link>
+              {/* <Nav.Link href="#link">Multitel Mobile</Nav.Link> */}
               <Nav.Link onClick={() => navigate("/marketplace")}>
                 Marketplace
               </Nav.Link>

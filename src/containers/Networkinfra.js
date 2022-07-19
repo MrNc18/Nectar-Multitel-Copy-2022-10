@@ -45,9 +45,9 @@ const Networkinfra = () => {
 
   return (
     <>
-      <LandingPage>
-        <ServiceBanner title="Network Infrastructure" />
-        <div className="container">
+      <LandingPage woproducts>
+        <ServiceBanner title="Network Infrastructure" regnPage />
+        <div className="container mb-5">
           <div className="row">
             <div className="col-12 col-6 c-ol-4 bredcrumb">
               <Breadcrumb>
@@ -61,21 +61,26 @@ const Networkinfra = () => {
             </div>
           </div>
 
-          <div className="row">
-            <div style={{ display: "flex" }} className="pt-5  col-12 col-md-4">
-              <img
-                className="img-fluid"
-                height={250}
-                width={350}
-                style={{ borderRadius: "10px" }}
-                src="https://images.unsplash.com/photo-1539193143244-c83d9436d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI1fGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60 "
-                alt="image here"
-                srcset=""
-              />
-            </div>
+          <div className="container">
+            <div className="row">
+              <div
+                style={{ display: "flex" }}
+                className="pt-5  col-12 col-lg-4"
+              >
+                <img
+                  className="img-fluid"
+                  height={250}
+                  width={350}
+                  style={{ borderRadius: "10px" }}
+                  src="https://images.unsplash.com/photo-1539193143244-c83d9436d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI1fGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60 "
+                  alt="image here"
+                  srcset=""
+                />
+              </div>
 
-            <div className=" pt-5  col-md-8 ">
-              <Networkinfrastructure data={obj} />
+              <div className=" pt-5  col-lg-8 ">
+                <Networkinfrastructure data={obj} />
+              </div>
             </div>
           </div>
         </div>
