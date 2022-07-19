@@ -1,26 +1,13 @@
-
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import {getTelecommunicationBySlug} from "../../services/WhoWeAreFront";
 import { showAlert } from "../../utils/showAlert";
+import { getTelecommunicationBySlug } from "../../services/TelecommunicationFront";
 
+function WebServices() {
 
-// const obj = {
-//     heading: "internet",
+  const [WebServices, setWebServices] = useState({});
 
-//     description:
-//     "Multitel's Internet Service is aimed at companies or organizations that need a high performance service that allows access, exchange and sharing of a vast set of information and resources . We use international connectivity via submarine cable, through different  providers in order to guarantee continuity of service and minimize the effect of failure of one of the accesses.National traffic exchanges between the various internet providers s in Angola are established via IXP (Internet Exchange Point).We offer several types of Internet connectivity service in order to meet the requirements of different type of customers .",
-//       list1:"Net_Prime",
-//       list2:"Net_Pro",
-//       list3:"Net_Sat",
-
-//   };
-
-
-const WebServices = () => {
-  const [webServices, setWebServices] = useState({});
-
-  const handleWebServices= async () => {
+  const handleAllWebServices = async () => {
     const data = { slug: "web-services" };
     try {
       const resp = await getTelecommunicationBySlug(data);
@@ -33,63 +20,23 @@ const WebServices = () => {
   };
 
   useEffect(() => {
-    handleWebServices ();
+    handleAllWebServices();
   }, []);
-
-
-
-
-
-  //   return (
-  //     <>
-  //     <div>
-  //       <h4 className="mt-5 mb-5" style={{color:"#1D3557"}}>{data.name}</h4>
-
-  //       <p>{data.description}</p>
-  //     </div>
-  //     <div>
-  //       <li>{data.list1}</li>
-  //       <li>{data.list2}</li>
-  //       <li>{data.list3}</li>
-
-  //     </div>
-  //     </>
-  //   );
-  // }
-
-  // function PrivateNetworkContent() {
 
   return (
     <>
-
       <Container>
         <Row>
           <Col md={12} className="mt-2">
-            {/* <PrivateNetwork data={obj} /> */}
-            {/* {privateNetwork &&
-           privateNetwork.map((data) => { */}
-
-            <div>
-              <h4 className="mt-5 mb-5" style={{ color: "#1D3557" }}>{webServices.name}</h4>
-
-              <p>{webServices.description}</p>
-            </div>
-            <div>
-              {/* <li>{data.list1}</li>
-              <li>{data.list2}</li>
-              <li>{data.list3}</li> */}
-
-            </div>
-
+            <h4 className="mt-5 mb-4" style={{ color: "#1D3557" }}>
+              {WebServices?.name}
+            </h4>
+            <div dangerouslySetInnerHTML={{ __html: WebServices?.description }} />
           </Col>
-
         </Row>
       </Container>
-
     </>
-
-
-  );
+  )
 }
 
 export default  WebServices;

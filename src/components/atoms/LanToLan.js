@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { getTelecommunicationBySlug } from "../../services/WhoWeAreFront";
 import { showAlert } from "../../utils/showAlert";
-
+import { getTelecommunicationBySlug } from "../../services/TelecommunicationFront";
 
 // const obj = {
 //   heading: "Lan-To-Lan",
@@ -35,14 +34,15 @@ import { showAlert } from "../../utils/showAlert";
 // }
 
 function LanToLan() {
-  const [lantolan, setLantolan] = useState({});
 
-  const handleLanToLan = async () => {
+  const [LanToLan, setLanToLan] = useState({});
+
+  const handleAllLanToLan = async () => {
     const data = { slug: "lan-to-lan" };
     try {
       const resp = await getTelecommunicationBySlug(data);
       console.log(resp);
-    setLantolan(resp && resp.data.data);
+      setLanToLan(resp && resp.data.data);
       // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
@@ -50,7 +50,7 @@ function LanToLan() {
   };
 
   useEffect(() => {
-    handleLanToLan();
+    handleAllLanToLan();
   }, []);
 
   return (
@@ -62,9 +62,9 @@ function LanToLan() {
             <L2LButton data={obj} />
             <L2LButton data={obj} /> */}
             <h4 className="mt-5 mb-4" style={{ color: "#1D3557" }}>
-              {lantolan.name}
+              {LanToLan?.name}
             </h4>
-            <p>{lantolan.description}</p>
+            <div dangerouslySetInnerHTML={{ __html: LanToLan?.description }} />
           </Col>
         </Row>
       </Container>

@@ -43,8 +43,8 @@ function Recruitment() {
   return (
     <>
       <LandingPage woproducts>
-        <ServiceBanner title="Recruitment" />
-        <Container>
+        <ServiceBanner title="Recruitment" regnPage />
+        <Container className="mb-5">
           <div className="bredcrumb">
             <Breadcrumb>
               <Breadcrumb.Item href="#">Start</Breadcrumb.Item>

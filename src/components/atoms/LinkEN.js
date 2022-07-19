@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { getTelecommunicationBySlug } from "../../services/WhoWeAreFront";
 import { showAlert } from "../../utils/showAlert";
-
-
+import { getTelecommunicationBySlug } from "../../services/TelecommunicationFront";
 
 // const obj = {
 //     heading: "Link EN",
@@ -24,14 +22,14 @@ import { showAlert } from "../../utils/showAlert";
 
 function LinkEN() {
 
-  const [linken, setLinken] = useState({});
+  const [LinkEN, setLinkEN] = useState({});
 
-  const handleLinkEN = async () => {
+  const handleAllLinkEN = async () => {
     const data = { slug: "link-en" };
     try {
       const resp = await getTelecommunicationBySlug(data);
       console.log(resp);
-   setLinken(resp && resp.data.data);
+      setLinkEN(resp && resp.data.data);
       // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
@@ -39,7 +37,7 @@ function LinkEN() {
   };
 
   useEffect(() => {
- handleLinkEN();
+    handleAllLinkEN();
   }, []);
 
   return (
@@ -49,9 +47,9 @@ function LinkEN() {
           <Col md={12} className="mt-2">
             {/* <Len data={obj} /> */}
             <h4 className="mt-5 mb-4" style={{ color: "#1D3557" }}>
-              {linken.name}
+              {LinkEN?.name}
             </h4>
-            <p>{linken.description}</p>
+            <div dangerouslySetInnerHTML={{ __html: LinkEN?.description }} />
           </Col>
         </Row>
       </Container>

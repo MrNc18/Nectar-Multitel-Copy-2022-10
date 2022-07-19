@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { getTelecommunicationBySlug } from "../../services/WhoWeAreFront";
 import { showAlert } from "../../utils/showAlert";
-
+import { getTelecommunicationBySlug } from "../../services/TelecommunicationFront";
 
 // const obj = {
 //     heading: "P2P Link",
@@ -22,14 +21,15 @@ import { showAlert } from "../../utils/showAlert";
 //   }
 
 function P2PLink() {
-  const [p2plink, setP2plink] = useState({});
 
-  const handleP2PLink = async () => {
+  const [P2PLink, setP2PLink] = useState({});
+
+  const handleAllP2PLink = async () => {
     const data = { slug: "p2p-link" };
     try {
       const resp = await getTelecommunicationBySlug(data);
       console.log(resp);
-      setP2plink(resp && resp.data.data);
+      setP2PLink(resp && resp.data.data);
       // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
@@ -37,9 +37,8 @@ function P2PLink() {
   };
 
   useEffect(() => {
-    handleP2PLink();
+    handleAllP2PLink();
   }, []);
-
 
   return (
     <>
@@ -48,9 +47,9 @@ function P2PLink() {
           <Col md={12} className="mt-2">
             {/* <P2P data={obj} /> */}
             <h4 className="mt-5 mb-4" style={{ color: "#1D3557" }}>
-              {p2plink.name}
+              {P2PLink?.name}
             </h4>
-            <p>{p2plink.description}</p>
+            <div dangerouslySetInnerHTML={{ __html: P2PLink?.description }} />
           </Col>
         </Row>
       </Container>

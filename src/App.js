@@ -85,8 +85,8 @@ import NewsFirst from "./components/atoms/NewsFirst";
 import NewsSecond from "./components/atoms/NewsSecond";
 import Recruitment from "./containers/Recruitment";
 import RecruitmentForm from "./components/atoms/RecruitmentForm";
-
- 
+import ADPrivateNetwork from "./components/Admin/Telecommunications/PrivateNetwork";
+ import Tele from "./components/Admin/Telecommunications/Tele";
 import VideoConference from "./containers/VideoConference";
 import Cpes from "./containers/Cpes";
 import WhoWeAre from "./containers/Whoweare";
@@ -111,6 +111,7 @@ import CustomizedSolutions from "./containers/CustomizedSolutions";
 import Internet from "./containers/Internet";
 import Digital from "./containers/Digital";
 import SpecialServices from "./containers/SpecialServices"
+import InternetUser from "./containers/Internet";
 
 
 
@@ -152,31 +153,36 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/redirect" element={<RedirectComponent />} />
 
-          <Route path="/cpe" element={<CPE />} />
-          <Route path="/admin/login" element={<Login />} />
-          <Route path="/admin" element={<AdLanding />}>
-            <Route path="" element={<Dashboard />} />
-            <Route path="categories" element={<Categories />} />
-            <Route path="products" element={<Products />} />
-            <Route path="products/newproduct" element={<AddProduct />} />
-            <Route path="staticpages" element={<StaticPage />} />
-            <Route path="settings" element={<Settings />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="Service-categories" element={<ServicesCategory />} />
-            <Route path="internetServices" element={<AdinternetServices />} />
-            <Route path="promotions" element={<AdPromotions />} />
-            <Route path="orders" element={<Orders />} />
-            <Route path="menu" element={<MenuPhase_2 />} />
-            <Route path="who_we_are" element={<WhoWeR />} />
-            <Route path="who_we_are/recruitment" element={<AdRecruitment />} />
-            <Route
-              path="who_we_are/sustainability"
-              element={<AdSustainabilty />}
-            />
-            <Route path="who_we_are/news" element={<AdNews />} />
-            <Route path="who_we_are/multipride" element={<Multipride />} />
-            <Route path="who_we_are/corporate" element={<CoorparateBody />} />
-          </Route>
+        <Route path="/cpe" element={<CPE />} />
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin" element={<AdLanding />}/>
+          <Route path="" element={<Dashboard />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="products" element={<Products />} />
+          <Route path="products/newproduct" element={<AddProduct />} />
+          <Route path="staticpages" element={<StaticPage />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="Service-categories" element={<ServicesCategory />} />
+          <Route path="internetServices" element={<AdinternetServices />} />
+          <Route path="promotions" element={<AdPromotions />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="menu" element={<MenuPhase_2 />} />
+          <Route path="who_we_are" element={<WhoWeR />} />
+          <Route path="who_we_are/recruitment" element={<AdRecruitment />} />
+          <Route path="who_we_are/sustainability" element={<AdSustainabilty />} />
+          <Route path="who_we_are/news" element={<AdNews />} />
+          <Route path="who_we_are/multipride" element={<Multipride />} />
+          <Route path="who_we_are/corporate" element={<CoorparateBody />} />
+          <Route path="telecommunications" element={<Tele/>}/>
+          {/* <Route path="telecommunications/internet" element={<Internet/>}/>
+          <Route path="telecommunications/vsat" element={<Vsat/>}/>
+          <Route path="telecommunications/Cpe" element={<Cpe_Admin/>}/>
+          <Route path="telecommunications/video" element={<Video/>}/> */}
+          <Route path="telecommunications/privatenetwork" element={<ADPrivateNetwork/>}/>
+          
+        
+        
 
           {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
           <Route path="/messagefrommanager" element={<MessageFromManag />} />
@@ -215,9 +221,46 @@ function App() {
           <Route path="/whoweare" element={<WhoWeAre />} />
           {/* <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} /> */}
 
-          <Route path="telecommunication" element={<Telecommunication />} />
-          <Route path="/contactus" element={<ContactUs />} />
-          <Route path="contactusform" element={<ContactUsForm />} />
+        {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
+        <Route path="/messagefrommanager" element={ <MessageFromManag />} />
+        <Route path="/missionandvalue" element={ <MissionAndValue /> } />
+        <Route path="/corporatebodies" element={ <CorporateBodies />} />
+        <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
+        <Route path="/datacenterandcloud" element={ <DataCenter /> } />
+         <Route path="/consultingtraining" element={ <ConsultingTraining/>} />
+         <Route path="/ipvoice"  element ={ < IPvoice />}/>
+         <Route path="/cybersecurity" element={<CyberSecurity/>} />
+         <Route path="/webservice" element={ <Webservices/>} />
+         <Route  path="/automationelectronic"    element={<AutomationElectric />}  />
+         <Route path="/software" element={<Software/> } />
+         <Route path="/VSAT" element={<VSAT />} />
+         <Route path="/cpes" element={<Cpes/>}/>
+         <Route path="/whoweare" element={<WhoWeAre/>}/>
+         <Route path="/internet" element={<Internet/>}/>
+         <Route path="/marketingandcommunicationtechnique" element={<MarketingandCommunicationTechnique />}/>
+         <Route path="/otherservices" element={<OtherServices/>}/>
+         <Route path="/specialservices" element={<SpecialServices/>}/>
+         <Route path="/customizedsolutions" element={<CustomizedSolutions/>}/>
+         <Route path="/outsourcing" element={<OutSourcing/>} />
+         <Route path="/omg" element={<OMG/>}/>
+         <Route path="/digital" element={<Digital/>} />
+ 
+    
+         
+         <Route path="/videoconference" element={<VideoConference   />} />
+         <Route path="/cpes" element={<Cpes/>} />
+         <Route path="/whoweare" element={<WhoWeAre/>} />
+         {/* <Route path="/whoweare/:slug" element={<WhoWeAreSlug/>} /> */}
+         <Route path="otherservice" element={<OtherService />} />
+         <Route path="/specialservice" element={<SpecialService />} />
+         <Route path="/customizedservice"  element={<CustomizedService />} />
+         <Route path="/outsourcing" element={<OutSourcing />} />
+         <Route path="/omg"  element={<OMG />} />
+         <Route path="/telecommunication"  element={<Telecommunication />} />
+         <Route path="/internet" element={<InternetUser />} />
+         <Route path="/contactus"  element={<ContactUs />} />
+         <Route path="/contactusform" element={<ContactUsForm />} />
+         <Route path="/digitotal" element={<Digitotal />} />
 
           <Route path="/promotions" element={<Promotions />} />
           <Route path="/otherproducts" element={<OtherProducts />} />

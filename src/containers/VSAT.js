@@ -1,31 +1,28 @@
-import React,{useEffect,useState} from "react";
+import React, { useState, useEffect } from "react";
 import LandingPage from "../components/LandingPage";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { showAlert } from "../utils/showAlert";
-import { getTelecommunicationMenusBySlug } from "../services/WhoWeAreFront";
+import { getTelecommunicationBySlug } from "../services/TelecommunicationFront";
 
-  const VSAT= () => {
-    const [vsat, setVsat] = useState({});
-  
-    const handleAllTelecommunication = async () => {
-      const data = { slug: "vsat" };
-      try {
-        const resp = await getTelecommunicationMenusBySlug(data);
-        console.log(resp);
-        setVsat(resp && resp.data.data);
-        // console.log("newsreq", resp);
-      } catch (error) {
-        showAlert("Something went wrong", "error");
-      }
-    };
-  
-    useEffect(() => {
-      handleAllTelecommunication();
-    }, []);
-  
+const VSAT = () => {
+  const [VSAT, setVSAT] = useState({});
 
+  const handleAllVSAT = async () => {
+    const data = { slug: "vsat" };
+    try {
+      const resp = await getTelecommunicationBySlug(data);
+      console.log(resp);
+      setVSAT(resp && resp.data.data);
+      // console.log("newsreq", resp);
+    } catch (error) {
+      showAlert("Something went wrong", "error");
+    }
+  };
 
+  useEffect(() => {
+    handleAllVSAT();
+  }, []);
 
   // function Vsat({ data }) {
   //   return (
@@ -101,9 +98,9 @@ import { getTelecommunicationMenusBySlug } from "../services/WhoWeAreFront";
 
   return (
     <>
-      <LandingPage>
-        <ServiceBanner title="VSAT" />
-        <div className="container">
+      <LandingPage woproducts>
+        <ServiceBanner title="VSAT" regnPage />
+        <div className="container mb-5">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
@@ -118,17 +115,10 @@ import { getTelecommunicationMenusBySlug } from "../services/WhoWeAreFront";
           </div>
 
           {/* <Vsat data={obj} /> */}
-          <div className="container">
-           <div>
-           <h2 style={{ color: "#1D3557" }}>{vsat.name}</h2>
-          </div>
-           <div>
-             <p>{vsat.description}</p>
-           </div>
-           </div>
-
-
-
+          <h4 className="mt-3 mb-4" style={{ color: "#1D3557" }}>
+            {VSAT?.name}
+          </h4>
+          <div className="mb-5 mt-3" dangerouslySetInnerHTML={{ __html: VSAT?.description }} />
         </div>
       </LandingPage>
     </>

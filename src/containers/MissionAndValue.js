@@ -27,8 +27,8 @@ const MissionAndValue = () => {
   return (
     <>
       <LandingPage woproducts>
-        <ServiceBanner title="Mission And Value" />
-        <div className="container">
+        <ServiceBanner title="Mission And Value" regnPage />
+        <div className="container mb-5">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>

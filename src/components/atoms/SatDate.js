@@ -1,17 +1,8 @@
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { getTelecommunicationBySlug } from "../../services/WhoWeAreFront";
 import { showAlert } from "../../utils/showAlert";
+import { getTelecommunicationBySlug } from "../../services/TelecommunicationFront";
 
-
-// const obj = {
-//   heading: "Sat Date",
-//   description:
-//     "The service offer is available in across covered by the Optical Fiber instruction, and installation requests are subject to confirmation or feasiblity analysis.",
-//   subheading: "Sat_Backup Date",
-//   subheading_description:
-//     "The service offer is available in across covered by the Optical Fiber instruction, and installation requests are subject to confirmation or feasiblity analysis.",
-// };
 
 // function SdToP({ data }) {
 //   return (
@@ -35,24 +26,24 @@ import { showAlert } from "../../utils/showAlert";
 // }
 
 function SatDate() {
-   const [satdate, setSatdate] = useState({});
 
-   const handleSatDate = async () => {
-     const data = { slug: "sat-date" };
-     try {
-       const resp = await getTelecommunicationBySlug(data);
-       console.log(resp);
-       setSatdate(resp && resp.data.data);
-       // console.log("newsreq", resp);
-     } catch (error) {
-       showAlert("Something went wrong", "error");
-     }
-   };
+  const [SatDate, setSatDate] = useState({});
 
-   useEffect(() => {
- handleSatDate();
-   }, []);
+  const handleAllSatDate = async () => {
+    const data = { slug: "sat-date" };
+    try {
+      const resp = await getTelecommunicationBySlug(data);
+      console.log(resp);
+      setSatDate(resp && resp.data.data);
+      // console.log("newsreq", resp);
+    } catch (error) {
+      showAlert("Something went wrong", "error");
+    }
+  };
 
+  useEffect(() => {
+    handleAllSatDate();
+  }, []);
 
   return (
     <>
@@ -62,12 +53,10 @@ function SatDate() {
             {/* <SdToP data={obj} />
             <SdButton data={obj} />
             <SdButton data={obj} /> */}
-
             <h4 className="mt-5 mb-4" style={{ color: "#1D3557" }}>
-              {satdate.name}
+              {SatDate?.name}
             </h4>
-
-            <p>{satdate.description}</p>
+            <div dangerouslySetInnerHTML={{ __html: SatDate?.description }} />
           </Col>
         </Row>
       </Container>

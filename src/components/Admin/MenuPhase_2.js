@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import { showAlert } from "../../utils/showAlert";
+import { getAllWho_Teli_digi,imageUrl,getEditMenu,getDeleteMenu } from "../../services/Phase_2/MenuApi"
 
 export const MenuPhase_2 = () => {
   const data = [
@@ -41,9 +42,12 @@ export const MenuPhase_2 = () => {
       description2: "",
     },
   ];
+  const [menu,setMenu]= useState('')
   const [file, setFile] = useState("");
+  const [deleteRecord, setDeleteRecord] = useState("");
   const [show, setShow] = useState(false);
   const [ShowEditModal, setShowEditModal] = useState(false);
+  const [DeleteShow,setDeleteShow] = useState(false)
   const [banfile, setBanFile] = useState("");
   const [data2, setData2] = useState({
     id: "",
@@ -63,7 +67,32 @@ export const MenuPhase_2 = () => {
     setBanFile(event.target.files);
   };
 
+  const handleDeleteshow = (item) => {
+    setDeleteShow(true);
+    setDeleteRecord(item);
+  };
+  const handlecloseDelete = () => {
+    setDeleteShow(false);
+  };
 
+ 
+
+
+
+  const getAllMenusData = async () =>{
+    try{
+    const resp = await getAllWho_Teli_digi()
+    setMenu(resp.data)
+    console.log(resp.data)
+  }
+  catch(error){
+    showAlert("something Went Wrong" , "error")
+  }
+  }
+
+useEffect(()=>{
+  getAllMenusData()
+},[])
 
 
   //Edit Api 
@@ -86,14 +115,35 @@ export const MenuPhase_2 = () => {
     setData2(' ')
     setFile('')
   };
+
+  //Delete Api 
+
+  const handleDeleteMenu = async() => {
+    const data = {
+      id: deleteRecord.id,
+    };
+    try {
+      await getDeleteMenu(data);
+      showAlert("Menu Deleted Successfully","success");
+      setDeleteShow(false);
+      getAllMenusData();
+    } catch (error) {
+      console.log("error", error);
+      showAlert("Something Went Wrong","error");
+    }
+  };
+
   return (
     <div id="layoutSidenavContent">
       <div className="container-fluid">
         <div class="row d-flex align-items-center justify-content-between">
           <div class="col-lg-6 col-md-6 text-left">
-            <h3 className="mt-4 mb-4">Menu</h3>
-          </div>
+            <h3 className="mt-4 mb-4">Menu Management</h3>
+          </div>  
         </div>
+        <div class="col-lg-6 col-md-6 text-left">
+            <h6><b>Note : </b>Here We Can Manage the Data on main Pages of Menu.</h6>
+          </div>
         <div>
           {" "}
           <Table striped bordered hover size="md" responsive>
@@ -102,28 +152,33 @@ export const MenuPhase_2 = () => {
                 <th>Sr.No.</th>
                 <th>Id</th>
                 <th>Title</th>
-                <th>image</th>
                 <th>coverImage</th>
-                {/* <th>Description</th> */}
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {data &&
-                data.map((item, i) => (
+              {menu &&
+                menu.map((item, i) => (
                   <tr>
                     <td>{i + 1}</td>
                     <td>{item.id}</td>
-                    <td>{item.Title}</td>
+                    <td>{item.title}</td>
                     <td>
-                      <img src={item.image} style={{ width: "60px" }} />
+                      <img src={imageUrl(item.image)} style={{ width: "60px" }} />
                     </td>
                     <td>
-                      <img src={item.cover_img} style={{ width: "60px" }} />
-                    </td>
-
-                    <td>
+                    <a
+                        
+                        className="nav-link"
+                        onClick={() => {
+                          handleDeleteshow(item);
+                        }}
+                      >
+                       
+                        <i className="fa fa-trash-o" />
+                      </a>
                       <a
+                      style={{paddingRight:"10px"}}
                         className="nav-link"
                         onClick={() => {
                           handleEditShow(item);
@@ -131,7 +186,7 @@ export const MenuPhase_2 = () => {
                       >
                         <i
                           className="fa fa-edit"
-                          style={{ paddingLeft: "10px" }}
+                          style={{ marginLeft: "10px" }}
                         />
                       </a>
                     </td>
@@ -139,8 +194,8 @@ export const MenuPhase_2 = () => {
                 ))}
             </tbody>
           </Table>
-          {/* Delete Modal */}
-          {/* <Modal show={DeleteShow} onHide={handlecloseDelete}>
+          {/* Delete Modal  */}
+           <Modal show={DeleteShow} onHide={handlecloseDelete}>
             <Modal.Header closeButton>
               <Modal.Title style={{ color: "#0076B5" }}>
                 Delete Product
@@ -157,15 +212,16 @@ export const MenuPhase_2 = () => {
               </Button>
               <Button
                 variant="primary"
-                onClick={() => handleDeleteProduct(deleteRecord)}
+                onClick={() => handleDeleteMenu(deleteRecord)}
               >
                 Delete
               </Button>
             </Modal.Footer>
-          </Modal> */}
+          </Modal>
 
 
           {/* Edit Modal */}
+
           <div className="col-xl-5  col-lg-4 col-md-3 col-sm-2">
             <div className="header">
               <Modal show={ShowEditModal} onHide={handleEditClose} size="md">

@@ -1,19 +1,17 @@
-import React,{useEffect,useState} from "react";
+import React, { useState, useEffect } from "react";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import { getTelecommunicationMenusBySlug } from "../services/WhoWeAreFront";
 import { showAlert } from "../utils/showAlert";
-import { data } from "jquery";
-
+import { getTelecommunicationBySlug } from "../services/TelecommunicationFront";
 
 const VideoConference = () => {
-  const [videoConference, setVideoConference] = useState({});
+  const [VideoConference, setVideoConference] = useState({});
 
-  const handleAllTelecommunication = async () => {
+  const handleAllVideoConference = async () => {
     const data = { slug: "video-conference" };
     try {
-      const resp = await getTelecommunicationMenusBySlug(data);
+      const resp = await getTelecommunicationBySlug(data);
       console.log(resp);
       setVideoConference(resp && resp.data.data);
       // console.log("newsreq", resp);
@@ -23,9 +21,8 @@ const VideoConference = () => {
   };
 
   useEffect(() => {
-    handleAllTelecommunication();
+    handleAllVideoConference();
   }, []);
-
 
   // function Videoconference({ data }) {
   //   return (
@@ -80,7 +77,7 @@ const VideoConference = () => {
   //         <div style={{ color: "#278BC0" }} className="pt-4">
   //           <h2>{data.heading5}</h2>
   //         </div>
-  //         <div className="pt-2" >
+  //         <div className="pt-2">
   //           <p>{data.description5}</p>
   //         </div>
   //         <div>
@@ -130,9 +127,9 @@ const VideoConference = () => {
 
   return (
     <>
-      <LandingPage>
-        <ServiceBanner title="  Video Conference" />
-        <div className="container">
+      <LandingPage woproducts>
+        <ServiceBanner title="  Video Conference" regnPage />
+        <div className="container mb-5">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
@@ -146,19 +143,10 @@ const VideoConference = () => {
             </div>
           </div>
           {/* <Videoconference data={obj} /> */}
-          <div className="container">
-           <div>
-             <h2 style={{ color: "#1D3557" }}>{videoConference.name}</h2>
-          </div>
-
-           <div>
-             <h5 style={{ color: "#278BC0" }} className="pt-4">
-             {videoConference.description}
-             </h5>
-             </div>
-             </div>
-
-
+          <h4 className="mt-3 mb-4" style={{ color: "#1D3557" }}>
+            {VideoConference?.name}
+          </h4>
+          <div className="mb-5 mt-3" dangerouslySetInnerHTML={{ __html: VideoConference?.description }} />
         </div>
       </LandingPage>
     </>

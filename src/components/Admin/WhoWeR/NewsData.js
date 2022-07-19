@@ -387,9 +387,8 @@ const NewsData = () => {
 
             <Modal.Body>
 
-
-
-              {`Are you sure want to delete this ${deleteRecord.news_category?.name}`}
+              <p>Are you sure want to delete this {deleteRecord.news_category?.name} ?</p>
+              {/* { `are bhfg h hghfhghj${Multi?.news_catyegory?.title }`} */}
 
 
             </Modal.Body>
@@ -503,3 +502,4 @@ const NewsData = () => {
 };
 
 export default NewsData;
+ 
