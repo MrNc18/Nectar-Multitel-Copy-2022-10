@@ -188,13 +188,7 @@ function App() {
 
           {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
 
-      
-      
-      
-      
           {/* Who We Are */}
-
-
 
           <Route path="/messagefrommanager" element={<MessageFromManag />} />
           <Route path="/missionandvalue" element={<MissionAndValue />} />
@@ -206,16 +200,10 @@ function App() {
           <Route path="/newsfirst" element={<NewsFirst />} />
           <Route path="/newssecond" element={<NewsSecond />} />
           <Route path="/multitelpride" element={<MultitelPride />} />
-           <Route path="/recruitment" element={<Recruitment />} />
+          <Route path="/recruitment" element={<Recruitment />} />
           {/* <Route path="/recruitment/:slug" element={<RecruitmentSlug />} /> */}
           <Route path="/recruitmentform" element={<RecruitmentForm />} />
 
-        
-        
-        
-        
-        
-        
           {/* Telecommunication */}
 
           <Route path="/telecommunication" element={<Telecommunication />} />
@@ -223,11 +211,17 @@ function App() {
           <Route path="/internet" element={<Internet />} />
           <Route path="/VSAT" element={<VSAT />} />
           <Route path="/cpes" element={<Cpes />} />
-           <Route path="/videoconference" element={<VideoConference />} />
-         <Route  path="/marketingandcommunicationtechnique"  element={<MarketingandCommunicationTechnique />}  />
+          <Route path="/videoconference" element={<VideoConference />} />
+          <Route
+            path="/marketingandcommunicationtechnique"
+            element={<MarketingandCommunicationTechnique />}
+          />
 
           <Route path="/specialservices" element={<SpecialServices />} />
-          <Route  path="/customizedsolutions" element={<CustomizedSolutions />} />
+          <Route
+            path="/customizedsolutions"
+            element={<CustomizedSolutions />}
+          />
           <Route path="/outsourcing" element={<OutSourcing />} />
 
           <Route path="/digital" element={<Digital />} />
@@ -242,39 +236,40 @@ function App() {
 
           <Route path="/contactusform" element={<ContactUsForm />} />
 
-        {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
-        <Route path="/messagefrommanager" element={ <MessageFromManag />} />
-        <Route path="/missionandvalue" element={ <MissionAndValue /> } />
-        <Route path="/corporatebodies" element={ <CorporateBodies />} />
-        <Route path="/networkinfrastructure" element={ <Networkinfra />  } />
-        <Route path="/datacenterandcloud" element={ <DataCenter /> } />
-         <Route path="/consultingtraining" element={ <ConsultingTraining/>} />
-         <Route path="/ipvoice"  element ={ < IPvoice />}/>
-         <Route path="/cybersecurity" element={<CyberSecurity/>} />
-         <Route path="/webservice" element={ <Webservices/>} />
-         <Route  path="/automationelectronic"    element={<AutomationElectric />}  />
-         <Route path="/software" element={<Software/> } />
-         <Route path="/VSAT" element={<VSAT />} />
-         <Route path="/cpes" element={<Cpes/>}/>
-         <Route path="/whoweare" element={<WhoWeAre/>}/>
-         <Route path="/internet" element={<Internet/>}/>
-         <Route path="/marketingandcommunicationtechnique" element={<MarketingandCommunicationTechnique />}/>
-         <Route path="/otherservices" element={<OtherServices/>}/>
-         <Route path="/specialservices" element={<SpecialServices/>}/>
-         <Route path="/customizedsolutions" element={<CustomizedSolutions/>}/>
-         <Route path="/outsourcing" element={<OutSourcing/>} />
-         <Route path="/omg" element={<OMG/>}/>
-         <Route path="/digital" element={<Digital/>} />
- 
-    
-         
-         
-         
+          {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
+          <Route path="/messagefrommanager" element={<MessageFromManag />} />
+          <Route path="/missionandvalue" element={<MissionAndValue />} />
+          <Route path="/corporatebodies" element={<CorporateBodies />} />
+          <Route path="/networkinfrastructure" element={<Networkinfra />} />
+          <Route path="/datacenterandcloud" element={<DataCenter />} />
+          <Route path="/consultingtraining" element={<ConsultingTraining />} />
+          <Route path="/ipvoice" element={<IPvoice />} />
+          <Route path="/cybersecurity" element={<CyberSecurity />} />
+          <Route path="/webservice" element={<Webservices />} />
+          <Route
+            path="/automationelectronic"
+            element={<AutomationElectric />}
+          />
+          <Route path="/software" element={<Software />} />
+          <Route path="/VSAT" element={<VSAT />} />
+          <Route path="/cpes" element={<Cpes />} />
+          <Route path="/whoweare" element={<WhoWeAre />} />
+          <Route path="/internet" element={<Internet />} />
+          <Route
+            path="/marketingandcommunicationtechnique"
+            element={<MarketingandCommunicationTechnique />}
+          />
+          <Route path="/otherservices" element={<OtherServices />} />
+          <Route path="/specialservices" element={<SpecialServices />} />
+          <Route
+            path="/customizedsolutions"
+            element={<CustomizedSolutions />}
+          />
+          <Route path="/outsourcing" element={<OutSourcing />} />
+          <Route path="/omg" element={<OMG />} />
+          <Route path="/digital" element={<Digital />} />
+
           {/* digitotal */}
-
-
-
-
 
           <Route path="/digitotal" element={<Digitotal />} />
           <Route path="/networkinfrastructure" element={<Networkinfra />} />
@@ -294,17 +289,6 @@ function App() {
           <Route path="/customizedservice" element={<CustomizedService />} />
           <Route path="/outsourcing" element={<OutSourcing />} />
           <Route path="/contactus" element={<ContactUs />} />
-
-
-
-
-
-
-
-
-
-
-
 
           <Route path="/promotions" element={<Promotions />} />
           <Route path="/otherproducts" element={<OtherProducts />} />
