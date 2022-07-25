@@ -13,4 +13,13 @@ export const getDigitotalBySlug = async (data) => {
       data
     );
   };
+
+
   
+
+  export const getWho_teli_digiBySlug= async (data) => {
+    return await doPost(
+      "api/WhoTeliDigi/getWho_teli_digiBySlug",
+      data
+    );
+  };

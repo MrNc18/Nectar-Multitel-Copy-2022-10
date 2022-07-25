@@ -1,33 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LandingPage from "../components/LandingPage";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { showAlert } from "../utils/showAlert";
+import { getWho_teli_digiBySlug } from "../services/DigitotalFront";
+import { imageUrl } from "../services/category";
 
 const Digitotal = () => {
-  function Digital({ data }) {
-    return (
-      <>
-        <div>
-          <div className="pt-5">
-            <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
-          </div>
-          <div className="pt-2">
-            <h6 style={{ color: "#1D3557" }}>{data.description1}</h6>
-          </div>
-          <div className="pt-2">
-            <p style={{ fontSize: "13px" }}>{data.description2}</p>
-          </div>
-        </div>
-      </>
-    );
-  }
+  const [digitotal, setDigitotal] = useState({});
 
-  const obj = {
-    heading1: "DIGITAL",
-    description1:
-      "Multitel focuses its activity on the corporate market, a sector in which it has deep knowledge and experience.",
-    description2:
-      "Your company's digital transformation starts here with MULTITEL DIGITOTAL SOLUTION. Multitel has been oering complete telecommunications services for over 20 years, and now with MULTITEL DIGITOTAL SOLUTION, we present solutions that perfectly fit your company's needs in terms of technology and information systems, making it more ecient and competitive in an increasingly more demanding and selective.",
+  const handleAllOmg = async () => {
+    const data = { slug: "digitotal" };
+    try {
+      const resp = await  getWho_teli_digiBySlug(data);
+      console.log(resp);
+      setDigitotal(resp && resp.data.data);
+    } catch (error) {
+      showAlert("Something went wrong", "error");
+    }
   };
+
+  useEffect(() => {
+    handleAllOmg();
+  }, []);
+  
+  
+
+
+  // function Digital({ data }) {
+  //   return (
+  //     <>
+  //       <div>
+  //         <div className="pt-5">
+  //           <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
+  //         </div>
+  //         <div className="pt-2">
+  //           <h6 style={{ color: "#1D3557" }}>{data.description1}</h6>
+  //         </div>
+  //         <div className="pt-2">
+  //           <p style={{ fontSize: "13px" }}>{data.description2}</p>
+  //         </div>
+  //       </div>
+  //     </>
+  //   );
+  // }
+
+  // const obj = {
+  //   heading1: "DIGITAL",
+  //   description1:
+  //     "Multitel focuses its activity on the corporate market, a sector in which it has deep knowledge and experience.",
+  //   description2:
+  //     "Your company's digital transformation starts here with MULTITEL DIGITOTAL SOLUTION. Multitel has been oering complete telecommunications services for over 20 years, and now with MULTITEL DIGITOTAL SOLUTION, we present solutions that perfectly fit your company's needs in terms of technology and information systems, making it more ecient and competitive in an increasingly more demanding and selective.",
+  // };
 
   return (
     <>
@@ -51,26 +74,36 @@ const Digitotal = () => {
               </Breadcrumb>
             </div>
           </div>
-
-          <div className="container">
+          <div>
             <div className="row">
               <div
                 style={{ display: "flex" }}
-                className="pt-5    col-12 col-md-4"
+                className="pt-5  col-12 col-md-4"
               >
-                <img
-                  className="img-fluid"
-                  height={250}
-                  width={350}
-                  style={{ borderRadius: "10px" }}
-                  src="https://images.unsplash.com/photo-1539193143244-c83d9436d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI1fGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60 "
-                  alt="image here"
-                  srcset=""
-                />
+                <div>
+                  <img
+                    className="img-fluid"
+                    height={250}
+                    width={350}
+                    src={imageUrl(digitotal.image)}
+                    alt=""
+                  />
+                </div>
               </div>
+              <div className=" pt-5 col-md-8">
+                <h4 className="mt-3 mb-4" style={{ color: "#1D3557" }}>
+                  {digitotal?.title}
+                </h4>
+                <div className="pt-2">
+             <h6 style={{ color: "#1D3557" }}>{digitotal.sub_description}</h6>
+          </div>
 
-              <div className=" pt-5  col-md-8 ">
-                <Digital data={obj} />
+                <div
+                  className="mb-5 mt-3"
+                  dangerouslySetInnerHTML={{
+                    __html:digitotal.description,
+                  }}
+                ></div>
               </div>
             </div>
           </div>
@@ -79,5 +112,8 @@ const Digitotal = () => {
     </>
   );
 };
+
+
+          
 
 export default Digitotal;

@@ -79,7 +79,7 @@ const CustomizedService = () => {
             </div>
           </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div style={{ display: "flex" }} className="pt-5  col-12 col-md-4">
             <div>
               <img
@@ -104,7 +104,7 @@ const CustomizedService = () => {
               }}
             ></div>
           </div>
-        </div>
+        </div> */}
       </LandingPage>
 
 
