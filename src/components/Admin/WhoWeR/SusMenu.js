@@ -158,7 +158,7 @@ useEffect(() => {
               className="header justify-content-end"
               style={{ marginTop: "10px" }}
             >
-              <button
+              {/* <button
                 type="button"
                 className="btn btn-primary btn-sm my-3"
                 style={{
@@ -168,7 +168,7 @@ useEffect(() => {
                 onClick={handleShow}
               >
                 <i className="fas fa-plus-circle"></i> Add New Category
-              </button>
+              </button> */}
               <Modal show={show} onHide={handleClose} className="add_cat_modal">
                 {/* <Modal.Header closeButton>
                   <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
@@ -267,7 +267,7 @@ useEffect(() => {
                     <td>{item.descripton ? item.description:''}</td>
 
                     <td>
-                      <a
+                      {/* <a
                         className="nav-link"
                         onClick={() => {
                           handleDeleteshow(item);
@@ -275,7 +275,7 @@ useEffect(() => {
                       >
                         {" "}
                         <i className="fa fa-trash-o" />
-                      </a>
+                      </a> */}
                       <a
                         className="nav-link"
                         onClick={() => {

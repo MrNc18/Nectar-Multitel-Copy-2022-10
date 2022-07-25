@@ -94,7 +94,7 @@ function EditProfileForm() {
 
 
   const handleEditProfile = async () => {
-   
+   console.log("lem",file.length)
       const data = new FormData();
         for (var x = 0; x < file.length; x++) {
           data.append("image", file[x]);

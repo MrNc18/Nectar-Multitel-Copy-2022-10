@@ -67,7 +67,6 @@ export const SusMenuMan = () => {
       categories.map((item) => {
         if(item.name === category){
           categoryId = item.id
-          console.log("tem.id")
         }
       })
       }
