@@ -1,22 +1,34 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import { showAlert } from "../../../utils/showAlert";
-import { getTeleByCat,getDeleteTele,getEditTele,getAddTele,getAllTele,getAllTeleMenus} from "../../../services/Phase_2/TeeleComm";
+import {
+  getTeleByCat,
+  getDeleteTele,
+  getEditTele,
+  getAddTele,
+  getAllTele,
+  getAllTeleMenus,
+  imageUrl,
+} from "../../../services/Phase_2/TeeleComm";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
- const ADPrivateNetwork = () => {
+const ADPrivateNetwork = () => {
   const [buttondisabled, setButtonDisabled] = useState(false);
   const [show, setShow] = useState(false);
+  const [Image, setImage] = useState("");
   const [data, setData] = useState(false);
-  const [teleMenu,setTeleMenu] = useState('');
+  const [teleMenu, setTeleMenu] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [DeleteShow, setDeleteShow] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [file, setfile] = useState("");
-  const [description,setDescription] = useState('')
-  const handleClose = () => {setShow(false);setButtonDisabled(false)}
+  const [description, setDescription] = useState("");
+  const handleClose = () => {
+    setShow(false);
+    setButtonDisabled(false);
+  };
   const handleShow = () => setShow(true);
   const [data2, setData2] = useState({
     id: "",
@@ -25,14 +37,33 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
   });
   const { id, Title, category } = data2;
 
-
-
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = (e) => {
-    setfile(e.target.files);
+  // const handleFileChange = (event) => {
+  //   let files = event.target.files;
+  //   let reader = new FileReader();
+  //   reader.readAsDataURL(files[0]);
+
+  //   reader.onload = (e) => {
+  //     var output = document.getElementById("image");
+  //     console.log("output", output);
+  //     output.src = reader.result;
+  //     setfile(e.target.result);
+  //   };
+  // };
+
+  const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('image');
+      console.log("output",output)
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    setfile(event.target.files);
+    console.log(file);
   };
 
   const handleDeleteshow = (item) => {
@@ -43,30 +74,27 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
     setDeleteShow(false);
   };
 
- 
-
   const handleEditClose = () => {
     setData2("");
-    setDescription('');
+    setDescription("");
     setfile("");
     setShowEditModal(false);
   };
 
+  //   Add API
 
-   //   Add API
-
-   const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let teleMenuId = ''
-    {teleMenu &&
-      teleMenu.map((item) => {
-        if(item.name === category){
-          teleMenuId = item.id
-        }
-      })
-      }
-   
+    let teleMenuId = "";
+    {
+      teleMenu &&
+        teleMenu.map((item) => {
+          if (item.name === category) {
+            teleMenuId = item.id;
+          }
+        });
+    }
 
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
@@ -74,78 +102,74 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
     }
     data.append("description", description);
     data.append("name", Title);
-    data.append("category_id",teleMenuId)
-    
-   
-    if (
-      Title === "" ||
-      description === "" ||
-      category === ""
-    ) {
+    data.append("category_id", teleMenuId);
+
+    if (Title === "" || description === "" || category === "") {
       setErrorMsg("Fill the Mandatory Fields");
     } else
       try {
-        setButtonDisabled(true)
+        setButtonDisabled(true);
         await getAddTele(data);
         showAlert("Added Network successfully", "success");
-        setData2('')
-        setDescription('');
+        setData2("");
+        setDescription("");
         setShow(false);
-        setButtonDisabled(false)
-       handleAllTeleData()
+        setButtonDisabled(false);
+        handleAllTeleData();
       } catch (error) {
         showAlert(error.data.message, "error");
       } finally {
         setShow(false);
       }
-  
   };
 
   //Edit API
 
   const handleEditShow = (item) => {
-    setDescription(item.description)
+    setImage(item.image);
+    setDescription(item.description);
     setData2({
       id: item.id,
       Title: item.name,
-      category:item.telecommunication_submenu.name,
+      category: item.telecommunication_submenu.name,
     });
     setShowEditModal(true);
-    console.log("item", item,description);
+    console.log("item", item, description);
   };
 
   const handleEditData = async () => {
-    let teleMenuId = ''
-    {teleMenu &&
-      teleMenu.map((item) => {
-        if(item.name === category){
-          teleMenuId = item.id
-        }
-      })
-      }
+    let teleMenuId = "";
+    {
+      teleMenu &&
+        teleMenu.map((item) => {
+          if (item.name === category) {
+            teleMenuId = item.id;
+          }
+        });
+    }
+    console.log("file",file.length)
 
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
-      data.append("image", file[x]);
+      data.append("image", file[x])
     }
     data.append("description", description);
     data.append("name", Title);
-    data.append("id",id);
-    data.append("category_id",teleMenuId)
-  
+    data.append("id", id);
+    data.append("category_id", teleMenuId);
+
     try {
       await getEditTele(data);
-      showAlert("Network Edited Sucessfully","success");
-      setData2(' ')
-      setDescription('')
+      showAlert("Network Edited Sucessfully", "success");
+      setData2(" ");
+      setDescription("");
       setfile("");
       setShowEditModal(false);
       handleAllTeleData();
     } catch (error) {
-      showAlert("Something Went Wrong","error");
+      showAlert("Something Went Wrong", "error");
     }
   };
-
 
   //Get Api
 
@@ -160,37 +184,35 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
     }
   };
 
-  const handleTeleCat = async()  =>{
-    try{
-      const resp = await getAllTeleMenus()
-      setTeleMenu(resp.data)
-      console.log("menu",resp.data)
+  const handleTeleCat = async () => {
+    try {
+      const resp = await getAllTeleMenus();
+      setTeleMenu(resp.data);
+      console.log("menu", resp.data);
+    } catch (error) {
+      showAlert("something Went Wrong", "error");
     }
-    catch(error){
-      showAlert("something Went Wrong","error")
-    }
-  }
-
+  };
 
   useEffect(() => {
     handleAllTeleData();
-    handleTeleCat()
+    handleTeleCat();
   }, []);
 
   //Delete Api
 
-  const handleDeleteData = async() => {
+  const handleDeleteData = async () => {
     const data = {
       id: deleteRecord.id,
     };
     try {
       await getDeleteTele(data);
-      showAlert("Network Deleted Successfully","success");
+      showAlert("Network Deleted Successfully", "success");
       setDeleteShow(false);
       handleAllTeleData();
     } catch (error) {
       console.log("error", error);
-      showAlert("Something Went Wrong","error");
+      showAlert("Something Went Wrong", "error");
     }
   };
 
@@ -207,7 +229,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
               className="header justify-content-end"
               style={{ marginTop: "10px" }}
             >
-              <button
+              {/* <button
                 type="button"
                 className="btn btn-primary btn-sm my-3"
                 style={{
@@ -217,7 +239,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
                 onClick={handleShow}
               >
                 <i className="fas fa-plus-circle"></i> Add New Network
-              </button>
+              </button> */}
               <Modal show={show} onHide={handleClose} className="add_cat_modal">
                 {/* <Modal.Header closeButton>
                   <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
@@ -260,9 +282,10 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
                         <option value="" disabled="disabled">
                           Select Option
                         </option>
-                        {teleMenu && teleMenu.map((item) =>(
-                        <option value={item.name}>{item.name}</option>
-                        ))}
+                        {teleMenu &&
+                          teleMenu.map((item) => (
+                            <option value={item.name}>{item.name}</option>
+                          ))}
                       </select>
                       <Form.Label>Description</Form.Label>
                       <span style={{ color: "red" }}>*</span>
@@ -276,8 +299,8 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
                         }}
                         onChange={(event, editor) => {
                           const data = editor.getData();
-                          console.log("description",data)
-                          setDescription(data)
+                          console.log("description", data);
+                          setDescription(data);
                         }}
                       />
                       <Form.Label>Upload Image</Form.Label>{" "}
@@ -307,11 +330,13 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
                 </Modal.Footer>
               </Modal>
             </div>
-          
           </div>
-          <div style={{paddingLeft:"15px",paddingBottom:"10px"}}>
-            <h6><b>Note: </b>Here we Can manage all Internal data related to the TeleCommunication Categories</h6>
-            </div>
+          <div style={{ paddingLeft: "15px", paddingBottom: "10px" }}>
+            <h6>
+              <b>Note: </b>Here we Can manage all Internal data related to the
+              TeleCommunication Categories
+            </h6>
+          </div>
         </div>
         <div>
           {" "}
@@ -325,24 +350,24 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody> 
-          {data &&
+            <tbody>
+              {data &&
                 data?.map((item, i) => (
                   <tr>
                     <td>{i + 1}</td>
-                    <td>{item.id ? item.id :""}</td>
-                    <td>{item.name ? item.name:""}</td>
-                    <td>{item.telecommunication_submenu.name}</td>
-                     <td>
-                      <a
+                    <td>{item.id ? item.id : ""}</td>
+                    <td>{item.name ? item.name : ""}</td>
+                    <td>{item?.telecommunication_submenu?.name}</td>
+                    <td>
+                      {/* <a
                         className="nav-link"
                         onClick={() => {
                           handleDeleteshow(item);
                         }}
-                      >
-                        {" "}
+                      > */}
+                        {/* {" "}
                         <i className="fa fa-trash-o" />
-                      </a>
+                      </a> */}
                       <a
                         className="nav-link"
                         onClick={() => {
@@ -354,9 +379,9 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
                           style={{ paddingLeft: "0px" }}
                         />
                       </a>
-                    </td> 
-                   </tr> 
-                ))} 
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
           {/* Delete Modal */}
@@ -418,11 +443,11 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
                       >
                         <option value="" disabled="disabled">
                           Select Option
-                      </option>    
-                      {teleMenu && teleMenu.map((item) =>(
-                        <option value={item.name}>{item.name}</option>
-                        ))}
-
+                        </option>
+                        {teleMenu &&
+                          teleMenu.map((item) => (
+                            <option value={item.name}>{item.name}</option>
+                          ))}
                       </select>
                       <Form.Label>Description</Form.Label>
                       <CKEditor
@@ -435,19 +460,39 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
                         }}
                         onChange={(event, editor) => {
                           const data = editor.getData();
-                          setDescription(data)
+                          setDescription(data);
                           // onChange(data);
                         }}
                       />
                       <Form.Label>Upload</Form.Label>{" "}
-                      <Form.Control
-                        className="form-control"
-                        type="file"
-                        name="image"
-                        id="image"
-                        accept="image/png, image/jpeg"
-                        onChange={handleFileChange}
-                      ></Form.Control>
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="image"
+                          style={{ maxwidth: "100%", borderRadius: "50%" }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              :"/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          {/* <br /> */}
+                          <input
+                            id="file"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
                     </Form.Group>
                   </div>
                 </Modal.Body>
@@ -469,4 +514,4 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
     </div>
   );
 };
-export default ADPrivateNetwork
+export default ADPrivateNetwork;

@@ -26,4 +26,15 @@ export const getTeleByCat = async (data) => {
  
     return await doGet("api/telecommunication/getAllTelecommnication")
   }
+
+  //need to change the url 
+  export const getAddTeleMenu = async(data) =>{
+    return await doPost('api/telecommunication/addTelecommunicationMenus',data);
+  }
+  export const getEditTeleMenu = async(data) =>{
+    return await doPut('api/telecommunication/editTelecommunicatiosMenus',data);
+  }
+  export const getDeleteTeleMenu = async(data) =>{
+    return await doDelete('api/telecommunication/deleteTelecommunicationMenus',data);
+  }
   
