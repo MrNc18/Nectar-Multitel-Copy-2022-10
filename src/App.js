@@ -112,6 +112,7 @@ import Internet from "./containers/Internet";
 import Digital from "./containers/Digital";
 import SpecialServices from "./containers/SpecialServices";
 import InternetUser from "./containers/Internet";
+import Oml from "./components/atoms/Oml";
 
 function App() {
   return (
@@ -267,6 +268,7 @@ function App() {
           />
           <Route path="/outsourcing" element={<OutSourcing />} />
           <Route path="/omg" element={<OMG />} />
+          <Route path="/oml"  element={<Oml />} />
           <Route path="/digital" element={<Digital />} />
 
           {/* digitotal */}

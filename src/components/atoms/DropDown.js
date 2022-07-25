@@ -19,8 +19,8 @@ const DropDown = () => {
             onClick={() =>
               navigate("/omg", {
                 state: {
-                  title: "Informatics and Accessories",
-                  slug: "Informatics & Accessories",
+                  title: "omg",
+                  slug: "omg",
                 },
               })
             }
@@ -29,12 +29,12 @@ const DropDown = () => {
           </NavDropdown.Item>
           <NavDropdown.Item
             onClick={() =>
-              navigate("/SpecialService", {
-                state: { title: "SpecialService", slug: "SpecialService" },
+              navigate("/oml", {
+                state: { title: "oml", slug: "oml" },
               })
             }
           >
-            Special Services
+           OML
           </NavDropdown.Item>
           <NavDropdown.Item
             onClick={() =>

@@ -28,9 +28,9 @@ const CustomizedService = () => {
   
   return (
  <>
-  <LandingPage>
-      <ServiceBanner title="Customized Solutions" />
-      <div className="container">
+  <LandingPage woproducts>
+      <ServiceBanner title="Customized Solutions"  regnPage/>
+      <div className="container  mb-5">
       <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>

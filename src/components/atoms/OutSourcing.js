@@ -27,9 +27,9 @@ const OutSourcing = () => {
 
   return (
     <>
-      <LandingPage>
-        <ServiceBanner title="OutSourcing" />
-        <div className="container">
+      <LandingPage woproducts>
+        <ServiceBanner title="OutSourcing"  regnPage/>
+        <div className="container  mb-5">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>

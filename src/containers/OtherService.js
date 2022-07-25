@@ -11,7 +11,7 @@ const OtherService = () => {
   const [otherservice, setOtherservice] = useState({});
 
   const handleAllOtherservice = async () => {
-    const data = { slug: "other-services-1" };
+    const data = { slug: "other-services" };
     try {
       const resp = await getDigitotalBySlug(data);
       console.log(resp);

@@ -9,7 +9,7 @@ const Software = () => {
   const [software, setSoftware] = useState({});
 
   const handleAllSoftware = async () => {
-    const data = { slug: "software-3" };
+    const data = { slug: "software" };
     try {
       const resp = await getDigitotalBySlug(data);
       console.log(resp);
