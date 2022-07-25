@@ -1590,14 +1590,21 @@ td.td3 a {font-weight: 400;font-size: 12px;}
 .sidenav a{
   color: #1D3557;
 }
- .breadcrumb {
+.breadcrumb {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1rem;
   list-style: none;
   background-color: white !important;
+  border-radius: 0.25rem;
+}
+
+/* image accordion css */
+
+.imgcontent {
   float: left;
   width: 16.66%;
+  padding: 5px;
 }
 
 /* FAQ page start */
@@ -1645,4 +1652,12 @@ td.td3 a {font-weight: 400;font-size: 12px;}
   background-repeat: no-repeat;
   padding: 180px 0;
   background-position: center center;
+}
+
+
+.img_uploads .fa-camera{
+  position: absolute;
+  bottom: 3%;
+  left: 52%;
+  font-size: 12px;
 }

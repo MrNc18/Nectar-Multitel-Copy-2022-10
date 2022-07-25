@@ -28,8 +28,8 @@ const MessageFromManag = () => {
   return (
     <>
       <LandingPage woproducts>
-        <ServiceBanner title=" Message from  Management" />
-        <div className="container">
+        <ServiceBanner title=" Message from  Management" regnPage />
+        <div className="container mb-5">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
@@ -43,7 +43,8 @@ const MessageFromManag = () => {
             </div>
           </div>
 
-          <div className="row">
+    <div className="container">
+    <div className="row">
             <div className="col-12  col-6 col-4  ">
               <div>
                 <h2 style={{ color: "#1D3557" }} className="pt-5">
@@ -54,6 +55,7 @@ const MessageFromManag = () => {
               </div>
             </div>
           </div>
+    </div>
         </div>
       </LandingPage>
     </>

@@ -1,47 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import LandingPage from "../components/LandingPage";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { NavDropdown } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-
+import { showAlert } from "../utils/showAlert";
+import { showAlert } from "../utils/showAlert";
+import { getDigitotalBySlug } from "../services/DigitotalFront";
+import { imageUrl } from "../services/category";
 const OutSourcing = () => {
   const navigate = useNavigate();
+  const [outsourcing, setOutsourcing] = useState({});
 
-  function OutSource({ data }) {
-    return (
-      <>
-      <div className="mt-4">
-        <div>
-          <h2 style={{ color: "#1D3557" }}>{data.heading1}</h2>
-        </div>
-        <div>
-          <p>{data.description}</p>
-        </div>
-        </div>
-        
-        <div className="dropdown1">
-          <ul>
-            <li>{data.tag}</li>
-            <li>{data.tag1}</li>
-            <li>{data.tag2}</li>
-            <li>{data.tag3}</li>
-          </ul>
-        </div>
-      </>
-    );
-  }
-
-  const obj = {
-    heading1: "OutSourcing",
-    description:
-   " This service offering covering  areas of Telecom and IT/Si by Multitel is a cost-effictive  way for small and medium-sized companies to overcome the lack of specialized internal resources. Multitel's Outsourcing plans are simple, scalable and provide greater peace of mind for Customers with:",
-    
-    tag: "Cost reduction",
-    tag1: "Specialized support",
-   tag2: "  Improve management",
-    tag3: "Increased  efficiency and agility",
+  const handleAllOutsourcing = async () => {
+    const data = { slug: "outsourcing" };
+    try {
+      const resp = await getDigitotalBySlug(data);
+      console.log(resp);
+      setOutsourcing(resp && resp.data.data);
+    } catch (error) {
+      showAlert("Something went wrong", "error");
+    }
   };
+
+  useEffect(() => {
+    handleAllOutsourcing();
+  }, []);
+
   return (
     <>
       <LandingPage woproducts>
@@ -51,46 +36,53 @@ const OutSourcing = () => {
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
-                <Breadcrumb.Item >Start</Breadcrumb.Item>
+                <Breadcrumb.Item>Start</Breadcrumb.Item>
 
                 <Breadcrumb.Item>Digital</Breadcrumb.Item>
-               
-                <Breadcrumb.Item >   Other Services</Breadcrumb.Item>
+
+                <Breadcrumb.Item> Other Services</Breadcrumb.Item>
 
                 <Breadcrumb.Item
                   active
                   style={{ color: "#0C7CB8", fontWeight: "600" }}
-                >Outsourcing
-                 
+                >
+                  Outsourcing
                 </Breadcrumb.Item>
               </Breadcrumb>
 
               <NavDropdown title="Select Service" id="basic-nav-dropdown">
                 <NavDropdown.Item>OMG</NavDropdown.Item>
-                <NavDropdown.Item>
-                
-                  Special Services
+                <NavDropdown.Item>Special Services</NavDropdown.Item>
+
+                <NavDropdown.Item style={{ color: "#0C7CB8" }}>
+                  Outsourcing
                 </NavDropdown.Item>
-                
-                <NavDropdown.Item    style={{ color: "#0C7CB8",  }}>Outsourcing</NavDropdown.Item>
                 <NavDropdown.Divider />
               </NavDropdown>
             </div>
           </div>
           <div className="row">
             <div style={{ display: "flex" }} className="pt-5  col-12 col-md-4">
-              <img
-                className="img-fluid"
-                height={250}
-                width={350}
-                style={{ borderRadius: "10px" }}
-                src="https://images.unsplash.com/photo-1539193143244-c83d9436d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI1fGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60 "
-                alt=""
-                srcset=""
-              />
+              <div>
+                <img
+                  className="img-fluid"
+                  height={250}
+                  width={350}
+                  src={imageUrl(outsourcing?.image)}
+                  alt=""
+                />
+              </div>
             </div>
             <div className=" pt-5 col-md-8">
-              < OutSource data={obj} />
+              <h4 className="mt-3 mb-4" style={{ color: "#1D3557" }}>
+                {outsourcing?.name}
+              </h4>
+              <div
+                className="mb-5 mt-3"
+                dangerouslySetInnerHTML={{
+                  __html: outsourcing?.description,
+                }}
+              ></div>
             </div>
           </div>
         </div>

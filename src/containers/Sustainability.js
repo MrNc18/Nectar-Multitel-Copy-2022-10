@@ -9,8 +9,8 @@ function Sustainability() {
   return (
     <>
       <LandingPage woproducts>
-        <ServiceBanner title="Sustainability" />
-        <Container>
+        <ServiceBanner title="Sustainability" regnPage  />
+        <Container className="mb-5">
 
           <Row>
             <Col md={12}>
@@ -25,7 +25,7 @@ function Sustainability() {
               </div>
             </Col>
             </Row>
-          <div style={{backgroundColor:"#f6f6f6"}}>
+          <div style={{backgroundColor:"#f6f6f6"}} className="container">
           <Tab.Container
             id="left-tabs-example"
             defaultActiveKey="sustainability"

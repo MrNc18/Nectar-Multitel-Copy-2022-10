@@ -12,7 +12,7 @@ function News() {
     <>
       <LandingPage woproducts>
         <ServiceBanner title="News" regnPage />
-        <Container>
+        <Container className="mb-5">
           <Row>
             <Col md={12}>
           <div className="bredcrumb">
@@ -26,7 +26,7 @@ function News() {
           </div>
           </Col>
           </Row>
-          <div style={{ backgroundColor: "#f6f6f6" }}>
+          <div style={{ backgroundColor: "#f6f6f6" }} className="container">
             <Tab.Container id="left-tabs-example" defaultActiveKey="news">
               <Row>
                 <Col

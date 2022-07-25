@@ -6,7 +6,8 @@ import {
   getAllCategories,
   getAddCategory,
   getDeleteCategory,
-  getEditCategory,imageUrl
+  getEditCategory,
+  imageUrl,
 } from "../../services/category";
 import { showAlert } from "../../utils/showAlert";
 
@@ -16,13 +17,15 @@ function Categories() {
   const [show, setShow] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
-  const [buttondisabled,setButtonDisabled] = useState(false);
+  const [buttondisabled, setButtonDisabled] = useState(false);
   const [DeleteShow, setDeleteShow] = useState(false);
   const [file, setFile] = useState("");
   const [banfile, setBanfile] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [categoryList, setcategoryList] = useState("");
   const [tableData, setTableData] = useState("");
+  const [Image, setImage] = useState("");
+  const [BannerImage, setBannerImage] = useState("");
   const ProductCategory =
     useSelector((state) => state.models.ProductCategory) || [];
   const [data2, setData2] = useState({
@@ -36,13 +39,38 @@ function Categories() {
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
+  // const handleFileChange = (event) => {
+  //   setFile(event.target.files);
+  //   console.log(file);
+  // };
+
   const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById("image");
+      console.log("output", output);
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
     setFile(event.target.files);
     console.log(file);
   };
+
   const handleBanFileChange = (event) => {
-    setBanfile(event.target.files);
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById("image1");
+      console.log("output", output);
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    setFile(event.target.files);
+    console.log(file);
   };
+
+  // const handleBanFileChange = (event) => {
+  //   setBanfile(event.target.files);
+  // };
   const handleDeleteshow = (item) => {
     setDeleteShow(true);
     setDeleteRecord(item);
@@ -57,12 +85,12 @@ function Categories() {
     };
     try {
       await getDeleteCategory(data);
-      showAlert("Category Deleted Successfully","success");
+      showAlert("Category Deleted Successfully", "success");
       setDeleteShow(false);
       handleAllCategories();
     } catch (error) {
       console.log("error", error);
-      showAlert("Something Went Wrong","error");
+      showAlert("Something Went Wrong", "error");
     }
   };
   const handleSubmit = async (event) => {
@@ -79,11 +107,11 @@ function Categories() {
       setErrorMsg("Fill the Mandatory Fields");
     } else
       try {
-        setButtonDisabled(true)
+        setButtonDisabled(true);
         await getAddCategory(data);
         showAlert("Added  category.", "success");
         setShow(false);
-        setFile('')
+        setFile("");
         handleAllCategories();
       } catch (error) {
         showAlert(error.data.message, "error");
@@ -94,11 +122,13 @@ function Categories() {
 
   //  edit API
   const handleEditShow = (item) => {
+    console.log("items", item);
+    setImage(item.image);
+    setBannerImage(item.image);
     setData2({
       id: item.id,
       name: item.name,
       description: item.description,
-
     });
     setShowEditModal(true);
   };
@@ -108,26 +138,25 @@ function Categories() {
       data.append("image", file[x]);
       data.append("banfile", banfile[x]);
     }
-      data.append("description", description);
-      data.append("name", name);
-      data.append("id", id);
-    
-   
+    data.append("description", description);
+    data.append("name", name);
+    data.append("id", id);
+
     try {
       await getEditCategory(data);
-      showAlert("Category Edited Successfully","success");
+      showAlert("Category Edited Successfully", "success");
       setShowEditModal(false);
-      setData2(' ')
-      setFile('')
+      setData2(" ");
+      setFile("");
       handleAllCategories();
     } catch (error) {
-      showAlert("Something Went Wrong","error");
+      showAlert("Something Went Wrong", "error");
     }
   };
   const handleEditClose = () => {
     setShowEditModal(false);
-    setData2(' ')
-    setFile('')
+    setData2(" ");
+    setFile("");
   };
 
   //Get All Category Api
@@ -150,7 +179,7 @@ function Categories() {
         });
     } catch (error) {
       console.log("error", error);
-      showAlert("something went Wrong","error");
+      showAlert("something went Wrong", "error");
     }
   };
 
@@ -162,8 +191,8 @@ function Categories() {
     <div id="layoutSidenavContent">
       <div className="container-fluid">
         <div class="row d-flex align-items-center justify-content-between">
-         <div class="col-lg-6 col-md-6 text-left">
-          <h3 className="mt-4 mb-4">Categories</h3>
+          <div class="col-lg-6 col-md-6 text-left">
+            <h3 className="mt-4 mb-4">Categories</h3>
           </div>
           <div className="col-lg-6 col-md-6 text-right">
             <div className="header justify-content-end">
@@ -180,12 +209,6 @@ function Categories() {
                 <i className="fas fa-plus-circle"></i> Add New Category
               </button>
               <Modal show={show} onHide={handleClose} className="add_cat_modal">
-                {/* <Modal.Header closeButton>
-                  <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                    Add New Category
-                  </Modal.Title>
-                </Modal.Header> */}
-
                 <Modal.Body>
                   <button
                     type="button"
@@ -202,7 +225,7 @@ function Categories() {
                   <div className="container">
                     <Form.Group>
                       <Form.Label>Category Name</Form.Label>
-                      <span style={{color:"red"}}> * </span>
+                      <span style={{ color: "red" }}> * </span>
                       <Form.Control
                         type="text"
                         value={name}
@@ -210,7 +233,7 @@ function Categories() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
-                      <span style={{color:"red"}}> * </span>
+                      <span style={{ color: "red" }}> * </span>
                       <Form.Control
                         type="textarea"
                         value={description}
@@ -218,20 +241,62 @@ function Categories() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Upload Icon</Form.Label>{" "}
-                      <span style={{color:"red"}}> * </span>
-                      <Form.Control
-                        type="file"
-                        id="file"
-                        accept="image/png, image/gif, image/jpeg"
-                        onChange={handleFileChange}
-                      ></Form.Control>
+                      <span style={{ color: "red" }}> * </span>
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="image"
+                          style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : "/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white" style={{bottom:"32%"}}></i>
+                          <input
+                            id="file"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
                       <Form.Label>Upload Banner</Form.Label>{" "}
-                      <Form.Control
-                        type="file"
-                        id="banner"
-                        accept="image/png, image/gif, image/jpeg"
-                        onChange={handleBanFileChange}
-                      ></Form.Control>
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="image1"
+                          style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
+                          src={
+                            BannerImage
+                              ? `${imageUrl(BannerImage)}`
+                              : "/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <input
+                            id="file"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleBanFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
                     </Form.Group>
                   </div>
                 </Modal.Body>
@@ -275,10 +340,7 @@ function Categories() {
                   <td>{item.id}</td>
                   <td>{item.name}</td>
                   <td>
-                    <img
-                      src={imageUrl(item.image)}
-                      style={{ width: "60px" }}
-                    />
+                    <img src={imageUrl(item.image)} style={{ width: "60px" }} />
                   </td>
                   {/* <td>{item.quantity}</td> */}
                   <td>
@@ -337,7 +399,11 @@ function Categories() {
               <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
                 Edit Category List
               </Modal.Title>
-              <button type="button" class="btn-close" aria-label="Close"></button>
+              <button
+                type="button"
+                class="btn-close"
+                aria-label="Close"
+              ></button>
             </Modal.Header>
             <Modal.Body>
               <div className="container">
@@ -356,19 +422,63 @@ function Categories() {
                     name="description"
                     onChange={handleChange}
                   ></Form.Control>
-                  <Form.Label>Upload</Form.Label>{" "}
-                  <Form.Control
-                    type="file"
-                    id="file"
-                    // value={file}
-                    onChange={handleFileChange}
-                  ></Form.Control>
+                  <Form.Label>Upload Icon</Form.Label>{" "}
+                  <div className="form-group text-center img_uploads">
+                    <img
+                      id="image"
+                      style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
+                      src={
+                        Image
+                          ? `${imageUrl(Image)}`
+                          : "/assets/images/default_user.png"
+                      }
+                      className="img-fluid"
+                    />
+                    <label
+                      className=""
+                      style={{ marginTop: "15px", cursor: "pointer" }}
+                    >
+                      <i className="fas fa-camera bg-info p-2 rounded-circle text-white" style={{bottom:"32%"}}></i>
+                      <input
+                        id="file"
+                        type="file"
+                        name="file"
+                        accept="image/png, image/gif, image/jpeg"
+                        onChange={handleFileChange}
+                        className="form-control"
+                        style={{ display: "none" }}
+                      />
+                    </label>
+                  </div>
                   <Form.Label>Upload Banner</Form.Label>{" "}
-                  <Form.Control
-                    type="file"
-                    id="file"
-                    onChange={handleBanFileChange}
-                  ></Form.Control>
+                 
+                  <div className="form-group text-center img_uploads">
+                    <img
+                      id="image1"
+                      style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
+                      src={
+                        BannerImage
+                          ? `${imageUrl(BannerImage)}`
+                          : "/assets/images/default_user.png"
+                      }
+                      className="img-fluid"
+                    />
+                    <label
+                      className=""
+                      style={{ marginTop: "15px", cursor: "pointer" }}
+                    >
+                      <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                      <input
+                        id="file1"
+                        type="file"
+                        name="file"
+                        accept="image/png, image/gif, image/jpeg"
+                        onChange={handleBanFileChange}
+                        className="form-control"
+                        style={{ display: "none" }}
+                      />
+                    </label>
+                  </div>
                 </Form.Group>
               </div>
             </Modal.Body>

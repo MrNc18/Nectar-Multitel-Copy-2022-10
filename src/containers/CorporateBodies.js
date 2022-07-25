@@ -22,8 +22,8 @@ const CorporateBodies = () => {
  
   return (
     <>
-      <LandingPage>
-        <ServiceBanner title="Corporate Bodies And  Corporate Composition" />
+      <LandingPage woproducts>
+        <ServiceBanner title="Corporate Bodies And  Corporate Composition" regnPage />
         <div className="container">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
@@ -38,7 +38,8 @@ const CorporateBodies = () => {
             </div>
           </div>
 
-          <div className="row">
+        <div className="container">
+        <div className="row mb-5">
             <div className="col-12  col-6 col-4  ">
               <h2 style={{ color: "#1D3557" }} className="pt-4">
                 Corporate Bodies And Corporate Composition
@@ -76,6 +77,7 @@ const CorporateBodies = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       
     </LandingPage>
