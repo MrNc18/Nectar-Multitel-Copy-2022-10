@@ -367,10 +367,12 @@ function AddProduct() {
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
+              <label htmlFor="productimage">Upload Image</label>
+              <span style={{color:"red"}}>*</span>
               <div className="form-group text-center img_uploads">
                 <img
                   id="proimage"
-                  style={{ maxwidth: "100%", borderRadius: "50%" }}
+                  style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
                   src={
                     Image
                       ? `${imageUrl(Image)}`

@@ -240,7 +240,7 @@ function ServiceCategories() {
                       <div className="form-group text-center img_uploads">
                         <img
                           id="proimage"
-                          style={{ maxwidth: "100%", borderRadius: "50%" }}
+                          style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
                           src={
                             Image
                               ? `${imageUrl(Image)}`
@@ -400,7 +400,7 @@ function ServiceCategories() {
                   <div className="form-group text-center img_uploads">
                     <img
                       id="proimage"
-                      style={{ maxwidth: "100%", borderRadius: "50%" }}
+                      style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
                       src={
                         Image
                           ? `${imageUrl(Image)}`
