@@ -33,3 +33,6 @@ export const getTelecommunicationMenusBySlug = async (data) => {
 export const getTelecommunicationBySlug = async (data) => {
   return await doPost("api/telecommunication/getTelecommunicationBySlug", data);
 };
+
+
+

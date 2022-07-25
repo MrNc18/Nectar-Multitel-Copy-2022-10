@@ -31,7 +31,7 @@ const Digitotal = () => {
 
   return (
     <>
-      <LandingPage  woproducts>
+      <LandingPage>
         <div className="row">
           <div id="imgbnr">
             <div id="head_bannner">

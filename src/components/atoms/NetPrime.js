@@ -33,7 +33,7 @@ function NetPrime() {
             </h4>
             <div dangerouslySetInnerHTML={{ __html: NetPrime?.description }} />
           </Col>
-    P    </Row>
+     </Row>
       </Container>
     </>
   )
