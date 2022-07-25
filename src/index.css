@@ -1054,6 +1054,13 @@ span.username {
   font-size: 12px;
 }
 
+.img_uploads .fa-camera{
+  position: absolute;
+  bottom: 1%;
+  left: 49%;
+  font-size: 12px;
+}
+
 /* Cart page start */
 .cart_details {
   padding: 100px 0;
@@ -1645,4 +1652,12 @@ td.td3 a {font-weight: 400;font-size: 12px;}
   background-repeat: no-repeat;
   padding: 180px 0;
   background-position: center center;
+}
+
+
+.img_uploads .fa-camera{
+  position: absolute;
+  bottom: 3%;
+  left: 52%;
+  font-size: 12px;
 }

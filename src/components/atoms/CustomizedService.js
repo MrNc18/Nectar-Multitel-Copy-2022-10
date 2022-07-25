@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import LandingPage from '../LandingPage'
 import ServiceBanner from './ServiceBanner'
 import Breadcrumb from "react-bootstrap/Breadcrumb";
@@ -6,98 +6,59 @@ import DropDown from './DropDown';
 import { showAlert } from '../../utils/showAlert';
 import { getDigitotalBySlug } from '../../services/DigitotalFront';
 import { imageUrl } from '../../services/category';
+const CustomizedService = () => {
 
+  const [customizedservice, setCustomizedservice] = useState({});
 
-const Customizedsolutions = () => {
-  const [ customizedservice , setCustomizedService ] = useState({});
-  
-  const handleAllCustomizedService  = async () => {
+  const handleAllCustomizedservice = async () => {
     const data = { slug: "customized-solutions" };
     try {
       const resp = await getDigitotalBySlug(data);
       console.log(resp);
-      setCustomizedService (resp && resp.data.data);
-      // console.log("newsreq", resp);
+      setCustomizedservice(resp && resp.data.data);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }
   };
 
   useEffect(() => {
-    handleAllCustomizedService();
+    handleAllCustomizedservice();
   }, []);
 
 
-  
+  return (
+    <>
+      <LandingPage woproducts>
+        <ServiceBanner title="Customized Solutions" regnPage />
+        <div className="container  mb-5">
+          <div className="row">
+            <div className="col-12 col-6 col-4 bredcrumb">
+              <Breadcrumb>
+                <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
+                <Breadcrumb.Item href="#">Digital</Breadcrumb.Item>
+                <Breadcrumb.Item href="#"> Other Services</Breadcrumb.Item>
 
-  
-
-    // function Customizedservice({data}){
-    //     return(
-    //         <>
-            
-    //      <div className=" pt-4">
-    //      <div>
-    //             <h2 style={{color:"#1D3557"}}>
-    //                 {data.heading1}
-    //             </h2>
-    //         </div>
-    //         <div>
-    //             <p className="pt-2">
-    //                 {data.description1}
-    //             </p>
-    //         </div>
-    //         <div >
-    //             <p className="pt-2">
-    //                 {data.description2}
-    //             </p>
-    //         </div>
-           
-       
-    //      </div>
-    //         </>
-    //     )
-    // }  
-
-
-
-    
-    // const obj ={
-    //     heading1:"  Customized Solution",
-    //     description1:"Turnkey or turnkey solutions may include study or analysis, project design, specifications, implementation  coordination and training.",
-    //    description2:"In a turnkey solution, the teams on the ground, suppliers and other partners are coordinated by a specificteam from Multitel, and the follow-up with the Customer is carried out through meetings to discuss the situation and the provision of periodic reports from the evolution of the project, until its conclusion and acceptance by the Client"
-    // }
-    return (
-      <>
-        <LandingPage woproducts>
-          <ServiceBanner title=  " Customized Solutions" regnPage />
-          <div className="container mb-5">
-            <div className="row">
-              <div className="col-12 col-6 c-ol-4 bredcrumb">
-                <Breadcrumb>
-                  <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
-  
-                  <Breadcrumb.Item href=" ">Digital</Breadcrumb.Item>
-                  <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
-                  Customized Solutions
-                  </Breadcrumb.Item>
-                </Breadcrumb>
-              </div>
+                <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
+                  Customized Solution
+                </Breadcrumb.Item>
+                <DropDown />
+              </Breadcrumb>
             </div>
-  
-            <div className="container">
-              <div className="row">
-                <div
-                  style={{ display: "flex" }}
-                  className="pt-5  col-12 col-lg-4"
-                >
-                  <img 
-                   className="img-fluid"
-                   height={250}
-                   width={350} 
-                  
-                  src={imageUrl( customizedservice.image)} alt=""  />
-                  {/* <img
+          </div>
+
+          <div className="container">
+            <div className="row">
+              <div
+                style={{ display: "flex" }}
+                className="pt-5  col-12 col-lg-4"
+              >
+                <img
+                  className="img-fluid"
+                  height={250}
+                  width={350}
+
+                  src={imageUrl(customizedservice.image)} alt="" />
+                {/* <img
                     className="img-fluid"
                     height={250}
                     width={350}
@@ -106,22 +67,49 @@ const Customizedsolutions = () => {
                     alt="image here"
                     srcset=""
                   /> */}
-                </div>
-  
-                <div className=" pt-5  col-lg-8 ">
-                  {/* {/ <Networkinfrastructure data={obj} /> /} */}
-                  <h4 className="mt-3 mb-4" style={{ color: "#1D3557" }}>
-              { customizedservice.name}
-            </h4>
-            <div className="mb-5 mt-3" dangerouslySetInnerHTML={{ __html:  customizedservice.description }} />
-                </div>
+              </div>
+
+              <div className=" pt-5  col-lg-8 ">
+                {/* {/ <Networkinfrastructure data={obj} /> /} */}
+                <h4 className="mt-3 mb-4" style={{ color: "#1D3557" }}>
+                  {customizedservice.name}
+                </h4>
+                <div className="mb-5 mt-3" dangerouslySetInnerHTML={{ __html: customizedservice.description }} />
               </div>
             </div>
           </div>
-        </LandingPage>
-      </>
-    );
-  };
-  
+        </div>
+        <div className="row">
+          <div style={{ display: "flex" }} className="pt-5  col-12 col-md-4">
+            <div>
+              <img
+                className="img-fluid"
+                height={250}
+                width={350}
+                src={imageUrl(customizedservice?.image)}
+                alt=""
+              />
+            </div>
 
-export default Customizedsolutions 
+          </div>
+          <div className=" pt-5 col-md-8">
+
+            <h4 className="mt-3 mb-4" style={{ color: "#1D3557" }}>
+              {customizedservice?.name}
+            </h4>
+            <div
+              className="mb-5 mt-3"
+              dangerouslySetInnerHTML={{
+                __html: customizedservice?.description,
+              }}
+            ></div>
+          </div>
+        </div>
+      </LandingPage>
+
+
+    </>
+  )
+}
+
+export default CustomizedService

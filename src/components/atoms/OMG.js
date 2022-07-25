@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import LandingPage from "../LandingPage";
 import ServiceBanner from "./ServiceBanner";
@@ -24,28 +23,11 @@ const OMG = () => {
   useEffect(() => {
     handleAllOmg();
   }, []);
-  const [omgs, setOmgs] = useState({});
-
-  const handleAllOmgs = async () => {
-    const data = { slug: "omg-1" };
-    try {
-      const resp = await getDigitotalBySlug(data);
-      console.log(resp);
-      setOmgs(resp && resp.data.data);
-    } catch (error) {
-      showAlert("Something went wrong", "error");
-    }
-  };
-
-  useEffect(() => {
-    handleAllOmgs();
-  }, []);
-
 
   return (
     <>
       <LandingPage woproducts>
-        <ServiceBanner title="OMG" regnPage />
+        <ServiceBanner title="OMG"  regnPage />
         <div className="container  mb-5">
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
@@ -88,44 +70,8 @@ const OMG = () => {
                   }}
                 ></div>
               </div>
-   
-                <div className="col-12  pt-4  col-md-8">
-                  <div className="mb-5 mt-3"
-                    dangerouslySetInnerHTML={{
-                      __html: omgs?.description,
-                    }}>
-
-                  </div>
-                </div>
-
-              </div>
-
-
             </div>
-
-            <div className="row  pt-5 ">
-            <div style={{ display: "flex" }} className=" col-12 col-lg-4">
-
-
-
-              <img
-                className="img-fluid"
-                height={250}
-                width={350}
-                style={{ borderRadius: "10px" }}
-                src={imageUrl(omgs?.image)}
-                alt=""
-                srcset=""
-              />
-            </div>
-
-
-
-
-
-
-
-        </div>
+          </div>
         </div>
       </LandingPage>
     </>

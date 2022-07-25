@@ -55,7 +55,7 @@ function Recruitment() {
             </Breadcrumb>
           </div>
 
-          <div>
+          <div  className="container">
             <div id="accordion" className="accordion">
               <div className="card mb-0">
                 {recruitment?.length ? recruitment?.map((item) => (

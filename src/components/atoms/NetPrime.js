@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { showAlert } from "../../utils/showAlert";
 import { getTelecommunicationBySlug } from "../../services/TelecommunicationFront";
+import { imageUrl } from "../../services/category";
 
 function NetPrime() {
-
   const [NetPrime, setNetPrime] = useState({});
 
   const handleAllNetPrime = async () => {
@@ -31,12 +31,13 @@ function NetPrime() {
             <h4 className="mt-5 mb-4" style={{ color: "#1D3557" }}>
               {NetPrime?.name}
             </h4>
+            <img src={imageUrl(NetPrime?.image)} alt="" height={40} />
             <div dangerouslySetInnerHTML={{ __html: NetPrime?.description }} />
           </Col>
      </Row>
       </Container>
     </>
-  )
+  );
 }
 
 export default NetPrime;
