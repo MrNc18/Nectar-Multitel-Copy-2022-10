@@ -245,7 +245,7 @@ function Categories() {
                       <div className="form-group text-center img_uploads">
                         <img
                           id="image"
-                          style={{ maxwidth: "100%", borderRadius: "50%" }}
+                          style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
                           src={
                             Image
                               ? `${imageUrl(Image)}`
@@ -257,7 +257,7 @@ function Categories() {
                           className=""
                           style={{ marginTop: "15px", cursor: "pointer" }}
                         >
-                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white" style={{bottom:"32%"}}></i>
                           <input
                             id="file"
                             type="file"
@@ -273,7 +273,7 @@ function Categories() {
                       <div className="form-group text-center img_uploads">
                         <img
                           id="image1"
-                          style={{ maxwidth: "100%", borderRadius: "50%" }}
+                          style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
                           src={
                             BannerImage
                               ? `${imageUrl(BannerImage)}`
@@ -426,7 +426,7 @@ function Categories() {
                   <div className="form-group text-center img_uploads">
                     <img
                       id="image"
-                      style={{ maxwidth: "100%", borderRadius: "50%" }}
+                      style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
                       src={
                         Image
                           ? `${imageUrl(Image)}`
@@ -438,7 +438,7 @@ function Categories() {
                       className=""
                       style={{ marginTop: "15px", cursor: "pointer" }}
                     >
-                      <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                      <i className="fas fa-camera bg-info p-2 rounded-circle text-white" style={{bottom:"32%"}}></i>
                       <input
                         id="file"
                         type="file"
@@ -455,7 +455,7 @@ function Categories() {
                   <div className="form-group text-center img_uploads">
                     <img
                       id="image1"
-                      style={{ maxwidth: "100%", borderRadius: "50%" }}
+                      style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
                       src={
                         BannerImage
                           ? `${imageUrl(BannerImage)}`
