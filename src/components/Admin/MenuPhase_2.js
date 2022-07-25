@@ -264,7 +264,7 @@ export const MenuPhase_2 = () => {
                       <Form.Control
                         type="text"
                         value={Title}
-                        name="name"
+                        // name="Title"
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>

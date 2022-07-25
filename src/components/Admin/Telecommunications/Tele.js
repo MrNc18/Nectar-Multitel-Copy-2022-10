@@ -331,7 +331,7 @@ const Tele = () => {
                       <Form.Control
                         type="text"
                         value={name}
-                        name="name"
+                        // name="name"
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>

@@ -429,7 +429,7 @@ const ADPrivateNetwork = () => {
                       <Form.Control
                         type="text"
                         value={Title}
-                        name="Title"
+                        // name="Title"
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>category</Form.Label>
@@ -439,15 +439,16 @@ const ADPrivateNetwork = () => {
                         id="exampleFormControlSelect1"
                         value={category}
                         name="category"
-                        onChange={handleChange}
-                      >
-                        <option value="" disabled="disabled">
+                        onChange={handleChange}>
+                        <option value={category} disabled ="disabled">{category}</option>
+                      
+                        {/* <option value="" disabled="disabled">
                           Select Option
                         </option>
                         {teleMenu &&
                           teleMenu.map((item) => (
                             <option value={item.name}>{item.name}</option>
-                          ))}
+                          ))} */}
                       </select>
                       <Form.Label>Description</Form.Label>
                       <CKEditor

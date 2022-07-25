@@ -137,7 +137,8 @@ export const RecruitmentData = () => {
     console.log("item", item);
     setData2({
       id: item.id,
-      name: item.name,
+      Name: item.recruitment_heading,
+      category:item.recruitment_category.name,
       description: item.description,
       Req_heading: item.recruitment_heading,
       Job_desc_heading: item.description_heading,
@@ -340,7 +341,7 @@ export const RecruitmentData = () => {
                 }}
                 onClick={handleShow}
               >
-                <i className="fas fa-plus-circle"></i> Add New content
+                <i className="fas fa-plus-circle"></i> Add New Job
               </button>
               <Modal show={show} onHide={handleClose} className="add_cat_modal">
                 <Modal.Body>
@@ -354,16 +355,16 @@ export const RecruitmentData = () => {
                     <span className="sr-only">Close</span>
                   </button>
                   <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                    Add New content
+                    Add New Job
                   </Modal.Title>
                   <div className="container">
                     <Form.Group>
-                      <Form.Label>Job code</Form.Label>
+                      <Form.Label>Job Title</Form.Label>
                       <span style={{ color: "red" }}>*</span>
                       <Form.Control
                         type="text"
-                        value={descrption}
-                        name="descrption"
+                        value={Name}
+                        name="Name"
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>category</Form.Label>
@@ -545,7 +546,7 @@ export const RecruitmentData = () => {
               <Modal show={ShowEditModal} onHide={handleEditClose} size="md">
                 <Modal.Header closeButton>
                   <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                    Edit Menu data
+                    Edit Job data
                   </Modal.Title>
                   <button
                     type="button"
@@ -556,11 +557,11 @@ export const RecruitmentData = () => {
                 <Modal.Body>
                   <div className="container">
                     <Form.Group>
-                      <Form.Label>Job code</Form.Label>
+                      <Form.Label>Job Title</Form.Label>
                       <Form.Control
                         type="textarea"
-                        value={descrption}
-                        name="descrption"
+                        value={Name}
+                        name="Name"
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>category</Form.Label>
