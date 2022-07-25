@@ -383,6 +383,10 @@ function Header() {
                 </NavDropdown.Item>
               </NavDropdown>
 
+              <Nav.Link onClick={() => navigate("/contactus")}>
+                ContactUs
+              </Nav.Link>
+
               <Nav.Link onClick={() => navigate("/home")}>
                 Multitel Home
               </Nav.Link>
