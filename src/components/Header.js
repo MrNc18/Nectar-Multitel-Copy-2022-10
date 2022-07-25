@@ -23,11 +23,11 @@ function Header() {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [username, setUsername] = useState("");
-  const [cartLength, setCartLength] = useState('')
-  const [wishlistLength, setWishlistLength] = useState('')
+  const [cartLength, setCartLength] = useState("");
+  const [wishlistLength, setWishlistLength] = useState("");
   const isAuthenticated = getCookie(AUTH_TOKEN);
 
-  const [{ wish,basket }, dispatch] = useStateValue();
+  const [{ wish, basket }, dispatch] = useStateValue();
 
   const getDataByToken = async () => {
     if (isAuthenticated) {
@@ -37,14 +37,12 @@ function Header() {
       const resp = await getCartData({
         userId: result?.data.data.userId,
       });
-      resp?.data?.data
-        && setCartLength(resp?.data?.data.length)
-      
+      resp?.data?.data && setCartLength(resp?.data?.data.length);
+
       const resp2 = await getWishlistData({
         userId: result?.data.data.userId,
       });
-      resp2?.data?.data
-        && setWishlistLength(resp2?.data?.data.length)
+      resp2?.data?.data && setWishlistLength(resp2?.data?.data.length);
     }
   };
 
@@ -62,15 +60,19 @@ function Header() {
                 <li>
                   <DateTime />
                 </li>
-                <div style={{borderRight: "1px solid",
-                               height: "25px",
-                                opacity: "0.5",marginRight:"10px",marginLeft:"10px"}}>
-                </div>
+                <div
+                  style={{
+                    borderRight: "1px solid",
+                    height: "25px",
+                    opacity: "0.5",
+                    marginRight: "10px",
+                    marginLeft: "10px",
+                  }}
+                ></div>
                 <li>
                   {mobile} <span className="fw-400">Contact Us :</span>{" "}
                   985-236-854-558
                 </li>
-
               </ul>
             </Col>
             <Col lg={7}>
@@ -91,10 +93,15 @@ function Header() {
                     </div>
                   </div>
                 </li>
-                <div style={{borderRight: "1px solid",
-                               height: "25px",
-                                opacity: "0.5",marginRight:"10px",marginLeft:"10px"}}>
-                </div>
+                <div
+                  style={{
+                    borderRight: "1px solid",
+                    height: "25px",
+                    opacity: "0.5",
+                    marginRight: "10px",
+                    marginLeft: "10px",
+                  }}
+                ></div>
                 <li>
                   <div className="multilingual d-flex">
                     {multilingual}
@@ -103,10 +110,15 @@ function Header() {
                     </div>
                   </div>
                 </li>
-                <div style={{borderRight: "1px solid",
-                               height: "25px",
-                                opacity: "0.5",marginRight:"10px",marginLeft:"10px"}}>
-                </div>
+                <div
+                  style={{
+                    borderRight: "1px solid",
+                    height: "25px",
+                    opacity: "0.5",
+                    marginRight: "10px",
+                    marginLeft: "10px",
+                  }}
+                ></div>
                 <li>
                   <div className="multilingual d-flex pt-1 ml-3">
                     <span className="fw-400">City:</span>
@@ -116,10 +128,15 @@ function Header() {
                     </select>
                   </div>
                 </li>
-                <div style={{borderRight: "1px solid",
-                               height: "25px",
-                                opacity: "0.5",marginRight:"10px",marginLeft:"10px"}}>
-                </div>
+                <div
+                  style={{
+                    borderRight: "1px solid",
+                    height: "25px",
+                    opacity: "0.5",
+                    marginRight: "10px",
+                    marginLeft: "10px",
+                  }}
+                ></div>
                 <li>
                   {!isAuthenticated ? (
                     <div
@@ -146,28 +163,30 @@ function Header() {
                           Profile
                         </Dropdown.Item>
                         <Dropdown.Item
-                        style={{display:"flex",justifyContent:"space-between"}}
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
                           onClick={() => {
                             navigate("/wishlist");
                           }}
                         >
                           Wishlist{" "}
-                          <span
-                            className="counter"
-                          >
+                          <span className="counter">
                             {isAuthenticated ? wishlistLength : wish.length}
                           </span>
                         </Dropdown.Item>
                         <Dropdown.Item
-                        style={{display:"flex",justifyContent:"space-between"}}
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
                           onClick={() => {
                             navigate("/cart");
                           }}
                         >
-                          Cart  {"    "}
-                          <span 
-                            className="counter"
-                          >
+                          Cart {"    "}
+                          <span className="counter">
                             {isAuthenticated ? cartLength : basket.length}
                           </span>
                         </Dropdown.Item>
@@ -215,59 +234,32 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-
-            <NavDropdown
+              <NavDropdown
                 title="Who We Are"
                 id="basic-nav-dropdown"
                 // onClick={() => navigate("/home")}
               >
                 <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/messagefrommanager")
-                    }
+                  onClick={() => navigate("/messagefrommanager")}
                 >
                   Management Message
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/missionandvalue")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/missionandvalue")}>
                   Mission and Values
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/news")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/news")}>
                   News
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/recruitment")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/recruitment")}>
                   Recruitment
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/corporatebodies")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/corporatebodies")}>
                   Corporate Bodies
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/sustainability")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/sustainability")}>
                   Sustainability
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/multitelpride")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/multitelpride")}>
                   Multitel Pride
                 </NavDropdown.Item>
               </NavDropdown>
@@ -276,39 +268,19 @@ function Header() {
                 id="basic-nav-dropdown"
                 // onClick={() => navigate("/home")}
               >
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/privatenetwork")
-                    }
-                >
+                <NavDropdown.Item onClick={() => navigate("/privatenetwork")}>
                   Private Networks
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/internet")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/internet")}>
                   Internet
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/VSAT")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/VSAT")}>
                   VSAT
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/videoconference")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/videoconference")}>
                   Video Conferencing
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/cpes")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/cpes")}>
                   CPEs
                 </NavDropdown.Item>
               </NavDropdown>
@@ -319,82 +291,42 @@ function Header() {
                 // onClick={() => navigate("/home")}
               >
                 <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/networkinfrastructure")
-                    }
+                  onClick={() => navigate("/networkinfrastructure")}
                 >
                   Network Infrastructure
                 </NavDropdown.Item>
                 <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/datacenterandcloud")
-                  }
+                  onClick={() => navigate("/datacenterandcloud")}
                 >
                   Data Center and Cloud
                 </NavDropdown.Item>
                 <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/consultingtraining")
-                  }
+                  onClick={() => navigate("/consultingtraining")}
                 >
                   Consulting and Training on Job
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/ipvoice")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/ipvoice")}>
                   IP Voices
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/cybersecurity")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/cybersecurity")}>
                   Cyber Security
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/webservice")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/webservice")}>
                   WEB Services
                 </NavDropdown.Item>
                 <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/automationelectronic")
-                  }
+                  onClick={() => navigate("/automationelectronic")}
                 >
                   Automation and Electronic Security
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/software")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/software")}>
                   Software
                 </NavDropdown.Item>
-                <NavDropdown.Item
-                  onClick={() =>
-                    navigate("/otherservice")
-                  }
-                >
+                <NavDropdown.Item onClick={() => navigate("/otherservice")}>
                   Other Services
                 </NavDropdown.Item>
               </NavDropdown>
 
-              <Nav.Link onClick={() => navigate("/home")}>
-                Multitel Home
-              </Nav.Link>
-              {/* <Nav.Link href="#link">Multitel Mobile</Nav.Link> */}
-              <Nav.Link onClick={() => navigate("/marketplace")}>
-                Marketplace
-              </Nav.Link>
-              {/* <button onClick={console.log(()=>getCookie(AUTH_TOKEN))}>GEt</button> */}
-
-              {/* Commenting this nav item for now for better view we'll uncomment it later */}
-
-              {/* <Nav.Link href="#link">Client Portal</Nav.Link> */}
               <NavDropdown
                 title="Contacts"
                 id="basic-nav-dropdown"
@@ -473,6 +405,23 @@ function Header() {
                   Other Products/Services (Partners)
                 </NavDropdown.Item>
               </NavDropdown>
+
+              <Nav.Link onClick={() => navigate("/home")}>
+                Multitel Home
+              </Nav.Link>
+              {/* <Nav.Link href="#link">Multitel Mobile</Nav.Link> */}
+              <Nav.Link onClick={() => navigate("/marketplace")}>
+                Marketplace
+              </Nav.Link>
+              {/* <button onClick={console.log(()=>getCookie(AUTH_TOKEN))}>GEt</button> */}
+
+              {/* Commenting this nav item for now for better view we'll uncomment it later */}
+
+              {/* <Nav.Link href="#link">Client Portal</Nav.Link> */}
+
+              <Nav.Link onClick={() => navigate("/contactus")}>
+                ContactUs
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

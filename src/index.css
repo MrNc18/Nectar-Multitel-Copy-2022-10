@@ -1646,3 +1646,11 @@ td.td3 a {font-weight: 400;font-size: 12px;}
   padding: 180px 0;
   background-position: center center;
 }
+
+
+.img_uploads .fa-camera{
+  position: absolute;
+  bottom: 3%;
+  left: 52%;
+  font-size: 12px;
+}
