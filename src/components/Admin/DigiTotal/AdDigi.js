@@ -4,14 +4,14 @@ import { Button, Modal, Form, Table } from "react-bootstrap";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {
-  getAllTeleMenus,
-  getEditTeleMenu,
-  getDeleteTeleMenu,
-  getAddTeleMenu,
+  getDigiDataBySlug,
+  getAddDigi,
+  getEditDigiMenu,
+  getDeleteDigiMenu,
+  getAllDigiMenu,
   imageUrl,
-} from "../../../services/Phase_2/TeeleComm";
-
-const Tele = () => {
+} from "../../../services/Phase_2/Digiapi";
+const AdDigi = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [data, setData] = useState("");
@@ -20,9 +20,10 @@ const Tele = () => {
   const [DeleteShow, setDeleteShow] = useState("");
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
-  const [errorMsg,setErrorMsg] = useState('')
+  const [errorMsg, setErrorMsg] = useState("");
   const [file, setfile] = useState("");
   const [description, setDescription] = useState("");
+  const [Image, setImage] = useState("");
   const [data2, setData2] = useState({
     id: "",
     name: "",
@@ -34,15 +35,23 @@ const Tele = () => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = (e) => {
-    setfile(e.target.files);
+  const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById("image");
+      console.log("output", output);
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    setfile(event.target.files);
+    console.log(file);
   };
 
   //Get All
 
   const handleAllTeleMenus = async () => {
     try {
-      const resp = await getAllTeleMenus();
+      const resp = await getAllDigiMenu();
       setData(resp.data);
       console.log("menu", resp.data);
     } catch (error) {
@@ -69,10 +78,12 @@ const Tele = () => {
       setErrorMsg("Fill the Mandatory Fields");
     } else
       try {
-        await getAddTeleMenu(data);
+        await getAddDigi(data);
         showAlert("TeleCommunication Added Successfully", "success");
         setData2(" ");
         setfile("");
+        setDescription("");
+        setImage("");
         setShow(false);
         handleAllTeleMenus();
       } catch (error) {
@@ -82,6 +93,7 @@ const Tele = () => {
 
   //Edit API
   const handleEditShow = (item) => {
+    setImage(item.image);
     setDescription(item.description);
     setData2({
       id: item.id,
@@ -100,10 +112,12 @@ const Tele = () => {
     data.append("name", name);
     data.append("id", id);
     try {
-      await getEditTeleMenu(data);
+      await getEditDigiMenu(data);
       showAlert("TeleCommunication Data Edited Successfully", "success");
       setData2(" ");
       setfile("");
+      setImage("");
+      setDescription("");
       setShowEditModal(false);
       handleAllTeleMenus();
     } catch (error) {
@@ -114,6 +128,8 @@ const Tele = () => {
   const handleEditClose = () => {
     setData2(" ");
     setfile("");
+    setImage("");
+    setDescription("");
     setShowEditModal(false);
   };
 
@@ -132,7 +148,7 @@ const Tele = () => {
       id: deleteRecord.id,
     };
     try {
-      await getDeleteTeleMenu(data);
+      await getDeleteDigiMenu(data);
       showAlert("TeleCommunication Deleted Successfully", "success");
       setDeleteShow(false);
       handleAllTeleMenus();
@@ -147,7 +163,7 @@ const Tele = () => {
       <div className="container-fluid">
         <div class="row d-flex align-items-center justify-content-between">
           <div class="col-lg-6 col-md-6 text-left">
-            <h3 className="mt-4 mb-4">TeleCommunication</h3>
+            <h3 className="mt-4 mb-4">Digitotal</h3>
           </div>
           <div
             className="header justify-content-end"
@@ -162,15 +178,9 @@ const Tele = () => {
               }}
               onClick={handleShow}
             >
-              <i className="fas fa-plus-circle"></i> Add New TeleCommunication
+              <i className="fas fa-plus-circle"></i> Add New Digitotal
             </button> */}
             <Modal show={show} onHide={handleClose} className="add_cat_modal">
-              {/* <Modal.Header closeButton>
-                  <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                    Add New Category
-                  </Modal.Title>
-                </Modal.Header> */}
-
               <Modal.Body>
                 <div className="container">
                   <Form.Group>
@@ -197,14 +207,34 @@ const Tele = () => {
                       }}
                     />
                     <Form.Label>Upload</Form.Label>{" "}
-                    <Form.Control
-                      className="form-control"
-                      type="file"
-                      name="image"
-                      id="image"
-                      accept="image/png, image/jpeg"
-                      onChange={handleFileChange}
-                    ></Form.Control>
+                    <div className="form-group text-center img_uploads">
+                      <img
+                        id="image"
+                        style={{ maxwidth: "100%", borderRadius: "50%" }}
+                        src={
+                          Image
+                            ? `${imageUrl(Image)}`
+                            : "/assets/images/default_user.png"
+                        }
+                        className="img-fluid"
+                      />
+                      <label
+                        className=""
+                        style={{ marginTop: "10px", cursor: "pointer" }}
+                      >
+                        <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                        <br />
+                        <input
+                          id="file"
+                          type="file"
+                          name="file"
+                          accept="image/png, image/gif, image/jpeg"
+                          onChange={handleFileChange}
+                          className="form-control"
+                          style={{ display: "none" }}
+                        />
+                      </label>
+                    </div>
                   </Form.Group>
                 </div>
               </Modal.Body>
@@ -226,6 +256,12 @@ const Tele = () => {
             </Modal>
           </div>
         </div>
+        <div style={{ paddingLeft: "15px", paddingBottom: "10px" }}>
+          <h6>
+            <b>Note: </b>Here we Can manage all Internal data related to the
+            DigiTotal.
+          </h6>
+        </div>
         <div>
           {" "}
           <Table striped bordered hover size="md" responsive>
@@ -244,11 +280,11 @@ const Tele = () => {
                 data.map((item, i) => (
                   <tr>
                     <td>{i + 1}</td>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>
+                    <td>{item?.id}</td>
+                    <td>{item?.name}</td>
                     <td>
                       <img
-                        src={imageUrl(item.image)}
+                        src={imageUrl(item?.image)}
                         alt="No Image"
                         style={{ width: "60px" }}
                       />
@@ -264,8 +300,8 @@ const Tele = () => {
                           onClick={() => {
                             handleDeleteshow(item);
                           }}
-                        >
-                          {" "}
+                        > */}
+                          {/* {" "}
                           <i className="fa fa-trash-o" />
                         </a> */}
                         <a
@@ -295,7 +331,7 @@ const Tele = () => {
             </Modal.Header>
 
             <Modal.Body>
-              <p>Are you sure want to delete this Category ?</p>
+              <p>Are you sure want to delete this DigiTotal Category ?</p>
             </Modal.Body>
 
             <Modal.Footer>
@@ -316,7 +352,7 @@ const Tele = () => {
               <Modal show={ShowEditModal} onHide={handleEditClose} size="md">
                 <Modal.Header closeButton>
                   <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                    Edit TeleCommunication Data
+                    Edit DigiTotal Data
                   </Modal.Title>
                   <button
                     type="button"
@@ -350,14 +386,34 @@ const Tele = () => {
                         }}
                       />
                       <Form.Label>Upload</Form.Label>{" "}
-                      <Form.Control
-                        className="form-control"
-                        type="file"
-                        name="image"
-                        id="image"
-                        accept="image/png, image/jpeg"
-                        onChange={handleFileChange}
-                      ></Form.Control>
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="image"
+                          style={{ maxwidth: "100%", borderRadius: "50%" }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : "/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <br />
+                          <input
+                            id="file"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
                     </Form.Group>
                   </div>
                 </Modal.Body>
@@ -380,4 +436,4 @@ const Tele = () => {
   );
 };
 
-export default Tele;
+export default AdDigi;

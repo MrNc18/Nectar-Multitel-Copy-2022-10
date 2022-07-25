@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import { showAlert } from "../../utils/showAlert";
-import { getAllWho_Teli_digi,imageUrl,getEditMenu,getDeleteMenu } from "../../services/Phase_2/MenuApi"
+import {
+  getAllWho_Teli_digi,
+  imageUrl,
+  getEditMenu,
+  getDeleteMenu,
+} from "../../services/Phase_2/MenuApi";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export const MenuPhase_2 = () => {
   const data = [
@@ -42,19 +49,19 @@ export const MenuPhase_2 = () => {
       description2: "",
     },
   ];
-  const [menu,setMenu]= useState('')
+  const [menu, setMenu] = useState("");
   const [file, setFile] = useState("");
   const [deleteRecord, setDeleteRecord] = useState("");
   const [show, setShow] = useState(false);
   const [ShowEditModal, setShowEditModal] = useState(false);
-  const [DeleteShow,setDeleteShow] = useState(false)
+  const [description, setDescription] = useState("");
+  const [DeleteShow, setDeleteShow] = useState(false);
   const [banfile, setBanFile] = useState("");
   const [data2, setData2] = useState({
     id: "",
     Title: "",
-    description: "",
   });
-  const { id, Title, description } = data2;
+  const { id, Title } = data2;
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
@@ -75,61 +82,75 @@ export const MenuPhase_2 = () => {
     setDeleteShow(false);
   };
 
- 
+  const getAllMenusData = async () => {
+    try {
+      const resp = await getAllWho_Teli_digi();
+      setMenu(resp.data);
+      console.log(resp.data);
+    } catch (error) {
+      showAlert("something Went Wrong", "error");
+    }
+  };
 
+  useEffect(() => {
+    getAllMenusData();
+  }, []);
 
-
-  const getAllMenusData = async () =>{
-    try{
-    const resp = await getAllWho_Teli_digi()
-    setMenu(resp.data)
-    console.log(resp.data)
-  }
-  catch(error){
-    showAlert("something Went Wrong" , "error")
-  }
-  }
-
-useEffect(()=>{
-  getAllMenusData()
-},[])
-
-
-  //Edit Api 
+  //Edit Api
   const handleEditShow = (item) => {
+    setDescription(item.description);
     setData2({
       id: item.id,
-      Title: item.Title,
-      description: item.description,
-
+      Title: item.title,
     });
     setShowEditModal(true);
   };
 
-  const handleEditMenu = () =>{
-      showAlert("Menu Edited Succesfully","success")
-  }
+  const handleEditData = async () => {
+    const data = new FormData();
+    for (var x = 0; x < file.length; x++) {
+      data.append("image", file[x]);
+      data.append("cover_img", banfile[x]);
+    }
+    data.append("description", description);
+    data.append("name", Title);
+    data.append("id", id);
+
+    try {
+      await getEditMenu(data);
+      showAlert("Category Data Edited Sucessfully", "success");
+      setData2(" ");
+      setDescription("");
+      setFile("");
+      setBanFile("");
+      setShowEditModal(false);
+      getAllMenusData();
+    } catch (error) {
+      showAlert("Something Went Wrong", "error");
+    }
+  };
 
   const handleEditClose = () => {
     setShowEditModal(false);
-    setData2(' ')
-    setFile('')
+    setData2(" ");
+    setDescription("");
+    setFile("");
   };
 
-  //Delete Api 
+  //Delete Api
 
-  const handleDeleteMenu = async() => {
+  const handleDeleteMenu = async () => {
     const data = {
       id: deleteRecord.id,
     };
     try {
       await getDeleteMenu(data);
-      showAlert("Menu Deleted Successfully","success");
+      showAlert("Menu Deleted Successfully", "success");
       setDeleteShow(false);
       getAllMenusData();
     } catch (error) {
       console.log("error", error);
-      showAlert("Something Went Wrong","error");
+      showAlert("Something Went Wrong", "error");
     }
   };
 
@@ -138,12 +159,15 @@ useEffect(()=>{
       <div className="container-fluid">
         <div class="row d-flex align-items-center justify-content-between">
           <div class="col-lg-6 col-md-6 text-left">
-            <h3 className="mt-4 mb-4">Menu Management</h3>
-          </div>  
+            <h4 className="mt-4 mb-4">Navigation Menu Management</h4>
+          </div>
         </div>
         <div class="col-lg-6 col-md-6 text-left">
-            <h6><b>Note : </b>Here We Can Manage the Data on main Pages of Menu.</h6>
-          </div>
+          <h6>
+            <b>Note : </b>Here we can Edit the data on main Pages of Navigation menu.
+          </h6>
+          <br/>
+        </div>
         <div>
           {" "}
           <Table striped bordered hover size="md" responsive>
@@ -164,21 +188,22 @@ useEffect(()=>{
                     <td>{item.id}</td>
                     <td>{item.title}</td>
                     <td>
-                      <img src={imageUrl(item.image)} style={{ width: "60px" }} />
+                      <img
+                        src={imageUrl(item.image)}
+                        style={{ width: "60px" }}
+                      />
                     </td>
                     <td>
-                    <a
-                        
+                      {/* <a
                         className="nav-link"
                         onClick={() => {
                           handleDeleteshow(item);
                         }}
                       >
-                       
                         <i className="fa fa-trash-o" />
-                      </a>
+                      </a> */}
                       <a
-                      style={{paddingRight:"10px"}}
+                        style={{ paddingRight: "10px" }}
                         className="nav-link"
                         onClick={() => {
                           handleEditShow(item);
@@ -195,7 +220,7 @@ useEffect(()=>{
             </tbody>
           </Table>
           {/* Delete Modal  */}
-           <Modal show={DeleteShow} onHide={handlecloseDelete}>
+          <Modal show={DeleteShow} onHide={handlecloseDelete}>
             <Modal.Header closeButton>
               <Modal.Title style={{ color: "#0076B5" }}>
                 Delete Product
@@ -218,10 +243,7 @@ useEffect(()=>{
               </Button>
             </Modal.Footer>
           </Modal>
-
-
           {/* Edit Modal */}
-
           <div className="col-xl-5  col-lg-4 col-md-3 col-sm-2">
             <div className="header">
               <Modal show={ShowEditModal} onHide={handleEditClose} size="md">
@@ -246,12 +268,26 @@ useEffect(()=>{
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
-                      <Form.Control
+                      {/* <Form.Control
                         type="textarea"
                         value={description}
                         name="description"
                         onChange={handleChange}
-                      ></Form.Control>
+                      ></Form.Control> */}
+                      <CKEditor
+                        editor={ClassicEditor}
+                        id="description"
+                        data={description}
+                        onReady={(editor) => {
+                          // You can store the "editor" and use when it is needed.
+                          console.log("Editor is ready to use!", editor);
+                        }}
+                        onChange={(event, editor) => {
+                          const data = editor.getData();
+                          setDescription(data);
+                          // onChange(data);
+                        }}
+                      />
                       <Form.Label>Upload</Form.Label>{" "}
                       <Form.Control
                         type="file"
@@ -272,7 +308,7 @@ useEffect(()=>{
                   <Button
                     variant="primary"
                     size="lg"
-                    onClick={handleEditMenu}
+                    onClick={handleEditData}
                     style={{ width: "200%" }}
                   >
                     Submit

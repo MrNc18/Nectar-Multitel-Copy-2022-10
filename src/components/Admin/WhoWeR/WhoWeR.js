@@ -182,7 +182,9 @@ const WhoWeR = () => {
         <div class="row d-flex align-items-center justify-content-between">
           <div class="col-lg-6 col-md-6 text-left">
             <h3 className="mt-4 mb-4">Who we Are</h3>
-            <p>Dropdown menu Management for Who we Are</p>
+            <h6>
+            <b>Note : </b>Here we can Edit the data on Pages of Who we are menu.
+          </h6>
           </div>
         </div>
         <div>
