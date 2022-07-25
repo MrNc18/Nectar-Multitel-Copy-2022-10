@@ -20,6 +20,7 @@ function Staticpage() {
   const [editImage, setEditImage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [file, setFile] = useState("");
+  const [Image, setImage] = useState("");
   let imageWidth = 1920;
   let imageHeight = 593;
   const [data2, setData2] = useState({
@@ -63,6 +64,13 @@ function Staticpage() {
   // };
 
   const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById("proimage");
+      console.log("output", output);
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
     setFile(event.target.files);
     console.log(file);
   };
@@ -137,6 +145,8 @@ function Staticpage() {
 
   //  edit API
   const handleEditShow = (item) => {
+    console.log("Items", item);
+    setImage(item.image);
     setData2({
       id: item?.id,
       Title: item?.title,
@@ -277,8 +287,6 @@ function Staticpage() {
                         <option> /categories/promotions</option>
                         <option>categories/other-productsservices-1</option>
                         <option>/home</option>
-                       
-                       
                       </select>
                       <Form.Label>Page slug</Form.Label>
                       <span style={{ color: "red" }}> * </span>
@@ -302,12 +310,33 @@ function Staticpage() {
                         <span style={{ color: "red" }}>* </span>Image should be
                         the size of 1920*600px
                       </p>
-                      <Form.Control
-                        type="file"
-                        id="file"
-                        accept="image/png, image/gif, image/jpeg"
-                        onChange={handleFileChange}
-                      ></Form.Control>
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="proimage"
+                          style={{ maxwidth: "100%", borderRadius: "50%" }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : "/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <input
+                            id="image"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
                     </Form.Group>
                   </div>
                 </Modal.Body>
@@ -464,13 +493,33 @@ function Staticpage() {
                 <span style={{ color: "red" }}>* </span>Image should be the size
                 of 1920*600px
               </p>
-              <Form.Control
-                type="file"
-                id="file"
-                // value={file}
-                onChange={handleFileChange}
-              ></Form.Control>
-              <img src={imageUrl(editImage)} style={{ width: "60px" }} />
+              <div className="form-group text-center img_uploads">
+                <img
+                  id="proimage"
+                  style={{ maxwidth: "100%", borderRadius: "50%" }}
+                  src={
+                    Image
+                      ? `${imageUrl(Image)}`
+                      : "/assets/images/default_user.png"
+                  }
+                  className="img-fluid"
+                />
+                <label
+                  className=""
+                  style={{ marginTop: "15px", cursor: "pointer" }}
+                >
+                  <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                  <input
+                    id="proimage"
+                    type="file"
+                    name="file"
+                    accept="image/png, image/gif, image/jpeg"
+                    onChange={handleFileChange}
+                    className="form-control"
+                    style={{ display: "none" }}
+                  />
+                </label>
+              </div>
             </Form.Group>
           </div>
         </Modal.Body>
