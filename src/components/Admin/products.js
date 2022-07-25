@@ -13,6 +13,8 @@ import {
 } from "../../services/category";
 import ProductsList from "../ProductsList";
 import { showAlert } from "../../utils/showAlert";
+import  default_user  from "../../assets/images/default_user.png"
+
 
 function Products() {
   const [ShowEditModal, setShowEditModal] = useState(false);
@@ -22,6 +24,7 @@ function Products() {
   const handlecloseDelete = () => setDeleteShow(false);
   const [productList, setProductList] = useState("");
   const[allcategories,setAllcategories]=useState('')
+  const [Image, setImage] = useState("");
 
   const navigate = useNavigate();
 
@@ -69,14 +72,24 @@ function Products() {
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
+
   const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('proimage');
+      console.log("output",output)
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
     setFile(event.target.files);
-    console.log("file",file);
+    console.log(file);
   };
 
   // Edit Api
   const handleEditShow = (item) => {
     console.log(allcategories, "allcategories");
+    setImage(item.cover_img);
+    console.log("item", item)
     setData2({
       id:item.id,
       productName: item.name,
@@ -287,7 +300,7 @@ function Products() {
         <div className="header">
           <Modal show={ShowEditModal} onHide={handleEditClose} size="lg">
             <Modal.Header closeButton>
-              <Modal.Title style={{ color: "#8ec131", marginLeft: "25px" }}>
+              <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
                 Edit Product List
               </Modal.Title>
             </Modal.Header>
@@ -470,31 +483,34 @@ function Products() {
                   </div>
                 </div>
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                  <div className="form-group">
-                    <label htmlFor="exampleInputtext">Product Image</label>
-                    <input
-                      className="form-control"
-                      type="file"
-                      name="proimage"
-                      id="proimage"
-                      accept="image/png, image/jpeg"
-                      onChange={handleFileChange}
-                    />
-                  </div>
+                  <div className="form-group text-center img_uploads">
+                        <img
+                          id="proimage"
+                          style={{ maxwidth: "100%", borderRadius: "50%" }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : {default_user}
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <input
+                            id="proimage"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
                 </div>
-
-                {/* <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-              <button
-                className="btn btn-primary w-100 mt-4 ml-0"
-                name="submit"
-                type="submit"
-                data-toggle="modal"
-                data-target="#exampleModalCenter"
-                 onClick={handleSubmit}
-              >
-                submit
-              </button>
-            </div> */}
                 <label style={{ color: "red", justifyContent: "center" }}>
                   {errorMsg}
                 </label>

@@ -13,17 +13,21 @@ import { showAlert } from "../../utils/showAlert";
 
 function InternetServices() {
   const handleClose = () => setShow(false);
-  const handleShow = () => {setShow(true);setErrorMsg('')};
+  const handleShow = () => {
+    setShow(true);
+    setErrorMsg("");
+  };
   const [show, setShow] = useState(false);
-  const [buttondisabled,setButtonDisabled] = useState(false);
+  const [buttondisabled, setButtonDisabled] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
   const [DeleteShow, setDeleteShow] = useState(false);
   const [file, setFile] = useState("");
+  const [Image, setImage] = useState("");
   //   const [banfile, setBanfile] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [servicesList, setServicesList] = useState("");
-  const[productsList,setProductsList]=useState('')
+  const [productsList, setProductsList] = useState("");
 
   const [data2, setData2] = useState({
     id: "",
@@ -41,6 +45,13 @@ function InternetServices() {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
   const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById("proimage");
+      console.log("output", output);
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
     setFile(event.target.files);
     console.log(file);
   };
@@ -60,118 +71,112 @@ function InternetServices() {
     try {
       await getDeleteServiceProducts(data);
       // alert("Service Deleted Successfully");
-      showAlert("Service Deleted Successfully","success")
+      showAlert("Service Deleted Successfully", "success");
       setDeleteShow(false);
       handleAllServiceProducts();
     } catch (error) {
       console.log("error", error);
-      showAlert("Something Went Wrong","error")
+      showAlert("Something Went Wrong", "error");
     }
   };
   const handleSubmit = async (event) => {
-    console.log("price",price)
+    console.log("price", price);
     event.preventDefault();
-    let ServiceId = ''
-    {servicesList &&
+    let ServiceId = "";
+    {
+      servicesList &&
         servicesList.map((item) => {
-        if(item.name === category){
-            ServiceId = item.id
-          console.log("item.id",item.id)
-        }
-      })
-      }
+          if (item.name === category) {
+            ServiceId = item.id;
+            console.log("item.id", item.id);
+          }
+        });
+    }
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
     }
-      data.append("description", description);
-      data.append("name", name);
-      data.append("price", price);
-      data.append("category", category);
-      data.append("service_id", ServiceId);
-      data.append("SortDescription", SortDescription);
-   
+    data.append("description", description);
+    data.append("name", name);
+    data.append("price", price);
+    data.append("category", category);
+    data.append("service_id", ServiceId);
+    data.append("SortDescription", SortDescription);
 
     if (name === "" || price === "" || category === "" || file === "") {
       setErrorMsg("Fill the Mandatory Fields");
-    }
-     else if(price < 1  || price % 1 != "0"){
-      setErrorMsg("Enter the Valid Price")
-    }
-    else{
-
+    } else if (price < 1 || price % 1 != "0") {
+      setErrorMsg("Enter the Valid Price");
+    } else {
       try {
-        setButtonDisabled(true)
+        setButtonDisabled(true);
         await getAddServiceProducts(data);
         showAlert("Added  Services Succesfully.", "success");
         setErrorMsg("");
-        setData2(' ')
-        setButtonDisabled(false)
+        setData2(" ");
+        setButtonDisabled(false);
         setShow(false);
         handleAllServiceProducts();
       } catch (error) {
         showAlert(error.data.message, "error");
-        setButtonDisabled(false)
+        setButtonDisabled(false);
       } finally {
         setShow(false);
       }
     }
-    
   };
-
 
   //  edit API
   const handleEditShow = (item) => {
-    console.log("item",item)
+    setImage(item.image);
+    console.log("item", item);
     setData2({
       id: item.id,
       name: item.name,
       description: item.description,
-      category:item.service.name,
-      price:item.price,
+      category: item.service.name,
+      price: item.price,
       // SortDescription:item.sort_description?item.sort_description:''
-
     });
     setShowEditModal(true);
   };
   const handleEditServices = async () => {
-    let EditServiceId = ''
-    {servicesList &&
+    let EditServiceId = "";
+    {
+      servicesList &&
         servicesList.map((item) => {
-        if(item.name === category){
-            EditServiceId = item.id
-          console.log("item.id",item.id)
-        }
-      })
-      }
+          if (item.name === category) {
+            EditServiceId = item.id;
+            console.log("item.id", item.id);
+          }
+        });
+    }
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
     }
-      data.append("description", description);
-      data.append("name", name);
-      data.append("price", price);
-      data.append("category", category);
-      data.append("serviceId", EditServiceId);
-      data.append("SortDescription", SortDescription);
-      data.append("id", id);
-
-    
+    data.append("description", description);
+    data.append("name", name);
+    data.append("price", price);
+    data.append("category", category);
+    data.append("serviceId", EditServiceId);
+    data.append("SortDescription", SortDescription);
+    data.append("id", id);
 
     try {
       await getEditServiceProducts(data);
-      showAlert("Service Product Edited Successfully","success");
+      showAlert("Service Product Edited Successfully", "success");
       setData2("");
-      setFile('')
+      setFile("");
       setShowEditModal(false);
       handleAllServiceProducts();
     } catch (error) {
-      showAlert("Something Went Wrong","error");
+      showAlert("Something Went Wrong", "error");
     }
   };
   const handleEditClose = () => {
     setData2("");
-    setFile('')
+    setFile("");
     setShowEditModal(false);
   };
 
@@ -190,9 +195,7 @@ function InternetServices() {
 
   useEffect(() => {
     handleAllServiceProducts();
-    
   }, []);
-
 
   const handleAllServices = async () => {
     try {
@@ -201,7 +204,7 @@ function InternetServices() {
       console.log("resp", resp);
     } catch (error) {
       console.log("error", error);
-      showAlert("something went Wrong","error");
+      showAlert("something went Wrong", "error");
     }
   };
 
@@ -212,9 +215,9 @@ function InternetServices() {
   return (
     <div id="layoutSidenavContent">
       <div className="container-fluid">
-      <div class="row d-flex align-items-center justify-content-between">
-         <div class="col-lg-6 col-md-6 text-left">
-          <h3 className="mt-4 mb-4">Internet Services</h3>
+        <div class="row d-flex align-items-center justify-content-between">
+          <div class="col-lg-6 col-md-6 text-left">
+            <h3 className="mt-4 mb-4">Internet Services</h3>
           </div>
           <div className="col-lg-6 col-md-6 text-right">
             <div className="header justify-content-end">
@@ -231,7 +234,6 @@ function InternetServices() {
                 <i className="fas fa-plus-circle"></i> Add New service
               </button>
               <Modal show={show} onHide={handleClose} className="add_cat_modal">
-
                 <Modal.Body>
                   <button
                     type="button"
@@ -248,7 +250,7 @@ function InternetServices() {
                   <div className="container">
                     <Form.Group>
                       <Form.Label>Name</Form.Label>
-                      <span style={{color:"red"}}>*</span>
+                      <span style={{ color: "red" }}>*</span>
                       <Form.Control
                         type="text"
                         value={name}
@@ -256,7 +258,7 @@ function InternetServices() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
-                      <span style={{color:"red"}}>*</span>
+                      <span style={{ color: "red" }}>*</span>
                       <Form.Control
                         type="textarea"
                         value={description}
@@ -270,16 +272,36 @@ function InternetServices() {
                         name="SortDescription"
                         onChange={handleChange}
                       ></Form.Control> */}
-                      <Form.Label>Upload Image</Form.Label>{" "}
-                      <span style={{color:"red"}}>*</span>
-                      <Form.Control
-                        type="file"
-                        id="file"
-                        accept="image/png, image/gif, image/jpeg"
-                        onChange={handleFileChange}
-                      ></Form.Control>
+                      <Form.Label>Upload</Form.Label>{" "}
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="proimage"
+                          style={{ maxwidth: "100%", borderRadius: "50%" }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : "/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <input
+                            id="proimage"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
                       <Form.Label>Service Category</Form.Label>
-                      <span style={{color:"red"}}>*</span> <br />
+                      <span style={{ color: "red" }}>*</span> <br />
                       <Form.Select
                         value={category}
                         name="category"
@@ -293,13 +315,15 @@ function InternetServices() {
                       >
                         <option> Please select the Category </option>
                         {servicesList &&
-                        servicesList.map((item) => (
-                          <option value={item.name? item.name : ""}>{item? item.name : ""}</option>
-                        ))}
+                          servicesList.map((item) => (
+                            <option value={item.name ? item.name : ""}>
+                              {item ? item.name : ""}
+                            </option>
+                          ))}
                       </Form.Select>
                       <br />
                       <Form.Label>Price</Form.Label>
-                      <span style={{color:"red"}}>*</span>
+                      <span style={{ color: "red" }}>*</span>
                       <Form.Control
                         type="number"
                         min="0"
@@ -353,7 +377,14 @@ function InternetServices() {
                   <td>{item.service.name}</td>
                   <td>{item.price}</td>
                   <td>
-                    <img src={item.cover_img === null ? "/assets/images/broad2.png":imageUrl(item.cover_img)} style={{ width: "60px" }} />
+                    <img
+                      src={
+                        item.cover_img === null
+                          ? "/assets/images/broad2.png"
+                          : imageUrl(item.cover_img)
+                      }
+                      style={{ width: "60px" }}
+                    />
                   </td>
                   <td>
                     <a
@@ -450,10 +481,11 @@ function InternetServices() {
                   >
                     <option> Please select the Category </option>
                     {servicesList &&
-                        servicesList.map((item) => (
-                          <option value={item.name? item.name : ""}>{item? item.name : ""}</option>
-                        ))}
-                    
+                      servicesList.map((item) => (
+                        <option value={item.name ? item.name : ""}>
+                          {item ? item.name : ""}
+                        </option>
+                      ))}
                   </Form.Select>
                   <br />
                   <Form.Label>Price</Form.Label>
@@ -466,11 +498,33 @@ function InternetServices() {
                     onChange={handleChange}
                   ></Form.Control>
                   <Form.Label>Upload</Form.Label>{" "}
-                  <Form.Control
-                    type="file"
-                    id="file"
-                    onChange={handleFileChange}
-                  ></Form.Control>
+                  <div className="form-group text-center img_uploads">
+                    <img
+                      id="proimage"
+                      style={{ maxwidth: "100%", borderRadius: "50%" }}
+                      src={
+                        Image
+                          ? `${imageUrl(Image)}`
+                          : "/assets/images/default_user.png"
+                      }
+                      className="img-fluid"
+                    />
+                    <label
+                      className=""
+                      style={{ marginTop: "15px", cursor: "pointer" }}
+                    >
+                      <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                      <input
+                        id="image"
+                        type="file"
+                        name="file"
+                        accept="image/png, image/gif, image/jpeg"
+                        onChange={handleFileChange}
+                        className="form-control"
+                        style={{ display: "none" }}
+                      />
+                    </label>
+                  </div>
                 </Form.Group>
               </div>
             </Modal.Body>
