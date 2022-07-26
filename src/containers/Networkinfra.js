@@ -32,9 +32,9 @@ const Networkinfra = () => {
           <div className="row">
             <div className="col-12 col-6 c-ol-4 bredcrumb">
               <Breadcrumb>
-                <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
+                <Breadcrumb.Item href="/digital">Start</Breadcrumb.Item>
 
-                <Breadcrumb.Item href=" ">Digital</Breadcrumb.Item>
+                <Breadcrumb.Item href="/digital">Digital</Breadcrumb.Item>
                 <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
                   Network Infrastructure
                 </Breadcrumb.Item>

@@ -15,8 +15,8 @@ const InternetUser = () => {
         <Container className="mb-5">
           <div className="bredcrumb">
             <Breadcrumb>
-              <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
-              <Breadcrumb.Item href="#">Telecommunication</Breadcrumb.Item>
+              <Breadcrumb.Item href="/internet">Start</Breadcrumb.Item>
+              <Breadcrumb.Item href="telecommunication">Telecommunication</Breadcrumb.Item>
               <Breadcrumb.Item active style={{ color: "#0076B5" }}>
                 Internet
               </Breadcrumb.Item>

@@ -20,8 +20,8 @@ function PrivateNetwork() {
             <Col md={12}>
               <div className="bredcrumb">
                 <Breadcrumb>
-                  <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
-                  <Breadcrumb.Item href="#">Who We Are</Breadcrumb.Item>
+                  <Breadcrumb.Item href="/privatenetwork">Start</Breadcrumb.Item>
+                  <Breadcrumb.Item href="telecommunication">Telecommunication</Breadcrumb.Item>
                   <Breadcrumb.Item active style={{ color: "#0076B5" }}>
                     Private Networks
                   </Breadcrumb.Item>
@@ -40,7 +40,7 @@ function PrivateNetwork() {
                   className="sidenav mb-3"
                   style={{ backgroundColor: "#E2E2E2" }}
                 >
-                  <Nav variant="pills" className="flex-column">
+                  <Nav variant="pills" className="flex-column pointer">
                     <Nav.Item>
                       <Nav.Link eventKey="privatenetwork">
                         <i class="fa-solid fa-user-large"></i>
