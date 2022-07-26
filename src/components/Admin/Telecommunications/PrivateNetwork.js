@@ -469,7 +469,7 @@ const ADPrivateNetwork = () => {
                       <div className="form-group text-center img_uploads">
                         <img
                           id="image"
-                          style={{ maxwidth: "100%", borderRadius: "50%" }}
+                          style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
                           src={
                             Image
                               ? `${imageUrl(Image)}`
@@ -481,7 +481,7 @@ const ADPrivateNetwork = () => {
                           className=""
                           style={{ marginTop: "15px", cursor: "pointer" }}
                         >
-                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white" style={{bottom:"1%"}}></i>
                           {/* <br /> */}
                           <input
                             id="file"
