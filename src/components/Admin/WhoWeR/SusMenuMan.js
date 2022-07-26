@@ -6,10 +6,9 @@ import {
   getAddSus,
   getEditSus,
   getDeleteSus,
-  getAllSusCategories
+  getAllSusCategories , imageUrl
 } from "../../../services/Phase_2/WhoWeR";
 import { showAlert } from "../../../utils/showAlert";
-import { imageUrl } from "../../../services/category";
 
 export const SusMenuMan = () => {
   const [buttondisabled, setButtonDisabled] = useState(false);
@@ -48,6 +47,8 @@ export const SusMenuMan = () => {
     setfile(event.target.files);
     console.log(file);
   };
+
+
 
   const handleDeleteshow = (item) => {
     setDeleteShow(true);

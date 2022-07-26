@@ -210,7 +210,7 @@ const AdDigi = () => {
                     <div className="form-group text-center img_uploads">
                       <img
                         id="image"
-                        style={{ maxwidth: "100%", borderRadius: "50%" }}
+                        style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
                         src={
                           Image
                             ? `${imageUrl(Image)}`
@@ -389,7 +389,7 @@ const AdDigi = () => {
                       <div className="form-group text-center img_uploads">
                         <img
                           id="image"
-                          style={{ maxwidth: "100%", borderRadius: "50%" }}
+                          style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
                           src={
                             Image
                               ? `${imageUrl(Image)}`
