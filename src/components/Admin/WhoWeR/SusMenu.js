@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // import data from "./DummyData";
 import { showAlert } from "../../../utils/showAlert";
 import { Button, Modal, Form, Table } from "react-bootstrap";
-import { getAddSusCategories,getAllSusCategories,getEditSusCategories,getDeleteSusCategories } from "../../../services/Phase_2/WhoWeR";
+import { getAddSusCategories,getAllSusCategories,getEditSusCategories,getDeleteSusCategories ,imageUrl } from "../../../services/Phase_2/WhoWeR";
 
 export const SusMenu = () => {
   const handleClose = () => setShow(false);
@@ -15,6 +15,7 @@ export const SusMenu = () => {
   const [DeleteShow, setDeleteShow] = useState(false);
   const [data,setData] = useState('')
   const [file, setfile] = useState("");
+  const [Image, setImage] = useState("");
   const [data2, setData2] = useState({
     id: "",
     Title: "",
@@ -27,8 +28,20 @@ export const SusMenu = () => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = (e) => {
-    setfile(e.target.files);
+  // const handleFileChange = (e) => {
+  //   setfile(e.target.files);
+  // };
+
+  const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById("proimage");
+      console.log("output", output);
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    setfile(event.target.files);
+    console.log(file);
   };
 
   const handleDeleteshow = (item) => {
@@ -98,6 +111,8 @@ export const SusMenu = () => {
   //Edit API
 
   const handleEditShow = (item) => {
+    console.log("items", item)
+    setImage(item.image);
     setData2({
       id: item.id,
       Title: item.name,
@@ -348,14 +363,41 @@ useEffect(() => {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Upload</Form.Label>{" "}
-                      <Form.Control
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="proimage"
+                          style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : "/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <input
+                            id="proimage"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
+                      {/* <Form.Control
                         className="form-control"
                         type="file"
                         name="image"
                         id="image"
                         accept="image/png, image/jpeg"
                         onChange={handleFileChange}
-                      ></Form.Control>
+                      ></Form.Control> */}
                     </Form.Group>
                   </div>
                 </Modal.Body>
