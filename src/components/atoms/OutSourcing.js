@@ -35,7 +35,7 @@ const OutSourcing = () => {
               <Breadcrumb>
                 <Breadcrumb.Item href="/digitotal">Start</Breadcrumb.Item>
                 <Breadcrumb.Item href="/digitotal">Digital</Breadcrumb.Item>
-                <Breadcrumb.Item href="/omg"> Other Services</Breadcrumb.Item>
+                <Breadcrumb.Item href="/otherservice"> Other Services</Breadcrumb.Item>
 
                 <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
                   OutSourcing
