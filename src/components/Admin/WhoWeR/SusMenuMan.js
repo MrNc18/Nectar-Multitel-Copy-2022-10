@@ -6,8 +6,7 @@ import {
   getAddSus,
   getEditSus,
   getDeleteSus,
-  getAllSusCategories,
-  imageUrl,
+  getAllSusCategories , imageUrl
 } from "../../../services/Phase_2/WhoWeR";
 import { showAlert } from "../../../utils/showAlert";
 
@@ -48,6 +47,8 @@ export const SusMenuMan = () => {
     setfile(event.target.files);
     console.log(file);
   };
+
+
 
   const handleDeleteshow = (item) => {
     setDeleteShow(true);
@@ -116,6 +117,7 @@ export const SusMenuMan = () => {
   //Edit API
 
   const handleEditShow = (item) => {
+    setImage(item.image);
     setData2({
       id: item.id,
       Title: item.title,
@@ -477,7 +479,6 @@ export const SusMenuMan = () => {
                           />
                         </label>
                       </div>
-                  
                     </Form.Group>
                   </div>
                 </Modal.Body>

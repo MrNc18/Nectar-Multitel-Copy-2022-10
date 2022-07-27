@@ -1,17 +1,19 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { showAlert } from "../../../utils/showAlert";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import Creatable from "react-select/creatable";
 import {
-  getAllMsgMissionSus,getAddMsgMissionSus,getEditMsgMissionSus,getDeleteMsgMissionSus,imageUrl
+  getAllMsgMissionSus,
+  getAddMsgMissionSus,
+  getEditMsgMissionSus,
+  getDeleteMsgMissionSus,
+  imageUrl,
 } from "../../../services/Phase_2/WhoWeR";
 
 const WhoWeR = () => {
- 
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [data,setData] = useState('');
+  const [data, setData] = useState("");
   const [buttondisabled, setButtonDisabled] = useState(false);
   const [show, setShow] = useState(false);
   const [ShowEditModal, setShowEditModal] = useState(false);
@@ -19,7 +21,6 @@ const WhoWeR = () => {
   const [tagInputValue, setTagInputValu] = useState("");
   const [tagValue, setTagValue] = useState("");
   const [Image, setImage] = useState("");
-
   const [data2, setData2] = useState({
     id: "",
     Title: "",
@@ -70,16 +71,16 @@ const WhoWeR = () => {
     console.log(file);
   };
 
-   //Get All 
+  //Get All
 
-   const handleAllData = async () => {
+  const handleAllData = async () => {
     try {
       const resp = await getAllMsgMissionSus();
       setData(resp && resp.data);
       console.log("resp", resp);
     } catch (error) {
       console.log("error", error);
-      showAlert("something went Wrong","error");
+      showAlert("something went Wrong", "error");
     }
   };
 
@@ -87,16 +88,14 @@ const WhoWeR = () => {
     handleAllData();
   }, []);
 
-
   //Edit API
   const handleEditShow = (item) => {
-    console.log("items",item)
-    setImage(item.image)
+    setImage(item.image);
     setData2({
       id: item.id,
       Title: item.name,
       description: item.description,
-      tags: item.tags, 
+      tags: item.tags,
       sub_heading: item.sub_heading,
       sub_heading_2: item.sub_heading_2,
       sub_heading_3: item.sub_heading_3,
@@ -119,9 +118,9 @@ const WhoWeR = () => {
     const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
-      console.log("file152",file)
+      console.log("file152", file);
     }
-    
+
     data.append("description", description);
     data.append("name", Title);
     data.append("id", id);
@@ -133,42 +132,40 @@ const WhoWeR = () => {
     data.append("sub_heading_3", sub_heading_3);
     try {
       await getEditMsgMissionSus(data);
-      showAlert("Data Edited Sucessfully","success");
-      setData2(' ')
+      showAlert("Data Edited Sucessfully", "success");
+      setData2(" ");
       setfile("");
-      setTagValue('')
+      setTagValue("");
       setShowEditModal(false);
       handleAllData();
     } catch (error) {
-      showAlert("Something Went Wrong","error");
+      showAlert("Something Went Wrong", "error");
     }
   };
 
   const handleEditClose = () => {
     setData2(" ");
     setfile("");
-     setTagValue('')
+    setTagValue("");
     setShowEditModal(false);
   };
 
+  //MuiltiSelect Create
 
-
-   //MuiltiSelect Create
-
-   const handleTagChange = (tags, value) => {
+  const handleTagChange = (tags, value) => {
     setTagValue(value);
     console.log("tagvalue onchange", value);
   };
 
   const handleKeyDown = (event) => {
-    console.log(tagValue)
+    console.log(tagValue);
     if (!tagInputValue) return;
     switch (event.key) {
       case "Enter":
       case "Tab":
         setTagValue([...tagValue, createOption(tagInputValue)]);
         setTagInputValu("");
-        console.log(tagValue)
+        console.log(tagValue);
         event.preventDefault();
         break;
       default:
@@ -194,8 +191,9 @@ const WhoWeR = () => {
           <div class="col-lg-6 col-md-6 text-left">
             <h3 className="mt-4 mb-4">Who we Are</h3>
             <h6>
-            <b>Note : </b>Here we can Edit the data on Pages of Who we are menu.
-          </h6>
+              <b>Note : </b>Here we can Edit the data on Pages of Who we are
+              menu.
+            </h6>
           </div>
         </div>
         <div>
@@ -220,11 +218,13 @@ const WhoWeR = () => {
                     <td>{item.id}</td>
                     <td>{item.name}</td>
                     <td>
-                      <img src={imageUrl(item.image)} alt="No Image"  style={{ width: "60px" }} />
+                      <img
+                        src={imageUrl(item.image)}
+                        alt="No Image"
+                        style={{ width: "60px" }}
+                      />
                     </td>
-                    <td>
-                    {item.message_tags && Tabletag(item)}
-                    </td>
+                    <td>{item.message_tags && Tabletag(item)}</td>
 
                     <td>
                       <a
@@ -334,7 +334,6 @@ const WhoWeR = () => {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Upload</Form.Label>{" "}
-                      <Form.Label>Upload</Form.Label>{" "}
                       <div className="form-group text-center img_uploads">
                         <img
                           id="proimage"
@@ -354,7 +353,7 @@ const WhoWeR = () => {
                           className=""
                           style={{ marginTop: "15px", cursor: "pointer" }}
                         >
-                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white" style={{bottom:"18%"}}></i>
                           <input
                             id="image"
                             type="file"
@@ -366,6 +365,19 @@ const WhoWeR = () => {
                           />
                         </label>
                       </div>
+                      <Form.Label>Tags</Form.Label>{" "}
+                      <Creatable
+                        isClearable
+                        isMulti
+                        components={{ DropdownIndicator: null }}
+                        inputValue={tagInputValue}
+                        onChange={(value) => handleTagChange("tags", value)}
+                        onInputChange={handleInputChange}
+                        placeholder="Please enter the tags and Click Enter"
+                        onKeyDown={handleKeyDown}
+                        menuIsOpen={false}
+                        value={tagValue}
+                      />
                     </Form.Group>
                   </div>
                 </Modal.Body>

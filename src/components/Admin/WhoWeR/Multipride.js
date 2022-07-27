@@ -23,8 +23,6 @@ const Multipride = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [file, setfile] = useState([]);
   const [Image, setImage] = useState("");
-
-
   const [data2, setData2] = useState({
     id: "",  
     Title: "",
@@ -37,10 +35,6 @@ const Multipride = () => {
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
-
-  // const handleFileChange = (e) => {
-  //   setfile(e.target.files);
-  // };
 
   const handleFileChange = (event) => {
     var reader = new FileReader();
@@ -86,8 +80,7 @@ const Multipride = () => {
   //Edit API
 
   const handleEditShow = (item) => {
-    console.log("items",item)
-    setImage(item.image)
+    setImage(item.image);
     setData2({
       id: item.id,
       Title: item.title,
@@ -240,7 +233,7 @@ const Multipride = () => {
                         name="sort_description"
                         onChange={handleChange}
                       ></Form.Control>
-                      <Form.Label>Upload</Form.Label>{" "}
+                       <Form.Label>Upload</Form.Label>{" "}
                       <div className="form-group text-center img_uploads">
                         <img
                           id="proimage"
@@ -272,7 +265,6 @@ const Multipride = () => {
                           />
                         </label>
                       </div>
-                  
                     </Form.Group>
                   </div>
                 </Modal.Body>
@@ -442,8 +434,6 @@ const Multipride = () => {
                           />
                         </label>
                       </div>
-
-                      
                     </Form.Group>
                   </div>
                 </Modal.Body>

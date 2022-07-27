@@ -12,6 +12,7 @@ import { showAlert } from "../../../utils/showAlert";
 import moment from "moment"
 
 
+
 const NewsData = () => {
   const handleShow = () => setShow(true);
   const [buttondisabled, setButtonDisabled] = useState(false);
@@ -28,6 +29,7 @@ const NewsData = () => {
   };
   const [errorMsg, setErrorMsg] = useState("");
   const [file, setfile] = useState([]);
+
   const [data2, setData2] = useState({
     id: "",
     Title: "",
@@ -42,10 +44,6 @@ const NewsData = () => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
 
-  // const handleFileChange = (e) => {
-  //   setfile(e.target.files);
-  // };
-
 
   const handleFileChange = (event) => {
     var reader = new FileReader();
@@ -58,6 +56,8 @@ const NewsData = () => {
     setfile(event.target.files);
     console.log(file);
   };
+
+  
   const handleDeleteshow = (item) => {
     setDeleteShow(true);
     setDeleteRecord(item);
@@ -93,9 +93,7 @@ const NewsData = () => {
   //Edit API
 
   const handleEditShow = (item) => {
-    console.log("items",item)
-    setImage(item.image)
-
+    setImage(item.image);
     setData2({
       id: item.id,
       Title: item.title,
@@ -266,6 +264,47 @@ const NewsData = () => {
                         name="Title"
                         onChange={handleChange}
                       ></Form.Control>
+                      <Form.Label>Description</Form.Label>
+                      <span style={{ color: "red" }}>*</span>
+                      <Form.Control
+                        type="textarea"
+                        value={description}
+                        name="description"
+                        onChange={handleChange}
+                      ></Form.Control>
+                      <Form.Label>Category</Form.Label>
+                      <span style={{ color: "red" }}>*</span>
+                      <select
+                        className="form-control"
+                        id="exampleFormControlSelect1"
+                        value={category}
+                        name="category"
+                        onChange={handleChange}
+                      >
+                        <option value="" disabled="disabled">
+                          Select Option
+                        </option>
+                        {categories &&
+                          categories.map((item) => (
+                            <option value={item.name}>{item.name}</option>
+                          ))}
+                      </select>
+                      <Form.Label>News Date</Form.Label>
+                      <span style={{ color: "red" }}>*</span>
+                      <Form.Control
+                        type="Date"
+                        value={news_Date}
+                        name="news_Date"
+                        onChange={handleChange}
+                      ></Form.Control>
+                      <Form.Label>News Number</Form.Label>
+                      <span style={{ color: "red" }}>*</span>
+                      <Form.Control
+                        type="text"
+                        value={news_num}
+                        name="news_num"
+                        onChange={handleChange}
+                      ></Form.Control>
                       <Form.Label>Upload</Form.Label>{" "}
                       <div className="form-group text-center img_uploads">
                         <img
@@ -298,7 +337,6 @@ const NewsData = () => {
                           />
                         </label>
                       </div>
-                  
                     </Form.Group>
                   </div>
                 </Modal.Body>
@@ -423,6 +461,46 @@ const NewsData = () => {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
+                      <Form.Control
+                        type="textarea"
+                        value={description}
+                        name="description"
+                        onChange={handleChange}
+                      ></Form.Control>
+                      <Form.Label>Category</Form.Label>
+                      <span style={{ color: "red" }}>*</span>
+                      <select
+                        className="form-control"
+                        id="exampleFormControlSelect1"
+                        value={category}
+                        name="category"
+                        onChange={handleChange}
+                      >
+                        <option value="" disabled="disabled">
+                          Select Option
+                        </option>
+                        {categories &&
+                          categories.map((item) => (
+                            <option value={item.name}>{item.name}</option>
+                          ))}
+                      </select>
+                      <Form.Label>News Date</Form.Label>
+                      <span style={{ color: "red" }}>*</span>
+                      <Form.Control
+                        type="Date"
+                        value={news_Date}
+                        name="news_Date"
+                        onChange={handleChange}
+                      ></Form.Control>
+                      <Form.Label>News Number</Form.Label>
+                      <span style={{ color: "red" }}>*</span>
+                      <Form.Control
+                        type="text"
+                        value={news_num}
+                        name="news_num"
+                        onChange={handleChange}
+                      ></Form.Control>
+                      <Form.Label>Upload</Form.Label>{" "}
                       <div className="form-group text-center img_uploads">
                         <img
                           id="proimage"
@@ -454,8 +532,6 @@ const NewsData = () => {
                           />
                         </label>
                       </div>
-
-                      
                     </Form.Group>
                   </div>
                 </Modal.Body>
