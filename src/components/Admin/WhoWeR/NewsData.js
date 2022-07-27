@@ -5,6 +5,7 @@ import {
   getDeleteNews,
   getEditNews,
   getAllNewsCategories,
+  imageUrl,
 } from "../../../services/Phase_2/WhoWeR";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import { showAlert } from "../../../utils/showAlert";
@@ -20,6 +21,7 @@ const NewsData = () => {
   const [deleteRecord, setDeleteRecord] = useState("");
   const [categories, setCategories] = useState("");
   const [DeleteShow, setDeleteShow] = useState(false);
+  const [Image, setImage] = useState("");
   const handleClose = () => {
     setShow(false);
     setData2("");
@@ -44,14 +46,18 @@ const NewsData = () => {
   //   setfile(e.target.files);
   // };
 
-  const handleFileChange = (e) => {
-    if (e.target.files) {
-      // setfile({ ...file, slider_images: [...e.target.files] });
-      setfile(e.target.files);
-    }
-    console.log("Update slider images", file);
-  };
 
+  const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById("proimage");
+      console.log("output", output);
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    setfile(event.target.files);
+    console.log(file);
+  };
   const handleDeleteshow = (item) => {
     setDeleteShow(true);
     setDeleteRecord(item);
@@ -87,6 +93,9 @@ const NewsData = () => {
   //Edit API
 
   const handleEditShow = (item) => {
+    console.log("items",item)
+    setImage(item.image)
+
     setData2({
       id: item.id,
       Title: item.title,
@@ -257,55 +266,39 @@ const NewsData = () => {
                         name="Title"
                         onChange={handleChange}
                       ></Form.Control>
-                      <Form.Label>Description</Form.Label>
-                      <span style={{ color: "red" }}>*</span>
-                      <Form.Control
-                        type="textarea"
-                        value={description}
-                        name="description"
-                        onChange={handleChange}
-                      ></Form.Control>
-                      <Form.Label>Category</Form.Label>
-                      <span style={{ color: "red" }}>*</span>
-                      <select
-                        className="form-control"
-                        id="exampleFormControlSelect1"
-                        value={category}
-                        name="category"
-                        onChange={handleChange}
-                      >
-                        <option value="" disabled="disabled">
-                          Select Option
-                        </option>
-                        {categories &&
-                          categories.map((item) => (
-                            <option value={item.name}>{item.name}</option>
-                          ))}
-                      </select>
-                      <Form.Label>News Date</Form.Label>
-                      <span style={{ color: "red" }}>*</span>
-                      <Form.Control
-                        type="Date"
-                        value={news_Date}
-                        name="news_Date"
-                        onChange={handleChange}
-                      ></Form.Control>
-                      <Form.Label>News Number</Form.Label>
-                      <span style={{ color: "red" }}>*</span>
-                      <Form.Control
-                        type="text"
-                        value={news_num}
-                        name="news_num"
-                        onChange={handleChange}
-                      ></Form.Control>
-                      <Form.Label>Upload Image</Form.Label>{" "}
-                      <Form.Control
-                        multiple
-                        type="file"
-                        id="file"
-                        accept="image/png, image/gif, image/jpeg"
-                        onChange={handleFileChange}
-                      ></Form.Control>
+                      <Form.Label>Upload</Form.Label>{" "}
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="proimage"
+                          style={{
+                            maxwidth: "100%",
+                            borderRadius: "50%",
+                            height: "120px",
+                          }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : "/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <input
+                            id="image"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
+                  
                     </Form.Group>
                   </div>
                 </Modal.Body>
@@ -430,55 +423,39 @@ const NewsData = () => {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
-                      <Form.Control
-                        type="textarea"
-                        value={description}
-                        name="description"
-                        onChange={handleChange}
-                      ></Form.Control>
-                      <Form.Label>Category</Form.Label>
-                      <span style={{ color: "red" }}>*</span>
-                      <select
-                        className="form-control"
-                        id="exampleFormControlSelect1"
-                        value={category}
-                        name="category"
-                        onChange={handleChange}
-                      >
-                        <option value="" disabled="disabled">
-                          Select Option
-                        </option>
-                        {categories &&
-                          categories.map((item) => (
-                            <option value={item.name}>{item.name}</option>
-                          ))}
-                      </select>
-                      <Form.Label>News Date</Form.Label>
-                      <span style={{ color: "red" }}>*</span>
-                      <Form.Control
-                        type="Date"
-                        value={news_Date}
-                        name="news_Date"
-                        onChange={handleChange}
-                      ></Form.Control>
-                      <Form.Label>News Number</Form.Label>
-                      <span style={{ color: "red" }}>*</span>
-                      <Form.Control
-                        type="text"
-                        value={news_num}
-                        name="news_num"
-                        onChange={handleChange}
-                      ></Form.Control>
-                      <Form.Label>Upload</Form.Label>{" "}
-                      <Form.Control
-                        multiple
-                        className="form-control"
-                        type="file"
-                        name="image"
-                        id="image"
-                        accept="image/png, image/jpeg"
-                        onChange={handleFileChange}
-                      ></Form.Control>
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="proimage"
+                          style={{
+                            maxwidth: "100%",
+                            borderRadius: "50%",
+                            height: "120px",
+                          }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : "/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <input
+                            id="image"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
+
+                      
                     </Form.Group>
                   </div>
                 </Modal.Body>
