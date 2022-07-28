@@ -89,8 +89,8 @@ import ADPrivateNetwork from "./components/Admin/Telecommunications/PrivateNetwo
 import Tele from "./components/Admin/Telecommunications/Tele";
 import VideoConference from "./containers/VideoConference";
 import Cpes from "./containers/Cpes";
-import WhoWeAre from "./containers/Whoweare";
-// import WhoWeAre from "./containers/WhoWeAre";
+//import WhoWeAre from "./containers/Whoweare";
+import WhoWeAre from "./containers/WhoWeAre";
 import Commercial from "./components/atoms/Commercial";
 // import GraphicDesigner from "./components/atoms/GraphicDesigner";
 import OtherService from "./containers/OtherService";
