@@ -160,7 +160,7 @@ const ADPrivateNetwork = () => {
 
     try {
       await getEditTele(data);
-      showAlert("Network Edited Sucessfully", "success");
+      showAlert("Network Edited Successfully", "success");
       setData2(" ");
       setDescription("");
       setfile("");

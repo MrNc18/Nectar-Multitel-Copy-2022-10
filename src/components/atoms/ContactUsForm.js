@@ -1,27 +1,55 @@
 import React, { useState } from "react";
-import { CITY_LIST } from "../../constants/authconstant";
+import { showAlert } from "../../utils/showAlert";
+import { addContactUs } from "../../services/DigitotalFront";
 
 function RecruitmentForm() {
-  const [file, setFile] = useState([]);
-
+  const [buttondisabled, setButtonDisabled] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [data2, setData2] = useState({
     name: "",
     email: "",
     city: "",
-    telephone: "",
-    household: "",
+    subject: "",
     message: "",
   });
 
-  const { name, email, telephone, household, message ,city } = data2;
+  const { name, email, message, country, subject } = data2;
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
     console.log("target", e.target);
   };
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files);
-    console.log(file);
+  //   Add API
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      name: name,
+      country: country,
+      email: email,
+      subject: subject,
+      message: message,
+    };
+
+    if (
+      (name === "",
+      country === "",
+      email === "",
+      subject === "",
+      message === "")
+    ) {
+      setErrorMsg("Fill the Mandatory Fields");
+    } else
+      try {
+        setButtonDisabled(true);
+        await addContactUs(data);
+        showAlert("Your Query Added Successfully", "success");
+        setData2("");
+        setButtonDisabled(false);
+      } catch (error) {
+        showAlert(error.data.message, "error");
+      }
   };
 
   return (
@@ -38,7 +66,7 @@ function RecruitmentForm() {
                 <input
                   type="text"
                   className="form-control"
-                  id=""
+                  id="name"
                   name="name"
                   value={name}
                   required
@@ -55,7 +83,7 @@ function RecruitmentForm() {
                 <input
                   type="email"
                   className="form-control"
-                  id=""
+                  id="email"
                   name="email"
                   value={email}
                   required
@@ -64,50 +92,39 @@ function RecruitmentForm() {
               </div>
             </div>
 
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                <div className="form-group">
-                  <label htmlFor="exampleInputtext" className="mb-1">
-                    Country/city
-                  </label>
-                  <span style={{ color: "red" }}> * </span>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id=""
-                    name="city"
-                    value={city}
-                    required
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                <div className="form-group">
+            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+              <div className="form-group">
                 <label htmlFor="exampleInputtext" className="mb-1">
-                    Subject
-                  </label>
-                  <span style={{ color: "red" }}> * </span>
-                  <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>A</option>
-                    <option>B</option>
-                    <option>C</option>
-                  </select>
-                </div>
+                  Country/city
+                </label>
+                <span style={{ color: "red" }}> * </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="country"
+                  name="country"
+                  value={country}
+                  required
+                  onChange={handleChange}
+                />
               </div>
-       
+            </div>
 
             <div className="col-12 col-sm-6 col-md-6 col-lg-6">
               <div className="form-group">
-               
-               
-                
-              </div>
-
-              <div class="dropdown mb-1">
-               
-               
+                <label htmlFor="exampleInputtext" className="mb-1">
+                  Subject
+                </label>
+                <span style={{ color: "red" }}> * </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="subject"
+                  name="subject"
+                  value={subject}
+                  required
+                  onChange={handleChange}
+                />
               </div>
             </div>
             <div className="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -119,41 +136,33 @@ function RecruitmentForm() {
                 <textarea
                   type="text"
                   className="form-control"
-                  id=""
+                  id="message"
                   name="message"
                   value={message}
                   required
+                  onChange={handleChange}
                 />
               </div>
             </div>
-            {/*  */}
-            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+            <div className="col-12 col-sm-12 col-md-8 col-lg-6">
               <div className="form-group">
                 {" "}
                 <button
-                  className="btn  contactbtn btn-lg  pull-left"
+                  className="btn contactbtn btn-md pull-left"
                   name="submit"
                   type="submit"
                   data-toggle="modal"
                   data-target="#exampleModalCenter"
+                  disabled={buttondisabled}
+                  onClick={handleSubmit}
                 >
                   Send Message
                 </button>
+                <label style={{ color: "red", justifyContent: "center", marginTop:"20px" }}>
+                  {errorMsg}
+                </label>
               </div>
             </div>
-            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-              <div className="form-group"></div>
-            </div>
-
-            {/*  */}
-
-            <label
-              style={{
-                color: "red",
-                justifyContent: "center",
-                paddingTop: "30px",
-              }}
-            ></label>
           </div>
         </div>
       </div>
