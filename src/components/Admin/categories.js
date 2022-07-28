@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import data from "../../Data";
-import { useSelector } from "react-redux";
 import {
   getAllCategories,
   getAddCategory,
@@ -26,8 +25,6 @@ function Categories() {
   const [tableData, setTableData] = useState("");
   const [Image, setImage] = useState("");
   const [BannerImage, setBannerImage] = useState("");
-  const ProductCategory =
-    useSelector((state) => state.models.ProductCategory) || [];
   const [data2, setData2] = useState({
     id: "",
     name: "",
