@@ -87,7 +87,7 @@ const Help = () => {
                     <td>{item?.email}</td>
                     <td>{item?.subject}</td>
 
-                    <td>{item.message.split(" ").splice(0, 7).join(" ") + (item.message.split(" ").length > 7 ? "..." : "")}</td>
+                    <td>{item?.message?.split(" ").splice(0, 7).join(" ") + (item?.message?.split(" ").length > 7 ? "..." : "")}</td>
 
                     <td>
                       <center>
