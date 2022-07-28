@@ -65,7 +65,6 @@ function LoginModal({ show, handleClose }) {
             type="text"
             label="Username"
             mendetory
-            
             value={{  userName }}
             handleChange={(e) => setuserName(e.target.value)}
           />
