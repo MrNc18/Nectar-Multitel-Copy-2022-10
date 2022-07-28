@@ -50,6 +50,16 @@ function RecruitmentForm() {
       } catch (error) {
         showAlert(error.data.message, "error");
       }
+      finally {
+        setErrorMsg("");
+        setData2({
+          name: "",
+          country: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      }
   };
 
   return (
