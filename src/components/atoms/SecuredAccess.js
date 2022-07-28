@@ -103,7 +103,7 @@ function SecuredAccess() {
               {/* {obj.heading} */}
               {securedAccess?.name}
             </h4>
-            <div dangerouslySetInnerHTML={{ __html: securedAccess?.description }} />
+            <div className = "Securedtable" dangerouslySetInnerHTML={{ __html: securedAccess?.description }} />
             {/* <p>{SecuredAccess?.description}</p> */}
           </Col>
         </Row>
