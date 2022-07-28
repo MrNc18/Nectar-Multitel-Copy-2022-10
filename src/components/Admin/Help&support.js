@@ -41,7 +41,7 @@ const Help = () => {
     };
     try {
       await getDeleteContact(data);
-      showAlert("TeleCommunication Deleted Successfully", "success");
+      showAlert("Query Deleted Successfully", "success");
       setDeleteShow(false);
       handleAllcontacts();
     } catch (error) {
@@ -122,12 +122,12 @@ const Help = () => {
           <Modal show={DeleteShow} onHide={handlecloseDelete}>
             <Modal.Header closeButton>
               <Modal.Title style={{ color: "#0076B5" }}>
-                Delete Product
+                Delete Query
               </Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-              <p>Are you sure want to delete this record.</p>
+              <p>Are you sure want to delete this Query.</p>
             </Modal.Body>
 
             <Modal.Footer>
