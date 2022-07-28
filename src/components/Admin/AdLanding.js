@@ -20,6 +20,7 @@ const Tabs = Object.freeze([
   { label: "Who We Are", link: "admin/who_we_are" },
   { label: "TeleCommunication", link: "admin/telecommunications" },
   { label: "DigiTotal", link: "admin/digitotal" },
+  {label:"HelpDesk" , link:"admin/helpdesk"}
 ]);
 
 export default function AdLanding() {
