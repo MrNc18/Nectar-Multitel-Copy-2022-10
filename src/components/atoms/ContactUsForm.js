@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { showAlert } from "../../utils/showAlert";
+import { addContactUs } from "../../services/DigitotalFront";
 
 function RecruitmentForm() {
+  const [buttondisabled, setButtonDisabled] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [data2, setData2] = useState({
     name: "",
     email: "",
@@ -10,7 +13,7 @@ function RecruitmentForm() {
     message: "",
   });
 
-  const { name, email, message, city, subject } = data2;
+  const { name, email, message, country, subject } = data2;
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
     console.log("target", e.target);
@@ -20,6 +23,33 @@ function RecruitmentForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const data = {
+      name: name,
+      country: country,
+      email: email,
+      subject: subject,
+      message: message,
+    };
+
+    if (
+      (name === "",
+      country === "",
+      email === "",
+      subject === "",
+      message === "")
+    ) {
+      setErrorMsg("Fill the Mandatory Fields");
+    } else
+      try {
+        setButtonDisabled(true);
+        await addContactUs(data);
+        showAlert("Added Recruitment Category successfully", "success");
+        setData2("");
+        setButtonDisabled(false);
+      } catch (error) {
+        showAlert(error.data.message, "error");
+      }
   };
 
   return (
@@ -36,7 +66,7 @@ function RecruitmentForm() {
                 <input
                   type="text"
                   className="form-control"
-                  id=""
+                  id="name"
                   name="name"
                   value={name}
                   required
@@ -53,7 +83,7 @@ function RecruitmentForm() {
                 <input
                   type="email"
                   className="form-control"
-                  id=""
+                  id="email"
                   name="email"
                   value={email}
                   required
@@ -69,11 +99,11 @@ function RecruitmentForm() {
                 </label>
                 <span style={{ color: "red" }}> * </span>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
-                  id=""
-                  name="city"
-                  value={city}
+                  id="country"
+                  name="country"
+                  value={country}
                   required
                   onChange={handleChange}
                 />
@@ -86,12 +116,15 @@ function RecruitmentForm() {
                   Subject
                 </label>
                 <span style={{ color: "red" }}> * </span>
-                <select id="inputState" class="form-control">
-                  <option selected>Choose...</option>
-                  <option>A</option>
-                  <option>B</option>
-                  <option>C</option>
-                </select>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="subject"
+                  name="subject"
+                  value={subject}
+                  required
+                  onChange={handleChange}
+                />
               </div>
             </div>
             <div className="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -103,7 +136,7 @@ function RecruitmentForm() {
                 <textarea
                   type="text"
                   className="form-control"
-                  id=""
+                  id="message"
                   name="message"
                   value={message}
                   required
@@ -111,7 +144,7 @@ function RecruitmentForm() {
                 />
               </div>
             </div>
-            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+            <div className="col-12 col-sm-12 col-md-8 col-lg-6">
               <div className="form-group">
                 {" "}
                 <button
@@ -120,10 +153,14 @@ function RecruitmentForm() {
                   type="submit"
                   data-toggle="modal"
                   data-target="#exampleModalCenter"
+                  disabled={buttondisabled}
                   onClick={handleSubmit}
                 >
                   Send Message
                 </button>
+                <label style={{ color: "red", justifyContent: "center", marginTop:"20px" }}>
+                  {errorMsg}
+                </label>
               </div>
             </div>
           </div>
