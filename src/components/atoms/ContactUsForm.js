@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { CITY_LIST } from "../../constants/authconstant";
+
+
 
 function RecruitmentForm() {
   const [file, setFile] = useState([]);
@@ -13,7 +14,10 @@ function RecruitmentForm() {
     message: "",
   });
 
-  const { name, email, telephone, household, message ,city } = data2;
+
+
+
+  const { name, email, telephone, household, message, city } = data2;
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
     console.log("target", e.target);
@@ -64,50 +68,50 @@ function RecruitmentForm() {
               </div>
             </div>
 
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                <div className="form-group">
-                  <label htmlFor="exampleInputtext" className="mb-1">
-                    Country/city
-                  </label>
-                  <span style={{ color: "red" }}> * </span>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id=""
-                    name="city"
-                    value={city}
-                    required
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              
-              <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                <div className="form-group">
+            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+              <div className="form-group">
                 <label htmlFor="exampleInputtext" className="mb-1">
-                    Subject
-                  </label>
-                  <span style={{ color: "red" }}> * </span>
-                  <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>A</option>
-                    <option>B</option>
-                    <option>C</option>
-                  </select>
-                </div>
+                  Country/city
+                </label>
+                <span style={{ color: "red" }}> * </span>
+                <input
+                  type="email"
+                  className="form-control"
+                  id=""
+                  name="city"
+                  value={city}
+                  required
+                  onChange={handleChange}
+                />
               </div>
-       
+            </div>
 
             <div className="col-12 col-sm-6 col-md-6 col-lg-6">
               <div className="form-group">
-               
-               
-                
+                <label htmlFor="exampleInputtext" className="mb-1">
+                  Subject
+                </label>
+                <span style={{ color: "red" }}> * </span>
+                <select id="inputState" class="form-control">
+                  <option selected>Choose...</option>
+                  <option>A</option>
+                  <option>B</option>
+                  <option>C</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+              <div className="form-group">
+
+
+
               </div>
 
               <div class="dropdown mb-1">
-               
-               
+
+
               </div>
             </div>
             <div className="col-12 col-sm-12 col-md-12 col-lg-12">
