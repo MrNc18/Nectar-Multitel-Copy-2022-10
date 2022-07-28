@@ -35,8 +35,8 @@ function MultitelPride() {
             <Col md={12}>
               <div className="bredcrumb">
                 <Breadcrumb style={{ marginTop: "10px" }}>
-                  <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
-                  <Breadcrumb.Item href="#">Who We Are</Breadcrumb.Item>
+                  <Breadcrumb.Item href="/whoweare">Start</Breadcrumb.Item>
+                  <Breadcrumb.Item href="/whoweare">Who We Are</Breadcrumb.Item>
                   <Breadcrumb.Item active style={{ color: "#0076B5" }}>
                     Multitel Pride
                   </Breadcrumb.Item>
