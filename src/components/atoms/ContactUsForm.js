@@ -44,7 +44,7 @@ function RecruitmentForm() {
       try {
         setButtonDisabled(true);
         await addContactUs(data);
-        showAlert("Added Recruitment Category successfully", "success");
+        showAlert("Your Query Added Successfully", "success");
         setData2("");
         setButtonDisabled(false);
       } catch (error) {
