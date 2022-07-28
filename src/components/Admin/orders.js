@@ -44,7 +44,7 @@ const Orders = () => {
    const [pageNumber, setPageNumber] = useState(0);
    const usersPerPage = 20;
    const pagesVisited = pageNumber * usersPerPage;
-   const pageCount = Math.ceil(orderList.length / usersPerPage);
+   const pageCount = Math.ceil(orderList?.length / usersPerPage);
    const changePage = ({ selected }) => {
      setPageNumber(selected);
    };

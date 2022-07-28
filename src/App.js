@@ -115,6 +115,7 @@ import AdDigi from "./components/Admin/DigiTotal/AdDigi";
 import Admarketplace from "./components/Admin/Admarketplace";
 import InternetUser from "./containers/Internet";
 import Oml from "./components/atoms/Oml";
+import Help from "./components/Admin/Help&support";
 
 function App() {
   return (
@@ -158,7 +159,7 @@ function App() {
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin" element={<AdLanding />}>
             <Route path="" element={<Dashboard />} />
-            <Route path="market_place" element={<Admarketplace/>}/>
+            <Route path="market_place" element={<Admarketplace />} />
             <Route path="categories" element={<Categories />} />
             <Route path="products" element={<Products />} />
             <Route path="products/newproduct" element={<AddProduct />} />
@@ -185,6 +186,7 @@ function App() {
               element={<ADPrivateNetwork />}
             />
             <Route path="digitotal" element={<AdDigi />} />
+            <Route path="helpdesk" element={<Help />} />
           </Route>
 
           {/* <Route path="/whoweare/:mfm" element={<WhoWeAreSlug />} /> */}
@@ -237,7 +239,6 @@ function App() {
           <Route path="contactusform" element={<ContactUsForm />} />
           <Route path="digitotal" element={<Digitotal />} />
 
-
           {/* <Route path="/network-equipments" element={<NetworkEquipments />} /> */}
           {/* <Route path="/internet-services" element={<InternetServices />} />    */}
           <Route
@@ -284,10 +285,10 @@ function App() {
             <Route path="who_we_are/multipride" element={<Multipride />} />
             <Route path="who_we_are/corporate" element={<CoorparateBody />} />
             <Route path="telecommunications" element={<Tele />} />
-            {/* <Route path="telecommunications/internet" element={<Internet/>}/>
-          <Route path="telecommunications/vsat" element={<Vsat/>}/>
-          <Route path="telecommunications/Cpe" element={<Cpe_Admin/>}/>
-          <Route path="telecommunications/video" element={<Video/>}/> */}
+            <Route
+              path="telecommunications/privatenetwork"
+              element={<ADPrivateNetwork />}
+            />
             <Route
               path="telecommunications/privatenetwork"
               element={<ADPrivateNetwork />}
@@ -375,7 +376,7 @@ function App() {
           />
           <Route path="/outsourcing" element={<OutSourcing />} />
           <Route path="/omg" element={<OMG />} />
-          <Route path="/oml"  element={<Oml />} />
+          <Route path="/oml" element={<Oml />} />
           <Route path="/digital" element={<Digital />} />
 
           {/* digitotal */}

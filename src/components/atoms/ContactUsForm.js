@@ -44,11 +44,21 @@ function RecruitmentForm() {
       try {
         setButtonDisabled(true);
         await addContactUs(data);
-        showAlert("Added Recruitment Category successfully", "success");
+        showAlert("Your Query Added Successfully", "success");
         setData2("");
         setButtonDisabled(false);
       } catch (error) {
         showAlert(error.data.message, "error");
+      }
+      finally {
+        setErrorMsg("");
+        setData2({
+          name: "",
+          country: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
       }
   };
 
