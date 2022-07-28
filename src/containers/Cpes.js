@@ -35,9 +35,9 @@ const Cpes = () => {
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
-                <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
+                <Breadcrumb.Item href="telecommunication">Start</Breadcrumb.Item>
 
-                <Breadcrumb.Item href=" ">Telecommunications</Breadcrumb.Item>
+                <Breadcrumb.Item href="telecommunication">Telecommunications</Breadcrumb.Item>
                 <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
                   CPEs
                 </Breadcrumb.Item>

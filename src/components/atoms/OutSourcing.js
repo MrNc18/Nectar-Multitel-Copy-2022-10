@@ -33,9 +33,9 @@ const OutSourcing = () => {
           <div className="row">
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
-                <Breadcrumb.Item href="#">Start</Breadcrumb.Item>
-                <Breadcrumb.Item href="#">Digital</Breadcrumb.Item>
-                <Breadcrumb.Item href="#"> Other Services</Breadcrumb.Item>
+                <Breadcrumb.Item href="/digitotal">Start</Breadcrumb.Item>
+                <Breadcrumb.Item href="/digitotal">Digital</Breadcrumb.Item>
+                <Breadcrumb.Item href="/otherservice"> Other Services</Breadcrumb.Item>
 
                 <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
                   OutSourcing
