@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import CustomAccordion from "./customAccordion";
-import { accordionData } from "./accordionData";
 import { showAlert } from "../../utils/showAlert";
 import { getSustainabilityByCategory } from "../../services/WhoWeAreFront";
 
@@ -14,7 +13,6 @@ function InvestmentTab() {
       const resp = await getSustainabilityByCategory(data);
       console.log(resp);
       setSustainability(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }

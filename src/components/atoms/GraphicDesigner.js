@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import RecruitmentForm from "./RecruitmentForm";
+import React from "react";
 import moment from "moment";
 
 const GraphicDesigner = ({ role }) => {
@@ -8,11 +7,6 @@ const GraphicDesigner = ({ role }) => {
     return (
       <>
         <div className="container " style={{ backgroundColor: "#F6F6F6" }}>
-          <div>
-            {/* <h2 style={{ color: "#1D3557" }} className="pt-4">
-              {data?.recruitment_category?.name}
-            </h2> */}
-          </div>
           <div>
             <h6 className="pt-2">{data?.description}</h6>
           </div>

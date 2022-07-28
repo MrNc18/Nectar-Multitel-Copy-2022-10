@@ -12,7 +12,6 @@ function NetSat() {
       const resp = await getTelecommunicationBySlug(data);
       console.log(resp);
       setNetSat(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }
