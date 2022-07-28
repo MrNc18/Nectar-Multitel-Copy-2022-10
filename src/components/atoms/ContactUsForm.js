@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { addContactUs } from "../../services/TelecommunicationFront";
 
 
 function RecruitmentForm() {
   const [file, setFile] = useState([]);
-
   const [data2, setData2] = useState({
     name: "",
     email: "",
@@ -14,7 +13,19 @@ function RecruitmentForm() {
     message: "",
   });
 
+  const getContactUs = async () => {
+    {
+      const result = await addContactUs();
+      console.log(result);
+      setData2({ ...data2, ...result?.data?.data });
+      console.log("hello", result?.data?.data);
+    }
+  };
 
+  useEffect(() => {
+    getContactUs();
+    console.log(data2);
+  }, []);
 
 
   const { name, email, telephone, household, message, city } = data2;
@@ -23,10 +34,10 @@ function RecruitmentForm() {
     console.log("target", e.target);
   };
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files);
-    console.log(file);
-  };
+  // const handleFileChange = (event) => {
+  //   setFile(event.target.files);
+  //   console.log(file);
+  // };
 
   return (
     <>
@@ -127,6 +138,8 @@ function RecruitmentForm() {
                   name="message"
                   value={message}
                   required
+                  onChange={handleChange}
+
                 />
               </div>
             </div>

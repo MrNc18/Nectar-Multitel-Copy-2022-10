@@ -36,3 +36,9 @@ export const getTelecommunicationBySlug = async (data) => {
 
 
 
+export const addContactUs = async (data) => {
+  return await doPost("api/contactUs/addContactUs", data);
+};
+
+
+
