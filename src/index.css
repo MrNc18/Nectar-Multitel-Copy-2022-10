@@ -1661,3 +1661,14 @@ td.td3 a {font-weight: 400;font-size: 12px;}
   left: 52%;
   font-size: 12px;
 }
+
+.Securedtable td {
+  border:1px solid #000;
+}
+.Securedtable tr {
+  border:1px solid #000;
+}
+.Securedtable th {
+  border:1px solid #000;
+}
+

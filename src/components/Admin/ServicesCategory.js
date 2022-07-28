@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import data from "../../Data";
-import { useSelector } from "react-redux";
 import {
   getAllInternetServices,
   getAddServices,
