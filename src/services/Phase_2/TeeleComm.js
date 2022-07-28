@@ -23,7 +23,6 @@ export const getTeleByCat = async (data) => {
   }
 
   export const getAllTele = async() => {
- 
     return await doGet("api/telecommunication/getAllTelecommnication")
   }
 

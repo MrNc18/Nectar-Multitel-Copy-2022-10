@@ -1679,4 +1679,13 @@ td.td3 a {font-weight: 400;font-size: 12px;}
   font-size: 12px;
 }
 
-.flex-column{cursor: pointer;}
+.Securedtable td {
+  border:1px solid #000;
+}
+.Securedtable tr {
+  border:1px solid #000;
+}
+.Securedtable th {
+  border:1px solid #000;
+}
+
