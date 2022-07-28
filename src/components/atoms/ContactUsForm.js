@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CITY_LIST } from "../../constants/authconstant";
 
 function RecruitmentForm() {
   const [file, setFile] = useState([]);
@@ -6,12 +7,13 @@ function RecruitmentForm() {
   const [data2, setData2] = useState({
     name: "",
     email: "",
+    city: "",
     telephone: "",
     household: "",
     message: "",
   });
 
-  const { name, email, telephone, household, message } = data2;
+  const { name, email, telephone, household, message ,city } = data2;
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
     console.log("target", e.target);
@@ -72,8 +74,8 @@ function RecruitmentForm() {
                     type="email"
                     className="form-control"
                     id=""
-                    name="email"
-                    value={email}
+                    name="city"
+                    value={city}
                     required
                     onChange={handleChange}
                   />
