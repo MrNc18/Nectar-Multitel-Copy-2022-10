@@ -91,6 +91,7 @@ import VideoConference from "./containers/VideoConference";
 import Cpes from "./containers/Cpes";
 import WhoWeAre from "./containers/WhoWeAre";
 
+
 // import WhoWeAre from "./containers/WhoWeAre";
 import Commercial from "./components/atoms/Commercial";
 // import GraphicDesigner from "./components/atoms/GraphicDesigner";
@@ -118,6 +119,7 @@ import InternetUser from "./containers/Internet";
 import Oml from "./components/atoms/Oml";
 import Help from "./components/Admin/Help&support";
 
+
 function App() {
   return (
     <>
@@ -134,6 +136,7 @@ function App() {
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/products/:name" element={<ProductDetail />} />
           <Route path="/categories/:slug" element={<Category />} />
+
 
           {/* <Route path="/network-equipments" element={<NetworkEquipments />} /> */}
           {/* <Route path="/internet-services" element={<InternetServices />} />    */}

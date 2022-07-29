@@ -61,7 +61,7 @@ const ContactUs = () => {
           </div>
 
           <div className="row"  >
-            <div className="col-md-5  "  >
+            <div className="col-md-5 "  >
               <Contact data={obj}  />
             </div>
             <div className="col-md-6 box_shadow m-3"    >
