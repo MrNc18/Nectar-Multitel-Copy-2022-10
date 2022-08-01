@@ -6,6 +6,7 @@ import "./admin.css";
 
 const Tabs = Object.freeze([
   { label: "Dashboard", link: "admin/" },
+  // { label: "Multitel Home", link: "admin/multitel-home" },
   { label: "MarketPlace", link: "admin/market_place" },
   // { label: "Categories", link: "admin/categories" },
   // { label: "Products", link: "admin/products" },
@@ -251,7 +252,7 @@ export default function AdLanding() {
                             >
                               {console.log("dk", link)}
                               <p style={{ color: "white" }}>
-                                Services Category
+                                Service Categories
                               </p>
                             </a>
                             <a
@@ -263,7 +264,7 @@ export default function AdLanding() {
                             >
                               {console.log("dk", link)}
                               <p style={{ color: "white" }}>
-                                Internet Services
+                                Service Packages
                               </p>
                             </a>
                             <a
