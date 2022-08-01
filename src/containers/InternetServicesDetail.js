@@ -18,6 +18,7 @@ function InternetServicesDetail() {
   console.log(params?.tag)
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async () => {
       const response = await getProductsByService({slug: params?.tag})
       console.log(response,"res");

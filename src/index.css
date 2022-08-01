@@ -527,12 +527,6 @@ img.dot-middle {
 .fw-500 {
   font-weight: 500;
 }
-.plan_buttons button {
-  font-size: 14px;
-  padding: 18px;
-  margin-right: 20px;
-  border-radius: 10px;
-}
 .tv_img {
   width: 75%;
   margin: 0 auto;
@@ -558,8 +552,8 @@ img.dot-middle {
   font-weight: 500;
 }
 .plan_buttons button {
-  font-size: 14px;
-  padding: 18px;
+  font-size: 17px;
+  padding: 12px;
   margin-right: 20px;
   border-radius: 10px;
 }
