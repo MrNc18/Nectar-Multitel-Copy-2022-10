@@ -16,11 +16,11 @@ const Tabs = Object.freeze([
   { label: "Vendor Contacts", link: "admin/Contact" },
   { label: "AllOrders", link: "admin/orders" },
   { label: "Settings", link: "admin/settings" },
-  { label: "Navigation Menu", link: "admin/menu" },
-  { label: "Who We Are", link: "admin/who_we_are" },
-  { label: "TeleCommunication", link: "admin/telecommunications" },
-  { label: "DigiTotal", link: "admin/digitotal" },
-  {label:"HelpDesk" , link:"admin/helpdesk"}
+  // { label: "Navigation Menu", link: "admin/menu" },
+  // { label: "Who We Are", link: "admin/who_we_are" },
+  // { label: "TeleCommunication", link: "admin/telecommunications" },
+  // { label: "DigiTotal", link: "admin/digitotal" },
+  // {label:"HelpDesk" , link:"admin/helpdesk"}
 ]);
 
 export default function AdLanding() {
