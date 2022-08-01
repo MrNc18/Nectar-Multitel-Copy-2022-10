@@ -76,7 +76,7 @@ function Home() {
       <ServicesSection tagline="Check Out Our" heading="Latest Services" />
       <Services />
       <section id="internet_service" className="pos-relative">
-        {Object.keys(phoneDetails).length && (
+        {phoneDetails?.id && (
           <Row>
             <Col md={4} lg={5}>
               <h2 className="mb-4 mt-5">Our Landline Telephony Services</h2>
@@ -117,8 +117,8 @@ function Home() {
         )}
       </section>
 
-      <section id="tv_services">
-        {Object.keys(tvDetails).length && (
+      <section id="tv_services" className="mt-5 mb-5">
+        {tvDetails?.id && (
           <Container>
             <Row>
               <Col md={5}>
