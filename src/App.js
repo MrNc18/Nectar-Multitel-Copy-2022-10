@@ -116,7 +116,6 @@ import Admarketplace from "./components/Admin/Admarketplace";
 import InternetUser from "./containers/Internet";
 import Oml from "./components/atoms/Oml";
 import Help from "./components/Admin/Help&support";
-import MultitelHome from "./components/Admin/multitelHome/MultitelHome";
 
 function App() {
   return (
@@ -276,7 +275,7 @@ function App() {
             <Route path="promotions" element={<AdPromotions />} />
             <Route path="orders" element={<Orders />} />
             <Route path="menu" element={<MenuPhase_2 />} />
-            <Route path="multitel-home" element={<MultitelHome />} />
+            {/* <Route path="multitel-home" element={<MultitelHome />} /> */}
             <Route path="who_we_are" element={<WhoWeR />} />
             <Route path="who_we_are/recruitment" element={<AdRecruitment />} />
             <Route
