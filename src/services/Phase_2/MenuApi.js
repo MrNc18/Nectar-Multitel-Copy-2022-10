@@ -1,7 +1,7 @@
 import { doGet, doPost, doPut,doDelete }  from "../../utils/request"
 
  export const imageUrl =  (imagePath)  => {
-    return (`http://50.28.104.48:3003/images/${imagePath}`)
+    return (`http://10.144.252.88:3003/images/${imagePath}`)
  }
 
 export const getmenuDataBySlug = async (data) => {

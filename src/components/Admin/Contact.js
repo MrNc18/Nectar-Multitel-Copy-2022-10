@@ -48,10 +48,8 @@ function Contacts() {
     Phone: "",
     email: "",
     Adress: "",
-    first_name: "",
-    last_name: "",
   });
-  const { Phone, Adress, username } = data2;
+  const { Phone, Adress, username, id } = data2;
 
   // email validator
   const [emailError, setEmailError] = useState("");
@@ -152,17 +150,17 @@ function Contacts() {
       category === ""
     ) {
       setErrorMsg("Fill the Mandatory Fields");
-
-    } 
-    else if(Phone.length != 10 || Phone < 0  ){
-      setErrorMsg("Enter the  Valid Phone")
- }
-    else
+    } else if (Phone.length != 10 || Phone < 0) {
+      setErrorMsg("Enter the  Valid Phone");
+    } else
       try {
         setButtonDisabled(true);
         await getAddVendor(data);
         showAlert("Added contact Succesfully.", "success");
         setErrorMsg("");
+        setEmail("");
+        setFname('');
+        setLname("");
         setData2(" ");
         setCategory(" ");
         setShow(false);
@@ -191,6 +189,9 @@ function Contacts() {
       first_name: item.first_name,
       last_name: item.last_name,
     });
+    setFname(item.first_name);
+    setLname(item.last_name);
+    setEmail(item.email);
     setShowEditModal(true);
   };
   const handleEditContacts = async () => {
@@ -205,6 +206,7 @@ function Contacts() {
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
     }
+    data.append("id", id);
     data.append("address", Adress);
     data.append("first_name", first_name);
     data.append("last_name", last_name);
@@ -219,6 +221,9 @@ function Contacts() {
       await getEditVendor(data);
       showAlert("Contact Edited Successfully", "success");
       setData2("");
+      setEmail("");
+      setFname('');
+      setLname("");
       setFile("");
       setCategory("");
       setShowEditModal(false);
@@ -228,6 +233,9 @@ function Contacts() {
     }
   };
   const handleEditClose = () => {
+    setEmail("");
+    setFname('');
+    setLname("");
     setData2("");
     setCategory("");
     setShowEditModal(false);
@@ -461,7 +469,7 @@ function Contacts() {
             </Modal>
           </div>
         </div>
-        {/* </div> */}
+        {/* {/ </div> /} */}
         <Table striped bordered hover size="md" responsive>
           <thead style={{ backgroundColor: "#0076B5", color: "white" }}>
             <tr>
@@ -533,7 +541,7 @@ function Contacts() {
           />
         </div>
       </Row>
-      {/* Delete Modal */}
+      {/* {/ Delete Modal /} */}
 
       <Modal show={DeleteShow} onHide={handlecloseDelete}>
         <Modal.Header closeButton>
@@ -557,7 +565,7 @@ function Contacts() {
         </Modal.Footer>
       </Modal>
 
-      {/* Edit Modal */}
+      {/* {/ Edit Modal /} */}
       <div className="col-xl-5  col-lg-4 col-md-3 col-sm-2">
         <div className="header">
           <Modal show={ShowEditModal} onHide={handleEditClose} size="md">
