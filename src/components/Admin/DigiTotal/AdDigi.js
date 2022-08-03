@@ -169,17 +169,6 @@ const AdDigi = () => {
             className="header justify-content-end"
             style={{ marginTop: "10px" }}
           >
-            {/* <button
-              type="button"
-              className="btn btn-primary btn-sm my-3"
-              style={{
-                marginBottom: "10px",
-                backgroundColor: "#0076B5",
-              }}
-              onClick={handleShow}
-            >
-              <i className="fas fa-plus-circle"></i> Add New Digitotal
-            </button> */}
             <Modal show={show} onHide={handleClose} className="add_cat_modal">
               <Modal.Body>
                 <div className="container">
