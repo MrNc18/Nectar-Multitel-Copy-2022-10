@@ -29,13 +29,13 @@ function InternetServices({name}) {
   return (
     <LandingPage>
       <ServiceBanner title={name} />
-      <Services />
+      
 
       <section id="deserve">
         <Container>
           <Row>
             <Col md={12} className="text-center">
-              <p className="mb-2">Private. Secure. Super Fast</p>
+              <p className="mb-2 mt-3">Private. Secure. Super Fast</p>
               <h2 className="mb-3">Our Services</h2>
               <div className="broadband_services my-5">
                 <Row>

@@ -217,7 +217,7 @@ function InternetServices() {
       <div className="container-fluid">
         <div class="row d-flex align-items-center justify-content-between">
           <div class="col-lg-6 col-md-6 text-left">
-            <h3 className="mt-4 mb-4">Internet Services</h3>
+            <h3 className="mt-4 mb-4">Service Packages</h3>
           </div>
           <div className="col-lg-6 col-md-6 text-right">
             <div className="header justify-content-end">
@@ -231,7 +231,7 @@ function InternetServices() {
                 }}
                 onClick={handleShow}
               >
-                <i className="fas fa-plus-circle"></i> Add New service
+                <i className="fas fa-plus-circle"></i> Add New package
               </button>
               <Modal show={show} onHide={handleClose} className="add_cat_modal">
                 <Modal.Body>
@@ -245,7 +245,7 @@ function InternetServices() {
                     <span className="sr-only">Close</span>
                   </button>
                   <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                    Add New Service
+                    Add New Package
                   </Modal.Title>
                   <div className="container">
                     <Form.Group>
@@ -440,7 +440,7 @@ function InternetServices() {
           <Modal show={ShowEditModal} onHide={handleEditClose} size="md">
             <Modal.Header closeButton>
               <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
-                Edit Services List
+                Edit Service Package
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>

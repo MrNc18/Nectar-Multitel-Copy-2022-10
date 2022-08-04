@@ -91,7 +91,7 @@ export default function Cart() {
 
   const getTotal = () => {
     return cartDet?.reduce(
-      (amount, item) => amount + item.quantity * Number(item.product.price),
+      (amount, item) => amount + item?.quantity * Number(item?.product?.price),
       0
     );
   };
@@ -103,8 +103,8 @@ export default function Cart() {
   const saveCartDetails = async () => {
     const data = cartDet.map((item) => {
       return {
-        id: item.id,
-        quantity: item.quantity
+        id: item?.id,
+        quantity: item?.quantity
       }
     })
     console.log(data)
@@ -146,20 +146,20 @@ export default function Cart() {
                   {isAuthenticated ? (
                     cartDet?.length ? (
                       cartDet.map((item) => (
-                        <tr key={item.id}>
+                        <tr key={item?.id}>
                           <td>
                             <div className="d-flex align-items-center">
                               <img
                                 className="cart_book_img"
-                                src={imageUrl(item.product.cover_img)}
+                                src={imageUrl(item?.product?.cover_img)}
                               />
                               <span className="cart_book_name">
-                                {item.product.name}
+                                {item?.product?.name}
                               </span>
                             </div>
                           </td>
                           <td className="cart_price text-center">
-                            {formatAmount(item.product.price)}
+                            {formatAmount(item?.product?.price)}
                           </td>
                           <td className="cart_price text-center">
                             <div className="qty_counter d-flex">
@@ -173,7 +173,7 @@ export default function Cart() {
                               <input
                                 type="text"
                                 name="qty"
-                                value={item.quantity}
+                                value={item?.quantity}
                                 className="text-center input-qty w-100"
                               />
                               <input
@@ -209,18 +209,18 @@ export default function Cart() {
                     )
                   ) : basket.length ? (
                     basket.map((item) => (
-                      <tr key={item.id}>
+                      <tr key={item?.id}>
                         <td>
                           <div className="d-flex align-items-center">
                             <img
                               className="cart_book_img"
-                              src={imageUrl(item.image)}
+                              src={imageUrl(item?.image)}
                             />
-                            <span className="cart_book_name">{item.name}</span>
+                            <span className="cart_book_name">{item?.name}</span>
                           </div>
                         </td>
                         <td className="cart_price text-center">
-                          {formatAmount(item.price)}
+                          {formatAmount(item?.price)}
                         </td>
                         <td className="cart_price text-center">
                           <div className="qty_counter d-flex">
@@ -232,7 +232,7 @@ export default function Cart() {
                               onClick={() => {
                                 dispatch({
                                   type: "CHANGE_QTY",
-                                  id: item.id,
+                                  id: item?.id,
                                   payload: "decrement",
                                 });
                               }}
@@ -240,7 +240,7 @@ export default function Cart() {
                             <input
                               type="text"
                               name="qty"
-                              value={item.quantity}
+                              value={item?.quantity}
                               className="text-center input-qty w-100"
                             />
                             <input
@@ -251,7 +251,7 @@ export default function Cart() {
                               onClick={() => {
                                 dispatch({
                                   type: "CHANGE_QTY",
-                                  id: item.id,
+                                  id: item?.id,
                                   payload: "increment",
                                 });
                               }}
@@ -259,14 +259,14 @@ export default function Cart() {
                           </div>
                         </td>
                         <td className="cart_price text-center">
-                          {formatAmount(item.price * item.quantity)}
+                          {formatAmount(item?.price * item?.quantity)}
                         </td>
                         <td>
                           <a
                             onClick={() => {
                               dispatch({
                                 type: "REMOVE_FROM_BASKET",
-                                id: item.id,
+                                id: item?.id,
                               });
                             }}
                             className="remove_from_cart"
