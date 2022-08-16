@@ -43,7 +43,8 @@ const WhoWeAre = () => {
               </Breadcrumb>
             </div>
           </div>
-          <div className="row">
+        <div className="container">
+        <div className="row">
             <div className="col-12 col-md-12 col-lg-12">
               <h2 style={{ color: "#1D3557" }} className="pt-3">
                 {whoWeAre?.title}
@@ -51,6 +52,7 @@ const WhoWeAre = () => {
               <p className="pt-3">{whoWeAre?.description}</p>
             </div>
           </div>
+        </div>
         </div>
       </LandingPage>
     </>
