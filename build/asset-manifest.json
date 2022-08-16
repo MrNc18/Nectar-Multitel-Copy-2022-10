@@ -1,12 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.d7389c0b.css",
-    "main.js": "/static/js/main.bc4f56a4.js",
+    "main.css": "/static/css/main.bc7b4ff0.css",
+    "main.js": "/static/js/main.b3d7f7d4.js",
     "static/media/triimage3.jpg": "/static/media/triimage3.4ac6aa02bdd7ea45aa91.jpg",
+    "static/media/telecommunication.png": "/static/media/telecommunication.aa0a3d04e9fb15b32580.png",
     "static/media/test.png": "/static/media/test.14314df7de60785e99ba.png",
     "static/media/triimage2.jpg": "/static/media/triimage2.5a142c2fecf38b368a66.jpg",
     "static/media/tv_services_bg.png": "/static/media/tv_services_bg.a5d34f4fbcbe9350371a.png",
     "static/media/triimage1.jpg": "/static/media/triimage1.ebcd2f678ace093bb70f.jpg",
+    "static/media/digitotal.png": "/static/media/digitotal.d1c00263853259c97d01.png",
     "static/media/manworkingoncomputer.png": "/static/media/manworkingoncomputer.fa3a9f4f408c4f275592.png",
     "static/media/home-banner.jpg": "/static/media/home-banner.e78b06f77e1b46561eae.jpg",
     "static/media/key_board_bg.png": "/static/media/key_board_bg.dc00449a3fed118496b2.png",
@@ -23,11 +25,11 @@
     "index.html": "/index.html",
     "static/media/down-arrow.svg": "/static/media/down-arrow.351fa108e96cf550023ec099fdebfff6.svg",
     "static/media/up-arrow.svg": "/static/media/up-arrow.f19d7871004032ecc5ef296d448256fd.svg",
-    "main.d7389c0b.css.map": "/static/css/main.d7389c0b.css.map",
-    "main.bc4f56a4.js.map": "/static/js/main.bc4f56a4.js.map"
+    "main.bc7b4ff0.css.map": "/static/css/main.bc7b4ff0.css.map",
+    "main.b3d7f7d4.js.map": "/static/js/main.b3d7f7d4.js.map"
   },
   "entrypoints": [
-    "static/css/main.d7389c0b.css",
-    "static/js/main.bc4f56a4.js"
+    "static/css/main.bc7b4ff0.css",
+    "static/js/main.b3d7f7d4.js"
   ]
 }

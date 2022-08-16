@@ -6,6 +6,7 @@ import "./admin.css";
 
 const Tabs = Object.freeze([
   { label: "Dashboard", link: "admin/" },
+  // { label: "Multitel Home", link: "admin/multitel-home" },
   { label: "MarketPlace", link: "admin/market_place" },
   // { label: "Categories", link: "admin/categories" },
   // { label: "Products", link: "admin/products" },
@@ -16,11 +17,11 @@ const Tabs = Object.freeze([
   { label: "Vendor Contacts", link: "admin/Contact" },
   { label: "AllOrders", link: "admin/orders" },
   { label: "Settings", link: "admin/settings" },
-  { label: "Navigation Menu", link: "admin/menu" },
-  { label: "Who We Are", link: "admin/who_we_are" },
-  { label: "TeleCommunication", link: "admin/telecommunications" },
-  { label: "DigiTotal", link: "admin/digitotal" },
-  {label:"HelpDesk" , link:"admin/helpdesk"}
+  // { label: "Navigation Menu", link: "admin/menu" },
+  // { label: "Who We Are", link: "admin/who_we_are" },
+  // { label: "TeleCommunication", link: "admin/telecommunications" },
+  // { label: "DigiTotal", link: "admin/digitotal" },
+  // {label:"HelpDesk" , link:"admin/helpdesk"}
 ]);
 
 export default function AdLanding() {
@@ -251,7 +252,7 @@ export default function AdLanding() {
                             >
                               {console.log("dk", link)}
                               <p style={{ color: "white" }}>
-                                Services Category
+                                Service Categories
                               </p>
                             </a>
                             <a
@@ -263,7 +264,7 @@ export default function AdLanding() {
                             >
                               {console.log("dk", link)}
                               <p style={{ color: "white" }}>
-                                Internet Services
+                                Service Packages
                               </p>
                             </a>
                             <a
