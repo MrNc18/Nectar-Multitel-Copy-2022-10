@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
-import ServiceBanner from "../components/atoms/ServiceBanner";
-import LandingPage from "../components/LandingPage";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+// import ServiceBanner from "../components/atoms/ServiceBanner";
+// import LandingPage from "../components/LandingPage";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { showAlert } from "../utils/showAlert";
 import { getDigitotalBySlug } from "../services/DigitotalFront";
 import { imageUrl } from "../services/category";
+
+const LandingPage = lazy(() => import("../components/LandingPage"));
+const ServiceBanner = lazy(() => import("../components/atoms/ServiceBanner"));
+
 const DataCenter = () => {
   const [datacenter, setDatacenter] = useState({});
 
@@ -26,6 +30,7 @@ const DataCenter = () => {
 
   return (
     <>
+    <Suspense fallback={<div>Loading...</div>}>
       <LandingPage woproducts>
         <ServiceBanner title="Data Center And Cloud" regnPage />
         <div className="container mb-5">
@@ -71,6 +76,7 @@ const DataCenter = () => {
           </div>
         </div>
       </LandingPage>
+      </Suspense>
     </>
   );
 };

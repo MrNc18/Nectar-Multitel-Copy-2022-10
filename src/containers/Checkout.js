@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import LandingPage from "../components/LandingPage";
-import LoginModal from "../components/LoginModal";
+import React, { useState, lazy, Suspense } from "react";
+// import LandingPage from "../components/LandingPage";
+// import LoginModal from "../components/LoginModal";
 import { CITY_LIST, COUNTRY_LIST } from "../constants/authconstant";
 import { getUserDetailsByToken } from "../services/authentication";
 import { AUTH_TOKEN, getCookie } from "../utils/cookie";
@@ -10,6 +10,8 @@ import { formatAmount } from "../utils/AmountFormatter";
 import { getBasketTotal } from "../Reducer";
 import { useNavigate } from "react-router-dom";
 import validator from "validator";
+const LandingPage = lazy(() => import("../components/LandingPage"));
+const LoginModal = lazy(() => import("../components/LoginModal"));
 
 export default function Checkout() {
   const [shipAddress, setShipAddress] = useState(false);
@@ -236,543 +238,553 @@ export default function Checkout() {
   };
 
   return (
-    <LandingPage>
-      <section className="container">
-        <div className="row">
-          <div className="col-12 col-md-7 col-sm-7">
-            <div className="cart_top_row">
-              <h2 className="body_heading mt-5">Checkout</h2>
-            </div>
-            <div className="form-one">
-              <div className="w-100">
-                <span className="s1 float-left mb-2">Contact Information</span>
-                {!isAuthenticated && (
-                  <span className="s2 float-right mb-2">
-                    Already have an account?{" "}
-                    <a onClick={() => setShowLoginModal(true)}>Log in</a>
-                  </span>
-                )}
+    <Suspense fallback={<div>Loading...</div>}>
+      <LandingPage>
+        <section className="container">
+          <div className="row">
+            <div className="col-12 col-md-7 col-sm-7">
+              <div className="cart_top_row">
+                <h2 className="body_heading mt-5">Checkout</h2>
               </div>
-              <form className="checkout_form">
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className="form-control"
-                    pattern=".+@beststartupever\.com"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Email Address"
-                    value={userEmail}
-                    disabled
-                  />
+              <div className="form-one">
+                <div className="w-100">
+                  <span className="s1 float-left mb-2">
+                    Contact Information
+                  </span>
+                  {!isAuthenticated && (
+                    <span className="s2 float-right mb-2">
+                      Already have an account?{" "}
+                      <a onClick={() => setShowLoginModal(true)}>Log in</a>
+                    </span>
+                  )}
                 </div>
-              </form>
-            </div>
-            <div className="cart_top_row">
-              <h2 className="body_heading mt-4">Billing Address</h2>
-            </div>
-            <div className="form-one">
-              <form id="myForm" action="#">
-                <div className="row">
-                  <div className="col-12 col-md-6 col-sm-6">
-                    <div className="form-group">
-                      <label htmlFor="first_name">
-                        First Name<em className="red">*</em>
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="first_name"
-                        name="first_name"
-                        value={first_name}
-                        onChange={onFnameChange}
-                        required
-                      />
-                    </div>
+                <form className="checkout_form">
+                  <div className="form-group">
+                    <input
+                      type="email"
+                      className="form-control"
+                      pattern=".+@beststartupever\.com"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Email Address"
+                      value={userEmail}
+                      disabled
+                    />
                   </div>
-                  <div className="col-12 col-md-6 col-sm-6">
-                    <div className="form-group">
-                      <label htmlFor="last_name">
-                        Last Name<em className="red">*</em>
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="last_name"
-                        name="last_name"
-                        value={last_name}
-                        onChange={onLnameChange}
-                        required
-                      />
+                </form>
+              </div>
+              <div className="cart_top_row">
+                <h2 className="body_heading mt-4">Billing Address</h2>
+              </div>
+              <div className="form-one">
+                <form id="myForm" action="#">
+                  <div className="row">
+                    <div className="col-12 col-md-6 col-sm-6">
+                      <div className="form-group">
+                        <label htmlFor="first_name">
+                          First Name<em className="red">*</em>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="first_name"
+                          name="first_name"
+                          value={first_name}
+                          onChange={onFnameChange}
+                          required
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-12 col-md-12 col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
-                        Country<em className="red">*</em>
-                      </label>
-                      <select
-                        className="form-control"
-                        id="exampleFormControlSelect1"
-                        value={country}
-                        name="country"
-                        onChange={handleChange}
-                        onFnameChange
-                        required
-                      >
-                        <option value="" disabled="disabled">
-                          Select Country
-                        </option>
-                        {/* {console.log("A;;",allcategories)} */}
-                        {COUNTRY_LIST.map((item, i) => (
-                          <option key={i} value={item}>
-                            {item}
+                    <div className="col-12 col-md-6 col-sm-6">
+                      <div className="form-group">
+                        <label htmlFor="last_name">
+                          Last Name<em className="red">*</em>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="last_name"
+                          name="last_name"
+                          value={last_name}
+                          onChange={onLnameChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-12 col-sm-12">
+                      <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">
+                          Country<em className="red">*</em>
+                        </label>
+                        <select
+                          className="form-control"
+                          id="exampleFormControlSelect1"
+                          value={country}
+                          name="country"
+                          onChange={handleChange}
+                          onFnameChange
+                          required
+                        >
+                          <option value="" disabled="disabled">
+                            Select Country
                           </option>
-                        ))}
-                      </select>
+                          {/* {console.log("A;;",allcategories)} */}
+                          {COUNTRY_LIST.map((item, i) => (
+                            <option key={i} value={item}>
+                              {item}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-12 col-md-12 col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
-                        Address Line 1<em className="red">*</em>
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Street name and house number"
-                        value={address1}
-                        name="address1"
-                        onChange={handleChange}
-                        required
-                        onFnameChange
-                      />
+                    <div className="col-12 col-md-12 col-sm-12">
+                      <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">
+                          Address Line 1<em className="red">*</em>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Street name and house number"
+                          value={address1}
+                          name="address1"
+                          onChange={handleChange}
+                          required
+                          onFnameChange
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-12 col-md-12 col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
-                        Address Line 2 (Optional)
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder=""
-                        value={address2}
-                        name="address2"
-                        onChange={handleChange}
-                      />
+                    <div className="col-12 col-md-12 col-sm-12">
+                      <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">
+                          Address Line 2 (Optional)
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder=""
+                          value={address2}
+                          name="address2"
+                          onChange={handleChange}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-12 col-md-6 col-sm-6">
-                    <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
-                        City<em className="red">*</em>
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={city}
-                        name="city"
-                        onChange={onCityChange}
-                        required
-                      />
+                    <div className="col-12 col-md-6 col-sm-6">
+                      <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">
+                          City<em className="red">*</em>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={city}
+                          name="city"
+                          onChange={onCityChange}
+                          required
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-12 col-md-6 col-sm-6">
-                    <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
-                        Zip code<em className="red">*</em>
-                      </label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        value={zipcode}
-                        name="zipcode"
-                        onChange={handleChange}
-                        required
-                      />
+                    <div className="col-12 col-md-6 col-sm-6">
+                      <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">
+                          Zip code<em className="red">*</em>
+                        </label>
+                        <input
+                          type="number"
+                          className="form-control"
+                          value={zipcode}
+                          name="zipcode"
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="col-12 col-md-6 col-sm-6">
-                    <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
-                        Phone<em className="red">*</em>
-                      </label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        value={phone}
-                        name="phone"
-                        onChange={handleChange}
-                        required
-                      />
+                    <div className="col-12 col-md-6 col-sm-6">
+                      <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">
+                          Phone<em className="red">*</em>
+                        </label>
+                        <input
+                          type="number"
+                          className="form-control"
+                          value={phone}
+                          name="phone"
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-12 col-md-6 col-sm-6">
-                    <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
-                        Email address<em className="red">*</em>
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        required
-                        name="email"
-                        onChange={(e) => validateEmail(e)}
-                      />
-                      <p
-                        style={{
-                          fontWeight: "bold",
-                          color: "red",
-                        }}
-                      >
-                        {emailError}
-                      </p>
+                    <div className="col-12 col-md-6 col-sm-6">
+                      <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">
+                          Email address<em className="red">*</em>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          required
+                          name="email"
+                          onChange={(e) => validateEmail(e)}
+                        />
+                        <p
+                          style={{
+                            fontWeight: "bold",
+                            color: "red",
+                          }}
+                        >
+                          {emailError}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-12">
-                    <div className="form-check mt-1 mb-1">
-                      <input
-                        type="checkbox"
-                        className="form-check-input"
-                        id="exampleCheck1"
-                      />
-                      <small
-                        className="form-check-label text-muted"
-                        htmlFor="exampleCheck1"
-                      >
-                        Create an account?
-                      </small>
+                    <div className="col-12">
+                      <div className="form-check mt-1 mb-1">
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          id="exampleCheck1"
+                        />
+                        <small
+                          className="form-check-label text-muted"
+                          htmlFor="exampleCheck1"
+                        >
+                          Create an account?
+                        </small>
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-12">
-                    <div className="form-check mt-1 mb-1">
-                      <input
-                        type="checkbox"
-                        className="form-check-input"
-                        id="changeShip"
-                        checked={shipAddress}
-                        onChange={(e) => setShipAddress(e.target.checked)}
-                      />
-                      <small
-                        className="form-check-label text-muted text-uppercase"
-                        htmlFor="exampleCheck1"
-                      >
-                        Ship to a Different Address?
-                      </small>
+                    <div className="col-12">
+                      <div className="form-check mt-1 mb-1">
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          id="changeShip"
+                          checked={shipAddress}
+                          onChange={(e) => setShipAddress(e.target.checked)}
+                        />
+                        <small
+                          className="form-check-label text-muted text-uppercase"
+                          htmlFor="exampleCheck1"
+                        >
+                          Ship to a Different Address?
+                        </small>
+                      </div>
                     </div>
-                  </div>
-                  {shipAddress && (
-                    <div id="changeShipInputs">
-                      <div className="row ml-1 mr-1">
-                        <div className="col-12 col-md-6 col-sm-6">
-                          <div className="form-group">
-                            <label htmlFor="first_name">
-                              First Name<em className="red">*</em>
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              name="ship_first_name"
-                              value={ship_first_name}
-                              onChange={onSFnameChange}
-                              required
-                            />
+                    {shipAddress && (
+                      <div id="changeShipInputs">
+                        <div className="row ml-1 mr-1">
+                          <div className="col-12 col-md-6 col-sm-6">
+                            <div className="form-group">
+                              <label htmlFor="first_name">
+                                First Name<em className="red">*</em>
+                              </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                name="ship_first_name"
+                                value={ship_first_name}
+                                onChange={onSFnameChange}
+                                required
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-sm-6">
-                          <div className="form-group">
-                            <label htmlFor="last_name">
-                              Last Name<em className="red">*</em>
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              name="ship_last_name"
-                              value={ship_last_name}
-                              onChange={onSLnameChange}
-                              required
-                            />
+                          <div className="col-12 col-md-6 col-sm-6">
+                            <div className="form-group">
+                              <label htmlFor="last_name">
+                                Last Name<em className="red">*</em>
+                              </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                name="ship_last_name"
+                                value={ship_last_name}
+                                onChange={onSLnameChange}
+                                required
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-12 col-md-12 col-sm-12">
-                          <div className="form-group">
-                            <label htmlFor="formGroupExampleInput">
-                              Country<em className="red">*</em>
-                            </label>
-                            <select
-                              className="form-control"
-                              value={ship_country}
-                              name="ship_country"
-                              onChange={handleChange}
-                              required
-                            >
-                              <option value="" disabled="disabled">
-                                Select Country
-                              </option>
-                              {/* {console.log("A;;",allcategories)} */}
-                              {COUNTRY_LIST.map((item, i) => (
-                                <option key={i} value={item}>
-                                  {item}
+                          <div className="col-12 col-md-12 col-sm-12">
+                            <div className="form-group">
+                              <label htmlFor="formGroupExampleInput">
+                                Country<em className="red">*</em>
+                              </label>
+                              <select
+                                className="form-control"
+                                value={ship_country}
+                                name="ship_country"
+                                onChange={handleChange}
+                                required
+                              >
+                                <option value="" disabled="disabled">
+                                  Select Country
                                 </option>
-                              ))}
-                            </select>
+                                {/* {console.log("A;;",allcategories)} */}
+                                {COUNTRY_LIST.map((item, i) => (
+                                  <option key={i} value={item}>
+                                    {item}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-12 col-md-12 col-sm-12">
-                          <div className="form-group">
-                            <label htmlFor="formGroupExampleInput">
-                              Address Line 1<em className="red">*</em>
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Street name and house number"
-                              value={ship_address1}
-                              name="ship_address1"
-                              onChange={handleChange}
-                              required
-                            />
+                          <div className="col-12 col-md-12 col-sm-12">
+                            <div className="form-group">
+                              <label htmlFor="formGroupExampleInput">
+                                Address Line 1<em className="red">*</em>
+                              </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Street name and house number"
+                                value={ship_address1}
+                                name="ship_address1"
+                                onChange={handleChange}
+                                required
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-12 col-md-12 col-sm-12">
-                          <div className="form-group">
-                            <label htmlFor="formGroupExampleInput">
-                              Address Line 2 (Optional)
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder=""
-                              value={ship_address2}
-                              name="ship_address2"
-                              onChange={handleChange}
-                            />
+                          <div className="col-12 col-md-12 col-sm-12">
+                            <div className="form-group">
+                              <label htmlFor="formGroupExampleInput">
+                                Address Line 2 (Optional)
+                              </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                placeholder=""
+                                value={ship_address2}
+                                name="ship_address2"
+                                onChange={handleChange}
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-sm-6">
-                          <div className="form-group">
-                            <label htmlFor="formGroupExampleInput">
-                              City<em className="red">*</em>
-                            </label>
-                            <input
-                              type="text"
-                              pattern="[A-Za-z]{3}"
-                              className="form-control"
-                              value={ship_city}
-                              name="ship_city"
-                              onChange={onSCityChange}
-                              required
-                            />
+                          <div className="col-12 col-md-6 col-sm-6">
+                            <div className="form-group">
+                              <label htmlFor="formGroupExampleInput">
+                                City<em className="red">*</em>
+                              </label>
+                              <input
+                                type="text"
+                                pattern="[A-Za-z]{3}"
+                                className="form-control"
+                                value={ship_city}
+                                name="ship_city"
+                                onChange={onSCityChange}
+                                required
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-sm-6">
-                          <div className="form-group">
-                            <label htmlFor="formGroupExampleInput">
-                              Zip code<em className="red">*</em>
-                            </label>
-                            <input
-                              type="number"
-                              className="form-control"
-                              value={ship_zipcode}
-                              name="ship_zipcode"
-                              onChange={handleChange}
-                              required
-                            />
+                          <div className="col-12 col-md-6 col-sm-6">
+                            <div className="form-group">
+                              <label htmlFor="formGroupExampleInput">
+                                Zip code<em className="red">*</em>
+                              </label>
+                              <input
+                                type="number"
+                                className="form-control"
+                                value={ship_zipcode}
+                                name="ship_zipcode"
+                                onChange={handleChange}
+                                required
+                              />
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="col-12 col-md-6 col-sm-6">
-                          <div className="form-group">
-                            <label htmlFor="formGroupExampleInput">
-                              Phone<em className="red">*</em>
-                            </label>
-                            <input
-                              type="number"
-                              className="form-control"
-                              value={ship_phone}
-                              name="ship_phone"
-                              onChange={handleChange}
-                              required
-                            />
+                          <div className="col-12 col-md-6 col-sm-6">
+                            <div className="form-group">
+                              <label htmlFor="formGroupExampleInput">
+                                Phone<em className="red">*</em>
+                              </label>
+                              <input
+                                type="number"
+                                className="form-control"
+                                value={ship_phone}
+                                name="ship_phone"
+                                onChange={handleChange}
+                                required
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-sm-6">
-                          <div className="form-group">
-                            <label htmlFor="formGroupExampleInput">
-                              Email address<em className="red">*</em>
-                            </label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              name="ship_email"
-                              onChange={(e) => validateSEmail(e)}
-                              required
-                            />
-                            <p
-                              style={{
-                                fontWeight: "bold",
-                                color: "red",
-                              }}
-                            >
-                              {emailSError}
-                            </p>
+                          <div className="col-12 col-md-6 col-sm-6">
+                            <div className="form-group">
+                              <label htmlFor="formGroupExampleInput">
+                                Email address<em className="red">*</em>
+                              </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                name="ship_email"
+                                onChange={(e) => validateSEmail(e)}
+                                required
+                              />
+                              <p
+                                style={{
+                                  fontWeight: "bold",
+                                  color: "red",
+                                }}
+                              >
+                                {emailSError}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
+                    )}
+                    <div className="col-12">
+                      <hr />
                     </div>
-                  )}
-                  <div className="col-12">
-                    <hr />
-                  </div>
-                  <div className="col-12">
-                    <div className="form-group">
-                      <label htmlFor="formGroupExampleInput">
-                        Order notes (optional)
-                      </label>
-                      <textarea
-                        className="form-control"
-                        rows="3"
-                        placeholder="Notes about your order (eg special delivery information)."
-                        value={order_notes}
-                        name="order_notes"
-                        onChange={handleChange}
-                      ></textarea>
+                    <div className="col-12">
+                      <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">
+                          Order notes (optional)
+                        </label>
+                        <textarea
+                          className="form-control"
+                          rows="3"
+                          placeholder="Notes about your order (eg special delivery information)."
+                          value={order_notes}
+                          name="order_notes"
+                          onChange={handleChange}
+                        ></textarea>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
-          </div>
-          <div className="col-12 col-md-5 col-sm-5">
-            <div className="cart_top_row">
-              <h2 className="body_heading mt-5">Your Order</h2>
-            </div>
-            <div className="order-box">
-              <div className="row">
-                <div className="col-md-12 table-responsive">
-                  <table className="book_info_tbl w-100" border="0">
-                    <tr className="header_row">
-                      <td>Product</td>
-                      <td className="text-center">Subtotal</td>
-                    </tr>
-                    {console.log("checking cart", isAuthenticated, cartDet)}
-                    {isAuthenticated ? (
-                      cartDet.length ? (
-                        cartDet.map((item) => (
-                          <tr key={item.id}>
+            <div className="col-12 col-md-5 col-sm-5">
+              <div className="cart_top_row">
+                <h2 className="body_heading mt-5">Your Order</h2>
+              </div>
+              <div className="order-box">
+                <div className="row">
+                  <div className="col-md-12 table-responsive">
+                    <table className="book_info_tbl w-100" border="0">
+                      <tr className="header_row">
+                        <td>Product</td>
+                        <td className="text-center">Subtotal</td>
+                      </tr>
+                      {console.log("checking cart", isAuthenticated, cartDet)}
+                      {isAuthenticated ? (
+                        cartDet.length ? (
+                          cartDet.map((item) => (
+                            <tr key={item.id}>
+                              <td>
+                                <div className="d-flex align-items-center">
+                                  <img
+                                    className="cart_book_img"
+                                    src={imageUrl(item.product.cover_img)}
+                                  />
+                                  <span className="cart_book_name">
+                                    {item.product.name}
+                                  </span>
+                                </div>
+                              </td>
+                              <td className="cart_price text-center">
+                                {formatAmount(
+                                  item.product.price * item.quantity
+                                )}
+                              </td>
+                            </tr>
+                          ))
+                        ) : (
+                          <tr>
+                            <td colspan="2">{iniText}</td>
+                          </tr>
+                        )
+                      ) : basket?.length ? (
+                        basket.map((item) => (
+                          <tr>
                             <td>
                               <div className="d-flex align-items-center">
                                 <img
                                   className="cart_book_img"
-                                  src={imageUrl(item.product.cover_img)}
+                                  src={imageUrl(item.image)}
                                 />
                                 <span className="cart_book_name">
-                                  {item.product.name}
+                                  {item.name}
                                 </span>
                               </div>
                             </td>
                             <td className="cart_price text-center">
-                              {formatAmount(item.product.price * item.quantity)}
+                              {formatAmount(item.price * item.quantity)}
                             </td>
                           </tr>
                         ))
                       ) : (
                         <tr>
-                          <td colspan="2">{iniText}</td>
+                          <td colspan="2">No items added to cart.</td>
                         </tr>
-                      )
-                    ) : basket?.length ? (
-                      basket.map((item) => (
-                        <tr>
-                          <td>
-                            <div className="d-flex align-items-center">
-                              <img
-                                className="cart_book_img"
-                                src={imageUrl(item.image)}
-                              />
-                              <span className="cart_book_name">
-                                {item.name}
-                              </span>
-                            </div>
-                          </td>
-                          <td className="cart_price text-center">
-                            {formatAmount(item.price * item.quantity)}
-                          </td>
-                        </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td colspan="2">No items added to cart.</td>
-                      </tr>
-                    )}
-                  </table>
+                      )}
+                    </table>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-12">
-                  <hr />
+                <div className="row">
+                  <div className="col-12">
+                    <hr />
+                  </div>
                 </div>
-              </div>
-              <div className="subtotal row">
-                <div className="col-md-6">
-                  <h4>Total</h4>
-                </div>
-                <div className="col-md-6 text-right">
-                  <h6>
-                    <strong>
-                      {/* { formatAmount(getTotal())} */}
-                      {isAuthenticated
-                        ? formatAmount(
-                            cartDet?.reduce(
-                              (amount, item) =>
-                                amount +
-                                item.quantity * Number(item.product.price),
-                              0
+                <div className="subtotal row">
+                  <div className="col-md-6">
+                    <h4>Total</h4>
+                  </div>
+                  <div className="col-md-6 text-right">
+                    <h6>
+                      <strong>
+                        {/* { formatAmount(getTotal())} */}
+                        {isAuthenticated
+                          ? formatAmount(
+                              cartDet?.reduce(
+                                (amount, item) =>
+                                  amount +
+                                  item.quantity * Number(item.product.price),
+                                0
+                              )
                             )
-                          )
-                        : formatAmount(getBasketTotal(basket))}
-                    </strong>
-                  </h6>
+                          : formatAmount(getBasketTotal(basket))}
+                      </strong>
+                    </h6>
+                  </div>
                 </div>
+                <button
+                  type="submit"
+                  className="order-box-btn"
+                  disabled={btnDisabled}
+                  onClick={() =>
+                    navigate("/payment-methods", {
+                      state: {
+                        data: data2,
+                        shipAddress,
+                        city,
+                        cartDet,
+                        email,
+                        ship_email,
+                        ship_city,
+                      },
+                    })
+                  }
+                >
+                  Place Order
+                </button>
+                {!isAuthenticated ? (
+                  <center>
+                    <p style={{ color: "red" }}>
+                      Please Log in to Place the Order
+                    </p>
+                  </center>
+                ) : (
+                  ""
+                )}
               </div>
-              <button
-                type="submit"
-                className="order-box-btn"
-                disabled={btnDisabled}
-                onClick={() =>
-                  navigate("/payment-methods", {
-                    state: {
-                      data: data2,
-                      shipAddress,
-                      city,
-                      cartDet,
-                      email,
-                      ship_email,
-                      ship_city,
-                    },
-                  })
-                }
-              >
-                Place Order
-              </button>
-              {!isAuthenticated ?
-              <center>
-              <p style={{color:"red"}}>Please Log in to Place the Order</p>
-              </center>
-              : "" }
             </div>
           </div>
-        </div>
-      </section>
-      {showLoginModal && (
-        <LoginModal
-          show={showLoginModal}
-          handleClose={() => setShowLoginModal(false)}
-        />
-      )}
-    </LandingPage>
+        </section>
+        {showLoginModal && (
+          <LoginModal
+            show={showLoginModal}
+            handleClose={() => setShowLoginModal(false)}
+          />
+        )}
+      </LandingPage>
+    </Suspense>
   );
 }
