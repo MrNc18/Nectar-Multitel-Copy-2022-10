@@ -37,7 +37,7 @@ function Contacts() {
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
-  const pageCount = Math.ceil(vendorList.length / usersPerPage);
+  const pageCount = Math.ceil(vendorList?.length / usersPerPage);
   const changePage = ({ selected }) => {
     setPageNumber(selected);
   };

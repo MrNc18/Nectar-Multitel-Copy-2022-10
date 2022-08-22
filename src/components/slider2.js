@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getAllApprovedCms, getAllCms } from "../services/category";
 import test from "../assets/test.png";
-import banner from "../assets/home-banner.jpg";
-import bg from "../assets/tv_services_bg.png";
 import "./slider2.css";
-import Slider from "react-slick";
-import up from "../assets/up-arrow.svg";
-import down from "../assets/down-arrow.svg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { baseurl } from "../utils/request";
-import LandingPage from "./LandingPage";
 import { Carousel, Row } from "react-bootstrap";
-import TopBanner from "./atoms/TopBanner";
 import { useNavigate } from "react-router-dom";
 
 function App() {
