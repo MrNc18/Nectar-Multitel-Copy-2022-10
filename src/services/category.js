@@ -1,7 +1,8 @@
 import { doGet, doPost, doPut,doDelete, baseurl }  from "../utils/request"
 
  export const imageUrl =  (imagePath)  => {
-    return (`${baseurl}/${imagePath}`)
+    // return (`${baseurl}/${imagePath}`)
+    return (`${baseurl}/images/${imagePath}`)
  }
 
 export const getAllCategories = async () => {

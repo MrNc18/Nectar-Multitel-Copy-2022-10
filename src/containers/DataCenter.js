@@ -18,7 +18,6 @@ const DataCenter = () => {
       const resp = await getDigitotalBySlug(data);
       console.log(resp);
       setDatacenter(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }
@@ -53,15 +52,15 @@ const DataCenter = () => {
                 style={{ display: "flex" }}
                 className="pt-5  col-12 col-lg-4"
               >
-               <div>
-               <img
-                  className="img-fluid"
-                  height={250}
-                  width={350}
-                  src={imageUrl(datacenter?.image)}
-                  alt=""
-                />
-               </div>
+                <div>
+                  <img
+                    className="img-fluid"
+                    height={250}
+                    width={350}
+                    src={imageUrl(datacenter?.image)}
+                    alt=""
+                  />
+                </div>
               </div>
               <div className=" pt-5 col-lg-8">
                 <h4 className="mt-3 mb-4" style={{ color: "#1D3557" }}>

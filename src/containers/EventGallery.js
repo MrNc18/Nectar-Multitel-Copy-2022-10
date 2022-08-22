@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { accordionImgData } from "../components/atoms/accordionImgData";
 import Gallery from "../components/atoms/Gallery";
 import { getNewsByCategory } from "../services/WhoWeAreFront";
 import { showAlert } from "../utils/showAlert";
@@ -29,20 +28,24 @@ function EventGallery() {
     <>
       <Container>
         <Row>
-        {console.log(gallery, "gallery")}
+          {console.log(gallery, "gallery")}
           {gallery &&
             gallery?.news?.map((item) => (
               <Col md={12}>
                 <div className="accordion">
                   <>
-                  {/* {console.log(item, "items")} */}
                     <Gallery
                       title={item?.title}
                       desc={item?.description}
-                      content={item?.image && item?.image.map((img) => (
-                        <img src={imageUrl(img)} style={{ height:"100px"}} />
-                    
-                      ))}
+                      content={
+                        item?.image &&
+                        item?.image.map((img) => (
+                          <img
+                            src={imageUrl(img)}
+                            style={{ height: "100px" }}
+                          />
+                        ))
+                      }
                     />
                   </>
                 </div>

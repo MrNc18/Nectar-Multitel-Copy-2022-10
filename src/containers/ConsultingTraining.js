@@ -18,7 +18,6 @@ const ConsultingTraining = () => {
       const resp = await getDigitotalBySlug(data);
       console.log(resp);
       setConsultingtraining(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }
