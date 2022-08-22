@@ -7,14 +7,12 @@ import { showAlert } from "../utils/showAlert";
 
 const MissionAndValue = () => {
   const [missionValues, setMissionValues] = useState({});
- 
   const handleAllMessage = async () => {
     const data = { slug: "sustainability" };
     try {
       const resp = await getMsgMissionSusBySlug(data);
       console.log(resp);
       setMissionValues(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }
@@ -33,7 +31,6 @@ const MissionAndValue = () => {
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item href="/whoweare">Start</Breadcrumb.Item>
-
                 <Breadcrumb.Item href="/whoweare">Who We Are</Breadcrumb.Item>
                 <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
                   {" "}
@@ -42,44 +39,45 @@ const MissionAndValue = () => {
               </Breadcrumb>
             </div>
           </div>
-        <div className="container">
-        <div className="row">
-            <div className="col-12  col-6 col-4  ">
-              <div>
-                <h2 style={{ color: "#1D3557" }} className="pt-3">
-                  {missionValues?.name}
-                </h2>
+          <div className="container">
+            <div className="row">
+              <div className="col-12  col-6 col-4  ">
+                <div>
+                  <h2 style={{ color: "#1D3557" }} className="pt-3">
+                    {missionValues?.name}
+                  </h2>
 
-                <p className="pt-3">{missionValues?.description}</p>
-              </div>
+                  <p className="pt-3">{missionValues?.description}</p>
+                </div>
 
-              <div>
-                <h5 style={{ color: "#3190C3" }} className="pt-3">
-                  {missionValues?.sub_heading}
-                </h5>
-                {missionValues && missionValues?.message_tags?.map((item) => (
-                  <li>{item?.name}</li>
-                ))}
-              </div>
-              <div>
                 <div>
                   <h5 style={{ color: "#3190C3" }} className="pt-3">
-                    {missionValues?.sub_heading_2}
+                    {missionValues?.sub_heading}
+                  </h5>
+                  {missionValues &&
+                    missionValues?.message_tags?.map((item) => (
+                      <li>{item?.name}</li>
+                    ))}
+                </div>
+                <div>
+                  <div>
+                    <h5 style={{ color: "#3190C3" }} className="pt-3">
+                      {missionValues?.sub_heading_2}
+                    </h5>
+
+                    <p className="pt-3">{missionValues?.description_2}</p>
+                  </div>
+                </div>
+                <div>
+                  <h5 style={{ color: "#3190C3" }} className="pt-3">
+                    {missionValues?.sub_heading_3}
                   </h5>
 
-                  <p className="pt-3">{missionValues?.description_2}</p>
+                  <p className="pt-3">{missionValues?.description_3}</p>
                 </div>
-              </div>
-              <div>
-                <h5 style={{ color: "#3190C3" }} className="pt-3">
-                  {missionValues?.sub_heading_3}
-                </h5>
-
-                <p className="pt-3">{missionValues?.description_3}</p>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </LandingPage>
     </>

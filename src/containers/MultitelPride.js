@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row, Breadcrumb } from "react-bootstrap";
 import ImgAccordion from "../components/atoms/ImgAccordion";
-import { accordionImgData } from "../components/atoms/accordionImgData";
 import LandingPage from "../components/LandingPage";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import { getAllMultitelPride } from "../services/WhoWeAreFront";
@@ -48,7 +47,6 @@ function MultitelPride() {
                     <Col md={12}>
                       <div className="accordion">
                         <>
-                          {/* {console.log(item, "items")} */}
                           <ImgAccordion
                             title={item?.title}
                             desc={item?.description}
@@ -63,16 +61,12 @@ function MultitelPride() {
                                         src={imageUrl(img)}
                                         style={{ height: "80px" }}
                                       />
-                                      {/* <h5 className="text-center">{item?.description}</h5> &nbsp;
-                                      <p className="text-center">{item?.sort_description}</p> */}
                                     </>
                                   }
                                 </>
                               ))
                             }
-                          
                           />
-                          
                         </>
                       </div>
                     </Col>

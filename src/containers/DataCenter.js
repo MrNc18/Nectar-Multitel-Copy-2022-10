@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
-import ServiceBanner from "../components/atoms/ServiceBanner";
-import LandingPage from "../components/LandingPage";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+// import ServiceBanner from "../components/atoms/ServiceBanner";
+// import LandingPage from "../components/LandingPage";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { showAlert } from "../utils/showAlert";
 import { getDigitotalBySlug } from "../services/DigitotalFront";
 import { imageUrl } from "../services/category";
+
+const LandingPage = lazy(() => import("../components/LandingPage"));
+const ServiceBanner = lazy(() => import("../components/atoms/ServiceBanner"));
+
 const DataCenter = () => {
   const [datacenter, setDatacenter] = useState({});
 
@@ -14,7 +18,6 @@ const DataCenter = () => {
       const resp = await getDigitotalBySlug(data);
       console.log(resp);
       setDatacenter(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }
@@ -26,6 +29,7 @@ const DataCenter = () => {
 
   return (
     <>
+    <Suspense fallback={<div>Loading...</div>}>
       <LandingPage woproducts>
         <ServiceBanner title="Data Center And Cloud" regnPage />
         <div className="container mb-5">
@@ -48,15 +52,15 @@ const DataCenter = () => {
                 style={{ display: "flex" }}
                 className="pt-5  col-12 col-lg-4"
               >
-               <div>
-               <img
-                  className="img-fluid"
-                  height={250}
-                  width={350}
-                  src={imageUrl(datacenter?.image)}
-                  alt=""
-                />
-               </div>
+                <div>
+                  <img
+                    className="img-fluid"
+                    height={250}
+                    width={350}
+                    src={imageUrl(datacenter?.image)}
+                    alt=""
+                  />
+                </div>
               </div>
               <div className=" pt-5 col-lg-8">
                 <h4 className="mt-3 mb-4" style={{ color: "#1D3557" }}>
@@ -71,6 +75,7 @@ const DataCenter = () => {
           </div>
         </div>
       </LandingPage>
+      </Suspense>
     </>
   );
 };

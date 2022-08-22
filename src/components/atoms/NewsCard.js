@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { imageUrl } from "../../services/category";
+ import { imageUrl } from "../../services/category";
 import { getAllNews } from "../../services/WhoWeAreFront";
 import { useNavigate } from "react-router-dom";
 
 function NewsCard({
-  forwardlink = "/newssecond",
-  forwardlink1 = "/newsfirst",
-  newsFirst,
+  
 }) {
   const [news, setNews] = useState([]);
 

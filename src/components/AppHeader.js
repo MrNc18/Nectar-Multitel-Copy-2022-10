@@ -7,6 +7,8 @@ import { getUserDetailsByToken } from "../services/authentication";
 import { showAlert } from "../utils/showAlert";
 import { Dropdown } from "react-bootstrap";
 import { ROLE } from "../constants/authconstant";
+import GoogleTranslate from "./google";
+import { multilingual } from "../svg/multilingual";
 
 export default function AppHeader(props) {
   const navigate = useNavigate();
@@ -22,16 +24,14 @@ export default function AppHeader(props) {
         result?.data?.data?.role == ROLE.USER ||
         result?.data?.data?.role == ROLE.VENDOR
       ) {
-        showAlert("Unauthorized","error");
+        showAlert("Unauthorized", "error");
         navigate("/");
-        
-      } else  {   
+      } else {
         setUsername(result?.data?.data?.first_name);
       }
     } else {
       navigate("/");
-      showAlert("Unauthorized","error");
-      
+      showAlert("Unauthorized", "error");
     }
   };
 
@@ -63,32 +63,40 @@ export default function AppHeader(props) {
         >
           <i className="fas fa-bars"></i>
         </button>
+       
+          <div className="multilingual d-flex" style={{marginTop:"12px",marginLeft:"20px"}}>
+            {multilingual}
+            <div style={{ paddingLeft: "5px" }}>
+              <GoogleTranslate />
+            </div>
+          </div> 
 
-        <Dropdown
-          className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-4 my-2 my-md-0"
-          style={{ position: "relative" }}
-        >
-          <Dropdown.Toggle
-            id="dropdown-basic"
-            style={{ background: "transparent", border: "none" }}
+          <Dropdown
+             className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-4 my-2 my-md-0"
+            style={{ position: "relative" }}
           >
-            <img className="usericon" src="/assets/images/user.png" />
-            <span className="username">Hey {username}</span>
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item
-              onClick={() => {
-                deleteCookie(AUTH_TOKEN);
-                showAlert("Logged out.","success");
-                navigate("/");
-                window.location.reload();
-              }}
+            <Dropdown.Toggle
+              id="dropdown-basic"
+              style={{ background: "transparent", border: "none" }}
             >
-              Logout
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+              <img className="usericon" src="/assets/images/user.png" />
+              <span className="username">Hey {username}</span>
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item
+                onClick={() => {
+                  deleteCookie(AUTH_TOKEN);
+                  showAlert("Logged out.", "success");
+                  navigate("/");
+                  window.location.reload();
+                }}
+              >
+                Logout
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        {/* {/ </div> /} */}
       </nav>
     </div>
   );

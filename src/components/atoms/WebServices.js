@@ -4,7 +4,6 @@ import { showAlert } from "../../utils/showAlert";
 import { getTelecommunicationBySlug } from "../../services/TelecommunicationFront";
 
 function WebServices() {
-
   const [WebServices, setWebServices] = useState({});
 
   const handleAllWebServices = async () => {
@@ -13,7 +12,6 @@ function WebServices() {
       const resp = await getTelecommunicationBySlug(data);
       console.log(resp);
       setWebServices(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }
@@ -31,12 +29,14 @@ function WebServices() {
             <h4 className="mt-5 mb-4" style={{ color: "#1D3557" }}>
               {WebServices?.name}
             </h4>
-            <div dangerouslySetInnerHTML={{ __html: WebServices?.description }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: WebServices?.description }}
+            />
           </Col>
         </Row>
       </Container>
     </>
-  )
+  );
 }
 
-export default WebServices
+export default WebServices;
