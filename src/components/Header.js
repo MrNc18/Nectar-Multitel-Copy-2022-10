@@ -329,11 +329,11 @@ function Header() {
 
               
 
-              <Nav.Link onClick={() => navigate("/home")}>
+              <Nav.Link className="notranslate" onClick={() => navigate("/home")}>
                 Multitel Home
               </Nav.Link>
               <Nav.Link href="#link">Multitel Mobile</Nav.Link>
-              <Nav.Link onClick={() => navigate("/marketplace")}>
+              <Nav.Link className="notranslate" onClick={() => navigate("/marketplace")}>
                 Marketplace
               </Nav.Link>
               <Nav.Link onClick={() => navigate("/profile")}>
