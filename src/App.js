@@ -118,6 +118,8 @@ import Admarketplace from "./components/Admin/Admarketplace";
 import InternetUser from "./containers/Internet";
 import Oml from "./components/atoms/Oml";
 import Help from "./components/Admin/Help&support";
+import Chat from "./components/Chat";
+
 
 
 function App() {
@@ -136,6 +138,7 @@ function App() {
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/products/:name" element={<ProductDetail />} />
           <Route path="/categories/:slug" element={<Category />} />
+          <Route path="/chat" element={<Chat/>}/>
 
 
           {/* <Route path="/network-equipments" element={<NetworkEquipments />} /> */}
