@@ -9,6 +9,7 @@ class GoogleTranslate extends Component {
   
 
     googleTranslateElementInit () {
+        // setCookie('googtrans', '/en/en',1);
         setCookie('googtrans', '/en/en',1);
         new window.google.translate.TranslateElement({
         //  pageLanguage: 'en',

@@ -1,6 +1,7 @@
-import { doGet, doPost, doPut,doDelete, baseurl }  from "../utils/request"
+import { doGet, doPost, doPut,doDelete, baseurl, }  from "../utils/request"
 
  export const imageUrl =  (imagePath)  => {
+    // return (`${baseurl}/${imagePath}`)
     return (`${baseurl}/images/${imagePath}`)
  }
 

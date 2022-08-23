@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
-import LandingPage from "../components/LandingPage";
-import ServiceBanner from "../components/atoms/ServiceBanner";
-import Profile from "../components/atoms/Profile";
-import ProfileLandingPage from "../components/atoms/ProfileLandingPage";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { Col, Container, Nav, Row, Tab } from "react-bootstrap";
+// import LandingPage from "../components/LandingPage";
+// import ProfileLandingPage from "../components/atoms/ProfileLandingPage";
+// import MyProductCard from "../components/atoms/MyProductCard";
+// import HelpDeskCard from "../components/atoms/HelpDeskCard";
+// import InvoiceTable from "../components/atoms/InvoiceTable";
+// import InvoiceBill from "../components/atoms/InvoiceBill";
+// import Settings from "../components/Admin/settings";
+// import EditProfileForm from "../components/atoms/EditProfileForm";
 import {
   changePassword,
   getUserDetailsByToken,
 } from "../services/authentication";
-import MyProductCard from "../components/atoms/MyProductCard";
-import HelpDeskCard from "../components/atoms/HelpDeskCard";
-import InternetQualityTest from "../components/atoms/InternetQualityTest";
-import InvoiceTable from "../components/atoms/InvoiceTable";
-import InvoiceBill from "../components/atoms/InvoiceBill";
-import Settings from "../components/Admin/settings";
-import EditProfileForm from "../components/atoms/EditProfileForm";
 import { changePasswordIcon } from "../svg/ChangePasswordIcon";
 import { profIcon } from "../svg/MyProfileIcon";
 import { productsIcon } from "../svg/MyProductsIcon";
@@ -23,6 +20,15 @@ import { iqgIcon } from "../svg/InternetQualityGraphIcon";
 import { invIcon } from "../svg/InvoicesIcon";
 import { AUTH_TOKEN, getCookie } from "../utils/cookie";
 import { ROLE } from "../constants/authconstant";
+
+const LandingPage = lazy(() => import("../components/LandingPage"));
+const ProfileLandingPage = lazy(() => import("../components/atoms/ProfileLandingPage"));
+const MyProductCard = lazy(() => import("../components/atoms/MyProductCard"));
+const HelpDeskCard = lazy(() => import("../components/atoms/HelpDeskCard"));
+const InvoiceTable = lazy(() => import("../components/atoms/InvoiceTable"));
+const InvoiceBill = lazy(() => import("../components/atoms/InvoiceBill"));
+const Settings = lazy(() => import("../components/Admin/settings"));
+const EditProfileForm = lazy(() => import("../components/atoms/EditProfileForm"));
 
 function Account() {
   const [editMode, setEditMode] = useState(false);
@@ -44,6 +50,7 @@ function Account() {
   console.log(userRole);
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <LandingPage>
       {/* <ServiceBanner title="Account" />
       <Profile />
@@ -131,6 +138,7 @@ function Account() {
         </Tab.Container>
       </Container>
     </LandingPage>
+    </Suspense>
   );
 }
 

@@ -14,7 +14,6 @@ const Webservices = () => {
       const resp = await getDigitotalBySlug(data);
       console.log(resp);
       setWebservice(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }

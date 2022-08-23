@@ -7,14 +7,12 @@ import { showAlert } from "../utils/showAlert";
 
 const MessageFromManag = () => {
   const [messageFromManager, setMessageFromManager] = useState({});
-
   const handleAllMessage = async () => {
     const data = { slug: "management-message" };
     try {
       const resp = await getMsgMissionSusBySlug(data);
       console.log(resp);
       setMessageFromManager(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }
@@ -23,7 +21,6 @@ const MessageFromManag = () => {
   useEffect(() => {
     handleAllMessage();
   }, []);
-
 
   return (
     <>
@@ -34,7 +31,6 @@ const MessageFromManag = () => {
             <div className="col-12 col-6 col-4 bredcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item href="/whoweare">Start</Breadcrumb.Item>
-
                 <Breadcrumb.Item href="/whoweare">Who We Are</Breadcrumb.Item>
                 <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
                   Message from Management
@@ -43,19 +39,19 @@ const MessageFromManag = () => {
             </div>
           </div>
 
-    <div className="container">
-    <div className="row">
-            <div className="col-12  col-6 col-4  ">
-              <div>
-                <h2 style={{ color: "#1D3557" }} className="pt-5">
-                  {messageFromManager?.name}
-                </h2>
+          <div className="container">
+            <div className="row">
+              <div className="col-12  col-6 col-4  ">
+                <div>
+                  <h2 style={{ color: "#1D3557" }} className="pt-5">
+                    {messageFromManager?.name}
+                  </h2>
 
-                <p className="pt-5">{messageFromManager?.description}</p>
+                  <p className="pt-5">{messageFromManager?.description}</p>
+                </div>
               </div>
             </div>
           </div>
-    </div>
         </div>
       </LandingPage>
     </>

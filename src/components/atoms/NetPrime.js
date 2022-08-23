@@ -13,7 +13,6 @@ function NetPrime() {
       const resp = await getTelecommunicationBySlug(data);
       console.log(resp);
       setNetPrime(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }

@@ -13,7 +13,6 @@ import { getTelecommunicationBySlug } from "../../services/TelecommunicationFron
       const resp = await getTelecommunicationBySlug (data);
       console.log(resp);
       setInternet(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }
@@ -28,7 +27,6 @@ import { getTelecommunicationBySlug } from "../../services/TelecommunicationFron
       <Container>
         <Row>
           <Col md={12} className="mt-2">
-            {/* <PrivateNetwork data={obj} /> */}
             <h4 className="mt-3 mb-4" style={{color:"#1D3557"}}>{Internet?.name}</h4>
             <div dangerouslySetInnerHTML={{ __html: Internet?.description }} />
           </Col>

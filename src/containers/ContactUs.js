@@ -1,8 +1,12 @@
-import React from "react";
-import ServiceBanner from "../components/atoms/ServiceBanner";
-import LandingPage from "../components/LandingPage";
+import React, { lazy, Suspense } from "react";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import ContactUsForm from "../components/atoms/ContactUsForm";
+// import ServiceBanner from "../components/atoms/ServiceBanner";
+// import LandingPage from "../components/LandingPage";
+// import ContactUsForm from "../components/atoms/ContactUsForm";
+
+const LandingPage = lazy(() => import("../components/LandingPage"));
+const ServiceBanner = lazy(() => import("../components/atoms/ServiceBanner"));
+const ContactUsForm = lazy(() => import("../components/atoms/ContactUsForm"));
 
 
 const ContactUs = () => {
@@ -45,31 +49,33 @@ const ContactUs = () => {
   };
   return (
     <>
-      <LandingPage woproducts>
-        <ServiceBanner title="Contact Us" regnPage />
-        <div className="container mb-5">
-          <div className="row">
-            <div className="col-12 col-6 col-4 bredcrumb">
-              <Breadcrumb>
-                <Breadcrumb.Item href="/contactus">Start</Breadcrumb.Item>
+      <Suspense fallback={<div>Loading...</div>}>
+        <LandingPage woproducts>
+          <ServiceBanner title="Contact Us" regnPage />
+          <div className="container mb-5">
+            <div className="row">
+              <div className="col-12 col-6 col-4 bredcrumb">
+                <Breadcrumb>
+                  <Breadcrumb.Item href="/contactus">Start</Breadcrumb.Item>
 
-                <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
-                  Contact Us
-                </Breadcrumb.Item>
-              </Breadcrumb>
+                  <Breadcrumb.Item active style={{ color: "#0C7CB8" }}>
+                    Contact Us
+                  </Breadcrumb.Item>
+                </Breadcrumb>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-md-5 ">
+                <Contact data={obj} />
+              </div>
+              <div className="col-md-6 box_shadow m-3">
+                <ContactUsForm />
+              </div>
             </div>
           </div>
-
-          <div className="row"  >
-            <div className="col-md-5 "  >
-              <Contact data={obj}  />
-            </div>
-            <div className="col-md-6 box_shadow m-3"    >
-              <ContactUsForm />
-            </div>
-          </div>
-        </div>
-      </LandingPage>
+        </LandingPage>
+      </Suspense>
     </>
   );
 };

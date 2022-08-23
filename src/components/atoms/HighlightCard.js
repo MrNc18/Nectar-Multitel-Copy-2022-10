@@ -13,7 +13,6 @@ function HighlightCard() {
       const resp = await getNewsByCategory(data);
       console.log(resp);
       setHighlight(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }

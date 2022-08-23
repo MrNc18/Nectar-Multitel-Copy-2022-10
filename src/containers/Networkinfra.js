@@ -7,14 +7,12 @@ import { getDigitotalBySlug } from "../services/DigitotalFront";
 import { imageUrl } from "../services/category";
 const Networkinfra = () => {
   const [networkinfra, setNetworkinfra] = useState({});
-
   const handleAllnetworkinfra = async () => {
     const data = { slug: "network-infrastructure" };
     try {
       const resp = await getDigitotalBySlug(data);
       console.log(resp);
       setNetworkinfra(resp && resp.data.data);
-      // console.log("newsreq", resp);
     } catch (error) {
       showAlert("Something went wrong", "error");
     }
