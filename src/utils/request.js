@@ -1,9 +1,9 @@
 import axios from "axios";
 import { AUTH_TOKEN, getCookie } from "./cookie";
 
-// export const baseurl = 'http://159.65.145.21:3003';
-export const baseurl = 'http://50.28.104.48:3003';
-// export const baseurl = 'http://10.144.252.88:3003';
+// export const baseurl = 'http://159.65.145.21:3003';  //Our server
+// export const baseurl = 'http://50.28.104.48:3003';   //Our server
+export const baseurl = 'http://10.144.252.88:3003';   //Clients Server
 
 
 const header = () => ({
