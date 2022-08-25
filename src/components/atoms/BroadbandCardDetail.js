@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Col, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { formatAmount } from "../../utils/AmountFormatter";
@@ -7,6 +7,8 @@ import { useStateValue } from "../../StateProvider";
 // import showAlert from "../../utils/showAlert";
 import { addToWishlist, addCartData } from "../../services/category";
 import { AUTH_TOKEN, getCookie } from "../../utils/cookie";
+import { getUserDetailsByToken } from "../../services/authentication";
+import { addServiceCart } from "../../services/category";
 
 const styles = {
   padding: "7px",
@@ -20,38 +22,50 @@ const styles = {
 };
 
 function BroadbandCardDetail({ product }) {
+  console.log("Products", product);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const [state, dispatch] = useStateValue();
-  const [userId, setUserId] = useState('')
-  const isAuthenticated = getCookie(AUTH_TOKEN)
-  const [qty, setQty] = useState(1)
+  const [userId, setUserId] = useState("");
+  const isAuthenticated = getCookie(AUTH_TOKEN);
+  const [qty, setQty] = useState(1);
 
   let navigate = useNavigate();
 
   const addToBasket = async () => {
+    console.log("USer", userId);
     if (userId) {
-      const resp = await addCartData({
-          userId,
-          quantity:qty,
-          id:product.id,
-      })
-      console.log("addCart", resp)
+      const resp = await addServiceCart({
+        userId,
+        quantity: qty,
+        serviceId: product.id,
+      });
+      console.log("addCart", resp);
     } else {
       dispatch({
         type: "ADD_TO_BASKET",
         item: {
-            id: product.id,
-            image: product?.cover_img,
-            name:product.name,
-            price: product.price,
-            quantity:qty,
+          id: product.id,
+          image: product?.cover_img,
+          name: product.name,
+          price: product.price,
+          quantity: qty,
         },
-    });
+      });
     }
   };
+
+  useEffect(() => {
+    async function getUserData() {
+      if (isAuthenticated) {
+        const result = await getUserDetailsByToken();
+        setUserId(result?.data?.data?.userId);
+      }
+    }
+    getUserData();
+  }, []);
 
   return (
     <Col md={6} lg={4}>
@@ -103,7 +117,7 @@ function BroadbandCardDetail({ product }) {
               onClick={() => {
                 addToBasket();
                 // showAlert("Item Added to cart.", "success");
-                navigate("/cart");
+                navigate("/serviceproductcart");
               }}
             >
               Buy Now
