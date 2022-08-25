@@ -40,6 +40,7 @@ function MultitelPride() {
                     Multitel Pride
                   </Breadcrumb.Item>
                 </Breadcrumb>
+
               </div>
               <div className="accordion">
                 {multitelPride &&

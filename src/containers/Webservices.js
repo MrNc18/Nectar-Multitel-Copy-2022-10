@@ -30,7 +30,7 @@ const Webservices = () => {
 
         <div className="container mb-5">
           <div className="row">
-            <div className="col-12 col-6 col-4 bredcrumb">
+            <div className="col-12 col-6 c-ol-4 bredcrumb">
               <Breadcrumb>
                 <Breadcrumb.Item href="/digitotal">Start</Breadcrumb.Item>
 

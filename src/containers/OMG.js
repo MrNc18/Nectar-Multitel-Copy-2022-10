@@ -132,7 +132,7 @@ const OMG = () => {
               </Breadcrumb>
 
               <NavDropdown title="Select Service" id="basic-nav-dropdown">
-                <NavDropdown.Item style={{ color: "#0C7CB8" }}>
+                      <NavDropdown.Item   style={{ color: "#0C7CB8"}}>
                   OMG
                 </NavDropdown.Item>
                 <NavDropdown.Item>Special Services</NavDropdown.Item>

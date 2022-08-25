@@ -35,4 +35,5 @@ import { getTelecommunicationBySlug } from "../../services/TelecommunicationFron
     </>
   )
 }
-export default PrivateNetwork
+
+export default PrivateNetwork;

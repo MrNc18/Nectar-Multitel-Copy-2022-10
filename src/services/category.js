@@ -1,4 +1,4 @@
-import { doGet, doPost, doPut,doDelete, baseurl }  from "../utils/request"
+import { doGet, doPost, doPut,doDelete, baseurl, }  from "../utils/request"
 
  export const imageUrl =  (imagePath)  => {
     // return (`${baseurl}/${imagePath}`)
@@ -147,6 +147,24 @@ export const getAllCategories = async () => {
   }
   export const delAllCartData = async(data) =>{
     return await doDelete('api/cart/AllCartDataDelete',data);
+  }
+
+  // service Cart
+  
+  export const addServiceCart = async(data) =>{
+    return await doPost('api/serviceCart/addServiceCart', data);
+  }
+  export const deleteServiceCart = async(data) =>{
+    return await doDelete('api/serviceCart/serviceCartDataDelete',data);
+  }
+  export const getServiceCart = async(data) =>{
+    return await doPost('api/serviceCart/getServiceCartData',data);
+  }
+  export const updateServiceCart = async(data) =>{
+    return await doPut('api/serviceCart/updateServiceCartData',data);
+  }
+  export const deleteAllServiceCart = async(data) =>{
+    return await doDelete('api/serviceCart/AllServiceCartDataDelete',data);
   }
 
   // wishlist

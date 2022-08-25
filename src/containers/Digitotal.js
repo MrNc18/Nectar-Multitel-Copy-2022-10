@@ -42,12 +42,11 @@ const Digitotal = () => {
               </Breadcrumb>
             </div>
           </div>
-
-          <div className="container">
+          <div>
             <div className="row">
               <div
                 style={{ display: "flex" }}
-                className="pt-5    col-12 col-md-4"
+                className="pt-5  col-12 col-md-4"
               >
                 <div>
                   <img
@@ -59,6 +58,8 @@ const Digitotal = () => {
                   />
                 </div>
               </div>
+              
+               
 
               <div className=" pt-5  col-md-8 ">
                 <h2 className="mt-3 mb-4" style={{ color: "#1D3557" }}>
@@ -78,9 +79,13 @@ const Digitotal = () => {
             </div>
           </div>
         </div>
+      
       </LandingPage>
     </>
   );
 };
+
+
+          
 
 export default Digitotal;

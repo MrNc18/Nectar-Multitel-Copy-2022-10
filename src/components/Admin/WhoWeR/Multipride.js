@@ -47,7 +47,6 @@ const Multipride = () => {
     setfile(event.target.files);
     console.log(file);
   };
-
   const handleDeleteshow = (item) => {
     setDeleteShow(true);
     setDeleteRecord(item);

@@ -5,11 +5,12 @@ import {
   getDeleteNews,
   getEditNews,
   getAllNewsCategories,
+  imageUrl,
 } from "../../../services/Phase_2/WhoWeR";
 import { Button, Modal, Form, Table } from "react-bootstrap";
 import { showAlert } from "../../../utils/showAlert";
 import moment from "moment"
-import { imageUrl } from "../../../services/category";
+
 
 
 const NewsData = () => {
@@ -21,13 +22,14 @@ const NewsData = () => {
   const [deleteRecord, setDeleteRecord] = useState("");
   const [categories, setCategories] = useState("");
   const [DeleteShow, setDeleteShow] = useState(false);
+  const [Image, setImage] = useState("");
   const handleClose = () => {
     setShow(false);
     setData2("");
   };
   const [errorMsg, setErrorMsg] = useState("");
   const [file, setfile] = useState([]);
-  const [Image, setImage] = useState("");
+
   const [data2, setData2] = useState({
     id: "",
     Title: "",
@@ -55,6 +57,7 @@ const NewsData = () => {
     console.log(file);
   };
 
+  
   const handleDeleteshow = (item) => {
     setDeleteShow(true);
     setDeleteRecord(item);
@@ -552,3 +555,4 @@ const NewsData = () => {
 };
 
 export default NewsData;
+ 

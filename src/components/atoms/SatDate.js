@@ -3,14 +3,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import { showAlert } from "../../utils/showAlert";
 import { getTelecommunicationBySlug } from "../../services/TelecommunicationFront";
 
-const obj = {
-  heading: "Sat Date",
-  description:
-    "The service offer is available in across covered by the Optical Fiber instruction, and installation requests are subject to confirmation or feasiblity analysis.",
-  subheading: "Sat_Backup Date",
-  subheading_description:
-    "The service offer is available in across covered by the Optical Fiber instruction, and installation requests are subject to confirmation or feasiblity analysis.",
-};
 
 function SatDate() {
   const [SatDate, setSatDate] = useState({});

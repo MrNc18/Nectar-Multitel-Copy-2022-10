@@ -35,7 +35,7 @@ function P2PLink() {
         </Row>
       </Container>
     </>
-  )
+  );
 }
 
 export default P2PLink

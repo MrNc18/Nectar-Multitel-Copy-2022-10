@@ -57,6 +57,7 @@ export const MenuPhase_2 = () => {
   const [description, setDescription] = useState("");
   const [DeleteShow, setDeleteShow] = useState(false);
   const [banfile, setBanFile] = useState("");
+  const [Image, setImage] = useState("");
   const [data2, setData2] = useState({
     id: "",
     Title: "",
@@ -67,9 +68,17 @@ export const MenuPhase_2 = () => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
   const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById("proimage");
+      console.log("output", output);
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
     setFile(event.target.files);
     console.log(file);
   };
+
   const handleBanFileChange = (event) => {
     setBanFile(event.target.files);
   };
@@ -98,6 +107,11 @@ export const MenuPhase_2 = () => {
 
   //Edit Api
   const handleEditShow = (item) => {
+    console.log("items",item)
+    setImage(item.image)
+    
+
+
     setDescription(item.description);
     setData2({
       id: item.id,
@@ -288,19 +302,39 @@ export const MenuPhase_2 = () => {
                           // onChange(data);
                         }}
                       />
+            
                       <Form.Label>Upload</Form.Label>{" "}
-                      <Form.Control
-                        type="file"
-                        id="file"
-                        // value={file}
-                        onChange={handleFileChange}
-                      ></Form.Control>
-                      <Form.Label>Upload Banner</Form.Label>{" "}
-                      <Form.Control
-                        type="file"
-                        id="file"
-                        onChange={handleBanFileChange}
-                      ></Form.Control>
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="proimage"
+                          style={{
+                            maxwidth: "100%",
+                            borderRadius: "50%",
+                            height: "120px",
+                          }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : "/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <input
+                            id="image"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
                     </Form.Group>
                   </div>
                 </Modal.Body>

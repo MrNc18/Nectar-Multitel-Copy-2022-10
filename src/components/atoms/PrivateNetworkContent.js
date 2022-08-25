@@ -23,6 +23,7 @@ function PrivateNetworkContent() {
 
   return (
     <>
+
       <Container>
         <Row>
           <Col md={12} className="mt-2">
@@ -33,9 +34,13 @@ function PrivateNetworkContent() {
               dangerouslySetInnerHTML={{ __html: privateNetworks?.description }}
             />
           </Col>
+
         </Row>
       </Container>
+
     </>
+
+
   );
 }
 

@@ -8,6 +8,7 @@ const LandingPage = lazy(() => import("../components/LandingPage"));
 const ServiceBanner = lazy(() => import("../components/atoms/ServiceBanner"));
 const ContactUsForm = lazy(() => import("../components/atoms/ContactUsForm"));
 
+
 const ContactUs = () => {
   function Contact({ data }) {
     return (
@@ -65,7 +66,7 @@ const ContactUs = () => {
             </div>
 
             <div className="row">
-              <div className="col-md-5  ">
+              <div className="col-md-5 ">
                 <Contact data={obj} />
               </div>
               <div className="col-md-6 box_shadow m-3">
