@@ -317,7 +317,7 @@ function Categories() {
           </div>
         </div>
         <Table striped bordered hover size="md" responsive>
-          <thead style={{ backgroundColor: "#0076B5", color: "white" }}>
+          <thead  className = "admintable" style={{ backgroundColor: "#0076B5", color: "white" }}>
             <tr>
               <th>Sr.No.</th>
               <th>Id</th>
