@@ -218,7 +218,7 @@ const ADPrivateNetwork = lazy(() =>
 const Tele = lazy(() => import("./components/Admin/Telecommunications/Tele"));
 const VideoConference = lazy(() => import("./containers/VideoConference"));
 const Cpes = lazy(() => import("./containers/Cpes"));
-const WhoWeAre = lazy(() => import("./containers/WhoWeAre"));
+const WhoWeAre = lazy(() => import("./containers/Whoweare"));
 
 const OtherService = lazy(() => import("./containers/OtherService"));
 const SpecialService = lazy(() => import("./components/atoms/SpecialService"));

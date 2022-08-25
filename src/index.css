@@ -1684,3 +1684,6 @@ td.td3 a {font-weight: 400;font-size: 12px;}
   border:1px solid #000;
 }
 
+.table th {
+    width:12%;
+}
