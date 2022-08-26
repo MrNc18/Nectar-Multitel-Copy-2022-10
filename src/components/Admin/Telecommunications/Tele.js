@@ -197,30 +197,38 @@ const Tele = () => {
                       name="name"
                       onChange={handleChange}
                     ></Form.Control>
-                    <Form.Label>Description</Form.Label>
-                    <CKEditor
-                      editor={ClassicEditor}
-                      id="description"
-                      data={description}
-                      onReady={(editor) => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log("Editor is ready to use!", editor);
-                      }}
-                      onChange={(event, editor) => {
-                        const data = editor.getData();
-                        setDescription(data);
-                        // onChange(data);
-                      }}
-                    />
                     <Form.Label>Upload</Form.Label>{" "}
-                    <Form.Control
-                      className="form-control"
-                      type="file"
-                      name="image"
-                      id="image"
-                      accept="image/png, image/jpeg"
-                      onChange={handleFileChange}
-                    ></Form.Control>
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="proimage"
+                          style={{
+                            maxwidth: "100%",
+                            borderRadius: "50%",
+                            height: "120px",
+                          }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : "/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <input
+                            id="image"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
                   </Form.Group>
                 </div>
               </Modal.Body>
@@ -350,21 +358,6 @@ const Tele = () => {
                         // name="name"
                         onChange={handleChange}
                       ></Form.Control>
-                      <Form.Label>Description</Form.Label>
-                      <CKEditor
-                        editor={ClassicEditor}
-                        id="description"
-                        data={description}
-                        onReady={(editor) => {
-                          // You can store the "editor" and use when it is needed.
-                          console.log("Editor is ready to use!", editor);
-                        }}
-                        onChange={(event, editor) => {
-                          const data = editor.getData();
-                          setDescription(data);
-                          // onChange(data);
-                        }}
-                      />
                       <Form.Label>Upload</Form.Label>{" "}
                       <div className="form-group text-center img_uploads">
                         <img

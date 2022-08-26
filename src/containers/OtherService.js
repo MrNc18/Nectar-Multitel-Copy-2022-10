@@ -77,4 +77,5 @@ const OtherService = () => {
   );
 };
 
-export default OtherService;
+export default OtherService
+  

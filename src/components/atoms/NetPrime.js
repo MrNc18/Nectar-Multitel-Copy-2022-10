@@ -33,7 +33,7 @@ function NetPrime() {
             <img src={imageUrl(NetPrime?.image)} alt="" height={40} />
             <div dangerouslySetInnerHTML={{ __html: NetPrime?.description }} />
           </Col>
-        </Row>
+     </Row>
       </Container>
     </>
   );

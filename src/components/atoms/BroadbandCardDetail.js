@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Col, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { formatAmount } from "../../utils/AmountFormatter";
@@ -7,6 +7,7 @@ import { useStateValue } from "../../StateProvider";
 // import showAlert from "../../utils/showAlert";
 import { addToWishlist, addCartData } from "../../services/category";
 import { AUTH_TOKEN, getCookie } from "../../utils/cookie";
+import { getUserDetailsByToken } from "../../services/authentication";
 
 const styles = {
   padding: "7px",
@@ -20,6 +21,7 @@ const styles = {
 };
 
 function BroadbandCardDetail({ product }) {
+  console.log("Products", product)
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -32,6 +34,7 @@ function BroadbandCardDetail({ product }) {
   let navigate = useNavigate();
 
   const addToBasket = async () => {
+    console.log("USer", userId)
     if (userId) {
       const resp = await addCartData({
           userId,
@@ -52,6 +55,16 @@ function BroadbandCardDetail({ product }) {
     });
     }
   };
+
+  useEffect(() => {
+    async function getUserData() {
+      if (isAuthenticated) {
+        const result = await getUserDetailsByToken()
+        setUserId(result?.data?.data?.userId)
+      }
+    }
+    getUserData()
+  }, [])
 
   return (
     <Col md={6} lg={4}>

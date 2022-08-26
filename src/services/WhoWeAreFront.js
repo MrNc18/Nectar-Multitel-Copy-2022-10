@@ -49,3 +49,15 @@ export const getAllNewsCategory = async () => {
  export const getAllMultitelPride = async () => {
   return await doGet("api/multitelPride/getAllMultitelPride")
  }
+
+
+ 
+ export const getTelecommunicationMenusBySlug = async (data) => {
+  return await doPost("api/telecommunication/getTelecommunicationMenusBySlug",data)
+ }
+
+ 
+ export const getTelecommunicationBySlug = async (data) => {
+  return await doPost("api/telecommunication/getTelecommunicationBySlug",data)
+ }
+
