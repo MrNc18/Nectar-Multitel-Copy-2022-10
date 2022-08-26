@@ -19,19 +19,24 @@ function FooterMiddle() {
                 alt="Multitel logo"
               />
               <p className="mb-3">
-                Somos a Editora Acácias, desde novembro de 2015 actuamos
-                orgulhosamente no mercado editorial Angolano. Estamos focados em
-                publicar livros que libertam a imaginação.
+                Experience in the business market, based on the convergence of
+                telecommunications and information technology.
               </p>
               <div className="social_links">
                 <h3 className="footer-heading">Social Links</h3>
-                <a href="#" className="mr-3">
+                <a
+                  href="https://www.facebook.com/multitel.campanha/"
+                  className="mr-3"
+                >
                   <i class="fab fa-facebook-f"></i>
                 </a>
                 <a href="#" className="mr-3">
                   <i class="fab fa-twitter"></i>
                 </a>
-                <a href="#" className="mr-3">
+                <a
+                  href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQFkBVJs2Ce1awAAAYLTnvAoSDRlGdfv17sh39OY7w4ThBqlN6UFuvJK4DVfMin7bZKGxromNXtIEzWA3t9aeRDIX9F0i2Jg12rc_jnLk1CNeEb_gf8UjGjswLCOwOSoHQzId5I=&original_referer=https://www.multitel.co.ao/&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fmultitel---liga-es-de-confian-a"
+                  className="mr-3"
+                >
                   <i class="fab fa-linkedin-in"></i>
                 </a>
                 <a href="#" className="mr-3">
@@ -43,7 +48,7 @@ function FooterMiddle() {
               <h3 className="footer-heading mb-4 ml-3">Services</h3>
               <ul>
                 <li>
-                  <a href="#">Plans & Pricing</a>
+                  <a href="#">Private Network</a>
                 </li>
                 <li>
                   <a href="#">InfiFlix & Media</a>
@@ -97,11 +102,14 @@ function FooterMiddle() {
                 <h3 className="footer-heading mb-2">Address</h3>
                 <div className="d-flex">
                   <i class="fa-solid fa-location-dot"></i>{" "}
-                  <p>855 Road Broklyn Street, 600 , New York</p>
+                  <p>
+                    Rua Cristiano dos Santos, nº 5 Bairro Miramar, Urban
+                    District of Sambizanga
+                  </p>
                 </div>
                 <div className="d-flex">
                   <i class="fa-solid fa-mobile-screen-button"></i>{" "}
-                  <p>985 632 3363 1263</p>
+                  <p>222 704 200</p>
                 </div>
               </div>
             </Col>

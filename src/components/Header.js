@@ -234,7 +234,13 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              {/* <NavDropdown
+              <Nav.Link
+                className="notranslate"
+                onClick={() => navigate("/home")}
+              >
+                Multitel Home
+              </Nav.Link>
+              <NavDropdown
                 title="Who We Are"
                 id="basic-nav-dropdown"
                 // onClick={() => navigate("/home")}
@@ -263,6 +269,12 @@ function Header() {
                   Multitel Pride
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link
+                className="notranslate"
+                onClick={() => navigate("/marketplace")}
+              >
+                Marketplace
+              </Nav.Link>
               <NavDropdown
                 title="Telecommunication"
                 id="basic-nav-dropdown"
@@ -325,17 +337,10 @@ function Header() {
                 <NavDropdown.Item onClick={() => navigate("/otherservice")}>
                   Other Services
                 </NavDropdown.Item>
-              </NavDropdown> */}
+              </NavDropdown>
 
-              
-
-              <Nav.Link className="notranslate" onClick={() => navigate("/home")}>
-                Multitel Home
-              </Nav.Link>
-              <Nav.Link href="#link">Multitel Mobile</Nav.Link>
-              <Nav.Link className="notranslate" onClick={() => navigate("/marketplace")}>
-                Marketplace
-              </Nav.Link>
+              {/* <Nav.Link href="#link">Multitel Mobile</Nav.Link> */}
+           
               {/* <Nav.Link onClick={() => navigate("/profile")}>
                 Client Portal
               </Nav.Link> */}
@@ -426,6 +431,12 @@ function Header() {
                   Other Products/Services (Partners)
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link
+                className="notranslate"
+                onClick={() => navigate("/contactus")}
+              >
+                Contact us
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

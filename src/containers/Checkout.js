@@ -5,15 +5,18 @@ import { CITY_LIST, COUNTRY_LIST } from "../constants/authconstant";
 import { getUserDetailsByToken } from "../services/authentication";
 import { AUTH_TOKEN, getCookie } from "../utils/cookie";
 import { useStateValue } from "../StateProvider";
-import { getCartData, imageUrl } from "../services/category";
+import { imageUrl } from "../services/category";
 import { formatAmount } from "../utils/AmountFormatter";
 import { getBasketTotal } from "../Reducer";
 import { useNavigate } from "react-router-dom";
 import validator from "validator";
+import { useLocation } from "react-router-dom";
 const LandingPage = lazy(() => import("../components/LandingPage"));
 const LoginModal = lazy(() => import("../components/LoginModal"));
 
 export default function Checkout() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [shipAddress, setShipAddress] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -21,13 +24,15 @@ export default function Checkout() {
   const [userEmail, setUserEmail] = useState("");
   const isAuthenticated = getCookie(AUTH_TOKEN);
   const [{ basket }, dispatch] = useStateValue();
-
   const [userData, setUserData] = useState("");
   const [first_name, setFname] = useState("");
   const [last_name, setLname] = useState("");
   const [ship_city, setSCity] = useState("");
+  const [cartDet, setCartDet] = useState(() => location.state.cartDet);
   const [city, setCity] = useState("");
-  const navigate = useNavigate();
+ 
+  // setCartDet(location.state)
+
 
   const getDataByToken = async () => {
     if (isAuthenticated) {
@@ -59,7 +64,7 @@ export default function Checkout() {
   }, []);
 
   console.log("firstName", userData.first_name);
-  const [cartDet, setCartDet] = useState([]);
+ 
   const [data2, setData2] = useState({
     first_name: "",
     last_name: "",
@@ -99,18 +104,20 @@ export default function Checkout() {
     order_notes,
   } = data2;
 
-  React.useEffect(() => {
-    (async () => {
-      if (userId) {
-        const resp = await getCartData({ userId });
-        console.log("getcartdata", resp?.data?.data);
-        resp?.data?.data
-          ? setCartDet(resp?.data?.data)
-          : setIniText("Error loading cart data.");
-        !resp?.data?.data?.length && setIniText("No products added to cart.");
-      }
-    })();
-  }, [userId]);
+
+
+  // React.useEffect(() => {
+  //   (async () => {
+  //     if (userId) {
+  //       const resp = await getCartData({ userId });
+  //       console.log("getcartdata", resp?.data?.data);
+  //       resp?.data?.data
+  //         ? setCartDet(resp?.data?.data)
+  //         : setIniText("Error loading cart data.");
+  //       !resp?.data?.data?.length && setIniText("No products added to cart.");
+  //     }
+  //   })();
+  // }, [userId]);
 
   // email validator
   const [emailError, setEmailError] = useState("");
@@ -190,6 +197,7 @@ export default function Checkout() {
   };
 
   const onCityChange = (e) => {
+    // console.log("location",location.state)
     const { value } = e.target;
 
     const re = /^[A-Za-z]+$/;
@@ -665,23 +673,23 @@ export default function Checkout() {
                       </tr>
                       {console.log("checking cart", isAuthenticated, cartDet)}
                       {isAuthenticated ? (
-                        cartDet.length ? (
-                          cartDet.map((item) => (
+                        cartDet?.length ? (
+                          cartDet?.map((item) => (
                             <tr key={item.id}>
                               <td>
                                 <div className="d-flex align-items-center">
                                   <img
                                     className="cart_book_img"
-                                    src={imageUrl(item.product.cover_img)}
+                                    src={imageUrl(item?.product?.cover_img || item?.service_product?.cover_img)}
                                   />
                                   <span className="cart_book_name">
-                                    {item.product.name}
+                                    {item?.product?.name || item?.service_product?.name}
                                   </span>
                                 </div>
                               </td>
                               <td className="cart_price text-center">
                                 {formatAmount(
-                                  item.product.price * item.quantity
+                                  (item?.product?.price || item?.service_product?.price) * item.quantity
                                 )}
                               </td>
                             </tr>
@@ -736,7 +744,7 @@ export default function Checkout() {
                               cartDet?.reduce(
                                 (amount, item) =>
                                   amount +
-                                  item.quantity * Number(item.product.price),
+                                  item.quantity * Number(item?.product?.price || item?.service_product?.price),
                                 0
                               )
                             )
