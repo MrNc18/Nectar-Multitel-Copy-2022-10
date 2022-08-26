@@ -431,18 +431,18 @@ ul.icontext {
   padding-right:1.6rem
 }
 .tri1 {
-  background: url(../public/assets/images/triimage1.jpg) no-repeat;
+  background: url(../public/assets/images/triimagenew1.webp) no-repeat;
   background-size: cover;
   padding: 0;
 }
 .tri2 {
-  background: url(../public/assets/images/triimage2.jpg) no-repeat;
+  background: url(../public/assets/images/triimagenew2.webp) no-repeat;
   background-size: cover;
   background-position: center;
   padding: 0;
 }
 .tri3 {
-  background: url(../public/assets/images/triimage3.jpg) no-repeat;
+  background: url(../public/assets/images/triimagenew3.webp) no-repeat;
   background-size: cover;
   background-position: center;
   padding: 0;

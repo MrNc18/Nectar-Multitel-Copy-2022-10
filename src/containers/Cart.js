@@ -8,6 +8,12 @@ import {
   imageUrl,
   updateCartData,
 } from "../services/category";
+import {
+  getServiceCart,
+  deleteServiceCart,
+  deleteAllServiceCart,
+  updateServiceCart,
+} from "../services/category";
 import { formatAmount } from "../utils/AmountFormatter";
 import { getBasketTotal } from "../Reducer";
 import { AUTH_TOKEN, getCookie } from "../utils/cookie";
@@ -41,9 +47,12 @@ export default function Cart() {
       const resp = await getCartData({
         userId: result?.data.data.userId,
       });
-      console.log("getcartdata", resp?.data?.data);
+      const resp2 = await getServiceCart({
+        userId: result?.data.data.userId,
+      });
+      console.log("getcartdata", resp?.data?.data, resp2?.data.data);
       resp?.data?.data
-        ? setCartDet(resp?.data?.data)
+        ? setCartDet((resp?.data?.data).concat(resp2?.data?.data))
         : setIniText("Error loading cart data.");
       !resp?.data?.data?.length && setIniText("No products added to cart.");
     }
@@ -57,11 +66,14 @@ export default function Cart() {
     getCartDetails();
   }, []);
 
-  const removeFromCart = async (productId, userId) => {
+  const removeFromCart = async (productId, userId, service_product) => {
     try {
-      await delCartData({ userId, id: productId });
+      console.log("serv", service_product);
+      productId
+        ? await delCartData({ userId, id: productId })
+        : await deleteServiceCart({ userId, serviceId: service_product.id });
       showAlert("Product removed from cart.", "success");
-      setCartDet(cartDet.filter((e) => e.productId != productId));
+      getCartDetails()
       cartDet.length === 1 && setIniText("No products added to cart.");
     } catch (error) {
       showAlert("Something went wrong.", "error");
@@ -97,7 +109,10 @@ export default function Cart() {
 
   const getTotal = () => {
     return cartDet?.reduce(
-      (amount, item) => amount + item?.quantity * Number(item?.product?.price),
+      (amount, item) =>
+        amount +
+        item?.quantity *
+          Number(item?.product?.price || item?.service_product?.price),
       0
     );
   };
@@ -118,7 +133,7 @@ export default function Cart() {
     console.log(data);
     try {
       await updateCartData(data);
-      navigate("/checkout");
+      navigate("/checkout", { state: { cartDet } });
     } catch (error) {
       showAlert("Something went wrong.", "error");
     } finally {
@@ -152,6 +167,7 @@ export default function Cart() {
                       <td className="text-center">Subtotal</td>
                       <td>Action</td>
                     </tr>
+                    {console.log("cartdetails", cartDet)}
                     {isAuthenticated ? (
                       cartDet?.length ? (
                         cartDet.map((item) => (
@@ -160,15 +176,20 @@ export default function Cart() {
                               <div className="d-flex align-items-center">
                                 <img
                                   className="cart_book_img"
-                                  src={imageUrl(item?.product?.cover_img)}
+                                  src={imageUrl(
+                                    item?.product?.cover_img ||
+                                      item?.service_product?.cover_img
+                                  )}
                                 />
                                 <span className="cart_book_name">
-                                  {item?.product?.name}
+                                  {item?.product?.name ||
+                                    item?.service_product?.name}
                                 </span>
                               </div>
                             </td>
                             <td className="cart_price text-center">
-                              {formatAmount(item?.product?.price)}
+                              {formatAmount(item?.product?.price) ||
+                                formatAmount(item?.service_product?.price)}
                             </td>
                             <td className="cart_price text-center">
                               <div className="qty_counter d-flex">
@@ -196,14 +217,21 @@ export default function Cart() {
                             </td>
                             <td className="cart_price text-center">
                               {formatAmount(
-                                item?.product?.price * item?.quantity
+                                (item?.product?.price ||
+                                  item?.service_product.price) * item?.quantity
                               )}
                             </td>
                             <td>
                               <a
-                                onClick={() =>
-                                  removeFromCart(item?.productId, item?.userId)
-                                }
+                                onClick={() => {
+                                  console.log("remove");
+                                  removeFromCart(
+                                    item?.productId,
+                                    item?.userId,
+                                    item?.service_product,
+                                    item?.serviceId
+                                  );
+                                }}
                                 className="remove_from_cart"
                               >
                                 Remove

@@ -133,7 +133,7 @@ function ProductDetail() {
           quantity:qty,
           id:product.id,
       })
-      console.log("addCart", resp)
+      // console.log("addCart", resp)
     } else {
       dispatch({
         type: "ADD_TO_BASKET",
@@ -344,16 +344,16 @@ function ProductDetail() {
             <div className="author-social pt-2 pb-2">
               <h5 className="book_social">Share on social media</h5>
               <div className="author_links">
-                <a href="www.facebook.com/login">
+                <a href="https://www.facebook.com/" target="_blank">
                   <i className="fab fa-facebook-f"></i>
                 </a>
-                <a href="#">
+                <a href="https://twitter.com/i/flow/login" target="_blank">
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="#">
+                <a href="https://www.linkedin.com/login/en"  target="_blank">
                   <i className="fab fa-linkedin-in"></i>
                 </a>
-                <a href="#">
+                <a href="https://www.instagram.com/accounts/login/?"  target="_blank">
                   <i className="fab fa-instagram"></i>
                 </a>
               </div>

@@ -130,7 +130,7 @@ function Corporate() {
                 </Row>
               </Container>
             </Col>
-            <img src="/assets/images/image_grp.png" className="image_grp" />
+            <img src="/assets/images/image_grpnew.webp" className="image_grp" />
           </Row>
         </section>
       </LandingPage>

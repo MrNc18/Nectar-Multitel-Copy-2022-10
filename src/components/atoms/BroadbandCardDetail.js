@@ -117,7 +117,7 @@ function BroadbandCardDetail({ product }) {
               onClick={() => {
                 addToBasket();
                 // showAlert("Item Added to cart.", "success");
-                navigate("/serviceproductcart");
+                navigate("/cart");
               }}
             >
               Buy Now
