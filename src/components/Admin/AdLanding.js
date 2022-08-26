@@ -4,6 +4,8 @@ import { ArrowUp, ArrowDown } from "react-bootstrap-icons";
 import AppHeader from "../AppHeader";
 import "./admin.css";
 
+
+
 const Tabs = Object.freeze([
   { label: "Dashboard", link: "admin/" },
   // { label: "Multitel Home", link: "admin/multitel-home" },
@@ -23,6 +25,7 @@ const Tabs = Object.freeze([
   // { label: "DigiTotal", link: "admin/digitotal" },
   // {label:"HelpDesk" , link:"admin/helpdesk"}
 ]);
+
 
 export default function AdLanding() {
   let navigate = useNavigate();
@@ -48,6 +51,7 @@ export default function AdLanding() {
     navigate(`/${link}`);
   };
 
+  
   return (
     <div
       className={
@@ -63,7 +67,7 @@ export default function AdLanding() {
             className="sb-sidenav accordion sb-sidenav-dark"
             id="sidenavAccordion"
           >
-            <div className="sb-sidenav-menu" id="sb-sidenav-menu">
+            <div className="sb-sidenav-menu notranslate" id="sb-sidenav-menu">
               <div className="nav mt-4">
                 {Tabs.map(({ label, link }) => {
                   // console.log("naga sai fasdkjfaskjfkjasbfkasd");

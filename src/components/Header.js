@@ -110,7 +110,7 @@ function Header() {
                     </div>
                   </div>
                 </li>
-                <div
+                {/* <div
                   style={{
                     borderRight: "1px solid",
                     height: "25px",
@@ -127,7 +127,7 @@ function Header() {
                       <option value="spain">Spain</option>
                     </select>
                   </div>
-                </li>
+                </li> */}
                 <div
                   style={{
                     borderRight: "1px solid",
@@ -160,7 +160,7 @@ function Header() {
 
                       <Dropdown.Menu>
                         <Dropdown.Item onClick={() => navigate("/profile")}>
-                          Profile
+                          Client Portal
                         </Dropdown.Item>
                         <Dropdown.Item
                           style={{
@@ -234,7 +234,13 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              {/* <NavDropdown
+              <Nav.Link
+                className="notranslate"
+                onClick={() => navigate("/home")}
+              >
+                Multitel Home
+              </Nav.Link>
+              <NavDropdown
                 title="Who We Are"
                 id="basic-nav-dropdown"
                 // onClick={() => navigate("/home")}
@@ -263,6 +269,12 @@ function Header() {
                   Multitel Pride
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link
+                className="notranslate"
+                onClick={() => navigate("/marketplace")}
+              >
+                Marketplace
+              </Nav.Link>
               <NavDropdown
                 title="Telecommunication"
                 id="basic-nav-dropdown"
@@ -325,20 +337,13 @@ function Header() {
                 <NavDropdown.Item onClick={() => navigate("/otherservice")}>
                   Other Services
                 </NavDropdown.Item>
-              </NavDropdown> */}
+              </NavDropdown>
 
-              
-
-              <Nav.Link className="notranslate" onClick={() => navigate("/home")}>
-                Multitel Home
-              </Nav.Link>
-              <Nav.Link href="#link">Multitel Mobile</Nav.Link>
-              <Nav.Link className="notranslate" onClick={() => navigate("/marketplace")}>
-                Marketplace
-              </Nav.Link>
-              <Nav.Link onClick={() => navigate("/profile")}>
+              {/* <Nav.Link href="#link">Multitel Mobile</Nav.Link> */}
+           
+              {/* <Nav.Link onClick={() => navigate("/profile")}>
                 Client Portal
-              </Nav.Link>
+              </Nav.Link> */}
               {/* <button onClick={console.log(()=>getCookie(AUTH_TOKEN))}>GEt</button> */}
 
               {/* Commenting this nav item for now for better view we'll uncomment it later */}
@@ -426,6 +431,12 @@ function Header() {
                   Other Products/Services (Partners)
                 </NavDropdown.Item>
               </NavDropdown>
+              <Nav.Link
+                className="notranslate"
+                onClick={() => navigate("/contactus")}
+              >
+                Contact us
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

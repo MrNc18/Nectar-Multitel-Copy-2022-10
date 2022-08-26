@@ -8,12 +8,7 @@ import {
   imageUrl,
   updateCartData,
 } from "../services/category";
-import {
-  getServiceCart,
-  deleteServiceCart,
-  deleteAllServiceCart,
-  updateServiceCart,
-} from "../services/category";
+import { getServiceCart, deleteServiceCart, updateServiceCart, deleteAllServiceCart } from "../services/category";
 import { formatAmount } from "../utils/AmountFormatter";
 import { getBasketTotal } from "../Reducer";
 import { AUTH_TOKEN, getCookie } from "../utils/cookie";
@@ -21,8 +16,9 @@ import { getUserDetailsByToken } from "../services/authentication";
 import { showAlert } from "../utils/showAlert";
 const LandingPage = lazy(() => import("../components/LandingPage"));
 
-export default function Cart() {
-  const [prodId, setProdId] = useState("");
+function CartServiceProduct() {
+
+    const [prodId, setProdId] = useState("");
   const [total, setTotal] = useState("");
   const [cartDet, setCartDet] = useState([]);
   const [iniText, setIniText] = useState("Loading...");
@@ -44,15 +40,12 @@ export default function Cart() {
   const getCartDetails = async () => {
     if (isAuthenticated) {
       const result = await getUserDetailsByToken();
-      const resp = await getCartData({
+      const resp = await getServiceCart({
         userId: result?.data.data.userId,
       });
-      const resp2 = await getServiceCart({
-        userId: result?.data.data.userId,
-      });
-      console.log("getcartdata", resp?.data?.data, resp2?.data.data);
+      console.log("getServiceCart", resp?.data?.data);
       resp?.data?.data
-        ? setCartDet((resp?.data?.data).concat(resp2?.data?.data))
+        ? setCartDet(resp?.data?.data)
         : setIniText("Error loading cart data.");
       !resp?.data?.data?.length && setIniText("No products added to cart.");
     }
@@ -66,14 +59,22 @@ export default function Cart() {
     getCartDetails();
   }, []);
 
-  const removeFromCart = async (productId, userId, service_product) => {
+  // const removeFromCart = async (serviceId, userId) => {
+  //   try {
+  //     await deleteServiceCart({ userId, id: serviceId });
+  //     showAlert("Product removed from cart.", "success");
+  //     setCartDet(cartDet.filter((e) => e.serviceId != serviceId));
+  //     cartDet.length === 1 && setIniText("No products added to cart.");
+  //   } catch (error) {
+  //     showAlert("Something went wrong.", "error");
+  //   } finally {
+  //   }
+  // };
+  const removeFromCart = async (productId, userId) => {
     try {
-      console.log("serv", service_product);
-      productId
-        ? await delCartData({ userId, id: productId })
-        : await deleteServiceCart({ userId, serviceId: service_product.id });
+      await delCartData({ userId, id: productId });
       showAlert("Product removed from cart.", "success");
-      getCartDetails()
+      setCartDet(cartDet.filter((e) => e.productId != productId));
       cartDet.length === 1 && setIniText("No products added to cart.");
     } catch (error) {
       showAlert("Something went wrong.", "error");
@@ -109,10 +110,7 @@ export default function Cart() {
 
   const getTotal = () => {
     return cartDet?.reduce(
-      (amount, item) =>
-        amount +
-        item?.quantity *
-          Number(item?.product?.price || item?.service_product?.price),
+      (amount, item) => amount + item?.quantity * Number(item?.service_product?.price),
       0
     );
   };
@@ -132,8 +130,8 @@ export default function Cart() {
     });
     console.log(data);
     try {
-      await updateCartData(data);
-      navigate("/checkout", { state: { cartDet } });
+      await updateServiceCart(data);
+      navigate("/checkout");
     } catch (error) {
       showAlert("Something went wrong.", "error");
     } finally {
@@ -167,7 +165,6 @@ export default function Cart() {
                       <td className="text-center">Subtotal</td>
                       <td>Action</td>
                     </tr>
-                    {console.log("cartdetails", cartDet)}
                     {isAuthenticated ? (
                       cartDet?.length ? (
                         cartDet.map((item) => (
@@ -176,20 +173,15 @@ export default function Cart() {
                               <div className="d-flex align-items-center">
                                 <img
                                   className="cart_book_img"
-                                  src={imageUrl(
-                                    item?.product?.cover_img ||
-                                      item?.service_product?.cover_img
-                                  )}
+                                  src={imageUrl(item?.service_product?.cover_img)}
                                 />
                                 <span className="cart_book_name">
-                                  {item?.product?.name ||
-                                    item?.service_product?.name}
+                                  {item?.service_product?.name}
                                 </span>
                               </div>
                             </td>
                             <td className="cart_price text-center">
-                              {formatAmount(item?.product?.price) ||
-                                formatAmount(item?.service_product?.price)}
+                              {formatAmount(item?.service_product?.price)}
                             </td>
                             <td className="cart_price text-center">
                               <div className="qty_counter d-flex">
@@ -217,21 +209,14 @@ export default function Cart() {
                             </td>
                             <td className="cart_price text-center">
                               {formatAmount(
-                                (item?.product?.price ||
-                                  item?.service_product.price) * item?.quantity
+                                item?.service_product?.price * item?.quantity
                               )}
                             </td>
                             <td>
                               <a
-                                onClick={() => {
-                                  console.log("remove");
-                                  removeFromCart(
-                                    item?.productId,
-                                    item?.userId,
-                                    item?.service_product,
-                                    item?.serviceId
-                                  );
-                                }}
+                                onClick={() =>
+                                  removeFromCart(item?.serviceId, item?.userId)
+                                }
                                 className="remove_from_cart"
                               >
                                 Remove
@@ -351,5 +336,7 @@ export default function Cart() {
         </section>
       </LandingPage>
     </Suspense>
-  );
+  )
 }
+
+export default CartServiceProduct
