@@ -6,6 +6,9 @@ import "react-toastify/dist/ReactToastify.min.css";
 import "./App.css";
 import { RedirectComponent } from "./containers/RedirectPage";
 import { MenuPhase_2 } from "./components/Admin/MenuPhase_2";
+
+
+
 // import Corporate from "./containers/Corporate";
 // import Home from "./containers/Home";
 // import Example from "./staticCard";
@@ -116,6 +119,7 @@ import { MenuPhase_2 } from "./components/Admin/MenuPhase_2";
 // import InternetUser from "./containers/Internet";
 // import Oml from "./components/atoms/Oml";
 // import Help from "./components/Admin/Help&support";
+
 
 const Home = lazy(() => import("./containers/Home"));
 const AdLanding = lazy(() => import("./components/Admin/AdLanding"));
@@ -279,6 +283,7 @@ function App() {
             <Route path="/marketplace" element={<Marketplace />} />
             <Route path="/products/:name" element={<ProductDetail />} />
             <Route path="/categories/:slug" element={<Category />} />
+   
 
             {/* <Route path="/network-equipments" element={<NetworkEquipments />} /> */}
             {/* <Route path="/internet-services" element={<InternetServices />} />    */}
@@ -300,7 +305,7 @@ function App() {
             <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/redirect" element={<RedirectComponent />} />
-
+           
             <Route path="/cpe" element={<CPE />} />
             <Route path="/admin/login" element={<Login />} />
             <Route path="/admin" element={<AdLanding />}>
@@ -318,6 +323,7 @@ function App() {
               <Route path="orders" element={<Orders />} />
               <Route path="menu" element={<MenuPhase_2 />} />
               <Route path="who_we_are" element={<WhoWeR />} />
+        
               <Route
                 path="who_we_are/recruitment"
                 element={<AdRecruitment />}
@@ -552,6 +558,7 @@ function App() {
             <Route path="/digitotal" element={<Digitotal />} />
             <Route path="/networkinfrastructure" element={<Networkinfra />} />
             <Route path="/datacenterandcloud" element={<DataCenter />} />
+        
             <Route
               path="/consultingtraining"
               element={<ConsultingTraining />}
