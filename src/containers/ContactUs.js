@@ -69,10 +69,10 @@ const ContactUs = () => {
               <div className="col-md-5 ">
                 <Contact data={obj} />
               </div>
-              <div className="col-md-6 box_shadow m-3">
-                <ContactUsForm />
-              </div>
+            <div className="col-md-6 box_shadow m-3">
+              <ContactUsForm />
             </div>
+          </div>
           </div>
         </LandingPage>
       </Suspense>

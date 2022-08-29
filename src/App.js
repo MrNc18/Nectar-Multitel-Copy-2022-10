@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import "./App.css";
 import { RedirectComponent } from "./containers/RedirectPage";
 import { MenuPhase_2 } from "./components/Admin/MenuPhase_2";
+// import CartServiceProduct from "./containers/CartServiceProduct";
 
 
 
@@ -187,6 +188,7 @@ const InternetServicesDetail = lazy(() =>
 
 const VendorDetails = lazy(() => import("./containers/VendorDetails"));
 const Cart = lazy(() => import("./containers/Cart"));
+const CartServiceProduct = lazy(() => import("./containers/CartServiceProduct"));
 const Checkout = lazy(() => import("./containers/Checkout"));
 const PaymentMethod = lazy(() => import("./containers/PaymentMethod"));
 const Orders = lazy(() => import("./components/Admin/orders"));
@@ -617,6 +619,7 @@ function App() {
             <Route path="client" element={<Example />} />
             <Route path="profile" element={<Account />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="serviceproductcart" element={<CartServiceProduct />} />
             <Route path="wishlist" element={<WishList />} />
             <Route path="checkout" element={<Checkout />} />
             <Route path="payment-methods" element={<PaymentMethod />} />
