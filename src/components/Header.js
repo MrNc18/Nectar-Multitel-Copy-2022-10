@@ -110,7 +110,7 @@ function Header() {
                     </div>
                   </div>
                 </li>
-                <div
+                {/* <div
                   style={{
                     borderRight: "1px solid",
                     height: "25px",
@@ -127,10 +127,10 @@ function Header() {
                       <option value="spain">Spain</option>
                     </select>
                   </div>
-                </li>
+                </li> */}
                 <div
                   style={{
-                    borderRight: "1px solid",
+                    borderRight: "1px solid", 
                     height: "25px",
                     opacity: "0.5",
                     marginRight: "10px",
@@ -160,7 +160,7 @@ function Header() {
 
                       <Dropdown.Menu>
                         <Dropdown.Item onClick={() => navigate("/profile")}>
-                          Profile
+                          Client Portal
                         </Dropdown.Item>
                         <Dropdown.Item
                           style={{
@@ -336,9 +336,9 @@ function Header() {
               <Nav.Link className="notranslate" onClick={() => navigate("/marketplace")}>
                 Marketplace
               </Nav.Link>
-              <Nav.Link onClick={() => navigate("/profile")}>
+              {/* <Nav.Link onClick={() => navigate("/profile")}>
                 Client Portal
-              </Nav.Link>
+              </Nav.Link> */}
               {/* <button onClick={console.log(()=>getCookie(AUTH_TOKEN))}>GEt</button> */}
 
               {/* Commenting this nav item for now for better view we'll uncomment it later */}
