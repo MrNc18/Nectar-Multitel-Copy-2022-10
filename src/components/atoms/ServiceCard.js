@@ -3,7 +3,7 @@ import { Button, Card, Col } from "react-bootstrap";
 
 function ServiceCard({ src, title, home }) {
   return (
-    <Col md={6} lg={3} className="mb-md-4">
+    <Col md={6} lg={3} className="mb-4">
       <Card>
         <Card.Img variant="top" src={src} className={home ? "resize_img" : ""} />
         <Card.Body className="text-center">
@@ -12,7 +12,7 @@ function ServiceCard({ src, title, home }) {
             Consectetur adipisicing elit. Sed do eiusmod tempor incididunt ut
             labore et dolore magna aliqua.
           </Card.Text>
-          {!home && <Button variant="primary">See Plans</Button>}
+          {!home && <Button className="primary_bg">See Plans</Button>}
         </Card.Body>
       </Card>
     </Col>

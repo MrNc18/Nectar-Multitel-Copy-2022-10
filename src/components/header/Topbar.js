@@ -1,15 +1,18 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { mobile } from "../../svg/mobile";
 import { multilingual } from "../../svg/multilingual";
 import { user } from "../../svg/user";
+import LoginModal from "../../components/LoginModal"
 
 
 function Topbar() {
+  const[showLoginModal,setShowLoginModal] = useState(false)
   return (
-    <div id="top_header">
+    <>
+    <div id="top_header" style={{marginTop:"-40px"}}>
       <Container>
         <Row>
           <Col md={5}>
@@ -61,7 +64,9 @@ function Topbar() {
               </li>
               <li>
                 <div className="d-flex pt-1">
+                  <a onClick = {()=>{setShowLoginModal(true)}}>
                   {user} <span className="ml-1">Login/Signup</span>
+                  </a>
                 </div>
               </li>
             </ul>
@@ -69,6 +74,14 @@ function Topbar() {
         </Row>
       </Container>
     </div>
+
+    {showLoginModal && (
+        <LoginModal
+          show={showLoginModal}
+          handleClose = {() => setShowLoginModal(false)}
+        />
+      )}
+    </>
   )
 }
 

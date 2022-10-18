@@ -1,14 +1,15 @@
 import React from 'react'
 import Footer from './Footer'
+import FooterWOProducts from './FooterWOProducts'
 import Header from './Header'
 
 
-function LandingPage({children}) {
+function LandingPage({children,woproducts}) {
   return (
     <>
-    <Header />
-    {children}
-    <Footer />
+      <Header />
+      {children}
+      {woproducts ? <FooterWOProducts /> : <Footer />}
     </>
   )
 }

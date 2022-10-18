@@ -5,15 +5,15 @@ import "./admin.css"
 
 const Tabs = Object.freeze([
   { label: "Dashboard", link: "admin/" },
-  { label: "Mobiles", link: "admin/mobiles" },
-  { label: "Internet", link: "admin/internet" },
-  { label: "Network", link: "admin/network" },
-  { label: "Router", link: "admin/router" },
-//   { label: "Service Request", link: "admin/servicerequest" },
-//   { label: "Reimbursement", link: "admin/reimbursement" },
-//   { label: "Holidays", link: "admin/holidays" },
-//   { label: "Settings", link: "admin/setting" },
-//   { label: "Help & Support", link: "admin/helpandsupport" },
+  { label: "Categories", link: "admin/categories" },
+  { label: "Products", link: "admin/products" },
+  { label: "Service Categories", link: "admin/Service-categories" },
+  { label: "Internet Services", link: "admin/internetServices" },
+  { label: "Promotions", link: "admin/promotions" },
+  { label: "Content Management", link: "admin/staticpages" },
+  { label: "Settings", link: "admin/settings" },
+  
+
 ]);
 
 
