@@ -4,7 +4,7 @@ import { Button, Card, Col } from "react-bootstrap";
 function ServiceCard({ src, title, home }) {
   return (
     <Col md={6} lg={3} className="mb-4">
-      <Card>
+      <Card style={{border:"2px solid rgba(0,0,0,.125)"}}>
         <Card.Img variant="top" src={src} className={home ? "resize_img" : ""} />
         <Card.Body className="text-center">
           <Card.Title>{title}</Card.Title>

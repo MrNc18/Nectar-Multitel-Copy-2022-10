@@ -1,4 +1,4 @@
-.slider-wrapper {
+/* .slider-wrapper {
   width: 90vw;
   margin: auto;
 }
@@ -29,14 +29,14 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
   bottom: 15vh;
   border-radius:5px;
   left: 0px;
-  color: blue;
+  color: #0076B5;
   border: white;
  font-size: 16px;
  padding: 8px 18px;
@@ -47,7 +47,7 @@
 } 
  .link .link_btn2 {
     
-    background-color: blue;
+    background-color: #0076B5;
     position: absolute;
     border-radius:5px;
     left: 0px;
@@ -176,14 +176,14 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
   bottom: 15vh;
   border-radius:5px;
   left: 0px;
-  color: blue;
+  color: #0076B5;
   border: white;
  font-size: 16px;
  padding: 8px 18px;
@@ -194,7 +194,7 @@
 } 
  .link .link_btn2 {
     
-    background-color: blue;
+    background-color: #0076B5;
     position: absolute;
     border-radius:5px;
     left: 0px;
@@ -235,14 +235,14 @@
        font-size: larger;
        font-weight: 300px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
   bottom: 105px;
   border-radius:5px;
   left: 0px;
-  color: blue;
+  color: #0076B5;
   border: white;
  font-size: 16px;
  padding: 8px 18px;
@@ -253,7 +253,7 @@
 } 
  .link .link_btn2 {
     
-    background-color: blue;
+    background-color: #0076B5;
     position: absolute;
     border-radius:5px;
     left: 0px;
@@ -293,14 +293,14 @@
        font-size: larger;
        font-weight: 300px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
   bottom: 105px;
   border-radius:5px;
   left: 0px;
-  color: blue;
+  color: #0076B5;
   border: white;
  font-size: 16px;
  padding: 8px 18px;
@@ -311,7 +311,7 @@
 } 
  .link .link_btn2 {
     
-    background-color: blue;
+    background-color: #0076B5;
     position: absolute;
     border-radius:5px;
     left: 0px;
@@ -352,14 +352,14 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
   bottom: 16vh;
   border-radius:5px;
   left: 0px;
-  color: blue;
+  color: #0076B5;
   border: white;
  font-size: 16px;
  padding: 8px 18px;
@@ -371,7 +371,7 @@
 
  .link .link_btn2 {
     
-    background-color: blue;
+    background-color: #0076B5;
     position: absolute;
     border-radius:5px;
     left: 0px;
@@ -412,7 +412,7 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
@@ -430,7 +430,7 @@
 } 
  .link .link_btn2 {
     
-    background-color: blue;
+    background-color: #0076B5;
     position: absolute;
     border-radius:5px;
     left: 0px;
@@ -471,14 +471,14 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500; 
   
    background-color: white;
   position: absolute;
   bottom: 17vh;
   border-radius:5px;
   left: 0px;
-  color: blue;
+  color: #0076B5;
   border: white;
  font-size: 16px;
  padding: 8px 18px;
@@ -489,7 +489,7 @@
 } 
 .link .link_btn2 {
     
-    background-color: blue;
+    background-color: #0076B5;
     position: absolute;
     border-radius:5px;
     left: 0px;
@@ -531,14 +531,14 @@
        font-weight: 300px;
        top:5px;
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
   bottom: 8vh;
   border-radius:5px;
   left: 0px;
-  color: blue;
+  color: #0076B5;
   border: white;
  font-size: 12px;
  padding: 6px 12px;
@@ -549,7 +549,7 @@
 } 
  .link .link_btn2 {
     
-    background-color: blue;
+    background-color: #0076B5;
     position: absolute;
     border-radius:5px;
     left: 0px;
@@ -721,14 +721,14 @@
        font-weight: 300px;
        
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
   bottom: 8vh;
   border-radius:5px;
   left: 0px;
-  color: blue;
+  color: #0076B5;
   border: white;
  font-size: 12px;
  padding: 4px 12px;
@@ -739,7 +739,7 @@
 } 
  .link .link_btn2 {
     
-    background-color: blue;
+    background-color: #0076B5;
     position: absolute;
     border-radius:5px;
     left: 0px;
@@ -791,14 +791,14 @@
        font-weight: 100px;
       
    }
-.link .link_btn {
+.link .link_btn { font-weight:500;
   
    background-color: white;
   position: absolute;
   bottom:186px;
   border-radius:5px;
   left: 0px;
-  color: blue;
+  color: #0076B5;
   border: white;
  font-size: 10px;
  padding: 2px 8px;
@@ -809,7 +809,7 @@
 } 
   .link .link_btn2 {
    
-    background-color: blue;
+    background-color: #0076B5;
     bottom:-1vh;
     position: absolute;
     border-radius:5px;
@@ -853,14 +853,14 @@
          font-weight: 100px;
         
      }
-  .link .link_btn {
+  .link .link_btn { font-weight:500;
     
      background-color: white;
     position: absolute;
     bottom:160px;
     border-radius:5px;
     left: 0px;
-    color: blue;
+    color: #0076B5;
     border: white;
    font-size: 10px;
    padding: 2px 8px;
@@ -871,7 +871,7 @@
   } 
     .link .link_btn2 {
      
-      background-color: blue;
+      background-color: #0076B5;
       bottom:-1vh;
       position: absolute;
       border-radius:5px;
@@ -909,11 +909,11 @@
   #down_btn {
     bottom: 50px;
     left: 17vw;
-  }
+  /* } */
   .link {
    
     position: absolute;
-   bottom:53px;
+   bottom: 110px;
    left: 26px;
    color:white;
    font-weight: 200;
@@ -925,14 +925,27 @@
       font-weight: 100px;
      
   }
-.link .link_btn {
+  .link .banner-heading {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 1.73px;
+    margin: 15px 0 12px;
+    text-transform: capitalize;
+  }
+  .link .banner-subheading{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300;
+
+  }
+.link .link_btn { font-weight:500;
  
   background-color: white;
  position: absolute;
- bottom:68px;
+ bottom:105px;
  border-radius:5px;
  left: 0px;
- color: blue;
+ color: #0076B5;
  border: white;
 font-size: 12px;
 padding: 4px 12px;
@@ -943,8 +956,8 @@ text-align: center;
 } 
  .link .link_btn2 {
   
-   background-color: blue;
-   bottom:-2vh;
+   background-color: #0076B5;
+   bottom:-30px;
    position: absolute;
    border-radius:5px;
    left: 0px;
@@ -956,8 +969,193 @@ text-align: center;
    border-radius: 5px;
    text-align: center;
  }  
+
+ @media screen and (min-device-width: 320px)
+and (-webkit-min-device-pixel-ratio: 2) {
+  .link {
+   
+    position: absolute;
+   bottom: 20px;
+   left: 26px;
+   color:white;
+   font-weight: 200;
+ 
+  } 
+  .link .banner-heading {
+    font-size: 12px;
+    font-weight: 200;
+    letter-spacing: 0.73px;
+    margin: 15px 0 12px;
+    text-transform: capitalize;
+  }
+  .link .banner-subheading{
+    color: #fff;
+    font-size: 10px;
+    font-weight: 100;
+
+  }
+  .link .link_btn { font-weight:500;
+ 
+    background-color: white;
+   position: absolute;
+   bottom:68px;
+   border-radius:5px;
+   left: 0px;
+   color: #0076B5;
+   border: white;
+  font-size: 10px;
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  }
+  .link .link_btn2 {
   
+    background-color: #0076B5;
+    bottom:-20px;
+    position: absolute;
+    border-radius:5px;
+    left: 0px;
+    color:white;
+    font-size: 10px;
+    padding: 4px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  } 
+}
+  
+@media screen and (min-device-width: 768px)
+and (max-device-width: 1024px) {
+
+  .link {
+   
+    position: absolute;
+   bottom: 60px;
+   left: 26px;
+   color:white;
+   font-weight: 200;
+ 
+  } 
+  .link .link_text {
+      font-family:'Rubik';
+      font-size:small;
+      font-weight: 100px;
+     
+  }
+  .link .banner-heading {
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 1.73px;
+    margin: 15px 0 12px;
+    text-transform: capitalize;
+  }
+  .link .banner-subheading{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300;
+
+  }
+.link .link_btn { font-weight:500;
+ 
+  background-color: white;
+ position: absolute;
+ bottom:115px;
+ border-radius:5px;
+ left: 0px;
+ color: #0076B5;
+ border: white;
+font-size: 12px;
+padding: 8px 12px;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+text-align: center;
+} 
+ .link .link_btn2 {
+  
+   background-color: #0076B5;
+   bottom:-28px;
+   position: absolute;
+   border-radius:5px;
+   left: 0px;
+   color:white;
+   font-size: 12px;
+   padding: 8px 12px;
+   border: none;
+   cursor: pointer;
+   border-radius: 5px;
+   text-align: center;
  }  
+ 
+}
+
+@media screen and (min-width: 1024px) {
+
+  .link {
+   
+    position: absolute;
+   bottom: 110px;
+   left: 26px;
+   color:white;
+   font-weight: 200;
+ 
+  } 
+  .link .link_text {
+      font-family:'Rubik';
+      font-size:small;
+      font-weight: 100px;
+     
+  }
+  .link .banner-heading {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 1.73px;
+    margin: 15px 0 12px;
+    text-transform: capitalize;
+  }
+  .link .banner-subheading{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300;
+
+  }
+.link .link_btn { font-weight:500;
+ 
+  background-color: white;
+ position: absolute;
+ bottom:108px;
+ border-radius:5px;
+ left: 0px;
+ color: #0076B5;
+ border: white;
+font-size: 16px;
+padding: 8px 18px;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+text-align: center;
+} 
+ .link .link_btn2 {
+  
+   background-color: #0076B5;
+   bottom:-34px;
+   position: absolute;
+   border-radius:5px;
+   left: 0px;
+   color:white;
+   font-size: 16px;
+   padding: 8px 18px;
+   border: none;
+   cursor: pointer;
+   border-radius: 5px;
+   text-align: center;
+ }  
+  
+}
+ 
  .corp_slider .carousel-indicators {
   display: none;
-}
+} 

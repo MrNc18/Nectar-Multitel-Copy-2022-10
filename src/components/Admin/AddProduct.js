@@ -1,14 +1,18 @@
-import React,{useEffect, useState} from "react";
-import data from "../../Data"
+import React, { useEffect, useState } from "react";
+import data from "../../Data";
 import { useNavigate } from "react-router-dom";
-import {getAddProduct, getAllCategories} from "../../services/category"
-
+import { getAddProduct, getAllCategories } from "../../services/category";
+import { showAlert } from "../../utils/showAlert";
+import moment from "moment";
+import { imageUrl } from "../../services/category";
+import  default_user  from "../../assets/images/default_user.png"
 
 function AddProduct() {
-    const[errorMsg,setErrorMsg]=useState('')
-    const[categoryList,setcategoryList]=useState('')
-    const[file,setFile]=useState([])
-    const navigate = useNavigate()
+  const [errorMsg, setErrorMsg] = useState("");
+  const [categoryList, setcategoryList] = useState("");
+  const [buttondisabled, setButtonDisabled] = useState(false);
+  const [file, setFile] = useState([]);
+  const navigate = useNavigate();
   const [data2, setData2] = useState({
     id: "",
     productName: "",
@@ -37,68 +41,74 @@ function AddProduct() {
     description,
     offers,
     details,
-    
   } = data2;
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
-    console.log("target",e.target)
+    console.log("target", e.target);
   };
+
   const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById("proimage");
+      console.log("output", output);
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
     setFile(event.target.files);
     console.log(file);
   };
 
-  const handleSubmit = async () =>{
-    let categoryId = ''
-    {categoryList &&
-      categoryList.map((item) => {
-        if(item.name === category){
-          categoryId = item.id
-          console.log("tem.id")
-        }
-      })
-      }
-      const data = new FormData();
+  const handleSubmit = async () => {
+    let categoryId = "";
+    {
+      categoryList &&
+        categoryList.map((item) => {
+          if (item.name === category) {
+            categoryId = item.id;
+            console.log("tem.id");
+          }
+        });
+    }
+    const data = new FormData();
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
-      data.append("description",description)
-      data.append("name",productName)
-      data.append("availability",availability)
-      data.append("product_category",category)
-      data.append("warranty",warranty)
-      data.append("details",details)
-      data.append("quantity",quantity)
-      data.append("price",price)
-      data.append("category_id",categoryId)
+      data.append("description", description);
+      data.append("name", productName);
+      data.append("availability", availability);
+      data.append("product_category", category);
+      data.append("warranty", warranty);
+      data.append("details", details);
+      data.append("quantity", quantity);
+      data.append("price", price);
+      data.append("category_id", categoryId);
     }
-      if(
+    if (
       productName === "" ||
       availability === "" ||
       category === "" ||
       description === "" ||
-      warranty === "" ||
-      details === "" ||
       quantity === "" ||
       price === "" ||
-      date === "" ||
       details === "" ||
       file === ""
-      )
-      {
-          setErrorMsg("please Fill the Required Data")
-      }
-      else{
+    ) {
+      setErrorMsg("Fill the Mandatory Fields");
+    } else if (price < 1 || price % 1 != "0") {
+      setErrorMsg("Enter the Valid Price");
+    } else {
       try {
-        await getAddProduct(data)
-          alert("Added Product.", "success");
-          handleAllCategories()
-          navigate('/admin/products')
-        } catch (error) {
-          alert("something Went Wrong", "error");
-        } finally {
-          setErrorMsg('')
-          // console.log("Dtaa",data2,file)
-          setData2({
+        setButtonDisabled(true);
+        await getAddProduct(data);
+        showAlert("Added Product.", "success");
+        handleAllCategories();
+        navigate("/admin/products");
+      } catch (error) {
+        showAlert("something Went Wrong", "error");
+      } finally {
+        setErrorMsg("");
+        // console.log("Dtaa",data2,file)
+        setData2({
           productName: "",
           category: "",
           quantity: "",
@@ -109,29 +119,27 @@ function AddProduct() {
           warranty: "",
           description: "",
           offers: "",
-          details: ""
-        })
-          setFile([''])
+          details: "",
+        });
+        setFile([""]);
       }
     }
-
-  }
+  };
 
   const handleAllCategories = async () => {
     try {
       const resp = await getAllCategories();
       setcategoryList(resp && resp.data);
-      console.log(resp,"respp")
+      console.log(resp, "respp");
     } catch (error) {
       console.log("error", error);
-      alert("something went Wrong");
+      showAlert("something went Wrong");
     }
   };
 
   useEffect(() => {
-    handleAllCategories()
+    handleAllCategories();
   }, []);
-
 
   return (
     <div>
@@ -141,7 +149,10 @@ function AddProduct() {
       >
         <div className="col-12 text-left">
           <h3 className="mt-0 mb-4">
-            <a className="text-black" onClick={()=>navigate("/admin/products")}>
+            <a
+              className="text-black"
+              onClick={() => navigate("/admin/products")}
+            >
               <i className="fas fa-long-arrow-alt-left"></i>
             </a>{" "}
             Add New Product
@@ -172,14 +183,15 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Product Name
                 </label>
+                <span style={{ color: "red" }}> * </span>
                 <input
                   type="text"
                   className="form-control"
                   id=""
                   name="productName"
-                     value={productName}
-                      onChange={handleChange}
-                      required
+                  value={productName}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -188,21 +200,22 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Category
                 </label>
+                <span style={{ color: "red" }}> * </span>
                 <select
                   className="form-control"
                   id="exampleFormControlSelect1"
                   name="category"
-                   value={category}
+                  value={category}
                   onChange={handleChange}
                 >
-                  {console.log("cl",categoryList)}
-                  <option>select the category</option>
+                  {console.log("cl", categoryList)}
+                  <option value="" disabled="disabled">
+                    select the category
+                  </option>
                   {categoryList &&
-                 categoryList.map((item) => (
-                   
-                   <option value={item.name}>{item.name}</option>
-                   
-                 ))}
+                    categoryList.map((item) => (
+                      <option value={item.name}>{item.name}</option>
+                    ))}
                 </select>
               </div>
             </div>
@@ -211,13 +224,15 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Quantity
                 </label>
+                <span style={{ color: "red" }}> * </span>
                 <input
                   type="number"
                   className="form-control"
                   id=""
+                  min="0"
                   name="quantity"
-                     value={quantity}
-                     onChange={handleChange}
+                  value={quantity}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -227,10 +242,11 @@ function AddProduct() {
                 <input
                   className="form-control"
                   type="date"
-                value={date}
+                  value={date}
                   name="date"
                   id="example-input"
-                 onChange={handleChange}
+                  max={moment().format("YYYY-MM-DD")}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -239,14 +255,17 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Availabilty
                 </label>
+                <span style={{ color: "red" }}> * </span>
                 <select
                   className="form-control"
                   id="exampleFormControlSelect1"
-                     value={availability}
+                  value={availability}
                   name="availability"
-                     onChange={handleChange}
+                  onChange={handleChange}
                 >
-                  <option>Select Option</option>
+                  <option value="" disabled="disabled">
+                    Select Option
+                  </option>
                   <option>Available</option>
                   <option>Out Of Stock</option>
                 </select>
@@ -257,14 +276,15 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Price
                 </label>
+                <span style={{ color: "red" }}> * </span>
                 <input
                   className="form-control"
                   type="number"
-                  min={0}
+                  min={1}
                   id=""
                   name="price"
-                   value={price}
-                   onChange={handleChange}
+                  value={price}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -289,6 +309,7 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Warranty
                 </label>
+                <span style={{ color: "red" }}> * </span>
                 <input
                   type="number"
                   className="form-control"
@@ -305,13 +326,14 @@ function AddProduct() {
                 <label htmlFor="exampleInputtext" className="mb-1">
                   Description
                 </label>
+                <span style={{ color: "red" }}> * </span>
                 <textarea
                   type="text"
                   className="form-control"
                   id=""
                   name="description"
-                     value={description}
-                     onChange={handleChange}
+                  value={description}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -325,35 +347,54 @@ function AddProduct() {
                   className="form-control"
                   id=""
                   name="offers"
-                     value={offers}
-                     onChange={handleChange}
+                  value={offers}
+                  onChange={handleChange}
                 />
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
               <div className="form-group">
-                <label htmlFor="exampleInputtext">product Details</label>
+                <label htmlFor="exampleInputtext">Product Details</label>
+                <span style={{ color: "red" }}> * </span>
                 <textarea
                   className="form-control"
                   type="text"
                   value={details}
                   name="details"
                   id="example-input"
-                 onChange={handleChange}
+                  onChange={handleChange}
                 />
               </div>
             </div>
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-              <div className="form-group">
-                <label htmlFor="exampleInputtext">Product Image</label>
-                <input
-                  className="form-control"
-                  type="file"
-                  name="proimage"
+              <label htmlFor="productimage">Upload Image</label>
+              <span style={{color:"red"}}>*</span>
+              <div className="form-group text-center img_uploads">
+                <img
                   id="proimage"
-                  accept="image/png, image/jpeg"
-                  onChange={handleFileChange}
+                  style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
+                  src={
+                    Image
+                      ? `${imageUrl(Image)}`
+                      : "/assets/images/default_user.png"
+                  }
+                  className="img-fluid"
                 />
+                <label
+                  className=""
+                  style={{ marginTop: "15px", cursor: "pointer" }}
+                >
+                  <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                  <input
+                    id="proimage"
+                    type="file"
+                    name="file"
+                    accept="image/png, image/gif, image/jpeg"
+                    onChange={handleFileChange}
+                    className="form-control"
+                    style={{ display: "none" }}
+                  />
+                </label>
               </div>
             </div>
 
@@ -362,14 +403,21 @@ function AddProduct() {
                 className="btn btn-primary w-100 mt-4 ml-0"
                 name="submit"
                 type="submit"
+                disabled={buttondisabled}
                 data-toggle="modal"
                 data-target="#exampleModalCenter"
-                 onClick={handleSubmit}
+                onClick={handleSubmit}
               >
                 Submit
               </button>
             </div>
-            <label style={{ color: "red", justifyContent: "center" }}>
+            <label
+              style={{
+                color: "red",
+                justifyContent: "center",
+                paddingTop: "30px",
+              }}
+            >
               {errorMsg}
             </label>
           </div>

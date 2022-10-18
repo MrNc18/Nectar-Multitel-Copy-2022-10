@@ -1,30 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ServiceBanner from "../components/atoms/ServiceBanner";
 import CommonSection from "../components/CommonSection";
 import LandingPage from "../components/LandingPage";
 import { formatAmount } from "../utils/AmountFormatter";
 import { baseurl } from "../utils/request";
-import { getProductBySlug } from "../services/category";
+import { getProductBySlug, addCartData, addToWishlist, getWishlistData } from "../services/category";
+import { getUserDetailsByToken } from "../services/authentication";
+import {useStateValue} from "../StateProvider"
+import { showAlert } from "../utils/showAlert";
+import { AUTH_TOKEN, getCookie } from "../utils/cookie";
+
+
 
 const AdditionalInfo = () => (
-
-    <p className="desc_text">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit
-      interdum felis sit amet vehicula. Vestibulum sagittis luctus elit, non
-      lobortis neque fringilla non. Duis tempus sollicitudin nunc id placerat.
-      Vestibulum non nibh a lacus viverra congue nec ut velit. Sed id dui nisi.
-      Proin at suscipit velit.
-    </p>
-
+  <p className="desc_text">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit
+    interdum felis sit amet vehicula. Vestibulum sagittis luctus elit, non
+    lobortis neque fringilla non. Duis tempus sollicitudin nunc id placerat.
+    Vestibulum non nibh a lacus viverra congue nec ut velit. Sed id dui nisi.
+    Proin at suscipit velit.
+  </p>
 );
 
 const Reviews = () => (
   <>
     <h5>Reviews</h5>
     <p>There are no reviews yet.</p>
-    
+
     <p>
       Your email address will not be published. Required fields are marked *
     </p>
@@ -118,23 +122,103 @@ const Reviews = () => (
 );
 
 function ProductDetail() {
-  // const { state } = useLocation();
+  const [state, dispatch] = useStateValue();
+  const [userId, setUserId] = useState('')
+  const isAuthenticated = getCookie(AUTH_TOKEN)
+
+  const addToBasket = async () => {
+    if (userId) {
+      const resp = await addCartData({
+          userId,
+          quantity:qty,
+          id:product.id,
+      })
+      // console.log("addCart", resp)
+    } else {
+      dispatch({
+        type: "ADD_TO_BASKET",
+        item: {
+            id: product.id,
+            image: product?.cover_img,
+            name:product.name,
+            price: product.price,
+            quantity:qty,
+            // rating: rating,
+            // subtotal:subtotal
+        },
+    });
+    }
+  };
+
+  const addTowish = async () => {
+    if (userId) {
+      const resp = await addToWishlist({
+          userId,
+          id:product.id,
+      })
+      console.log("wishlistadd", resp)
+    } else {
+      dispatch({
+        type: "ADD_TO_WISH",
+        item: {
+            id: product.id,
+            image: product?.cover_img,
+            name:product.name,
+            price: product.price,
+            quantity:qty,
+            slug:product.slug
+            // rating: rating,
+            // subtotal:subtotal
+        },
+    });
+    }
+};
+
+
+
+  const navigate = useNavigate()
   // const { product } = state;
   // console.log(product);
 
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({});
   const [step, setStep] = useState("additional");
-  const params = useParams()
-  console.log(params?.name)
+  const [qty, setQty] = useState(1);
+  const [inWishlist, setInWishlist] = useState(false)
+  const params = useParams();
+  console.log(params?.name);
 
   useEffect(() => {
     (async () => {
-      const response = await getProductBySlug({slug: params?.name})
-      console.log(response);
+      const response = await getProductBySlug({ slug: params?.name });
+      console.log("Product data", response?.data?.data);
       setProduct(response?.data?.data);
-      // !response?.data?.length && setInitial("No promotions found");
     })();
-  }, [params?.name]);  
+  }, [params?.name]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
+    async function getUserData() {
+      if (isAuthenticated) {
+        const result = await getUserDetailsByToken()
+        setUserId(result?.data.data.userId)
+      }
+    }
+    getUserData()
+  }, [])
+
+  useEffect(() => {
+    (async () => {
+      if(userId) {
+        const resp = await getWishlistData({ userId });
+        console.log("WLdata", resp?.data?.data);
+        setInWishlist(resp?.data?.data?.find((e) => e?.productId == product?.id))
+      }
+    })();
+  }, [userId, product])
+  
 
   const TabList = Object.freeze([
     { label: "Additional Information", state: "additional" },
@@ -161,18 +245,15 @@ function ProductDetail() {
                     ? `${baseurl}/images/${product?.cover_img}`
                     : "/assets/images/product.png"
                 }
-                className="img-fluid" 
+                className="img-fluid"
               />
-              
             </div>
           </div>
           <div className="col-12 col-md-7">
             <div className="book-details">
               <h1>{product?.name}</h1>
               {/* <p>{product?.specification}</p> */}
-              <div className="price">
-                {formatAmount(product?.price)}
-              </div>
+              <div className="price">{formatAmount(product?.price)}</div>
               {/* <div className="rating">
                 <span> <i className="fa fa-star-o"></i> </span>
                 <span> <i className="fa fa-star-o"></i> </span>
@@ -205,55 +286,74 @@ function ProductDetail() {
               <div className="col-2 qty">Quantity</div>
               <div className="col-2">
                 <div className="qty_counter d-flex">
-                  <input type="button" value="-" className="minus" />
+                  <input type="button" value="-" className="minus" 
+                    onClick={
+                     () => {
+                       qty > 1 && setQty(qty - 1)
+                     }
+                    }
+                  />
                   <input
                     type="text"
                     name="qty"
-                    value="1"
+                    value={qty}
                     className="text-center input-qty w-100"
                   />
-                  <input type="button" value="+" className="plus" />
+                  <input type="button" value="+" className="plus"
+                    onClick={() => qty<"25"?setQty(qty + 1):setQty(qty)}
+                  />
                 </div>
               </div>
               <div className="col-3 addcart">
                 <a
                   className="btn btn-primary contact_btn addcart_btn w-100"
                   href="#"
+                  style={{backgroundColor:"#3498db"}}
+                  onClick={() => {
+                    addToBasket()
+                    showAlert("Item Added to cart.","success")
+                    navigate("/cart")
+                  }}
                 >
                   Add to Cart
                 </a>
               </div>
-              <div className="col-4 add_wishlist">
+              {!inWishlist && (
+                <div className="col-4 add_wishlist">
                 <button
                   className="btn btn-primary"
                   style={{ border: "1px solid var(--secondary)" }}
+                  onClick={() => {
+                    addTowish()
+                    showAlert("Item Added to WishList.","success")
+                    setInWishlist(true)
+                  }}
                 >
                   <img src="/assets/images/green-heart-icon.png" />
                   <span>Add to wishlist</span>
                 </button>
               </div>
+              )}
             </div>
 
             <div className="product_desc mt-3">
-              <h2 className="book_social">Description</h2>
-              <p>
-                {product?.description}
-              </p>
+              <h5 className="book_social">Description</h5>
+              <p>{product?.description}</p>
             </div>
 
             <div className="author-social pt-2 pb-2">
-              <h2 className="book_social">Share on social media</h2>
+              <h5 className="book_social">Share on social media</h5>
               <div className="author_links">
-                <a href="#">
+                <a href="https://www.facebook.com/" target="_blank">
                   <i className="fab fa-facebook-f"></i>
                 </a>
-                <a href="#">
+                <a href="https://twitter.com/i/flow/login" target="_blank">
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="#">
+                <a href="https://www.linkedin.com/login/en"  target="_blank">
                   <i className="fab fa-linkedin-in"></i>
                 </a>
-                <a href="#">
+                <a href="https://www.instagram.com/accounts/login/?"  target="_blank">
                   <i className="fab fa-instagram"></i>
                 </a>
               </div>
@@ -306,12 +406,8 @@ function ProductDetail() {
                 </div>
               </div>
             </section>
-
-            
-
           </div>
         </div>
-        
       </section>
       <CommonSection />
     </LandingPage>

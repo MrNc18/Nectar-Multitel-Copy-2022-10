@@ -6,8 +6,10 @@ function InternetQualityTest() {
   return (
     <Container className="mb-4">
       <Row>
-        <Col md={1}></Col>
-        <Col md={3} className="mt-3">
+        <Col md={12}>
+          <iframe src="https://multitelsites.speedtestcustom.com/" title="description"></iframe>
+        </Col>
+        {/* <Col md={3} className="mt-3">
           <h4>45.36</h4>
           <p>Mbps</p>
           <h5 style={{ color: "#0076B5" }}>DOWNLOAD</h5>
@@ -46,7 +48,7 @@ function InternetQualityTest() {
               <i class="fa-solid fa-wifi fa-2x"></i>
             </div>
           </div>
-        </Col>
+        </Col> */}
       </Row>
     </Container>
   );

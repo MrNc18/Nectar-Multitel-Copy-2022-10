@@ -1,5 +1,4 @@
 import { doGet, doPost, doPut }  from "../utils/request"
-import { FormModel } from "../Model/FormModel"
 
 export const registerUser = async (data) => {
     return await doPost("api/user/userRegistration", data);
@@ -40,8 +39,7 @@ export const updateUser = async (data) => {
   
   export const getUserDetailsByToken = async () => {
     const response = await doPost("api/user/getUserByToken");
-    // new FormModel("userDetails")._createForm(response?.result);
-    new FormModel("userDetails")._createForm(response?.data?.data);
+ 
   
     return response;
   };

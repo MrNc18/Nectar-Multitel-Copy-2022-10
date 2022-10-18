@@ -1,16 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./index.css";
 import App from "./App";
-import store from "./redux/store"
-import { Provider } from "react-redux";
 import "react-toastify/dist/ReactToastify.min.css";
+import reducer, { initialState } from "./Reducer";
+import { StateProvider } from "./StateProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <StateProvider initialState={initialState} reducer={reducer}>
       <App />
-    </Provider>
+    </StateProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

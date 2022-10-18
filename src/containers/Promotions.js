@@ -12,6 +12,7 @@ function Promotions() {
   const [promotionList, setPromotionList] = useState([]);
 
   useEffect(() => {
+     window.scrollTo(0, 0);
     (async () => {
       const response = await getAllPromotions();
       console.log(response);
@@ -91,7 +92,7 @@ function Promotions() {
             <Col md={2}></Col>
             <Col md={8} style={{ color: "white", textAlign: "center" }}>
               <h3>Promotions</h3>
-              <h1>Untimited Broadband Deals</h1>
+              <h1>Unlimited Broadband Deals</h1>
               <h5>
                 FROM<span> $20</span> PER MONTH
               </h5>

@@ -7,17 +7,22 @@ import {
   getDeletecms,
   imageUrl,
 } from "../../services/category";
+import { showAlert } from "../../utils/showAlert";
 // import data from "../../Data"
 
 function Staticpage() {
   const [show, setShow] = useState(false);
   const [cmsData, setCmsData] = useState("");
   const [DeleteShow, setDeleteShow] = useState(false);
+  const [buttondisabled, setButtonDisabled] = useState(false);
   const [deleteRecord, setDeleteRecord] = useState("");
   const [ShowEditModal, setShowEditModal] = useState(false);
-  const [editImage,setEditImage] = useState('')
+  const [editImage, setEditImage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [file, setFile] = useState("");
+  const [Image, setImage] = useState("");
+  let imageWidth = 1920;
+  let imageHeight = 593;
   const [data2, setData2] = useState({
     id: "",
     Title: "",
@@ -26,15 +31,46 @@ function Staticpage() {
     description: "",
     name: "",
     button: "",
-    page_slug:'',
+    page_slug: "",
   });
 
-  const { id, Title, subheading, link, description, name, button,page_slug } = data2;
+  const { id, Title, subheading, link, description, name, button, page_slug } =
+    data2;
 
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
+
+  // const handleFileChange = (event) => {
+  //   var reader = new FileReader();
+  //   reader.readAsDataURL(event.target.files[0]);
+  //   reader.onload = function (e) {
+  //     var image = new Image();
+  //     image.src = e.target.result;
+  //     console.log("image",image)
+  //     image.onload = function () {
+  //       var height = this.height;
+  //       var width = this.width;
+  //       if (height == 593 || width == 1920) {
+  //         setFile(event.target.files);
+  //       } else {
+  //         setFile("");
+  //       }
+  //     };
+  //   };
+
+  // setFile(event.target.files);
+  //   console.log(file, "file");
+  // };
+
   const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById("proimage");
+      console.log("output", output);
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
     setFile(event.target.files);
     console.log(file);
   };
@@ -46,7 +82,11 @@ function Staticpage() {
   const handlecloseDelete = () => {
     setDeleteShow(false);
   };
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setData2("");
+    setFile("");
+    setShow(false);
+  };
 
   const handleDeletecms = async () => {
     const data = {
@@ -54,12 +94,12 @@ function Staticpage() {
     };
     try {
       await getDeletecms(data);
-      alert("Category Deleted Sucessfully");
+      showAlert("Cms Deleted Successfully", "success");
       setDeleteShow(false);
       handlegetcms();
     } catch (error) {
       console.log("error", error);
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong", "error");
     }
   };
 
@@ -84,32 +124,40 @@ function Staticpage() {
       page_slug === "" ||
       file === ""
     ) {
-      setErrorMsg("Fill the Mandatory Filelds");
-    } else
+      setErrorMsg("Fill the Mandatory Fields");
+    }
+    // else if (file.width != imageWidth && file.height != imageHeight)
+    // {
+    //   setErrorMsg("Please Upload the Image with given height and width")
+    // }
+    else
       try {
+        setButtonDisabled(true);
         await getAddcms(data);
         setErrorMsg("");
-        alert("Added  Cms.", "success");
+        showAlert("Added  Cms Successfully", "success");
         setShow(false);
         handlegetcms();
       } catch (error) {
-        alert(error.data.message, "error");
+        showAlert(error.data.message, "error");
       }
   };
 
   //  edit API
   const handleEditShow = (item) => {
+    console.log("Items", item);
+    setImage(item.image);
     setData2({
       id: item?.id,
       Title: item?.title,
       subheading: item?.subtitle,
       link: item?.link,
-      name:item?.name,
+      name: item?.name,
       description: item?.description,
-      page_slug:item?.page_slug,
-      button:item?.button
+      page_slug: item?.page_slug,
+      button: item?.button,
     });
-    setEditImage(item.image ? item.image:'')
+    setEditImage(item.image ? item.image : "");
     setShowEditModal(true);
   };
 
@@ -119,7 +167,7 @@ function Staticpage() {
     for (var x = 0; x < file.length; x++) {
       data.append("image", file[x]);
     }
-    data.append("description", description);
+    data.append("de scription", description);
     data.append("name", name);
     data.append("title", Title);
     data.append("subtitle", subheading);
@@ -129,17 +177,18 @@ function Staticpage() {
     data.append("page_slug", page_slug);
     try {
       await getEditcms(data);
-      alert("Cms Edited Sucessfully");
-      setData2(" ");
+      showAlert("Cms Edited Successfully", "success");
+      setData2("");
       setFile(" ");
       setShowEditModal(false);
       handlegetcms();
     } catch (error) {
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong", "error");
     }
   };
   const handleEditClose = () => {
-    setData2(" ");
+    setData2("");
+    setFile("");
     setShowEditModal(false);
   };
 
@@ -148,7 +197,7 @@ function Staticpage() {
       const resp = await getAllCms();
       setCmsData(resp.data);
     } catch (error) {
-      alert("something Went Wrong");
+      showAlert("something Went Wrong", "error");
     }
   };
 
@@ -160,16 +209,18 @@ function Staticpage() {
   return (
     <div id="layoutSidenavContent">
       <div className="container-fluid">
-        <div className="row" style={{ justifyContent: "space-between" }}>
-          <h3 className="mt-4 mb-4">Content Management</h3>
-          <div className="col-xl-9 col-lg-3 col-md-9 col-sm-9">
+        <div class="row d-flex align-items-center justify-content-between">
+          <div class="col-lg-6 col-md-6 text-left">
+            <h3 className="mt-4 mb-4">Content Management</h3>
+          </div>
+          <div className="col-lg-6 col-md-6 text-right">
             <div className="header justify-content-end">
               <button
                 type="button"
                 className="btn btn-primary btn-sm my-3"
                 style={{
                   width: "150px",
-                  marginRight: "15px",
+                  // marginRight: "15px",
                   backgroundColor: "#0076B5",
                 }}
                 onClick={() => {
@@ -188,6 +239,7 @@ function Staticpage() {
                   <div className="container">
                     <Form.Group>
                       <Form.Label>Title</Form.Label>
+                      <span style={{ color: "red" }}> * </span>
                       <Form.Control
                         type="text"
                         value={Title}
@@ -209,6 +261,7 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Sub-Title</Form.Label>
+                      <span style={{ color: "red" }}> * </span>
                       <Form.Control
                         type="text"
                         value={subheading}
@@ -216,13 +269,27 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Link</Form.Label>
-                      <Form.Control
-                        type="text"
+                      <span style={{ color: "red" }}> * </span>
+                      <select
+                        className="form-control"
+                        id="exampleFormControlSelect1"
                         value={link}
                         name="link"
                         onChange={handleChange}
-                      ></Form.Control>
+                      >
+                        <option value="" disabled="disabled">
+                          Select Option
+                        </option>
+                        <option>/marketplace</option>
+                        <option>/categories/internet-services</option>
+                        <option> /categories/network-equipments</option>
+                        <option>categories/cpe-2</option>
+                        <option> /categories/promotions</option>
+                        <option>categories/other-productsservices-1</option>
+                        <option>/home</option>
+                      </select>
                       <Form.Label>Page slug</Form.Label>
+                      <span style={{ color: "red" }}> * </span>
                       <Form.Control
                         type="text"
                         value={page_slug}
@@ -230,6 +297,7 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Description</Form.Label>
+                      <span style={{ color: "red" }}> * </span>
                       <Form.Control
                         type="textarea"
                         value={description}
@@ -237,11 +305,38 @@ function Staticpage() {
                         onChange={handleChange}
                       ></Form.Control>
                       <Form.Label>Upload</Form.Label>{" "}
-                      <Form.Control
-                        type="file"
-                        id="file"
-                        onChange={handleFileChange}
-                      ></Form.Control>
+                      <span style={{ color: "red" }}> * </span>
+                      <p style={{ fontSize: "small" }}>
+                        <span style={{ color: "red" }}>* </span>Image should be
+                        the size of 1920*600px
+                      </p>
+                      <div className="form-group text-center img_uploads">
+                        <img
+                          id="proimage"
+                          style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : "/assets/images/default_user.png"
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <input
+                            id="image"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
                     </Form.Group>
                   </div>
                 </Modal.Body>
@@ -249,6 +344,7 @@ function Staticpage() {
                   <Button
                     variant="primary"
                     size="lg"
+                    disabled={buttondisabled}
                     onClick={handleSubmit}
                     style={{ width: "200%" }}
                   >
@@ -393,14 +489,38 @@ function Staticpage() {
                 onChange={handleChange}
               ></Form.Control>
               <Form.Label>Upload</Form.Label>
-              <Form.Control
-                type="file"
-                id="file"  
-                // value={file}
-                onChange={handleFileChange}
-              ></Form.Control>
-                <img src={imageUrl(editImage)} style={{ width: "60px" }} />
-            </Form.Group> 
+              <p style={{ fontSize: "small" }}>
+                <span style={{ color: "red" }}>* </span>Image should be the size
+                of 1920*600px
+              </p>
+              <div className="form-group text-center img_uploads">
+                <img
+                  id="proimage"
+                  style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
+                  src={
+                    Image
+                      ? `${imageUrl(Image)}`
+                      : "/assets/images/default_user.png"
+                  }
+                  className="img-fluid"
+                />
+                <label
+                  className=""
+                  style={{ marginTop: "15px", cursor: "pointer" }}
+                >
+                  <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                  <input
+                    id="proimage"
+                    type="file"
+                    name="file"
+                    accept="image/png, image/gif, image/jpeg"
+                    onChange={handleFileChange}
+                    className="form-control"
+                    style={{ display: "none" }}
+                  />
+                </label>
+              </div>
+            </Form.Group>
           </div>
         </Modal.Body>
         <Modal.Footer>

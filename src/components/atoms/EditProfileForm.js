@@ -6,6 +6,7 @@ import { getUserDetailsByToken } from "../../services/authentication";
 import { baseurl } from "../../utils/request";
 import {imageUrl} from "../../services/category"
 import moment from "moment";
+import { showAlert } from "../../utils/showAlert";
 
 function EditProfileForm() {
   const [userData, setUserData] = useState({});
@@ -23,6 +24,7 @@ function EditProfileForm() {
     proffesion: "",
     zipcode: "",
     dob: "",
+    adress:''
     // profile_img: "",
   });
 
@@ -70,6 +72,7 @@ function EditProfileForm() {
     proffesion,
     zipcode,
     dob,
+    adress
     // profile_img,
   } = data;
   // console.log(userData)
@@ -78,13 +81,20 @@ function EditProfileForm() {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('profile');
+      console.log("output",output)
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
     setFile(event.target.files);
     console.log(file);
   };
 
 
   const handleEditProfile = async () => {
-   
+   console.log("lem",file.length)
       const data = new FormData();
         for (var x = 0; x < file.length; x++) {
           data.append("image", file[x]);
@@ -99,10 +109,11 @@ function EditProfileForm() {
        data.append('dob_date', dob);
        data.append('proffesion',proffesion);
        data.append('zipcode',zipcode);
+       data.append("Adress",adress)
       
     try {
        await updateUser(data);
-      alert("Profile Updated Sucessfully....");
+      showAlert("Profile Updated Successfully....","success");
     } catch (error) {
       console.log("error", error);
       // showAlert('In valide data', "error");
@@ -121,11 +132,11 @@ function EditProfileForm() {
           <Row style={{justifyContent:"center"}}>
             <Col md={4}>
               <div className="form-group text-center img_upload">
-                <img style={{maxwidth:'100%',borderRadius:"50%"}}
+                <img id='profile' style={{maxwidth:'100%',borderRadius:"50%"}}
                   src={
                     userData.profile_img
                       ? `${baseurl}/images/${userData.profile_img}`
-                      : "/assets/images/userimg.png"
+                      : "/assets/images/default_user.png"
 
                   }
                   className="img-fluid"
@@ -137,6 +148,7 @@ function EditProfileForm() {
                   <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
                   <br />
                   <input
+                   id="file"
                     type="file"
                     name="file"
                     onChange={handleFileChange}
@@ -150,20 +162,20 @@ function EditProfileForm() {
           <Row>
             <Col md={12}>
               <div
-                class="p-3 mb-5 bg-white rounded"
+                className="p-3 mb-5 bg-white rounded"
                 style={{ marginTop: "30px" }}
               >
                 <h5>Personal Details</h5>
                 <Col md={12}>
                   <form className="mx-5">
-                    <div class="row mb-3">
-                      <label for="inputName" class="col-sm-6 col-form-label">
-                        <i class="fa-solid fa-user mr-5"></i>First Name
+                    <div className="row mb-3">
+                      <label htmlFor="inputName" className="col-sm-6 col-form-label">
+                        <i className="fa-solid fa-user mr-5"></i>First Name
                       </label>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <input
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           id="inputFullName"
                           name="firstName"
                           value={firstName}
@@ -171,14 +183,14 @@ function EditProfileForm() {
                         />
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <label for="inputName" class="col-sm-6 col-form-label">
-                        <i class="fa-solid fa-user mr-5"></i>Last Name
+                    <div className="row mb-3">
+                      <label htmlFor="inputName" className="col-sm-6 col-form-label">
+                        <i className="fa-solid fa-user mr-5"></i>Last Name
                       </label>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <input
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           id="inputFullName"
                           name="lastName"
                           value={lastName}
@@ -186,17 +198,17 @@ function EditProfileForm() {
                         />
                       </div>
                     </div>
-                    <div class="row mb-3">
+                    <div className="row mb-3">
                       <label
-                        for="inputBirthday"
-                        class="col-sm-6 col-form-label"
+                        htmlFor="inputBirthday"
+                        className="col-sm-6 col-form-label"
                       >
-                        <i class="fa-solid fa-cake-candles mr-5"></i>Birthday
+                        <i className="fa-solid fa-cake-candles mr-5"></i>Birthday
                       </label>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <input
                           type="date"
-                          class="form-control"
+                          className="form-control"
                           id="inputBirthday"
                           name="dob"
                           value={dob}
@@ -204,13 +216,13 @@ function EditProfileForm() {
                         />
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <label for="inputGender" class="col-sm-6 col-form-label">
-                        <i class="fa-solid fa-mercury mr-5"></i>Gender
+                    <div className="row mb-3">
+                      <label htmlFor="inputGender" className="col-sm-6 col-form-label">
+                        <i className="fa-solid fa-mercury mr-5"></i>Gender
                       </label>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <select
-                          class="custom-select"
+                          className="custom-select"
                           id="inputGroupSelect01"
                           value={gender}
                           name="gender"
@@ -223,14 +235,14 @@ function EditProfileForm() {
                         </select>
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <label for="inputCity" class="col-sm-6 col-form-label">
-                        <i class="fa-solid fa-city mr-5"></i>City
+                    <div className="row mb-3">
+                      <label htmlFor="inputCity" className="col-sm-6 col-form-label">
+                        <i className="fa-solid fa-city mr-5"></i>City
                       </label>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <input
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           id="inputCity"
                           value={city}
                           name="city"
@@ -238,15 +250,30 @@ function EditProfileForm() {
                         />
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <label for="inputNumber" class="col-sm-6 col-form-label">
-                        <i class="fa-solid fa-mobile-screen-button mr-5"></i>
+                    <div className="row mb-3">
+                      <label htmlFor="inputCity" className="col-sm-6 col-form-label">
+                        <i className="fa-solid fa-city mr-5"></i>Adress
+                      </label>
+                      <div className="col-sm-6">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="inputCity"
+                          value={adress}
+                          name="adress"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="row mb-3">
+                      <label htmlFor="inputNumber" className="col-sm-6 col-form-label">
+                        <i className="fa-solid fa-mobile-screen-button mr-5"></i>
                         Mobile Number
                       </label>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <input
                           type="number"
-                          class="form-control"
+                          className="form-control"
                           id="inputNumber"
                           value={number}
                           name="number"
@@ -254,15 +281,15 @@ function EditProfileForm() {
                         />
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <label for="inputEmail" class="col-sm-6 col-form-label">
-                        <i class="fa-solid fa-envelope-open mr-5"></i>Mail
+                    <div className="row mb-3">
+                      <label htmlFor="inputEmail" className="col-sm-6 col-form-label">
+                        <i className="fa-solid fa-envelope-open mr-5"></i>Mail
                         Address
                       </label>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <input
                           type="email"
-                          class="form-control"
+                          className="form-control"
                           id="inputEmail"
                           value={mail}
                           name="mail"
@@ -271,17 +298,17 @@ function EditProfileForm() {
                         />
                       </div>
                     </div>
-                    <div class="row mb-3">
+                    <div className="row mb-3">
                       <label
-                        for="inputProfession"
-                        class="col-sm-6 col-form-label"
+                        htmlFor="inputProfession"
+                        className="col-sm-6 col-form-label"
                       >
-                        <i class="fa-solid fa-user-tie mr-5"></i>Profession
+                        <i className="fa-solid fa-user-tie mr-5"></i>Profession
                       </label>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <input
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           id="inputProfession"
                           value={proffesion}
                           name="proffesion"
@@ -289,14 +316,14 @@ function EditProfileForm() {
                         />
                       </div>
                     </div>
-                    <div class="row mb-3">
-                      <label for="inputZipCode" class="col-sm-6 col-form-label">
-                        <i class="fa-brands fa-usps mr-5"></i>Zip Code
+                    <div className="row mb-3">
+                      <label htmlFor="inputZipCode" className="col-sm-6 col-form-label">
+                        <i className="fa-brands fa-usps mr-5"></i>Zip Code
                       </label>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <input
                           type="number"
-                          class="form-control"
+                          className="form-control"
                           id="inputZipCode"
                           value={zipcode}
                           name="zipcode"

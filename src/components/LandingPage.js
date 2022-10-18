@@ -5,6 +5,7 @@ import Header from './Header'
 
 
 function LandingPage({children,woproducts}) {
+  //console.log(woproducts)
   return (
     <>
       <Header />

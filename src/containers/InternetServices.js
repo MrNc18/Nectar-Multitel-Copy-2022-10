@@ -3,11 +3,12 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import BroadbandCard from "../components/atoms/BroadbandCard";
 import ServiceBanner from "../components/atoms/ServiceBanner";
+// import ServiceCardDynamic from "../components/atoms/ServiceCardDynamic";
 import ServiceCardDynamic from "../components/atoms/ServiceCardDynamic";
 import LandingPage from "../components/LandingPage";
 import Services from "../components/Services";
 import { getAllServices } from "../services/intservices";
-import { tvIcon } from "../svg/tv";
+
 
 function InternetServices({name}) {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function InternetServices({name}) {
   console.log(name)
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async () => {
       const response = await getAllServices();
       console.log(response);
@@ -27,13 +29,13 @@ function InternetServices({name}) {
   return (
     <LandingPage>
       <ServiceBanner title={name} />
-      <Services />
+      
 
       <section id="deserve">
         <Container>
           <Row>
             <Col md={12} className="text-center">
-              <p className="mb-2">Private. Secure. Super Fast</p>
+              <p className="mb-2 mt-3">Private. Secure. Super Fast</p>
               <h2 className="mb-3">Our Services</h2>
               <div className="broadband_services my-5">
                 <Row>

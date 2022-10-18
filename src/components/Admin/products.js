@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import data from "../../Data";
-import { Button, Modal, Form, Table } from "react-bootstrap";
+import { Button, Modal, Form, Table, Row } from "react-bootstrap";
 import { Navigate, useNavigate } from "react-router-dom";
 import moment from "moment";
+import ReactPaginate from "react-paginate";
 import {
   getAddProduct,
   getDeleteProduct,
@@ -11,6 +12,9 @@ import {
   getAllCategories,imageUrl
 } from "../../services/category";
 import ProductsList from "../ProductsList";
+import { showAlert } from "../../utils/showAlert";
+import  default_user  from "../../assets/images/default_user.png"
+
 
 function Products() {
   const [ShowEditModal, setShowEditModal] = useState(false);
@@ -20,6 +24,7 @@ function Products() {
   const handlecloseDelete = () => setDeleteShow(false);
   const [productList, setProductList] = useState("");
   const[allcategories,setAllcategories]=useState('')
+  const [Image, setImage] = useState("");
 
   const navigate = useNavigate();
 
@@ -54,10 +59,28 @@ function Products() {
     offers,
     details,
   } = data2;
+
+  //pagination
+  const [pageNumber, setPageNumber] = useState(0);
+  const usersPerPage = 10;
+  const pagesVisited = pageNumber * usersPerPage;
+  const pageCount = Math.ceil(productList.length / usersPerPage);
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
   const handleChange = (e) => {
     setData2({ ...data2, [e.target.name]: e.target.value });
   };
+
   const handleFileChange = (event) => {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('proimage');
+      console.log("output",output)
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
     setFile(event.target.files);
     console.log(file);
   };
@@ -65,6 +88,8 @@ function Products() {
   // Edit Api
   const handleEditShow = (item) => {
     console.log(allcategories, "allcategories");
+    setImage(item.cover_img);
+    console.log("item", item)
     setData2({
       id:item.id,
       productName: item.name,
@@ -104,11 +129,11 @@ function Products() {
    
     try {
       await getEditProduct(data);
-      alert("Category Edited Sucessfully");
+      showAlert("Category Edited Successfully","success");
       setShowEditModal(false);
       handleAllProducts();
     } catch (error) {
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
 
@@ -117,7 +142,7 @@ function Products() {
       const resp = await getAllCategories();
       setAllcategories(resp.data)
     } catch (error) {
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
 
@@ -128,7 +153,7 @@ function Products() {
       console.log("resp", resp);
     } catch (error) {
       console.log("error", error); 
-      alert("something went Wrong");
+      showAlert("something went Wrong","error");
     }
   };
   useEffect(() => {
@@ -148,26 +173,28 @@ function Products() {
     };
     try {
       await getDeleteProduct(data);
-      alert("Product Deleted Sucessfully");
+      showAlert("Product Deleted Successfully","success");
       setDeleteShow(false);
       handleAllProducts();
     } catch (error) {
       console.log("error", error);
-      alert("Something Went Wrong");
+      showAlert("Something Went Wrong","error");
     }
   };
 
   return (
     <div id="layoutSidenavContent">
       <div className="container-fluid">
-        <div className="row" style={{ justifyContent: "space-between" }}>
+      <div class="row d-flex align-items-center justify-content-between">
+         <div class="col-lg-6 col-md-6 text-left">
           <h3 className="mt-4 mb-4">Products</h3>
-          <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3">
+          </div>
+          <div className="col-lg-6 col-md-6 text-right">
             <div className="header justify-content-end">
               <button
                 type="button"
                 className="btn btn-primary btn-sm my-3"
-                style={{ marginRight: "15px" }}
+                style={{ backgroundColor: "#0076B5" }}
                 onClick={() => navigate("/admin/products/newproduct")}
               >
                 <i className="fas fa-plus-circle"></i> Add New Product
@@ -181,7 +208,7 @@ function Products() {
               <th>Sr.No.</th>
               <th>Product Name</th>
               <th>Image</th>
-              <th>category</th>
+              <th>Category</th>
               <th>Quantity</th>
               <th>Specifications</th>
               <th>Price</th>
@@ -190,7 +217,7 @@ function Products() {
           </thead>
           <tbody>
             {productList &&
-              productList.map((item, i) => (
+              productList.slice(pagesVisited, pagesVisited + usersPerPage).map((item, i) => (
                 <tr>
                   {console.log("hxwjh", productList)}
                   <td>{i + 1}</td>
@@ -230,6 +257,23 @@ function Products() {
               ))}
           </tbody>
         </Table>
+        <Row>
+        <div className="col-md-7"></div>
+        <div className="col-md-5 product_pagination" style={{display:"inherit", marginBottom:"20px", marginTop:"20px"}}>
+        <ReactPaginate 
+              previousLabel={<i class="fa-solid fa-arrow-left fa-lg"></i>}
+              nextLabel={<i class="fa-solid fa-arrow-right fa-lg"></i>}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            />
+        </div>
+        </Row>
+
       </div>
       {/* Delete Modal */}
 
@@ -256,8 +300,8 @@ function Products() {
         <div className="header">
           <Modal show={ShowEditModal} onHide={handleEditClose} size="lg">
             <Modal.Header closeButton>
-              <Modal.Title style={{ color: "#8ec131", marginLeft: "25px" }}>
-                Edit product List
+              <Modal.Title style={{ color: "#0076B5", marginLeft: "25px" }}>
+                Edit Product List
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -281,7 +325,7 @@ function Products() {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                   <div className="form-group">
                     <label htmlFor="exampleInputtext" className="mb-1">
-                      category
+                      Category
                     </label>
                     <select
                       className="form-control"
@@ -350,7 +394,7 @@ function Products() {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                   <div className="form-group">
                     <label htmlFor="exampleInputtext" className="mb-1">
-                      price
+                      Price
                     </label>
                     <input
                       className="form-control"
@@ -413,7 +457,7 @@ function Products() {
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                   <div className="form-group">
                     <label htmlFor="exampleInputtext" className="mb-1">
-                      offers
+                      Offers
                     </label>
                     <textarea
                       type="text"
@@ -427,7 +471,7 @@ function Products() {
                 </div>
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                   <div className="form-group">
-                    <label htmlFor="exampleInputtext">product Details</label>
+                    <label htmlFor="exampleInputtext">Product Details</label>
                     <textarea
                       className="form-control"
                       type="text"
@@ -439,31 +483,34 @@ function Products() {
                   </div>
                 </div>
                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                  <div className="form-group">
-                    <label htmlFor="exampleInputtext">product Image</label>
-                    <input
-                      className="form-control"
-                      type="file"
-                      name="proimage"
-                      id="proimage"
-                      accept="image/png, image/jpeg"
-                      onChange={handleFileChange}
-                    />
-                  </div>
+                  <div className="form-group text-center img_uploads">
+                        <img
+                          id="proimage"
+                          style={{ maxwidth: "100%", borderRadius: "50%", height:"120px" }}
+                          src={
+                            Image
+                              ? `${imageUrl(Image)}`
+                              : {default_user}
+                          }
+                          className="img-fluid"
+                        />
+                        <label
+                          className=""
+                          style={{ marginTop: "15px", cursor: "pointer" }}
+                        >
+                          <i className="fas fa-camera bg-info p-2 rounded-circle text-white"></i>
+                          <input
+                            id="proimage"
+                            type="file"
+                            name="file"
+                            accept="image/png, image/gif, image/jpeg"
+                            onChange={handleFileChange}
+                            className="form-control"
+                            style={{ display: "none" }}
+                          />
+                        </label>
+                      </div>
                 </div>
-
-                {/* <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-              <button
-                className="btn btn-primary w-100 mt-4 ml-0"
-                name="submit"
-                type="submit"
-                data-toggle="modal"
-                data-target="#exampleModalCenter"
-                 onClick={handleSubmit}
-              >
-                submit
-              </button>
-            </div> */}
                 <label style={{ color: "red", justifyContent: "center" }}>
                   {errorMsg}
                 </label>

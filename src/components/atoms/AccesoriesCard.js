@@ -8,10 +8,10 @@ function AccesoriesCard() {
     <>
       <Container>
         <Row>
-          <Col md={4}>
+          <Col lg={4} md={6}>
             <SearchFilter />
           </Col>
-          <Col md={8}>
+          <Col lg={8} md={6}>
             <AccesoriesProductCard />
           </Col>
         </Row>

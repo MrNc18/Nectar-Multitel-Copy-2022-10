@@ -20,10 +20,13 @@ function LoginModal({ show, handleClose }) {
     try {
       setBtnLoading(true);
       const response = await loginUser( userName, password);
-      console.log("ressss",response)
-      alert("Logged in")
+      console.log("ressss",response.data.data)
+      // alert("Logged in")
       showAlert("Logged in.", "success");
       setCookie(AUTH_TOKEN,response.data.data.jwtToken);
+      const userId = response.data.data.userId
+      sessionStorage.setItem('userId', userId);
+      localStorage.setItem('userId', userId);
       // console.log("token",response.data.data.jwtToken)
       handleClose()
       navigate("/redirect")
@@ -31,7 +34,7 @@ function LoginModal({ show, handleClose }) {
     } catch (error) {
       // showAlert("Please enter valid credentials.", "error");
       console.log("erm",error.data.massage)
-      alert(error.data.massage)
+      showAlert(error.data.massage)
     } finally {
       setBtnLoading(false);
     }
@@ -60,7 +63,7 @@ function LoginModal({ show, handleClose }) {
           <InputField
             id=" userName"
             type="text"
-            label=" userName"
+            label="Username"
             mendetory
             value={{  userName }}
             handleChange={(e) => setuserName(e.target.value)}
@@ -70,20 +73,21 @@ function LoginModal({ show, handleClose }) {
             type="password"
             label="Password"
             mendetory
+            
             value={{ password }}
             handleChange={(e) => setPassword(e.target.value)}
           />
           <div className="form-group small mb-1">
             <div
               className="custom-control custom-checkbox d-flex align-items-center justify-content-between"
-              style={{ paddingLeft: 0 }}
+              style={{ paddingLeft: 10 ,paddingTop: 10  }}
             >
-              <InputField type="checkbox" label="Remember me" />
+              <InputField className="checkbox"  style={{ paddingLeft: 100 ,paddingTop: 500  }} type="checkbox" label="Remember me" />
 
               <a
                 onClick={() => navigate("/forgot-password")}
                 className="text-primary fw-500"
-              >
+               style={{paddingButton :"500px"}}>
                 Forgot Password
               </a>
             </div>

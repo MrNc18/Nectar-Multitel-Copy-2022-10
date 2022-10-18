@@ -1,3 +1,4 @@
+
 const data = {
   products: [
     {
@@ -273,6 +274,44 @@ const data = {
       description: "hdcgwdgchdwgogeocqec",
       link:"/internet-services"
     }
+  ],
+
+   Telecategories : [
+    {
+      id:"1",
+      value:"1",
+      name:"Privatenetworks"
+    },
+    {
+      id:"2",
+      value:"2",
+      name:"PrimeData"
+    },
+    {
+      id:"3",
+      value:"3",
+      name:"Secured Acesss"
+    },
+    {
+      id:"4",
+      value:"4",
+      name:"Sat Data"
+    },
+    {
+      id:"5",
+      value:"5",
+      name:"Lan to Lan"
+    },
+    {
+      id:"6",
+      value:"6",
+      name:"P2P Link"
+    },
+    {
+      id:"7",
+      value:"7",
+      name:"Link En"
+    },
   ]
 };
 export default data;

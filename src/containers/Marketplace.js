@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
-import LandingPage from "../components/LandingPage";
-import { Button, Col, Container, Row, Card } from "react-bootstrap";
-import MarketplaceBanner from "../components/MarketplaceBanner";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import { Col, Container, Row, Card } from "react-bootstrap";
 import vqr from "../assets/vqr.png";
-import ProductsList from "../components/ProductsList";
-import data from "../Data";
+// import LandingPage from "../components/LandingPage";
+// import MarketplaceBanner from "../components/MarketplaceBanner";
+// import ProductsList from "../components/ProductsList";
 import { useNavigate } from "react-router-dom";
 import { getAllCategories } from "../services/category";
 import { baseurl } from "../utils/request";
+const LandingPage = lazy(() => import("../components/LandingPage"));
+const MarketplaceBanner = lazy(() => import("../components/MarketplaceBanner"));
+const ProductsList = lazy(() => import("../components/ProductsList"));
 
 const Marketplace = () => {
   const navigate = useNavigate();
@@ -27,9 +29,9 @@ const Marketplace = () => {
         <MarketplaceBanner
           img={vqr}
           title="Introducing Router"
-          subtext="IPV6 support.Transmit Beamforming Technology"
-          subtext1="MU MIMO technology for enhanced Wifi Performance"
-          Amount="$20"
+          subtext1="-IPV6 support.Transmit Beamforming Technology"
+          subtext="-MU MIMO technology for enhanced Wifi Performance"
+          Amount="$29.00"
           buttonText="View Details"
         />
         <ProductsList />

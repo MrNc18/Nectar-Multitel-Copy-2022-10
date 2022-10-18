@@ -1,7 +1,8 @@
-import { doGet, doPost, doPut,doDelete }  from "../utils/request"
+import { doGet, doPost, doPut,doDelete, baseurl, }  from "../utils/request"
 
  export const imageUrl =  (imagePath)  => {
-    return (`http://50.28.104.48:3003/images/${imagePath}`)
+    // return (`${baseurl}/${imagePath}`)
+    return (`${baseurl}/images/${imagePath}`)
  }
 
 export const getAllCategories = async () => {
@@ -103,6 +104,83 @@ export const getAllCategories = async () => {
    export const getDeletecms = async(data) =>{
      return await doDelete('api/cms/delete',data);
    }
+  //contacts
+
+  export const getAddVendor = async(data) =>{
+    return await doPost('api/vendor/createVendor',data);
+  }
+  export const getEditVendor = async(data) =>{
+    return await doPut('api/vendor/updateVendor',data);
+  }
+  export const getDeleteVendor = async(data) =>{
+    return await doDelete('api/vendor/deleteVendor',data);
+  }
+  export const getAllVendors = async (data) => {
+    return await doPost("api/vendor/getVendors",data)
+   }
+   
+
+   //orders
+
+   export const getorders = async(data) =>{
+    return await doPost('api/payment/getAdminOrderDetails',data);
+  }
+
+  export const getmyorders = async(data) =>{
+    return await doPost('api/payment/getOrderDetails',data);
+  }
+
+   //cart
+
+   export const addCartData = async(data) =>{
+    return await doPost('api/cart/addcartdata',data);
+  }
+
+  export const delCartData = async(data) =>{
+    return await doDelete('api/cart/cartDataDelete',data);
+  }
+  export const getCartData = async(data) =>{
+    return await doPost('api/cart/getCartData',data);
+  }
+  export const updateCartData = async(data) =>{
+    return await doPut('api/cart/updateCartData',data);
+  }
+  export const delAllCartData = async(data) =>{
+    return await doDelete('api/cart/AllCartDataDelete',data);
+  }
+
+  // service Cart
   
+  export const addServiceCart = async(data) =>{
+    return await doPost('api/serviceCart/addServiceCart', data);
+  }
+  export const deleteServiceCart = async(data) =>{
+    return await doDelete('api/serviceCart/serviceCartDataDelete',data);
+  }
+  export const getServiceCart = async(data) =>{
+    return await doPost('api/serviceCart/getServiceCartData',data);
+  }
+  export const updateServiceCart = async(data) =>{
+    return await doPut('api/serviceCart/updateServiceCartData',data);
+  }
+  export const deleteAllServiceCart = async(data) =>{
+    return await doDelete('api/serviceCart/AllServiceCartDataDelete',data);
+  }
+
+  // wishlist
+  export const addToWishlist = async(data) =>{
+    return await doPost('api/cart/addFavCart',data);
+  }
+  export const delFromWishlist = async(data) =>{
+    return await doDelete('api/cart/favCartDataDelete',data);
+  }
+  export const getWishlistData = async(data) =>{
+    return await doPost('api/cart/getFavCartData',data);
+  }
+  
+
+
+
+
 
  

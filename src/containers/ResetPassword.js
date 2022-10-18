@@ -8,8 +8,8 @@ import LoginModal from "../components/LoginModal";
 import { isValidEmail } from "../utils/validators";
 import { showAlert } from "../utils/showAlert";
 import {resetPassword} from "../services/authentication"
-import {FormModel} from "../Model/FormModel"
-import {useSelector} from "react-redux"
+
+
 
 
 
@@ -20,52 +20,42 @@ function ResetPassword() {
   const { state } = useLocation();
   const { email,otp } = state;
   const navigate = useNavigate();
-  const formName = "resetForm"
+  const [data,setData] = useState({
+    password:"",
+    confirmPassword:""
+  })
+  const {password,confirmPassword} = data
 
+  const handleChange = (e) =>{
+    setData({...data,[e.target.name]:e.target.value})
+  }
+ 
 
-  
-
-
-  useEffect(() => {
-    new FormModel(formName)._createForm({
-      password: "",
-      confirmPassword: "",
-    });
-  }, []);
-
-  const formInput = useSelector((state) => state.forms[formName]) || {};
-
-  const commonProps = {
-    value: formInput,
-    formName,
-  };
-
-  const { password, confirmPassword, } = formInput;
   const buttonEnabled = password && confirmPassword;
 
 
   const reset = async () => {
     setConfirmPasswordError("");
-    if (password !== confirmPassword) {
-      new FormModel(formName)._updateValidation({
-        confirmPassword: "Password is not matching",
-      });
-      return;
-    }
-    console.log(password)
+    if (password == confirmPassword) {
     try {
       setBtnLoading(true);
       await resetPassword({email,otp,password});
       // history.push("/auth/login");
       navigate("/home")
-      showAlert("password Changed Sucessfully.", "success");
-      alert("password Changed Sucessfully.", "success");
-    } catch (error) {
+      showAlert("password Changed Successfully.", "success");
+      alert("password Changed Successfully.", "success");
+    } 
+    catch (error) {
       showAlert(error.data.message, "error");
-      alert(error.data.message, "error");
+      
     } finally {
       setBtnLoading(false);
     }
+  }
+  else{
+          setBtnLoading(false)
+          setConfirmPasswordError ("Password is not matching")
+  }
   };
 
   return (
@@ -78,20 +68,40 @@ function ResetPassword() {
           </h3>
 
           <Form>
-            <InputField
-              id="password"
-              type="password"
-              label="New Password"
-              mendetory
-             {...commonProps}
-            />
-            <InputField
-              id="confirmPassword"
-              type="password"
-              label="Confirm Password"
-              mendetory
-              {...commonProps}
-            />
+          <div className="col-12 col-sm-6 col-md-6 col-lg-12">
+              <div className="form-group">
+                <label htmlFor="exampleInputtext" className="mb-1">
+                  Password
+                </label>
+                <span style={{ color: "red" }}> * </span>
+                <input
+                  type="password"
+                  className="form-control"
+                  id=""
+                  name="password"
+                  value={password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="col-12 col-sm-6 col-md-6 col-lg-12">
+              <div className="form-group">
+                <label htmlFor="exampleInputtext" className="mb-1">
+                Confirm  Password
+                </label>
+                <span style={{ color: "red" }}> * </span>
+                <input
+                  type="password"
+                  className="form-control"
+                  id=""
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
              {confirmPasswordError && <p className="errorText">{confirmPasswordError}</p>}
             <Button
               disabled={btnLoading || !buttonEnabled}
